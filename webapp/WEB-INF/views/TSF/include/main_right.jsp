@@ -1,19 +1,32 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>  
-<%@ page contentType="text/html;charset=UTF-8" %>
-<!doctype html>
-<html>
-<head>
-<title>mysite</title>
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
-<!-- 
-<link href="/Project_MDS/assets/css/main.css" rel="stylesheet" type="text/css">
- -->
-</head>
-<body>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-right
+
+<html>
+
+<head>
+<meta charset="utf-8">
+
+</head>
+<body data-spy="scroll">
+	<div class="section section-warning">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-2">
+				
+						==추천 쇼핑몰==
+					<ol>
+						<li>one</li>
+						<li>Two</li>
+						<li>Three</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 </body>
+
 </html>

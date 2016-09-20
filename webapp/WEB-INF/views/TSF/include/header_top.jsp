@@ -6,13 +6,6 @@
   
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
-    rel="stylesheet" type="text/css">
-    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
-    rel="stylesheet" type="text/css">
   </head>
   
   <body>
@@ -32,20 +25,36 @@
             <li class="active">
               <a href="#">Home</a>
             </li>
+  
             
             <li>
-              <a href="#">로그인</a>
+              <a href="/Project_MDS/main/login">로그인</a>
             </li>
-            
             <li>
               <a href="#">회원가입</a>
             </li>
             
             
             <li>
-              <a href="#">만든이</a>
+              <a href="#">회원정보수정</a>
+            </li>
+            <li>
+              <a href="#">로그아웃</a>
             </li>
             
+            <!-- 
+				<c:choose>
+					<c:when test='${empty authUser }'>
+						<li><a href="/mysite5/user/loginform">로그인</a></li>
+						<li><a href="/mysite5/user/joinform">회원가입</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a href="/mysite5/user/modifyform">회원정보수정</a></li>
+						<li><a href="/mysite5/user/logout">로그아웃</a></li>
+						<li>${authUser.name }님 안녕하세요 ^^;</li>
+					</c:otherwise>
+				</c:choose>
+             -->
             
           </ul>
         </div>

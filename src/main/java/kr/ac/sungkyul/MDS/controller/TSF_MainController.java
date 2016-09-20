@@ -4,14 +4,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class MemberController {
-
-	@RequestMapping("/main/login")
+public class TSF_MainController {
+	
+	@RequestMapping("/main")
 	public String index() {
+		
+		System.out.println("userid ");
 
-		System.out.println("로그인 화면");
-
-		return "member/loginform";
+		return "TSF/main/index";
 	}
 
 }
