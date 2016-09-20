@@ -10,14 +10,14 @@
 <html>
 <head>
     <meta charset="utf-8">
-   <!--  
+     
 <link href="/Project_MDS/assets/css/bootstrap.css" rel="stylesheet"
 	type="text/css">
 	
-	
+
 <link href="/Project_MDS/assets/css/mycss.css" rel="stylesheet"
 	type="text/css">
-	 -->
+	 
 	
 <title>mysite</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -25,11 +25,27 @@
 </head>
 <body data-spy="scroll">
 
-	<div id="container">
+<div id="header">
+<div id="container">
 		<c:import url='/WEB-INF/views/TSF/include/header_top.jsp' />
 		<c:import url='/WEB-INF/views/TSF/include/header_search.jsp' />
 		<c:import url='/WEB-INF/views/TSF/include/header_tap.jsp' />
-	</div>
+	</div></div>
+<div id="wrapper">
+<div id="content">
+<p>로그인 안했을때</p>
+</div>
+</div>
+<div id="navigation">
+<p><strong>오른쪽</strong> </div>
+<div id="extra">
+<p>왼쪽</p>
+</div>
+<div id="footer"><c:import url='/WEB-INF/views/TSF/include/footer.jsp' /></div>
+
+
+
+	
 
 
 	<!-- ------------------------------------------------------------------------ -->
@@ -44,7 +60,7 @@
 
 			<!-- 본문 부분 ------------------------------------------------------------------------ -->
 
-			로그인 안했을때
+			
 
 			<!-- 본문 부분 ------------------------------------------------------------------------ -->
 
@@ -58,7 +74,7 @@
 	<!-- ------------------------------------------------------------------------ -->
 
 
-	<c:import url='/WEB-INF/views/TSF/include/footer.jsp' />
+	
 
 
 </body>
