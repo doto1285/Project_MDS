@@ -28,7 +28,7 @@
   
             
             <li>
-              <a href="/Project_MDS/main/login">로그인</a>
+              <a href="/Project_MDS/main/loginfrom">로그인</a>
             </li>
             <li>
               <a href="#">회원가입</a>
