@@ -27,23 +27,12 @@ public class MemberDao {
 		System.out.println("dao - " + member_id + "  " + member_password);
 		
 		MemberVo memberVo = new MemberVo();
-//		userVo.set(email);
-//		userVo.setPassword(password);
 
 		memberVo.setMember_id(member_id);
 		memberVo.setMember_password(member_password);
 		
 		System.out.println(memberVo);
 		
-		//만약에 파라미터로 넘겨야 할 매핑 클래스가 없는 경우
-		/*
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put( "email", email );
-		map.put( "password", password );
-		UserVo vo = sqlSession.selectOne( 
-				"user.getByEmailAndPassword", map );
-		*/
-
 		MemberVo vo = sqlSession.selectOne( "TSF_member.getByIdAndPassword", memberVo );
 		return vo;
 		

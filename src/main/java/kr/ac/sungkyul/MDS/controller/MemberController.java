@@ -40,10 +40,12 @@ public class MemberController {
 		
 		
 		if( authUser == null ) {
-			return "redirect:/main/loginform";	
+			System.out.println("로그인 실패");
+			return "redirect:/main/loginfrom";	
 		}
 		
 		// 인증 성공
+		System.out.println("로그인 성공");
 		session.setAttribute( "authUser", authUser);
 		
 		return "redirect:/main";
