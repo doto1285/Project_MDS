@@ -1,18 +1,69 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div id="navigation">
-	<ul id="accordion">
-		<li><a href="#tab1"><h2>Box One</h2></a>
-			<section id="tab1" class="content">
-				<p>탭1</p>
-			</section></li>
-		<li><a href="#tab2"><h2>Box One</h2></a>
-			<section id="tab2" class="content">
-				<p>탭2</p>
-			</section></li>
-		<li><a href="#tab3"><h2>Box One</h2></a>
-			<section id="tab3" class="content">
-				<p>탭3</p>
-			</section></li>
-	</ul>
-</div>
+<html>
+<head>
+<script type="text/javascript"
+	src="/Project_MDS/assets/js/jquery/jquery-1.9.0.js"></script>
+<script type="text/javascript">
+$(function() {
+	$(".outer_li").click(function() {
+		if ($(this).children().css("display") == "block") {
+			$(this).children().slideUp("500");
+		} else {
+			var showList = $(this).index();
+			$(".inner_li").slideUp("500");
+			$(".inner_li").eq(showList).slideDown("500");
+		}
+	});
+})
+
+</script>
+
+
+</head>
+
+<body>
+	<div id="navigation">
+		<div class="accord_menu">
+			<ul>
+				<li class="outer_li">쇼핑몰관리
+					<ul class="inner_li">
+						<li>쇼핑몰정보관리</li>
+					</ul>
+				</li>
+				<li class="outer_li">카테고리관리
+					<ul class="inner_li">
+						<li>카테고리정보관리</li>
+					</ul>
+				</li>
+				<li class="outer_li">상품관리
+					<ul class="inner_li">
+						<li>상품 목록/검색</li>
+					</ul>
+				</li>
+				<li class="outer_li">주문관리
+					<ul class="inner_li">
+						<li>주문목록/검색</li>
+						<li>취소/교환/반품/환불</li>
+					</ul>
+				</li>
+				<li class="outer_li">고객관리
+					<ul class="inner_li">
+						<li>고객목록/검색</li>
+					</ul>
+				</li>
+				<li class="outer_li">고객센터
+					<ul class="inner_li">
+						<li>FAQ</li>
+						<li>Q&A</li>
+					</ul>
+				</li>
+			</ul>
+
+		</div>
+
+	</div>
+
+</body>
+
+</html>

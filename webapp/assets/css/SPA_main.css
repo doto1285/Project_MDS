@@ -6,14 +6,11 @@ p{margin:0 10px 10px}
 a{display:block;color: #000000;}
 
 
-#accordion {margin:0 auto;width:100%;}
-ul {margin:0;padding:0;}
-ul li {list-style:none;border:1px 1px 1px 1px #efefef solid;background-color:#34495e;}
-ul li h2 {margin:0;padding:10px;font-size:18px;font-family:Arial, Helvetica, sans-serif;color:#ecf0f1;border-bottom:1px #efefef solid;}	
-ul li a {text-decoration:none;}	
-ul li .content {height: 0;overflow:hidden;}	
-ul li .content:target {height:auto;border-bottom:1px #efefef solid;}
-ul li .content p {padding:10px;color:#ecf0f1;}				
+div#navigation .accord_menu {width:100%; background:#B9CAFF; color:#6986a6;}
+div#navigation .accord_menu .outer_li{background:#6986a6; color:#fff;width:100%; padding-bottom:5px;}
+div#navigation .accord_menu .outer_li .inner_li {display:none;}
+div#navigation .accord_menu .outer_li .inner_li>li {background:#bed0e6; color:#000000; margin:5px;}; ​
+
 
 div#header h2{height:40px;line-height:40px;margin:0;
   padding-right:20px;background: #EEE;color: #000000; text-align: right;}
@@ -22,7 +19,6 @@ div#header a{margin-left : 15px; padding-left: 10px; padding-right : 10px; float
   
   
 div#content p{line-height:1.4}
-div#navigation{background:#B9CAFF}
 div#extra{background:#FF8539}
 div#footer{background: #333;color: #FFF}
 div#footer p{margin:0;padding:5px 10px}
