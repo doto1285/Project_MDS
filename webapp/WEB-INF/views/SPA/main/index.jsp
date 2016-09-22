@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link href="" rel="stylesheet" type="text/css">
+<link href="/Project_MDS/assets/css/SPA_main.css" rel="stylesheet" type="text/css">
 <title>mysite</title>
 </head>
 <body>

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/SPA")
-public class SPAController {
+public class SPA_MainController {
 	
 	@RequestMapping("{userid}/main")
 	public String index(@PathVariable String userid) {
