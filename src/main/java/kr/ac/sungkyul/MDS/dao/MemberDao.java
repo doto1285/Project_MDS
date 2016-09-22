@@ -13,7 +13,6 @@ public class MemberDao {
 	private SqlSession sqlSession;
 
 	public void insert(MemberVo vo) {
-		// TODO Auto-generated method stub
 
 		int count = sqlSession.insert( "user.insert", vo );
 		System.out.println( count );
@@ -21,8 +20,6 @@ public class MemberDao {
 	}
 
 	public MemberVo get(String member_id, String member_password, int member_distinction) {
-		// TODO Auto-generated method stub
-		
 
 		System.out.println("dao - " + member_id + "  " + member_password);
 		
@@ -35,6 +32,12 @@ public class MemberDao {
 		System.out.println(memberVo);
 		
 		MemberVo vo = sqlSession.selectOne( "TSF_member.getByIdAndPassword", memberVo );
+		return vo;
+		
+	}
+	
+	public MemberVo get(int member_no) {
+		MemberVo vo = sqlSession.selectOne( "TSF_member.selectOne", member_no );
 		return vo;
 		
 	}

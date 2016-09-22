@@ -22,6 +22,12 @@ public class MemberService {
 		MemberVo authUser = memberDao.get(id, password, member_distinction);
 		return authUser;
 	}
+	
+	public MemberVo check(int member_no) {
+		MemberVo authUser = memberDao.get(member_no);
+		return authUser;
+		
+	}
 
 	
 	
