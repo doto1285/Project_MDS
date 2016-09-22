@@ -20,11 +20,7 @@ public class MemberDao {
 	}
 
 	public MemberVo get(String member_id, String member_password, int member_distinction) {
-<<<<<<< HEAD
-		// TODO Auto-generated method stub
 		//일반회원, 기업회원, admin 로그인
-=======
->>>>>>> e98cfbf64e59da9b46d63559db82a778f2e89a9e
 
 		System.out.println("dao - " + member_id + "  " + member_password);
 		
