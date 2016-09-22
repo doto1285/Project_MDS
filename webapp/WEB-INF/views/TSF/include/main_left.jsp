@@ -29,13 +29,34 @@
 	<div id="w">
 		<nav>
 			<ul id="nav">
-				<p>나의쇼핑몰 관리</p>
-				<li><a href="#">나의 쇼핑몰 만들기</a></li>
-				<p>고객센터</p>
+
+				<c:choose>
+					<c:when test='${empty authUser }'>
+						<!-- 비회원일경우 표시되는 메뉴  -->
+						<li><a href="#">로그인 하세요</a></li>
+					</c:when>
+
+					<c:when test='${authUser.member_distinction == 0}'>
+						<!-- 개인 회원일경우 표시되는 메뉴  -->
+						<li><a href="#">구매 / 배송조회</a></li>
+						<li><a href="#">환불 / 취소</a></li>
+					</c:when>
+
+
+					<c:when test='${authUser.member_distinction == 1 }'>
+						<!-- 기업 회원일경우 표시되는 메뉴  -->
+						<li><a href="#">쇼핑몰 만들기</a></li>
+
+					</c:when>
+				</c:choose>
+
+				<p5>고객센터</p5>
 				<li><a href="">공지사항</a></li>
 				<li><a href="">FAQ</a></li>
 				<li><a href="">Q & A</a></li>
 			</ul>
+
+
 
 
 		</nav>

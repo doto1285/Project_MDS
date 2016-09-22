@@ -30,15 +30,43 @@
 		</div>
 		<div id="wrapper">
 			<div id="content">
-				<center>
-					<p>아직 모두의 쇼핑몰 회원이 아니시군요?</p>
-					<p>쇼핑몰을 만드시거나 이용하시려면</p>
-					<p>모두의 쇼핑몰 로그인이 필요합니다.</p>
-					<p>
-						<button>로그인</button>
-						<button>회원가입</button>
-					</p>
-				</center>
+
+				<!-- -------------------------------- -->
+
+				<c:choose>
+					<c:when test='${empty authUser }'>
+						<!-- 비회원일경우 표시되는 화면  -->
+						<center>
+							<p>아직 모두의 쇼핑몰 회원이 아니시군요?</p>
+							<p>쇼핑몰을 만드시거나 이용하시려면</p>
+							<p>모두의 쇼핑몰 로그인이 필요합니다.</p>
+							<p>
+								<button>로그인</button>
+								<button>회원가입</button>
+							</p>
+						</center>
+					</c:when>
+
+					<c:when test='${authUser.member_distinction == 0}'>
+						<!-- 개인 회원일경우 표시되는 화면  -->
+						<center>
+							<p>내가 가입한 쇼핑몰</p><br>
+							<a href="#">1. abc마켓</a><br>
+							<a href="#">2. g마켓</a><br>
+							
+							
+						</center>
+					</c:when>
+
+
+					<c:when test='${authUser.member_distinction == 1 }'>
+						<!-- 기업 회원일경우 표시되는 화면  -->
+						<center>
+							<p>내가 운영중인 쇼핑몰</p>
+						</center>
+					</c:when>
+				</c:choose>
+				<!-- -------------------------------- -->
 			</div>
 		</div>
 		<div id="navigation">

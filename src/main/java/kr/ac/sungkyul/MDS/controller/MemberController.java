@@ -27,7 +27,7 @@ public class MemberController {
 		return "member/loginform";
 	}
 	
-	@RequestMapping("/main/admin")
+	@RequestMapping("/main/loginfromadmin")
 	public String admin_login() {
 		//관리자 로그인
 		System.out.println("관리자 로그인 화면");
@@ -38,6 +38,7 @@ public class MemberController {
 	
 	@RequestMapping( value="/main/login", method=RequestMethod.POST )
 	public String login(
+			//개인, 기업회원 로그인
 		HttpSession session,
 		@RequestParam( value = "id", required=false, defaultValue="" ) String id,
 		@RequestParam( value="password", required=false, defaultValue="" ) String password,
@@ -62,6 +63,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/main/logout")
+	//로그아웃
 	public String logout( HttpSession session ) {
 	System.out.println("로그아웃");
 		session.removeAttribute( "authUser" );
