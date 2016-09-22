@@ -20,7 +20,7 @@ public class MemberDao {
 		
 	}
 
-	public MemberVo get(String member_id, String member_password) {
+	public MemberVo get(String member_id, String member_password, int member_distinction) {
 		// TODO Auto-generated method stub
 		
 
@@ -30,6 +30,7 @@ public class MemberDao {
 
 		memberVo.setMember_id(member_id);
 		memberVo.setMember_password(member_password);
+		memberVo.setMember_distinction(member_distinction);
 		
 		System.out.println(memberVo);
 		

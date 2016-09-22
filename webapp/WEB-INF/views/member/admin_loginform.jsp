@@ -19,12 +19,7 @@
 				<form id="login-form" name="loginform" method="post"
 					action="/Project_MDS/main/login">
 					
-					
-				<!-- ------------------------------------------ -->
-
-				<input type="radio"  name="member_distinction" checked="" value="0">개인 회원<br>
-				 <input	type="radio"  name="member_distinction" value="1">기업 회원<br>
-				<!-- ------------------------------------------ -->
+				<input type="radio"  name="member_distinction" checked="" value="9">관리자 로그인<br>
 				
 				
 					<label class="block-label">아이디</label> <input id="id" name="id"

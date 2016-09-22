@@ -21,10 +21,18 @@ public class MemberController {
 
 	@RequestMapping("/main/loginfrom")
 	public String index() {
-
+		//개인회원, 기업회원 로그인
 		System.out.println("로그인 화면");
 
 		return "member/loginform";
+	}
+	
+	@RequestMapping("/main/admin")
+	public String admin_login() {
+		//관리자 로그인
+		System.out.println("관리자 로그인 화면");
+		
+		return "member/admin_loginform";
 	}
 
 	
@@ -32,11 +40,13 @@ public class MemberController {
 	public String login(
 		HttpSession session,
 		@RequestParam( value = "id", required=false, defaultValue="" ) String id,
-		@RequestParam( value="password", required=false, defaultValue="" ) String password
+		@RequestParam( value="password", required=false, defaultValue="" ) String password,
+		@RequestParam( value="member_distinction", required=false, defaultValue="" ) int member_distinction
+		
 		){
 
-		System.out.println("controller - " + id + "  "+ password);
-		MemberVo authUser = memberService.login( id, password );
+		System.out.println("controller - " + id + "  "+ password + member_distinction);
+		MemberVo authUser = memberService.login( id, password, member_distinction);
 		
 		
 		if( authUser == null ) {
@@ -51,6 +61,13 @@ public class MemberController {
 		return "redirect:/main";
 	}
 	
-	
+	@RequestMapping("/main/logout")
+	public String logout( HttpSession session ) {
+	System.out.println("로그아웃");
+		session.removeAttribute( "authUser" );
+		session.invalidate();
+		return "redirect:/main";
+		
+	}
 	
 }

@@ -17,9 +17,9 @@ public class MemberService {
 		memberDao.insert(vo);
 	}
 
-	public MemberVo login(String id, String password) {
+	public MemberVo login(String id, String password, int member_distinction) {
 		System.out.println("service - " + id + " " + password);
-		MemberVo authUser = memberDao.get(id, password);
+		MemberVo authUser = memberDao.get(id, password, member_distinction);
 		return authUser;
 	}
 
