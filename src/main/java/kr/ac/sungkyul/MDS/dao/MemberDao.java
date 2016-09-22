@@ -22,7 +22,7 @@ public class MemberDao {
 
 	public MemberVo get(String member_id, String member_password, int member_distinction) {
 		// TODO Auto-generated method stub
-		
+		//일반회원, 기업회원, admin 로그인
 
 		System.out.println("dao - " + member_id + "  " + member_password);
 		
@@ -38,5 +38,6 @@ public class MemberDao {
 		return vo;
 		
 	}
+
 
 }

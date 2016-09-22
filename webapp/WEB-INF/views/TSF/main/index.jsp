@@ -51,10 +51,14 @@
 						<!-- 개인 회원일경우 표시되는 화면  -->
 						<center>
 							<p>내가 가입한 쇼핑몰</p><br>
-							<a href="#">1. abc마켓</a><br>
-							<a href="#">2. g마켓</a><br>
-							
-							
+							<p>==================</p>
+							<c:forEach items="${auth_MallList }" var="auth_MallList">
+
+								<br>
+								<a href="${auth_MallList.mall_domain }">${auth_MallList.mall_name }</a>
+								<br>
+							</c:forEach>
+
 						</center>
 					</c:when>
 
@@ -62,7 +66,15 @@
 					<c:when test='${authUser.member_distinction == 1 }'>
 						<!-- 기업 회원일경우 표시되는 화면  -->
 						<center>
-							<p>내가 운영중인 쇼핑몰</p>
+							<p>내가 운영중인 쇼핑몰</p><br>
+							<p>==================</p>
+							<c:forEach items="${auth_MallList }" var="auth_MallList">
+
+								<br>
+								<a href="${auth_MallList.mall_domain }">${auth_MallList.mall_name }</a>
+								<br>
+							</c:forEach>
+
 						</center>
 					</c:when>
 				</c:choose>
