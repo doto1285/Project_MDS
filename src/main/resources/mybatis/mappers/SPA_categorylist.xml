@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SPA_categorylist">
+
+	<select id="get_damain_categorylist" parameterType="String"
+		resultType="categorylistVo">
+		<!-- 인풋으로 오는 mall no이 일치하는 모든 값을 뽑는다 -->
+		<![CDATA[	
+	 	 select * from categorylist
+	 	 where mall_no =
+	 	 	( select mall_no from mall
+	 	 		where mall_state = 1 and mall_domain = #{mall_domain } )
+		]]>
+
+	</select>
+</mapper>

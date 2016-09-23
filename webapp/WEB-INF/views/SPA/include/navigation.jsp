@@ -33,7 +33,7 @@ $(function() {
 				</li>
 				<li class="outer_li">카테고리관리
 					<ul class="inner_li">
-						<li><a href="">카테고리정보관리</a></li>
+						<li><a href="category">카테고리정보관리</a></li>
 					</ul>
 				</li>
 				<li class="outer_li">상품관리
