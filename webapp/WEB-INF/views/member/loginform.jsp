@@ -35,6 +35,9 @@
 						<p>로그인이 실패 했습니다.</p>
 					</c:if>
 					<input type="submit" value="로그인">
+					<div class="form-group">
+                <a href="" class="btn btn-default btn-block m-t-md"> 회원가입</a>
+            </div>
 				</form>
 			</div>
 		</div>

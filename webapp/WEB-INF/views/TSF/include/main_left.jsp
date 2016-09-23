@@ -33,7 +33,7 @@
 				<c:choose>
 					<c:when test='${empty authUser }'>
 						<!-- 비회원일경우 표시되는 메뉴  -->
-						<li><a href="#">로그인 하세요</a></li>
+						<p></p><label><a href="#">로그인 하세요</a></label><p></p>
 					</c:when>
 
 					<c:when test='${authUser.member_distinction == 0}'>
