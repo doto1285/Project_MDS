@@ -12,10 +12,30 @@ public class SPF_MainController {
 		System.out.println("userid : " + userid);
 		return "SPF/main/index";
 	}
-	
+
+	@RequestMapping("{userid}/join")
+	public String join() {
+		return "SPF/member/join";
+	}
+
+	@RequestMapping("{userid}/login")
+	public String login() {
+		return "SPF/member/login";
+	}
+
 	@RequestMapping("{userid}/list")
 	public String list() {
 		return "SPF/product/list";
+	}
+
+	@RequestMapping("{userid}/list/detail")
+	public String listDetail() {
+		return "SPF/product/listDetail";
+	}
+
+	@RequestMapping("{userid}/order")
+	public String order() {
+		return "SPF/order/order";
 	}
 
 	@RequestMapping("spf/demo")

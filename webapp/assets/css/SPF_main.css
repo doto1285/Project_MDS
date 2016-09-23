@@ -35,8 +35,9 @@ a {
 	color: white;
 	text-align : left;
 	padding: 10px;
+	margin:0px;
 	font-size: 14px;
-	width: 1140px;
+	width: 1150px;
 }
 
 /* category Menu3 */
@@ -73,24 +74,4 @@ ul {
 /* product Contents */
 #productContents{
 	text-align:center;
-}
-
-/* list 화면 css */
-
-/* secondCategoryMenu1 */
-#secondCategoryMenu1 {
-	font-size: 14px;
-}
-
-/* hr */
-hr {
-	color: black;
-	border: 1.9px solid silver; 
-	width: 101%;
-}
-
-/* priceArray */
-#priceArray{
-	font-size: 14px;
-	float: left;
 }

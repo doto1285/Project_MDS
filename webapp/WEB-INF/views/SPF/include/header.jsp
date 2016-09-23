@@ -11,6 +11,7 @@
 	rel="stylesheet" type="text/css">
 <link href="/Project_MDS/assets/css/SPF_main.css" rel="stylesheet"
 	type="text/css">
+	<title>모두의 쇼핑몰</title>
 </head>
 <body>
 	<div class="section"  id="header">
