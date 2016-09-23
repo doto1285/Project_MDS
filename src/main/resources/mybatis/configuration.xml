@@ -2,19 +2,18 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-
-	
-
 	<typeAliases>
 		<typeAlias type="kr.ac.sungkyul.MDS.vo.MemberVo" alias="memberVo" />
 		<typeAlias type="kr.ac.sungkyul.MDS.vo.MallVo" alias="mallVo" />
 		<typeAlias type="kr.ac.sungkyul.MDS.vo.JoinMallVo" alias="joinmallrVo" />
+		<typeAlias type="kr.ac.sungkyul.MDS.vo.CategoryListVo" alias="categorylistVo" />
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mybatis/mappers/TSF_member.xml" />
 		<mapper resource="mybatis/mappers/TSF_mall.xml" />
 		<mapper resource="mybatis/mappers/TSF_joinmall.xml" />
+		<mapper resource="mybatis/mappers/SPA_categorylist.xml" />
 	</mappers>
 	
 </configuration>

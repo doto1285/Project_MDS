@@ -2,11 +2,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="/Project_MDS/assets/css/SPA_main.css" rel="stylesheet"
 	type="text/css">
 <title>모두의 쇼핑몰</title>
@@ -17,15 +17,14 @@
 		<div id="wrapper">
 			<div id="content">
 				<div id="site-introduction">
-					<h2>메인</h2>
+					<h2>카테고리 관리</h2>
 					<table>
-						<thead>
-							<tr>
-								<th>오늘의 할 일</th>
-								<th>11월 11일 일요일</th>
-							</tr>
-						</thead>
 						<tbody>
+						<c:forEach var='vo' items='${categoryListVo }' varStatus='status'>
+							<tr>
+								<td>${vo.categorylist_name }</td>
+							</tr>
+						</c:forEach>
 							<tr>
 								<td>배송준비중</td>
 								<td>배송중</td>

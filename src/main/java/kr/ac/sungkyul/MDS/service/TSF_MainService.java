@@ -1,0 +1,37 @@
+package kr.ac.sungkyul.MDS.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import kr.ac.sungkyul.MDS.dao.MallDao;
+import kr.ac.sungkyul.MDS.dao.MemberDao;
+import kr.ac.sungkyul.MDS.vo.MallVo;
+import kr.ac.sungkyul.MDS.vo.MemberVo;
+
+
+@Service
+public class TSF_MainService {
+
+	@Autowired
+	private MemberDao memberDao;
+
+
+	@Autowired
+	private MallDao mallDao;
+
+
+
+	public List<MallVo> GetJoinMall(int member_no, String member_id, int member_state) {
+		System.out.println("TSF_MainService");
+		
+		List<MallVo> auth_MallList = mallDao.get_joinmall_list(member_no, member_id, member_state);
+		
+		return auth_MallList;
+	}
+
+
+
+	
+}

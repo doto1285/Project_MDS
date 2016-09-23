@@ -28,34 +28,34 @@ $(function() {
 			<ul>
 				<li class="outer_li">쇼핑몰관리
 					<ul class="inner_li">
-						<li>쇼핑몰정보관리</li>
+						<li><a href="">쇼핑몰정보관리</a></li>
 					</ul>
 				</li>
 				<li class="outer_li">카테고리관리
 					<ul class="inner_li">
-						<li>카테고리정보관리</li>
+						<li><a href="category">카테고리정보관리</a></li>
 					</ul>
 				</li>
 				<li class="outer_li">상품관리
 					<ul class="inner_li">
-						<li>상품 목록/검색</li>
+						<li><a href="">상품 목록/검색</a></li>
 					</ul>
 				</li>
 				<li class="outer_li">주문관리
 					<ul class="inner_li">
-						<li>주문목록/검색</li>
-						<li>취소/교환/반품/환불</li>
+						<li><a href="">주문목록/검색</a></li>
+						<li><a href="">취소/교환/반품/환불</a></li>
 					</ul>
 				</li>
 				<li class="outer_li">고객관리
 					<ul class="inner_li">
-						<li>고객목록/검색</li>
+						<li><a href="">고객목록/검색</a></li>
 					</ul>
 				</li>
 				<li class="outer_li">고객센터
 					<ul class="inner_li">
-						<li>FAQ</li>
-						<li>Q&A</li>
+						<li><a href="">FAQ</a></li>
+						<li><a href="">Q&A</a></li>
 					</ul>
 				</li>
 			</ul>
