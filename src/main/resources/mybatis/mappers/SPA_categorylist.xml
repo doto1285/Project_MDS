@@ -10,7 +10,8 @@
 	 	 where mall_no =
 	 	 	( select mall_no from mall
 	 	 		where mall_state = 1 and mall_domain = #{mall_domain } )
+	 	 		and categorylist_state = 1
+				order by categorylist_group, categorylist_orderno asc
 		]]>
-
 	</select>
 </mapper>

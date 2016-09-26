@@ -24,11 +24,12 @@ $(function() {
 
 <body>
 	<div id="navigation">
+	<h2><a href="main">메인으로</a></h2>
 		<div class="accord_menu">
 			<ul>
 				<li class="outer_li">쇼핑몰관리
 					<ul class="inner_li">
-						<li><a href="">쇼핑몰정보관리</a></li>
+						<li><a href="mallinfo">쇼핑몰정보관리</a></li>
 					</ul>
 				</li>
 				<li class="outer_li">카테고리관리

@@ -32,7 +32,7 @@
 						</tbody>
 					</table>
 					
-					<a href="categorymodify">수정하기</a>
+					<a href="category">저장하기</a>
 				</div>
 			</div>
 		</div>
