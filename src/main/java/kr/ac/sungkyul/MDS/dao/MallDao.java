@@ -38,7 +38,18 @@ public class MallDao {
 		}
 		
 		return listvo;
+	}
+
+
+	public List<MallVo> get_Random_Mall_List() {
+		// TODO Auto-generated method stub
+		List<MallVo> listvo = sqlSession.selectList("TSF_mall.get_Random_Mall_List");
 		
+		for(MallVo vo : listvo){
+
+			System.out.println("랜덤으로 가져온 쇼핑몰 리스트 " + vo);
+		}
+		return listvo;
 	}
 
 

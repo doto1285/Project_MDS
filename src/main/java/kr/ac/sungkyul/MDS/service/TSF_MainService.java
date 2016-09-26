@@ -30,7 +30,12 @@ public class TSF_MainService {
 		
 		return auth_MallList;
 	}
-
+	
+	public List<MallVo> GetRandomMallList(){
+		
+		List<MallVo> RandomMallList = mallDao.get_Random_Mall_List();
+		return RandomMallList;
+	}
 
 
 	
