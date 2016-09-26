@@ -37,7 +37,17 @@ public class SPF_MainController {
 	public String order() {
 		return "SPF/order/order";
 	}
-
+	
+	@RequestMapping("{userid}/shoppingbasket")
+	public String shoppingBasket() {
+		return "SPF/subMenu/shoppingBasket";
+	}
+	
+	@RequestMapping("{userid}/orderdelivery")
+	public String orderDelivery() {
+		return "SPF/subMenu/orderDelivery";
+	}
+	
 	@RequestMapping("spf/demo")
 	public String header() {
 		return "SPF/main/demo";

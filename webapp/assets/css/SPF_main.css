@@ -23,6 +23,10 @@ a {
 	font-size: 14px;
 }
 
+#logo {
+	width: 255px;
+}
+
 /* category */
 #category {
 	font-size: 14px;

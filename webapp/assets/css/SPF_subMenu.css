@@ -1,0 +1,65 @@
+@CHARSET "UTF-8";
+
+html, body {
+	margin: 20;
+	padding:
+}
+
+body {
+	font: 76% arial, sans-serif
+}
+
+p {
+	margin: 0 10px 10px
+}
+
+a {
+	display: block;
+	color: #000000;
+}
+
+/* --------------- order 화면 css --------------- */
+#boardTitle {
+	text-align: center;
+}
+
+#orderButton {
+	position:relative;
+	left:965px;
+}
+
+#orderTable {
+	font-size: 14px;
+	text-align: center;
+}
+
+#tableContents {
+	position: relative;
+	top: 50px;
+}
+
+#orderProductImage {
+	width: 90px;
+}
+
+#radioText {
+	text-align: left;
+}
+
+/* paging */
+#paging {
+	font-size: 14px;
+	position: relative;
+	top: 0px;
+	left: 455px;
+}
+
+#tdFirst {
+	position: relative;
+	top: 10px;
+}
+
+#orderDeliveryButton {
+	position: relative;
+	top: 43px;
+}

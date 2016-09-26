@@ -20,6 +20,41 @@ a {
 
 /* --------------- join 화면 css --------------- */
 
+#joinText {
+	font-size: 14px;
+	text-align: center;
+}
 
+#joinCheckBox {
+	position: relative;
+	top: 2px;
+}
 
 /* --------------- login 화면 css --------------- */
+#passwordForm {
+	position: relative;
+	right: 8px;
+}
+
+#loginButton {
+	position: relative;
+	left: 195px;
+	bottom: 75px;
+}
+
+#loginText {
+	font-size: 14px;
+	text-align: center;
+}
+
+#loginForm {
+	position: relative;
+	right: 25px;
+
+}
+
+#loginFormBottomLabel {
+	position: relative;
+	left: 88px;
+	bottom:40px;
+}

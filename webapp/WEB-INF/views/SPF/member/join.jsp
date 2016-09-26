@@ -15,6 +15,69 @@
 <body>
 	<c:import url='/WEB-INF/views/SPF/include/header.jsp' />
 	<c:import url='/WEB-INF/views/SPF/include/category.jsp' />
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<div class="container" style="text-align: center">
+		<label id="joinText">모두의 쇼핑몰 회원이시군요</label> <br> <label
+			id="joinText">개인정보 이용 동의 후 쇼핑몰 이용이 가능합니다!</label> <br> <br>
+		<br> <br> <label id="joinText">개인정보 이용 동의</label> &nbsp;
+		&nbsp; <label><input type="checkbox" id="joinCheckBox"></label>
+		&nbsp; &nbsp; &nbsp; &nbsp;
+		<button type="button" class="btn btn-default btn-sm">약관보기</button>
+		<br> <br> <br> <br>
+		<button type="button" class="btn btn-default btn-lg">가입하기</button>
+	</div>
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
 
 	<c:import url='/WEB-INF/views/SPF/include/footer.jsp' />
 </body>

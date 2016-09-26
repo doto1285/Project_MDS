@@ -24,7 +24,7 @@
 				</ul>
 			</div>
 			<div class="col-lg-3">
-				<img src="/Project_MDS/assets/image/logo.png" class="img-responsive"
+				<img id="logo" src="/Project_MDS/assets/image/logo.png" class="img-responsive"
 					alt="Responsive image">
 			</div>
 			<div class="col-lg-2"></div>
