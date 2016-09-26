@@ -13,16 +13,31 @@
 		]]>
 	</insert>
 
-	<select id="get_joinmall_list" parameterType="kr.ac.sungkyul.MDS.vo.MemberVo" resultType="kr.ac.sungkyul.MDS.vo.MallVo">
-	<!--  가입한 쇼핑몰 목록 가져오기 -->
+	<select id="get_joinmall_list" parameterType="kr.ac.sungkyul.MDS.vo.MemberVo"
+		resultType="kr.ac.sungkyul.MDS.vo.MallVo">
+		<!-- 가입한 쇼핑몰 목록 가져오기 -->
 		<![CDATA[	
-	 	 select mall_name, mall_domain, mall_state 
-		from joinmall, mall 
-		where joinmall.mall_no = mall.mall_no
-		and mall_state = 1 and joinmall.member_no = #{member_no }
+	 		 select mall_name, mall_domain, mall_state 
+			from joinmall, mall 
+			where joinmall.mall_no = mall.mall_no
+			and mall_state = 1 and joinmall.member_no = #{member_no }
 		]]>
 
 	</select>
+
+	<select id="get_Random_Mall_List" resultType="kr.ac.sungkyul.MDS.vo.MallVo">
+		<!-- 쇼핑몰 목록 랜덤으로 가져오기-->
+		<![CDATA[	
+		select mall_name, mall_domain, mall_state 
+			 from (select * from mall where mall_state = 1 order by dbms_random.value)
+ 			where rownum <= 5
+		]]>
+
+	</select>
+
+
+
+
 
 
 

@@ -31,11 +31,6 @@
 			<ul id="nav">
 
 				<c:choose>
-					<c:when test='${empty authUser }'>
-						<!-- 비회원일경우 표시되는 메뉴  -->
-						<li><a href="#">로그인 하세요</a></li>
-					</c:when>
-
 					<c:when test='${authUser.member_distinction == 0}'>
 						<!-- 개인 회원일경우 표시되는 메뉴  -->
 						<li><a href="#">구매 / 배송조회</a></li>
@@ -46,14 +41,24 @@
 					<c:when test='${authUser.member_distinction == 1 }'>
 						<!-- 기업 회원일경우 표시되는 메뉴  -->
 						<li><a href="#">쇼핑몰 만들기</a></li>
-
 					</c:when>
+
+					<c:when test='${authUser.member_distinction == 9 }'>
+						<!-- 기업 회원일경우 표시되는 메뉴  -->
+						<li><a href="#"> admin 로그인</a></li>
+					</c:when>
+
+					<c:otherwise>
+						<!-- 비회원일경우 표시되는 메뉴  -->
+						<li><a href="#">로그인 하세요</a></li>
+					</c:otherwise>
+
 				</c:choose>
 
-				<p5>고객센터</p5>
-				<li><a href="">공지사항</a></li>
+				<li><a href="http://localhost:8088/Project_MDS/main/notice">공지사항</a></li>
 				<li><a href="">FAQ</a></li>
 				<li><a href="">Q & A</a></li>
+
 			</ul>
 
 
