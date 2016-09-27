@@ -32,10 +32,9 @@
 			</div>
 			</nav>
 			<div>
-				<nav id="nav1"> 
-				<!-- -------------------------------- -->
-				
-				
+				<nav id="nav1"> <!-- ----------------본문---------------- -->
+
+
 
 				<center>
 					<P>${GetBoard.boardlist_name }</P>
@@ -49,13 +48,13 @@
 
 				<table class="tbl-ex">
 					<tr>
-						<th>번호 
-				${authUser.member_distinction } >= ${GetBoard.boardlist_write_accessright }
-				</th>
+						<th>번호 </th>
 						<th>제목</th>
 						<th>작성일</th>
 					</tr>
-
+					
+					
+					
 					<c:forEach items="${listBoard }" var="boardVo">
 						<tr>
 							<td>${boardVo.no}</td>
@@ -66,9 +65,15 @@
 
 				</table>
 
-				 <c:choose>
-					<c:when test='${authUser.member_distinction } >= ${GetBoard.boardlist_write_accessright }'>
-						<!-- admin만 글쓰기 버튼 보여준다  -->
+
+
+
+
+
+				<c:choose>
+					<c:when
+						test='${authUser.member_distinction >= GetBoard.boardlist_write_accessright }'>
+						<!-- 회원구분과 게시판 권한을 비교하여 글쓰기 버튼을 표시한다.  -->
 
 						<div class="bottom">
 							<a href="notice/writeform" id="new-book">글쓰기</a>
@@ -76,11 +81,10 @@
 					</c:when>
 
 					<c:otherwise>
-						<!-- 개인, 기업회원일 경우 글쓰기 버튼을 표시하지 않음  -->
+						<!--권한이 없을경우, 아무것도 표시하지 않는다  -->
 					</c:otherwise>
-				</c:choose>
-				 <!-- -------------------------------- --> 
-				 </nav>
+				</c:choose> <!-- ----------------본문---------------- --> 
+				</nav>
 			</div>
 			<nav id="nav2">
 			<div id="navigation">
@@ -90,7 +94,6 @@
 			</nav>
 		</div>
 	</div>
-
 
 	<div id="footer">
 		<c:import url='/WEB-INF/views/TSF/include/footer.jsp' />

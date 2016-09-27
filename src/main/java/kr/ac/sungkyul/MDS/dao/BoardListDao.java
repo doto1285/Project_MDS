@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.ac.sungkyul.MDS.vo.BoardListVo;
+import kr.ac.sungkyul.MDS.vo.BoardVo;
 
 @Repository
 public class BoardListDao {
@@ -38,6 +39,22 @@ public class BoardListDao {
 
 		return GetBoard;
 	}
+
+	public List<BoardVo> GetBoardContentsList(int boardlist_no)  {
+		// TODO Auto-generated method stub
+		// 해당 게시판의 게시글들을 가져온다.
+		
+		List<BoardVo> listvo = sqlSession.selectList("TSF_board.boardlist_no", boardlist_no);
+
+		for (BoardVo vo : listvo) {
+			System.out.println("게시글 목록 " + vo);
+		}
+		return listvo;
+		
+	}
+
+	
+	
 
 	// public List<BoardVo> listBoard(){
 	// System.out.println("dao");

@@ -31,6 +31,8 @@ public class TSF_MainController {
 
 		// 랜덤 쇼핑몰 목록 가져오기
 		List<MallVo> Random_MallList = TSF_MainService.GetRandomMallList();
+		
+		//게시판 목록 가져오기
 		List<BoardListVo> GetBoardList = BoardService.GetBoardList(userid);
 
 		session.setAttribute("Random_MallList", Random_MallList);

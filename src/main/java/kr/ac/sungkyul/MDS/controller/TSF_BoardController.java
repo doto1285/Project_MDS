@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.ac.sungkyul.MDS.service.BoardService;
 import kr.ac.sungkyul.MDS.vo.BoardListVo;
+import kr.ac.sungkyul.MDS.vo.BoardVo;
 import kr.ac.sungkyul.MDS.vo.MemberVo;
 
 @Controller
@@ -21,21 +22,21 @@ public class TSF_BoardController {
 
 	@RequestMapping("/{userid}/board/{boardlist_no}")
 	public String notice(@PathVariable String userid, @PathVariable int boardlist_no, HttpSession session) {
-		/*// 게시판
-		System.out.println("게시판 번호" + boardlist_no);
-
-		// 일반, 기업, 관리자 권한을 사용하기 위해 로그인된 세션에서 유저의 정보를 가져온다
-		MemberVo memberVo;
-		memberVo = (MemberVo) session.getAttribute("authUser");
-//		System.out.println("list session test " + memberVo);
-		session.setAttribute("authUser", memberVo);
-		
-		
-*/
+		/*
+		 * // 게시판 System.out.println("게시판 번호" + boardlist_no);
+		 * 
+		 * // 일반, 기업, 관리자 권한을 사용하기 위해 로그인된 세션에서 유저의 정보를 가져온다 MemberVo memberVo;
+		 * memberVo = (MemberVo) session.getAttribute("authUser"); //
+		 * System.out.println("list session test " + memberVo);
+		 * session.setAttribute("authUser", memberVo);
+		 */
 		// 게시판 정보 가져오기
 		BoardListVo GetBoard = BoardService.GetBoard(userid, boardlist_no);
 		session.setAttribute("GetBoard", GetBoard);
-
+		
+		//해당 게시판에 게시글 가져오기
+		List<BoardVo> GetBoardContentsList= BoardService.GetBoardContentsList(boardlist_no);
+				
 		return "TSF/board/list";
 	}
 

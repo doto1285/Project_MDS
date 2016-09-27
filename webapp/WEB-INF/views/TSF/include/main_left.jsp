@@ -60,6 +60,8 @@
 				<c:forEach items="${GetBoardList }" var="GetBoardList">
 				<li><a href= "http://localhost:8088/Project_MDS/main/board/${GetBoardList.boardlist_no } ">${GetBoardList.boardlist_name }</a></li>
 				</c:forEach>
+				
+				
 			</ul>
 
 
