@@ -3,6 +3,8 @@
 <configuration>
 
 	<typeAliases>
+		<typeAlias type="kr.ac.sungkyul.MDS.vo.BoardVo" alias="BoardVo" />
+		<typeAlias type="kr.ac.sungkyul.MDS.vo.BoardListVo" alias="BoardListVo" />
 		<typeAlias type="kr.ac.sungkyul.MDS.vo.MemberVo" alias="memberVo" />
 		<typeAlias type="kr.ac.sungkyul.MDS.vo.MallVo" alias="mallVo" />
 		<typeAlias type="kr.ac.sungkyul.MDS.vo.JoinMallVo" alias="joinmallrVo" />
@@ -13,6 +15,8 @@
 		<mapper resource="mybatis/mappers/TSF_member.xml" />
 		<mapper resource="mybatis/mappers/TSF_mall.xml" />
 		<mapper resource="mybatis/mappers/TSF_joinmall.xml" />
+		<mapper resource="mybatis/mappers/TSF_board.xml" />
+		<mapper resource="mybatis/mappers/TSF_boardList.xml" />
 		<mapper resource="mybatis/mappers/SPA_categorylist.xml" />
 	</mappers>
 	

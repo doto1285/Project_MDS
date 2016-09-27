@@ -31,7 +31,7 @@
 			<ul id="nav">
 
 				<c:choose>
-					<c:when test='${authUser.member_distinction == 0}'>
+					<c:when test='distinction == 0}'>
 						<!-- 개인 회원일경우 표시되는 메뉴  -->
 						<li><a href="#">구매 / 배송조회</a></li>
 						<li><a href="#">환불 / 취소</a></li>
@@ -54,11 +54,12 @@
 					</c:otherwise>
 
 				</c:choose>
+				
 
-				<li><a href="http://localhost:8088/Project_MDS/main/notice">공지사항</a></li>
-				<li><a href="">FAQ</a></li>
-				<li><a href="">Q & A</a></li>
 
+				<c:forEach items="${GetBoardList }" var="GetBoardList">
+				<li><a href= "http://localhost:8088/Project_MDS/main/board/${GetBoardList.boardlist_no } ">${GetBoardList.boardlist_name }</a></li>
+				</c:forEach>
 			</ul>
 
 

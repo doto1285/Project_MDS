@@ -1,42 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="TSF_member">
+<mapper namespace="TSF_board">
 
 
-	<insert id="insertMember" parameterType="kr.ac.sungkyul.MDS.vo.MemberVo">
-		<!-- 회원가입 -->
-		<![CDATA[				
-		insert into member values
-		
-		(member_seq.nextVal, #{member_id}, #{member_password}, #{member_name},
-		 #{member_email}, #{member_birth}, #{member_phone}, #{member_address},sysdate,
-  		#{member_licensee}, #{member_distinction}, 1
-		) 	
-
-		]]>
-	</insert>
-
-	<select id="getByIdAndPassword" parameterType="kr.ac.sungkyul.MDS.vo.MemberVo"
-		resultType="kr.ac.sungkyul.MDS.vo.MemberVo">
-		<!-- 로그인 -->
-		<![CDATA[
-		select * 
-		  from member 
-		 where member_id = #{member_id }
-		 and member_password = #{member_password }
-		 and member_distinction = #{member_distinction }
-		 and member_state = 1
-		]]>
-	</select>
-
-	<select id="selectOne" parameterType="java.lang.Integer"
-		resultType="kr.ac.sungkyul.MDS.vo.MemberVo">
-		<!-- no에 맞는 1개의 값을 뽑는다 -->
-		<![CDATA[
-		select * 
-		  from member 
-		 where member_no = #{member_no }
-		]]>
-	</select>
 
 </mapper>

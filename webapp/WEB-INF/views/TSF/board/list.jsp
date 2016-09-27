@@ -16,6 +16,8 @@
 	type="text/css">
 <title>mysite</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+
 </head>
 <body>
 	<div id="header">
@@ -36,7 +38,7 @@
 				
 
 				<center>
-					<P>공지사항</P>
+					<P>${GetBoard.boardlist_name }</P>
 				</center>
 
 				<form id="search_form" action="/mysite5/board" method="get">
@@ -47,7 +49,9 @@
 
 				<table class="tbl-ex">
 					<tr>
-						<th>번호</th>
+						<th>번호 
+				${authUser.member_distinction } >= ${GetBoard.boardlist_write_accessright }
+				</th>
 						<th>제목</th>
 						<th>작성일</th>
 					</tr>
@@ -62,14 +66,12 @@
 
 				</table>
 
-				
-				
 				 <c:choose>
-					<c:when test='${authUser.member_distinction == 9}'>
+					<c:when test='${authUser.member_distinction } >= ${GetBoard.boardlist_write_accessright }'>
 						<!-- admin만 글쓰기 버튼 보여준다  -->
 
 						<div class="bottom">
-							<a href="notice/write" id="new-book">글쓰기</a>
+							<a href="notice/writeform" id="new-book">글쓰기</a>
 						</div>
 					</c:when>
 
