@@ -36,6 +36,11 @@ public class SPA_MainController {
       return "SPA/main/index";
    }
    
+   @RequestMapping(value = "{domain}/cre", method = RequestMethod.GET)
+   public String headercre(@PathVariable String domain, HttpSession session) {
+      return "SPA/include/navigation";
+   }
+   
    @RequestMapping(value = "{domain}/category", method = RequestMethod.GET)
    public String categorylist(@PathVariable String domain, HttpSession session, Model model) {
       //세션 값이랑 userid랑 일치하는지 확인
