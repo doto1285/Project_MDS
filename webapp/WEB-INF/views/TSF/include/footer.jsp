@@ -8,13 +8,33 @@
 </head>
 
 <body>
-	<footer class="section-primary" style = "width : 100%">
+	<footer class="section section-primary"> <br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<div class="footerwrap">
 		<div class="botmenu">
-			
-			
-			<a>이용약관</a> <a>개인정보취급방침</a>
-			<a>위치기반서비스약관</a>
+
+			<a>이용약관</a> <a>개인정보취급방침</a> <a>위치기반서비스약관</a>
 		</div>
 		<address>
 			<p>

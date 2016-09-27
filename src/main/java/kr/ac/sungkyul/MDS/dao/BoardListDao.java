@@ -18,6 +18,7 @@ public class BoardListDao {
 		// TODO Auto-generated method stub
 		List<BoardListVo> listvo = sqlSession.selectList("TSF_boardList.GetBoardList", userid);
 
+		System.out.println("biardlistdao - getBoardList");
 		for (BoardListVo vo : listvo) {
 			System.out.println("개설된 게시판 리스트 " + vo);
 		}

@@ -28,14 +28,15 @@
 <body>
 	<div id="w">
 		<nav>
+		<center>
 			<ul id="nav">
-				<p>쇼핑몰 추천</p>
-
+					<p><span class="label label-primary">쇼핑몰 추천</span></p>
 				<c:forEach items="${Random_MallList }" var="Random_MallList">
-					<li><a href="${Random_MallList.mall_domain }">${Random_MallList.mall_name }</a></li>
+					<p><a href="${Random_MallList.mall_domain }" class="btn btn-default"
+						${Random_MallList.mall_name }></a></p>
 				</c:forEach>
-
-				</li>
+			</ul>
+				</center>
 		</nav>
 	</div>
 </body>
