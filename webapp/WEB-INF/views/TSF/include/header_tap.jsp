@@ -24,27 +24,51 @@
       <ul class="nav navbar-nav">
       
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">남성의류 <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="#">빤스</a></li>
             <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="#">양말</a></li>
             <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
+            <li><a href="#">면티</a></li>
+          </ul>
+        </li>
+      </ul>
+       <ul class="nav navbar-nav">
+        <li class="dropdown1">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">여성의류 <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">빤스</a></li>
+            <li class="divider"></li>
+            <li><a href="#">양말</a></li>
+            <li class="divider"></li>
+            <li><a href="#">면티</a></li>
+          </ul>
+        </li>
+      </ul>
+       <ul class="nav navbar-nav">
+        <li class="dropdown2">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">아동의류 <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">빤스</a></li>
+            <li class="divider"></li>
+            <li><a href="#">양말</a></li>
+            <li class="divider"></li>
+            <li><a href="#">면티</a></li>
           </ul>
         </li>
       </ul>
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" class="form-control" placeholder="검색할 내용을 입력하세요">
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-default">검색</button>
       </form>
+      <!--  
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#">Link</a></li>
       </ul>
+      -->
     </div>
   </div>
 </nav>
