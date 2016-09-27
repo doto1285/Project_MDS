@@ -17,11 +17,10 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/Project_MDS/main"><span>Brand</span></a>
+			<a class="navbar-brand" href="http://localhost:8088/Project_MDS/main"><span>모두의쇼핑몰</span></a>
 		</div>
 		<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li class="active"><a href="#">Home</a></li>
 
 
 

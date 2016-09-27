@@ -8,16 +8,12 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link href="/Project_MDS/assets/css/board.css" rel="stylesheet"
-	type="text/css">
 <link href="/Project_MDS/assets/css/styles.css" rel="stylesheet"
 	type="text/css">
 <link href="/Project_MDS/assets/css/bootstrap.css" rel="stylesheet"
 	type="text/css">
 <title>mysite</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-
-
 </head>
 <body>
 	<div id="header">
@@ -32,7 +28,7 @@
 			</div>
 			</nav>
 			<div>
-				<nav id="nav1"> <!-- ----------------본문---------------- -->
+				<nav id="nav1"> <!-- -------------------------------- -->
 
 
 
@@ -47,14 +43,13 @@
 
 
 				<table class="tbl-ex">
+				<table class="table table-striped table-hover ">
 					<tr>
 						<th>번호 </th>
 						<th>제목</th>
 						<th>작성일</th>
 					</tr>
-					
-					
-					
+
 					<c:forEach items="${listBoard }" var="boardVo">
 						<tr>
 							<td>${boardVo.no}</td>
@@ -62,29 +57,58 @@
 							<td>${boardVo.regDate}</td>
 						</tr>
 					</c:forEach>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>Column content</td>
+							<td>Column content</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>Column content</td>
+							<td>Column content</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>Column content</td>
+							<td>Column content</td>
+						</tr>
+						<tr>
+							<td>4</td>
+							<td>Column content</td>
+							<td>Column content</td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Column content</td>
+							<td>Column content</td>
+						</tr>
+						<tr>
+							<td>6</td>
+							<td>Column content</td>
+							<td>Column content</td>
+						</tr>
+						<tr>
+							<td>7</td>
+							<td>Column content</td>
+							<td>Column content</td>
+						</tr>
 
+					</tbody>
 				</table>
-
-
-
-
-
+				</table>
 
 				<c:choose>
 					<c:when
-						test='${authUser.member_distinction >= GetBoard.boardlist_write_accessright }'>
-						<!-- 회원구분과 게시판 권한을 비교하여 글쓰기 버튼을 표시한다.  -->
+						test='${authUser.member_distinction } >= ${GetBoard.boardlist_write_accessright }'>
+						<!-- admin만 글쓰기 버튼 보여준다  -->
 
 						<div class="bottom">
 							<a href="notice/writeform" id="new-book">글쓰기</a>
-						</div>
-					</c:when>
-
-					<c:otherwise>
-						<!--권한이 없을경우, 아무것도 표시하지 않는다  -->
-					</c:otherwise>
-				</c:choose> <!-- ----------------본문---------------- --> 
-				</nav>
+				</div>
+				</c:when> <c:otherwise>
+					<!-- 개인, 기업회원일 경우 글쓰기 버튼을 표시하지 않음  -->
+				</c:otherwise> </c:choose> <!-- -------------------------------- --> </nav>
 			</div>
 			<nav id="nav2">
 			<div id="navigation">
@@ -95,8 +119,11 @@
 		</div>
 	</div>
 
-	<div id="footer">
-		<c:import url='/WEB-INF/views/TSF/include/footer.jsp' />
+
+	<div class="container">
+		<div id="footer">
+			<c:import url='/WEB-INF/views/TSF/include/footer.jsp' />
+		</div>
 	</div>
 </body>
 </html>

@@ -50,15 +50,16 @@
 
 					<c:otherwise>
 						<!-- 비회원일경우 표시되는 메뉴  -->
-						<li><a href="#">로그인 하세요</a></li>
+						<a href="/Project_MDS/main/loginfrom">로그인 하세요</a>
 					</c:otherwise>
 
 				</c:choose>
-				
+
 
 
 				<c:forEach items="${GetBoardList }" var="GetBoardList">
-				<li><a href= "http://localhost:8088/Project_MDS/main/board/${GetBoardList.boardlist_no } ">${GetBoardList.boardlist_name }</a></li>
+					<p><a href="http://localhost:8088/Project_MDS/main/board/${GetBoardList.boardlist_no } "
+						class="btn btn-default">${GetBoardList.boardlist_name }</a></p>
 				</c:forEach>
 				
 				
