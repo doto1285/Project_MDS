@@ -18,68 +18,120 @@ import kr.ac.sungkyul.MDS.vo.MemberVo;
 @Controller
 @RequestMapping("/SPA")
 public class SPA_MainController {
-   
-   @Autowired
-   MemberService memberService;
-   
-   @Autowired
-   SPA_CategoryListService categoryListService;
-   
-   
-   @RequestMapping(value = "{domain}/main", method = RequestMethod.GET)
-   public String index(@PathVariable String domain, HttpSession session) {
-      //세션 값이랑 userid랑 일치하는지 확인
-//      if(!isUserCheck(userid, session)) {
-//         return "redirect:/main";   
-//      }
-      
-      return "SPA/main/index";
-   }
-   
-   @RequestMapping(value = "{domain}/cre", method = RequestMethod.GET)
-   public String headercre(@PathVariable String domain, HttpSession session) {
-      return "SPA/include/navigation";
-   }
-   
-   @RequestMapping(value = "{domain}/category", method = RequestMethod.GET)
-   public String categorylist(@PathVariable String domain, HttpSession session, Model model) {
-      //세션 값이랑 userid랑 일치하는지 확인
-//      if(!isUserCheck(userid, session)) {
-//         return "redirect:/main";   
-//      }
-      
-	  Map<String, Object> categoryListMap = categoryListService.getCategoryList(domain);
-      model.addAttribute("map", categoryListMap);
-      return "SPA/category/categorylist";
-   }
-   
-   @RequestMapping(value = "{domain}/categorymodify", method = RequestMethod.GET)
-   public String categorylistModify(@PathVariable String domain, HttpSession session, Model model) {
-      //세션 값이랑 userid랑 일치하는지 확인
-//      if(!isUserCheck(userid, session)) {
-//         return "redirect:/main";   
-//      }
-      
-	  Map<String, Object> categoryListMap = categoryListService.getCategoryList(domain);
-      model.addAttribute("map", categoryListMap);
-      return "SPA/category/categorymodify";
-   }
-   
-   @RequestMapping(value = "{domain}/mallinfo", method = RequestMethod.GET)
-   public String mallinfoModify(@PathVariable String domain, HttpSession session, Model model) {
-      //세션 값이랑 userid랑 일치하는지 확인
-//      if(!isUserCheck(userid, session)) {
-//         return "redirect:/main";   
-//      }
-      
-      return "SPA/mall/mallmodify";
-   }
-   
-   public boolean isUserCheck(String domain, HttpSession session) {
-      MemberVo memberVo = (MemberVo) session.getAttribute("member");
-      if( memberVo == null || memberVo.getMember_id() != domain) {
-         return false;   
-      }
-      return true;      
-   }
+
+	@Autowired
+	MemberService memberService;
+
+	@Autowired
+	SPA_CategoryListService categoryListService;
+
+	@RequestMapping(value = "{domain}/main", method = RequestMethod.GET)
+	public String index(@PathVariable String domain, HttpSession session) {
+		return "SPA/main/index";
+	}
+
+	@RequestMapping(value = "{domain}/mall", method = RequestMethod.GET)
+	public String mall(@PathVariable String domain, HttpSession session, Model model) {
+		return "SPA/mall/mall";
+	}
+
+	@RequestMapping(value = "{domain}/mallmodify", method = RequestMethod.GET)
+	public String mallmodify(@PathVariable String domain, HttpSession session, Model model) {
+		// 미구형
+		return null;
+	}
+
+	@RequestMapping(value = "{domain}/category", method = RequestMethod.GET)
+	public String categorylist(@PathVariable String domain, HttpSession session, Model model) {
+		Map<String, Object> categoryListMap = categoryListService.getCategoryList(domain);
+		model.addAttribute("map", categoryListMap);
+		return "SPA/category/categorylist";
+	}
+
+	@RequestMapping(value = "{domain}/categorymodifyform", method = RequestMethod.GET)
+	public String categorylistModifyForm(@PathVariable String domain, HttpSession session, Model model) {
+		Map<String, Object> categoryListMap = categoryListService.getCategoryList(domain);
+		model.addAttribute("map", categoryListMap);
+		return "SPA/category/categorymodifyform";
+	}
+
+	@RequestMapping(value = "{domain}/categorymodify", method = RequestMethod.GET)
+	public String categorylistModify(@PathVariable String domain, HttpSession session, Model model) {
+		// 미구현
+		return null;
+	}
+	
+	@RequestMapping(value = "{domain}/product", method = RequestMethod.GET)
+	public String productlist(@PathVariable String domain, HttpSession session, Model model) {
+		return "SPA/product/productlist";
+	}
+	
+	@RequestMapping(value = "{domain}/productinsertform", method = RequestMethod.GET)
+	public String productinsert(@PathVariable String domain, HttpSession session, Model model) {
+		return "SPA/product/productinsertform";
+	}
+	
+	@RequestMapping(value = "{domain}/productmodifyform", method = RequestMethod.GET)
+	public String productmodifyform(@PathVariable String domain, HttpSession session, Model model) {
+		return "SPA/product/productmodifyform";
+	}
+	
+	@RequestMapping(value = "{domain}/order", method = RequestMethod.GET)
+	public String orderlist(@PathVariable String domain, HttpSession session, Model model) {
+		return "SPA/order/orderlist";
+	}
+	
+	@RequestMapping(value = "{domain}/ordermanagement", method = RequestMethod.GET)
+	public String ordermanagement(@PathVariable String domain, HttpSession session, Model model) {
+		return "SPA/order/ordermanagement";
+	}
+	
+	@RequestMapping(value = "{domain}/member", method = RequestMethod.GET)
+	public String memberlist(@PathVariable String domain, HttpSession session, Model model) {
+		return "SPA/member/memberlist";
+	}
+	
+	@RequestMapping(value = "{domain}/faq", method = RequestMethod.GET)
+	public String faqlist(@PathVariable String domain, HttpSession session, Model model) {
+		return "SPA/member/faqlist";
+	}
+	
+	@RequestMapping(value = "{domain}/faqview", method = RequestMethod.GET)
+	public String faqview(@PathVariable String domain, HttpSession session, Model model) {
+		return "SPA/member/faqview";
+	}
+	
+	@RequestMapping(value = "{domain}/faqinsertform", method = RequestMethod.GET)
+	public String faqinsert(@PathVariable String domain, HttpSession session, Model model) {
+		return "SPA/member/faqinsertform";
+	}
+	
+	@RequestMapping(value = "{domain}/qna", method = RequestMethod.GET)
+	public String h(@PathVariable String domain, HttpSession session, Model model) {
+		return "SPA/member/qnalist";
+	}
+	
+	@RequestMapping(value = "{domain}/qnaview", method = RequestMethod.GET)
+	public String i(@PathVariable String domain, HttpSession session, Model model) {
+		return "SPA/member/qnaview";
+	}
+	
+	@RequestMapping(value = "{domain}/qnainsertform", method = RequestMethod.GET)
+	public String j(@PathVariable String domain, HttpSession session, Model model) {
+		return "SPA/member/qnainsertform";
+	}
+
+	public boolean isUserCheck(String domain, HttpSession session) {
+
+		// 사용법
+		// if(!isUserCheck(userid, session)) {
+		// return "redirect:/main";
+		// }
+
+		MemberVo memberVo = (MemberVo) session.getAttribute("member");
+		if (memberVo == null || memberVo.getMember_id() != domain) {
+			return false;
+		}
+		return true;
+	}
 }

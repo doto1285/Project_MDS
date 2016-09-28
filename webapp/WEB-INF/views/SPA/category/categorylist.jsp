@@ -7,36 +7,32 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css">
 <link href="/Project_MDS/assets/css/SPA_main.css" rel="stylesheet"
 	type="text/css">
 <title>모두의 쇼핑몰</title>
 </head>
 <body>
+	<c:import url='/WEB-INF/views/SPA/include/header.jsp' />
+	<c:import url='/WEB-INF/views/SPA/include/navigation.jsp' />
 	<div id="container">
-		<c:import url='/WEB-INF/views/SPA/include/header.jsp' />
-		<div id="wrapper">
-			<div id="content">
-				<div id="site-introduction">
-					<h2>카테고리 관리</h2>
-					<table>
-						<tbody>
-							<c:forEach var='vo1' items='${map.group}' varStatus='status'>
-								<tr>
-									<td>${vo1}</td>
-									<c:set var="vo1" value='${vo1}'/>
-									<c:forEach var='vo2' items='${map.vo1}' varStatus='status'>
-										<td>${vo2}</td>
-									</c:forEach>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-					
-					<a href="categorymodify">수정하기</a>
-				</div>
-			</div>
-		</div>
-		<c:import url='/WEB-INF/views/SPA/include/navigation.jsp' />
+		<h2>카테고리 관리</h2>
+		<table>
+			<tbody>
+				<c:forEach var='vo1' items='${map.group}' varStatus='status'>
+					<tr>
+						<td>${vo1}</td>
+						<c:set var="vo1" value='${vo1}' />
+						<c:forEach var='vo2' items='${map.vo1}' varStatus='status'>
+							<td>${vo2}</td>
+						</c:forEach>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<a href="categorymodifyform">수정하기</a>
 	</div>
+
 </body>
 </html>

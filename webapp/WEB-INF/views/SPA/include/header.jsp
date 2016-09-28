@@ -15,12 +15,11 @@
 <body>
 
 
-	<div class="content" id="head_floatRight">
-		<label id="headerText"> 환영합니다. ㅇㅇㅇ 운영자님.</label>
-		&nbsp;&nbsp;&nbsp;&nbsp;
-		 <a
-			href="../../../Project_MDS/main"><button type="button"
-				class="btn btn-default">로그아웃</button></a>
+	<div class="col-lg-12">
+		<a href="main"><img src="/Project_MDS/assets/image/logo.png"
+			id="logoImage"></a> <a href="../../../Project_MDS/main"><button
+				type="button" class="btn btn-default" id="headerButton">로그아웃</button></a><label
+			id="headerText"> 환영합니다. ㅇㅇㅇ 운영자님.</label>
 	</div>
 
 

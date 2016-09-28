@@ -6,8 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>모두의 쇼핑몰</title>
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
 <link href="/Project_MDS/assets/css/SPA_main.css" rel="stylesheet"
@@ -18,7 +17,23 @@
 	<c:import url='/WEB-INF/views/SPA/include/header.jsp' />
 	<c:import url='/WEB-INF/views/SPA/include/navigation.jsp' />
 	<div id="container">
-		메인
+		<h2>카테고리 관리</h2>
+		<table>
+			<tbody>
+				<c:forEach var='vo1' items='${map.group}' varStatus='status'>
+					<tr>
+						<td>${vo1}</td>
+						<c:set var="vo1" value='${vo1}' />
+						<c:forEach var='vo2' items='${map.vo1}' varStatus='status'>
+							<td>${vo2}</td>
+						</c:forEach>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+
+		<a href="category">저장하기</a>
 	</div>
+
 </body>
 </html>

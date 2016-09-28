@@ -1,92 +1,102 @@
 @CHARSET "UTF-8";
 
-
-
-/* div#navigation .accord_menu {width:100%; background:#B9CAFF; color:#6986a6;}
-div#navigation .accord_menu .outer_li{background:#6986a6; color:#fff;width:100%; padding-bottom:5px;}
-div#navigation .accord_menu .outer_li .inner_li {display:none;}
-div#navigation .accord_menu .outer_li .inner_li>li {background:#bed0e6; color:#000000; margin:5px;};  */​
-
 #accordian {
 	background: #333333;
 	width: 250px;
 	margin: 100px auto 0 auto;
 	color: white;
-	box-shadow: 
-		0 5px 15px 1px rgba(0, 0, 0, 0.6), 
-		0 0 200px 1px rgba(255, 255, 255, 0.5);
+	box-shadow: 0 5px 15px 1px rgba(0, 0, 0, 0.6), 0 0 200px 1px
+		rgba(255, 255, 255, 0.5);
 }
 
-/* 메뉴 스타일 */
-#accordian h3 {
-	font-size: 12px;
-	line-height: 34px;
-	padding: 0 10px;
-	cursor: pointer;
-	background: #064461;
-	background: linear-gradient(#003040, #002535);
-}
-#accordian h3:hover {
-	text-shadow: 0 0 1px rgba(255, 255, 255, 0.7);
+.accordion {
+	font-size: 13px;
+	line-height: 30px;
+	font-weight: 700;
+	text-transform: uppercase;
+	border: 1px solid #1d1d1d;
+	border-radius: 3px;
 }
 
-/* 아이콘폰트 스타일 */
-#accordian h3 span {
-	font-size: 16px;
-	margin-right: 10px;
-}
-#accordian li {
-	list-style-type: none;
+.accordion>ul {
+	margin: 0;
+	padding: 0;
 }
 
-/* 서브메뉴 스타일 */
-#accordian ul ul li a {
-	color: white;
-	text-decoration: none;
-	font-size: 11px;
-	line-height: 27px;
+.accordion ul, .accordion li {
+	list-style: none;
+}
+
+.accordion>ul>li {
+	background: #292929;
+	margin: 0;
+	padding: 0;
+}
+
+.accordion>ul>li ul {
+	transition: .3s ease-out;
+	-webkit-transition: .3s ease-out;
+	-moz-transition: .3s ease-out;
+	opacity: 0;
+	margin: 0;
+	padding: 0;
+}
+
+.accordion>ul>li li {
+	background: #333;
+}
+
+.accordion a {
 	display: block;
-	padding: 0 15px;
-	-webkit-transition: all 0.15s;
-	-moz-transition: all 0.15s;
-	-o-transition: all 0.15s;
-	-ms-transition: all 0.15s;
-	transition: all 0.15s;
-}
-#accordian ul ul li a:hover {
-	background: #003545;
-	border-left: 5px solid #09c;
+	color: #ccc !important;
+	text-align: center;
+	text-decoration: none !important;
 }
 
-/* active 클래스 외에 것은 보이지 않게 하기 */
-#accordian ul ul {
-	display: none;
+.accordion>ul>li>a {
+	border-top: 1px solid #353535;
+	border-bottom: 1px solid #161616;
 }
-#accordian li.active ul {
+
+.accordion>ul>li ul li a {
+	height: 0;
+	transition: .3s ease-out;
+	-webkit-transition: .3s ease-out;
+	-moz-transition: .3s ease-out;
+}
+
+.accordion>ul>li:hover ul li a {
+	height: 30px;
+}
+
+.accordion>ul>li:hover ul {
+	opacity: 1;
+}
+
+.accordion>ul>li li:hover {
+	box-shadow: inset 0 1px #4077CB, inset 0 -1px #4077cb;
+	background: #3e6db5;
+}
+
+#accordionTest {
 	display: block;
+	color: #ccc !important;
+	text-align: center;
+	text-decoration: none !important;
+	border-top: 1px solid #353535;
+	border-bottom: 1px solid #161616;
 }
 
- #headerText {
- font-size: 14px;
- }
- 
- #head_floatRight {
- float: right;
- margin: 10px;
- }
- 
- #logoImage {
- width:200px;
- margin-top: 10px;
- margin-left: 10px;
- }
-  
-div#content p{line-height:1.4}
-div#extra{background:#FF8539}
-div#footer{background: #333;color: #FFF}
-div#footer p{margin:0;padding:5px 10px}
+#headerText {
+	font-size: 14px;
+	float: right;
+	margin: 10px;
+}
 
-div#wrapper{float:left;width:100%}
-div#content{margin: 0 23%}
-div#extra{float:left;width:25%;margin-left:-25%}
-div#footer{clear:left;width:100%}
+#headerButton {
+	float: right;
+}
+#logoImage {
+	width: 200px;
+	margin-top: 10px;
+}

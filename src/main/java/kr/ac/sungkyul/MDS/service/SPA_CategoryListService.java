@@ -36,10 +36,8 @@ public class SPA_CategoryListService {
 				group = vo.getCategorylist_group();
 				temp = vo.getCategorylist_name();
 				grouplist.add(vo.getCategorylist_name());
-				System.out.println("gl"+vo.getCategorylist_name());
 			} else {
 				list.add(vo.getCategorylist_name());
-				System.out.println("l"+vo.getCategorylist_name());
 			}
 		}
 
