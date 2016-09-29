@@ -26,7 +26,7 @@
 </head>
 
 <body>
-	<div class="col-lg-2">
+	<div class="section" id="navi">
 		<div class='accordion'>
 			<ul>
 				<li><a href='mall'>쇼핑몰관리</a></li>

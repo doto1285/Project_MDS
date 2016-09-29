@@ -17,7 +17,6 @@ public class MallDao {
 
 
 	public List<MallVo> get_joinmall_list(int member_no, String member_id, int member_state) {
-		// TODO Auto-generated method stub
 		//일반회원, 기업회원, admin 로그인
 
 		
@@ -42,7 +41,6 @@ public class MallDao {
 
 
 	public List<MallVo> get_Random_Mall_List() {
-		// TODO Auto-generated method stub
 		List<MallVo> listvo = sqlSession.selectList("TSF_mall.get_Random_Mall_List");
 		
 		for(MallVo vo : listvo){
@@ -50,6 +48,11 @@ public class MallDao {
 			System.out.println("랜덤으로 가져온 쇼핑몰 리스트 " + vo);
 		}
 		return listvo;
+	}
+	
+	public MallVo get_select_Mall(String mallName) {
+		MallVo mallVo = (MallVo) sqlSession.selectOne("get_select_Mall", mallName);
+		return mallVo;
 	}
 
 

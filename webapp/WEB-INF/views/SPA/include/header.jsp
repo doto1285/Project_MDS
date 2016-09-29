@@ -13,16 +13,11 @@
 <title>모두의 쇼핑몰</title>
 </head>
 <body>
-
-
-	<div class="col-lg-12">
-		<a href="main"><img src="/Project_MDS/assets/image/logo.png"
-			id="logoImage"></a> <a href="../../../Project_MDS/main"><button
-				type="button" class="btn btn-default" id="headerButton">로그아웃</button></a><label
-			id="headerText"> 환영합니다. ㅇㅇㅇ 운영자님.</label>
+	<div class="section">
+				<a href="main"><img src="/Project_MDS/assets/image/logo.png"
+					id="logoImage"></a> <a href="../../../Project_MDS/main"><button
+						type="button" class="btn btn-default" id="headerButton">로그아웃</button></a><label
+					id="headerText"> 환영합니다. ㅇㅇㅇ 운영자님.</label>
 	</div>
-
-
-
 </body>
 </html>
