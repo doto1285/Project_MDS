@@ -1,81 +1,133 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="utf-8">
-<link href="/Project_MDS/assets/css/board.css" rel="stylesheet"
+
+
+
+<link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css">
+<link href="/Project_MDS/assets/css/TSF_main.css" rel="stylesheet"
 	type="text/css">
-<link href="/Project_MDS/assets/css/styles.css" rel="stylesheet"
+
+<link href="/Project_MDS/assets/css/TSF_board.css" rel="stylesheet"
 	type="text/css">
-<link href="/Project_MDS/assets/css/bootstrap.css" rel="stylesheet"
-	type="text/css">
-<title>mysite</title>
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+<title>Shop Item - Start Bootstrap Template</title>
+
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="css/shop-item.css" rel="stylesheet">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
+
 <body>
-	<div id="header">
+	<div>
 		<c:import url='/WEB-INF/views/TSF/include/header_top.jsp' />
 		<c:import url='/WEB-INF/views/TSF/include/header_tap.jsp' />
 	</div>
-	<div id="wrapper">
-		<div id="content">
-			<nav id="nav">
-			<div id="extra">
+
+
+	<!-- Page Content -->
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-md-3" id="margin50px">
 				<c:import url='/WEB-INF/views/TSF/include/main_left.jsp' />
 			</div>
-			</nav>
-			<div>
-				<nav id="nav1"> <!-- -------------------------------- -->
+			<div class="col-md-9" id="margin50px">
+				<!-- 본문 시작-------------------------------------------- -->
 
+				<div id="container">
+					<div id="content">
+						<div id="board">
+							<form class="board-form" method="post"
+								action="/Project_MDS/main/board/write/${boardlist_no}">
+								<input type="hidden" name="a" value="write"> <br> <input
+									type="hidden" name="member_no" value="${authUser.member_no }">
+								<!-- 
+								<input type="text" name="board_group" value="${vo.groupNo }"><br>
+								<input type="text" name="board_orderno" value="${vo.orderNo }"><br>
+								<input type="text" name="board_depth" value="${vo.depth }"><br>
+ -->
+								<table class="tbl-ex">
+									<tr>
+										<th colspan="2">글쓰기</th>
+									</tr>
+									<tr>
+										<td class=>제목</td>
+										<td><input type="text" name="board_title" value=""></td>
+									</tr>
+									<tr>
+										<td class=>내용</td>
+										<td><textarea id="content" name="board_content"></textarea></td>
+									</tr>
 
-				<div id="content">
-					<div id="board">
-						<form class="board-form" method="post" action="write"
-							enctype="multipart/form-data">
-							<table class="tbl-ex">
-								<tr>
-									<th colspan="2">글쓰기</th>
-								</tr>
-								<tr>
-									<td class="label">제목</td>
-									<td><input type="text" name="title" value=""></td>
-								</tr>
-								<tr>
-									<td class="label">내용</td>
-									<td><textarea id="content" name="content"></textarea></td>
-								</tr>
-								<tr>
-									<td class="label">첨부파일</td>
-									<td><input type="file" name="file" value=""></td>
-								</tr>
-							</table>
-							<div class="bottom">
-								<a href="list">취소</a> <input type="submit" value="등록">
-							</div>
-						</form>
+									<tr>
+										<td class=>비밀번호</td>
+										<td><textarea id="text" name="board_password"></textarea></td>
+									</tr>
+
+								</table>
+
+								<div class="bottom">
+									<a href="/mysite_jstl/board">취소</a> <input type="submit"
+										value="등록">
+								</div>
+							</form>
+						</div>
 					</div>
 				</div>
 
-
-				<!-- -------------------------------- --> </nav>
+				<!-- 본문 끝-------------------------------------------- -->
 			</div>
-			<nav id="nav2">
-			<div id="navigation">
-				<c:import url='/WEB-INF/views/TSF/include/main_right.jsp' />
-
-			</div>
-			</nav>
 		</div>
+
 	</div>
+	<!-- /.container -->
 
 
-	<div id="footer">
-		<c:import url='/WEB-INF/views/TSF/include/footer.jsp' />
+
+	<div class="container">
+
+		<hr>
+
+		<!-- Footer -->
+		<footer>
+		<div class="row">
+			<c:import url='/WEB-INF/views/TSF/include/footer.jsp' />
+		</div>
+		</footer>
+
+
+
+
+
 	</div>
+	<!-- /.container -->
+
+	<!-- jQuery -->
+	<script src="js/jquery.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+
 </body>
+
 </html>
+
+

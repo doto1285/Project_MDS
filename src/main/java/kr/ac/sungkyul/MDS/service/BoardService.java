@@ -41,6 +41,22 @@ public class BoardService {
 		return GetBoardContentsList;
 	}
 
+	public void NewWrite(BoardVo boardVo) {
+		// TODO Auto-generated method stub
+		// 새 글 등록하기
+		boardDao.NewWrite(boardVo);
+		
+		
+		
+	}
+
+	public BoardVo GetBoardContent(int board_no) {
+		// TODO Auto-generated method stub
+		// 선택한 게시글 내용 가져오기
+		
+		return boardDao.GetBoardContent(board_no);
+	}
+
 	
 	
 	
