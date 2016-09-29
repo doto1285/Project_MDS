@@ -41,21 +41,34 @@ public class BoardListDao {
 		return GetBoard;
 	}
 
-	public List<BoardVo> GetBoardContentsList(int boardlist_no)  {
+	public List<BoardVo> GetBoardContentsList(int boardlist_no) {
 		// TODO Auto-generated method stub
 		// 해당 게시판의 게시글들을 가져온다.
-		
+
 		List<BoardVo> listvo = sqlSession.selectList("TSF_board.boardlist_no", boardlist_no);
 
 		for (BoardVo vo : listvo) {
 			System.out.println("게시글 목록 " + vo);
 		}
 		return listvo;
-		
+
 	}
 
-	
-	
+	public void NewWrite(BoardVo boardVo) {
+		// TODO Auto-generated method stub
+		// 새 글 등록하기
+		sqlSession.insert("TSF_board.NewWrite", boardVo);
+
+	}
+
+	public BoardVo GetBoardContent(int board_no) {
+		// TODO Auto-generated method stub
+
+		BoardVo boardVo = sqlSession.selectOne("TSF_board.GetBoardContent", board_no);
+
+		System.out.println("출력될 게시글" + boardVo);
+		return boardVo;
+	}
 
 	// public List<BoardVo> listBoard(){
 	// System.out.println("dao");

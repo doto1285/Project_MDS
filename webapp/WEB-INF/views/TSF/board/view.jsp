@@ -13,6 +13,8 @@
 	rel="stylesheet" type="text/css">
 <link href="/Project_MDS/assets/css/TSF_main.css" rel="stylesheet"
 	type="text/css">
+<link href="/Project_MDS/assets/css/TSF_board.css" rel="stylesheet"
+	type="text/css">
 
 <title>Shop Item - Start Bootstrap Template</title>
 
@@ -43,91 +45,50 @@
 
 		<div class="row">
 
-			<div class="col-md-2" id="margin50px">
+			<div class="col-md-3" id="margin50px">
 				<c:import url='/WEB-INF/views/TSF/include/main_left.jsp' />
 			</div>
 
 			<!-- 본문 시작-------------------------------------------- -->
-			<div class="col-md-6" id="margin50px">
-				<div class="thumbnail">
 
+			<div id="content">
+				<div id="board" class="board-form" id="margin50px">
+					<table class="tbl-ex" id="margin50px">
+						<tr>
+							<th colspan="2">글보기</th>
+						</tr>
+						<tr>
+							<td>제목</td>
+							<td>${GetBoardContent.board_title}</td>
+						</tr>
+						<tr>
+							<td>내용</td>
+							<td>
+								<div class="view-content">${GetBoardContent.board_content}</div>
+							</td>
+						</tr>
 
-
-					<c:choose>
-						<c:when test='${empty authUser }'>
-							<!-- 비회원일경우 표시되는 화면  -->
-							<p class="lead">아직 모두의 쇼핑몰 회원이 아니시군요?</p>
-							<p>쇼핑몰을 만드시거나 이용하시려면</p>
-							<p>모두의 쇼핑몰 로그인이 필요합니다.</p>
-
-						</c:when>
-
-						<c:when test='${authUser.member_distinction == 0}'>
-							<!-- 개인 회원일경우 표시되는 화면  -->
-
-							<p class="lead">내가 가입한 쇼핑몰</p>
-							<br>
-							<p>==================</p>
-							<c:forEach items="${auth_MallList }" var="auth_MallList">
-
-								<br>
-								<a href="http://localhost:8088/Project_MDS/${auth_MallList.mall_domain }/main">${auth_MallList.mall_name }</a>
-								<br>
-							</c:forEach>
-
-						</c:when>
-
-
-						<c:when test='${authUser.member_distinction == 1 }'>
-							<!-- 기업 회원일경우 표시되는 화면  -->
-
-							<p class="lead">내가 개설한 쇼핑몰</p>
-							<br>
-							<p>==================</p>
-							<c:forEach items="${auth_MallList }" var="auth_MallList">
-
-								<br>
-								<a href="http://localhost:8088/Project_MDS/${auth_MallList.mall_domain }/main">${auth_MallList.mall_name }</a>
-								<br>
-							</c:forEach>
-
-						</c:when>
-
-
-						<c:when test='${authUser.member_distinction == 9 }'>
-							<!-- admin일경우 표시되는 화면  -->
-							<p class="lead">admin 로그인</p>
-
-						</c:when>
-					</c:choose>
-
-				</div>
-			</div>
-
-
-			<div class="col-md-3" id="margin50px">
-				<div class="well">
-					<div class="row">
-
-						<p class="lead">추천 쇼핑몰</p>
-						<c:forEach items="${Random_MallList }" var="Random_MallList">
-							<a href="http://localhost:8088/Project_MDS/${Random_MallList.mall_domain }/main" class="list-group-item">${Random_MallList.mall_name }</a>
-						</c:forEach>
-						
-						
+					</table>
+					<div class="bottom">
+						<a href="modify?no=${GetBoardContent.board_no }">글수정</a> <a
+							href="delete?no=${GetBoardContent.board_no }">삭제</a>
 					</div>
 				</div>
 			</div>
 
-
 			<!-- 본문 끝-------------------------------------------- -->
+
 		</div>
+
 	</div>
 	<!-- /.container -->
 
 
+
 	<div class="container">
+
 		<hr>
+
 		<!-- Footer -->
 		<footer>
 		<div class="row">
@@ -147,3 +108,5 @@
 </body>
 
 </html>
+
+
