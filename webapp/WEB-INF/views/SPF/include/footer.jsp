@@ -16,7 +16,7 @@
 		<div class="row">
 			<div class="col-lg-12" id="footer">
 				<p>
-					회사명 : 모두의 쇼핑몰 &nbsp; 대표 : 이민우 &nbsp; 개인정보관리책임자 : 이민우
+					회사명 : ${mallVo.mall_name } &nbsp; 대표 : 이민우 &nbsp; 개인정보관리책임자 : 이민우
 					&nbsp;&nbsp;사업자등록번호 : 123-45-67890 &nbsp; 통신판매신고번호 :
 					2016-대구북구-0987호 &nbsp;&nbsp; <br> 사업장 주소&nbsp;: 경기도 안양시 만안구
 					성결관 401호 &nbsp; 고객센터 : 1688-1234 &nbsp;&nbsp;팩스 : 031-123-4567
