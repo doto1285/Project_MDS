@@ -41,6 +41,15 @@ public class TSF_MainController {
 		String url = "TSF/" + userid + "/index";
 		return url;
 	}
+	
+	
+	@RequestMapping("/main/join_mall")
+	public String personal_Joinform() {
+		// 쇼핑몰 만들기
+		System.out.println("쇼핑몰 만들기");
+		
+		return "member/join_mall";
+	}
 
 
 }

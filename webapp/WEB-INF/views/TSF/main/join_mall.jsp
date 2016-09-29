@@ -51,64 +51,8 @@
 
 
 
-				<center>
-					<P>${GetBoard.boardlist_name }</P>
-				</center>
 
-				<form id="search_form" action="/mysite5/board" method="get">
-					<input type="text" id="kwd" name="kwd" value="${keyword }">
-					<input type="submit" value="찾기">
-				</form>
-
-				<table class="tbl-ex">
-					<table class="table table-striped table-hover ">
-						<tr>
-							<th>번호</th>
-							<th>제목</th>
-							<th>글쓴이</th>
-							<th>조회수</th>
-							<th>작성일</th>
-						</tr>
-
-
-						<tbody>
-
-							<c:forEach items="${GetBoardContentsList }"
-								var="GetBoardContentsList">
-								<tr>
-									<!--글번호-->
-									<td>${GetBoardContentsList.board_no}</td>
-									<!--제목-->
-									<td><a href="view?no=${GetBoardContentsList.board_no}">${GetBoardContentsList.board_title}</a></td>
-									<!--글쓴이  -->
-									<td>${GetBoardContentsList.name}</td>
-									<!--조회수  -->
-									<td>${GetBoardContentsList.board_hit}</td>
-									<!--작성일  -->
-									<td>${GetBoardContentsList.board_date}</td>
-								</tr>
-							</c:forEach>
-
-
-						</tbody>
-					</table>
-				</table>
-
-				<c:choose>
-					<c:when
-						test='${authUser.member_distinction >= GetBoard.boardlist_write_accessright }'>
-						<!-- admin만 글쓰기 버튼 보여준다  -->
-
-						<div class="btn btn-default">
-							<a href="notice/writeform" id="new-book">글쓰기</a>
-						</div>
-
-					</c:when>
-					<c:otherwise>
-						<!-- 개인, 기업회원일 경우 글쓰기 버튼을 표시하지 않음  -->
-					</c:otherwise>
-				</c:choose> 
-		<!-- 본문 끝-------------------------------------------- -->
+			<!-- 본문 끝-------------------------------------------- -->
 			<div class="text-right">
 				<a class="btn btn-success">Leave a Review</a>
 			</div>
@@ -146,6 +90,3 @@
 </body>
 
 </html>
-
-				
-				

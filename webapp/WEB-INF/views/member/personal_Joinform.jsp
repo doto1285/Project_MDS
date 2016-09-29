@@ -41,74 +41,53 @@
 	<!-- Page Content -->
 	<div class="container">
 
-		<div class="row">
+		<div class="row" id="margin50px">
 
-			<div class="col-md-3" id="margin50px">
+			<div class="col-md-3">
 				<c:import url='/WEB-INF/views/TSF/include/main_left.jsp' />
 			</div>
 
 			<!-- 본문 시작-------------------------------------------- -->
+			<div id="content">
+				<div id="user">
+
+
+					<p class="lead">회원가입</p>
+
+					<form id="join-form" name="joinForm" method="post"
+						action="/mysite5/user/join">
+						<label class="block-label" for="name">이름</label><input id="name"
+							name="name" type="text" value=""> <br> <label
+							class="block-label" for="email">이메일</label> <input id="email"
+							name="email" type="text" value=""> <img
+							id="image-checked" style="width: 16px; display: none"
+							src="/mysite5/assets/images/check.png" /> <input type="button"
+							id="btn-checkemail" value="id 중복체크"> <br> <label
+							class="block-label">패스워드</label> <input name="password"
+							type="password" value="">
+
+						<fieldset>
+							<legend>성별</legend>
+							<label>여</label> <input type="radio" name="gender" value="FEMALE"
+								checked="checked"> <label>남</label> <input type="radio"
+								name="gender" value="MALE">
+						</fieldset>
+
+						<fieldset>
+							<legend>약관동의</legend>
+							<input id="agree-prov" type="checkbox" name="agreeProv" value="y">
+							<label>서비스 약관에 동의합니다.</label>
+						</fieldset>
+
+						<input type="submit" value="가입하기">
+					</form>
+				</div>
+			</div>
 
 
 
-				<center>
-					<P>${GetBoard.boardlist_name }</P>
-				</center>
 
-				<form id="search_form" action="/mysite5/board" method="get">
-					<input type="text" id="kwd" name="kwd" value="${keyword }">
-					<input type="submit" value="찾기">
-				</form>
-
-				<table class="tbl-ex">
-					<table class="table table-striped table-hover ">
-						<tr>
-							<th>번호</th>
-							<th>제목</th>
-							<th>글쓴이</th>
-							<th>조회수</th>
-							<th>작성일</th>
-						</tr>
-
-
-						<tbody>
-
-							<c:forEach items="${GetBoardContentsList }"
-								var="GetBoardContentsList">
-								<tr>
-									<!--글번호-->
-									<td>${GetBoardContentsList.board_no}</td>
-									<!--제목-->
-									<td><a href="view?no=${GetBoardContentsList.board_no}">${GetBoardContentsList.board_title}</a></td>
-									<!--글쓴이  -->
-									<td>${GetBoardContentsList.name}</td>
-									<!--조회수  -->
-									<td>${GetBoardContentsList.board_hit}</td>
-									<!--작성일  -->
-									<td>${GetBoardContentsList.board_date}</td>
-								</tr>
-							</c:forEach>
-
-
-						</tbody>
-					</table>
-				</table>
-
-				<c:choose>
-					<c:when
-						test='${authUser.member_distinction >= GetBoard.boardlist_write_accessright }'>
-						<!-- admin만 글쓰기 버튼 보여준다  -->
-
-						<div class="btn btn-default">
-							<a href="notice/writeform" id="new-book">글쓰기</a>
-						</div>
-
-					</c:when>
-					<c:otherwise>
-						<!-- 개인, 기업회원일 경우 글쓰기 버튼을 표시하지 않음  -->
-					</c:otherwise>
-				</c:choose> 
-		<!-- 본문 끝-------------------------------------------- -->
+			<!-- 본문 끝-------------------------------------------- -->
 			<div class="text-right">
 				<a class="btn btn-success">Leave a Review</a>
 			</div>
@@ -146,6 +125,3 @@
 </body>
 
 </html>
-
-				
-				

@@ -3,72 +3,65 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-<!doctype html>
-<html lang="utf-8">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-<title>Vertical jQuery Accordion Nav Menu</title>
-<meta name="author" content="Jake Rocheleau">
-<link rel="shortcut icon" href="http://vandelaydesign.com/favicon.ico">
-<link rel="icon" href="http://vandelaydesign.com/favicon.ico">
-<link rel="stylesheet" type="text/css"
-	href="/Project_MDS/assets/css/styles.css">
-<link rel="stylesheet" type="text/css"
-	href="http://fonts.googleapis.com/css?family=Merienda:400,700">
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-<script type="text/javascript" language="javascript" charset="utf-8"
-	src="/Project_MDS/assets/js/nav.js"></script>
-<!--[if lt IE 9]>
-  <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
+
+
+
+<link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css">
+<link href="/Project_MDS/assets/css/TSF_main.css" rel="stylesheet"
+	type="text/css">
+
 </head>
 
-<body>
-	<div id="w">
-		<nav>
-			<ul id="nav">
-
-				<c:choose>
-					<c:when test='distinction == 0}'>
-						<!-- 개인 회원일경우 표시되는 메뉴  -->
-						<li><a href="#">구매 / 배송조회</a></li>
-						<li><a href="#">환불 / 취소</a></li>
-					</c:when>
-
-
-					<c:when test='${authUser.member_distinction == 1 }'>
-						<!-- 기업 회원일경우 표시되는 메뉴  -->
-						<li><a href="#">쇼핑몰 만들기</a></li>
-					</c:when>
-
-					<c:when test='${authUser.member_distinction == 9 }'>
-						<!-- 기업 회원일경우 표시되는 메뉴  -->
-						<li><a href="#"> admin 로그인</a></li>
-					</c:when>
-
-					<c:otherwise>
-						<!-- 비회원일경우 표시되는 메뉴  -->
-						<a href="/Project_MDS/main/loginfrom">로그인 하세요</a>
-					</c:otherwise>
-
-				</c:choose>
+<p class="lead">마이페이지</p>
+<div class="list-group">
 
 
 
-				<c:forEach items="${GetBoardList }" var="GetBoardList">
-					<p><a href="http://localhost:8088/Project_MDS/main/board/${GetBoardList.boardlist_no } "
-						class="btn btn-default">${GetBoardList.boardlist_name }</a></p>
-				</c:forEach>
-				
-				
-			</ul>
+	<c:choose>
+		<c:when test='${authUser.member_distinction == 0}'>
+			<!-- 개인 회원일경우 표시되는 메뉴  -->
+			<a href="#" class="list-group-item">구매 / 배송조회</a>
+			<a href="#" class="list-group-item">환불 / 취소</a>
+		</c:when>
+
+
+		<c:when test='${authUser.member_distinction == 1 }'>
+			<!-- 기업 회원일경우 표시되는 메뉴  -->
+			<a href="/Project_MDS/main/join_mall" class="list-group-item">쇼핑몰
+				만들기</a>
+		</c:when>
+
+		<c:when test='${authUser.member_distinction == 9 }'>
+			<!-- admin일경우 표시되는 메뉴  -->
+			<a href="#" class="list-group-item"> admin 로그인</a>
+		</c:when>
+
+		<c:otherwise>
+			<!-- 비회원일경우 표시되는 메뉴  -->
+			<a href="/Project_MDS/main/loginfrom" class="list-group-item">로그인
+				하세요</a>
+		</c:otherwise>
+
+	</c:choose>
+
+</div>
+
+<p class="lead">고객 센터</p>
+<div class="list-group">
+	<c:forEach items="${GetBoardList }" var="GetBoardList">
+		<a
+			href="http://localhost:8088/Project_MDS/main/board/${GetBoardList.boardlist_no } "
+			class="list-group-item"> ${GetBoardList.boardlist_name }</a>
+
+	</c:forEach>
 
 
 
 
-		</nav>
-	</div>
-</body>
-</html>
+
+
+</div>

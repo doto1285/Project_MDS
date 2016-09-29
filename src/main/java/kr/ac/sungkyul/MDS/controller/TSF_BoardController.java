@@ -36,6 +36,7 @@ public class TSF_BoardController {
 		
 		//해당 게시판에 게시글 가져오기
 		List<BoardVo> GetBoardContentsList= BoardService.GetBoardContentsList(boardlist_no);
+		session.setAttribute("GetBoardContentsList", GetBoardContentsList);
 				
 		return "TSF/board/list";
 	}

@@ -24,6 +24,14 @@ public class MemberController {
 	@Autowired
 	TSF_MainService TSF_MainService;
 
+	@RequestMapping("/main/personal_Joinform")
+	public String personal_Joinform() {
+		// 개인회원 회원가입
+		System.out.println("개인 회원 가입");
+		
+		return "member/personal_Joinform";
+	}
+	
 	@RequestMapping("/main/loginfrom")
 	public String index() {
 		// 개인회원, 기업회원 로그인
@@ -78,7 +86,6 @@ public class MemberController {
 		session.removeAttribute("authUser");
 		session.invalidate();
 		return "redirect:/main";
-
 	}
 
 }

@@ -4,7 +4,8 @@
 
 
 	<insert id="insert_Mall" parameterType="kr.ac.sungkyul.MDS.vo.MallVo">
-		<![CDATA[						
+	<!-- 쇼핑몰 생성하기, 미구현 -->
+		<![CDATA[	
 		insert into mall values(
 		mall_seq .nextVal, #{mall_no}, #{mall_name}, #{mall_domain}, #{mall_type},
 		 #{mall_style}, #{mall_creationdate}, #{mall_licensee}, #{mall_companyname}, #{mall_ceoname},
