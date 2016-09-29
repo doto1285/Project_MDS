@@ -12,10 +12,13 @@ public class SPA_MallService {
 	@Autowired
 	private MallDao mallDao;
 
-	public MallVo GetSelectMall(String domain){
-		
+	public MallVo getSelectMall(String domain){
 		MallVo mallVo = mallDao.get_select_Mall(domain);
 		return mallVo;
+	}
+	
+	public boolean modifyMall(MallVo mallVo) {
+		return mallDao.updateMall(mallVo);
 	}
 
 }

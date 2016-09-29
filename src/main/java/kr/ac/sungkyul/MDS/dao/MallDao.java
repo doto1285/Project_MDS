@@ -55,5 +55,8 @@ public class MallDao {
 		return mallVo;
 	}
 
+	public boolean updateMall(MallVo mallVo) {
+		return sqlSession.update("mallupdate", mallVo) !=0 ;
+	}
 
 }

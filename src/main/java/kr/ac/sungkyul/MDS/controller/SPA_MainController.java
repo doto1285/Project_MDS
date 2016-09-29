@@ -37,15 +37,16 @@ public class SPA_MainController {
 
 	@RequestMapping(value = "{domain}/mall", method = RequestMethod.GET)
 	public String mall(@PathVariable String domain, HttpSession session, Model model) {
-		MallVo mallVo = SPA_mallservice.GetSelectMall(domain);
+		MallVo mallVo = SPA_mallservice.getSelectMall(domain);
 		model.addAttribute("mallVo", mallVo);
 		return "SPA/mall/mall";
 	}
 
-	@RequestMapping(value = "{domain}/mallmodify", method = RequestMethod.GET)
-	public String mallmodify(@PathVariable String domain, HttpSession session, Model model) {
-		// 미구형
-		return null;
+	@RequestMapping(value = "{domain}/mallmodify", method = RequestMethod.POST)
+	public String mallmodify(@PathVariable String domain, HttpSession session, Model model, MallVo mallVo) {
+		System.out.println(mallVo);
+		System.out.println(SPA_mallservice.modifyMall(mallVo));
+		return "redirect:/SPA/"+domain+"/mall";
 	}
 
 	@RequestMapping(value = "{domain}/category", method = RequestMethod.GET)
