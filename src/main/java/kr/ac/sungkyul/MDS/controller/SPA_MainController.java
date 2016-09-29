@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.ac.sungkyul.MDS.service.MemberService;
 import kr.ac.sungkyul.MDS.service.SPA_CategoryListService;
+import kr.ac.sungkyul.MDS.service.SPA_MallService;
+import kr.ac.sungkyul.MDS.vo.MallVo;
 import kr.ac.sungkyul.MDS.vo.MemberVo;
 
 @Controller
@@ -21,6 +23,9 @@ public class SPA_MainController {
 
 	@Autowired
 	MemberService memberService;
+	
+	@Autowired
+	SPA_MallService SPA_mallservice;
 
 	@Autowired
 	SPA_CategoryListService categoryListService;
@@ -32,6 +37,8 @@ public class SPA_MainController {
 
 	@RequestMapping(value = "{domain}/mall", method = RequestMethod.GET)
 	public String mall(@PathVariable String domain, HttpSession session, Model model) {
+		MallVo mallVo = SPA_mallservice.GetSelectMall(domain);
+		model.addAttribute("mallVo", mallVo);
 		return "SPA/mall/mall";
 	}
 

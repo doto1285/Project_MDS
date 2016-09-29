@@ -52,14 +52,22 @@
 				 mall_email = #{mall_email },
 				 mall_account = #{mall_account },
 				 mall_onlinemaketNo = #{mall_onlinemaketNo },
-				 mall_dateofficer = #{mall_dateofficer },
+				 mall_dataofficer = #{mall_dataofficer },
 				 mall_customerNo = #{mall_customerNo },
 				 mall_faxNo = #{mall_faxNo }
 				 where mall_no = #{mall_no }
 		]]>
 	</update>
 
-
+	<select id="get_select_Mall" parameterType="String"
+		resultType="kr.ac.sungkyul.MDS.vo.MallVo">
+		 	select mall_name, mall_domain, mall_type, mall_licensee,
+		 	mall_companyname, mall_ceoname, mall_address, mall_phone,
+		 	mall_email, mall_account, mall_onlinemaketNo, mall_dataofficer,
+		 	mall_customerNo, mall_faxNo
+			from mall 
+			where mall_domain = #{mall_domain } and mall_state = 1
+	</select>
 
 
 </mapper>

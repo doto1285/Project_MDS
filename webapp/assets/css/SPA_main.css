@@ -2,8 +2,7 @@
 
 #accordian {
 	background: #333333;
-	width: 250px;
-	margin: 100px auto 0 auto;
+
 	color: white;
 	box-shadow: 0 5px 15px 1px rgba(0, 0, 0, 0.6), 0 0 200px 1px
 		rgba(255, 255, 255, 0.5);
@@ -12,7 +11,7 @@
 .accordion {
 	font-size: 13px;
 	line-height: 30px;
-	font-weight: 700;
+
 	text-transform: uppercase;
 	border: 1px solid #1d1d1d;
 	border-radius: 3px;
@@ -87,16 +86,60 @@
 	border-bottom: 1px solid #161616;
 }
 
+/* -------------header------------ */
 #headerText {
 	font-size: 14px;
 	float: right;
-	margin: 10px;
+	margin: 16px 10px 0px 0px;
 }
 
 #headerButton {
 	float: right;
+	margin: 10px 10px 0px 10px;
 }
 #logoImage {
-	width: 200px;
-	margin-top: 10px;
+	width: 160px;
+	margin: 10px 0px 0px 0px;
+}
+
+
+/* -------------navigation------------ */
+#navi {
+	width: 150px;
+	padding:0px;
+	margin:10px 30px 0px 0px;
+	float: left;
+}
+
+/* -------------contents------------ */
+#contents {
+	padding:0px;
+	margin: 10px 0px 0px 180px;
+}
+
+h3 {
+	margin:0px 0px 10px 0px;
+}
+
+
+/* -------------mall.jsp------------ */
+#inputText {
+	font-size: 14px;
+}
+
+#inputBox {
+	width: 300px;
+}
+
+#inputSelect {
+	width: 300px;
+}
+
+#inputFormGroup {
+	margin: 10px;
+}
+
+#inputButton {
+	position:relative;
+	left: 20px;
 }
