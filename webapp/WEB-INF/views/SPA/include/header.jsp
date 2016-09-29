@@ -3,12 +3,26 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div id="header">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css">
+<link href="/Project_MDS/assets/css/SPA_main.css" rel="stylesheet"
+	type="text/css">
+<title>모두의 쇼핑몰</title>
+</head>
+<body>
 
-	<h2>
-		<img src="/Project_MDS/assets/image/logo.png">
-		환영합니다. ㅇㅇㅇ 운영자님.
-		<a href="../../../Project_MDS/main">로그아웃</a>
-	</h2>
 
-</div>
+	<div class="col-lg-12">
+		<a href="main"><img src="/Project_MDS/assets/image/logo.png"
+			id="logoImage"></a> <a href="../../../Project_MDS/main"><button
+				type="button" class="btn btn-default" id="headerButton">로그아웃</button></a><label
+			id="headerText"> 환영합니다. ㅇㅇㅇ 운영자님.</label>
+	</div>
+
+
+
+</body>
+</html>

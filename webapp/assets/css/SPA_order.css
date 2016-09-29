@@ -1,0 +1,165 @@
+@CHARSET "UTF-8";
+
+html, body {
+	margin: 20;
+	padding:
+}
+
+body {
+	font: 76% arial, sans-serif
+}
+
+p {
+	margin: 0 10px 10px
+}
+
+a {
+	display: block;
+	color: #000000;
+}
+
+/* --------------- order 화면 css --------------- */
+#boardTitle {
+	text-align: center;
+}
+
+#description {
+	font-size: 14px;
+	color: gray;
+}
+
+#orderTable {
+	font-size: 14px;
+	text-align: center;
+}
+
+#tableContents {
+	position: relative;
+	top: 50px;
+}
+
+#orderProductImage {
+	width: 90px;
+}
+
+#radioText {
+	text-align: left;
+}
+
+/* paging */
+#paging {
+	font-size: 14px;
+	position: relative;
+	top: 0px;
+	left: 455px;
+}
+
+#addressHyphen {
+	margin: 0px;
+	padding: 0px;
+	position: relative;
+	right: 45px;
+	top: 0px;
+}
+
+#addressInput1 {
+	margin: 0px;
+	bottom: 5px;
+}
+
+#addressInput2 {
+	margin: 0px;
+	position: relative;
+	right: 90px;
+	bottom: 5px;
+}
+
+#mailAddress {
+	position: relative;
+	right: 317px;
+	bottom: 5px;
+}
+
+#addressInput3 {
+	position: relative;
+	top: 0px;
+}
+
+#addressLabel3 {
+	position: relative;
+	top: 5px;
+	right: 130px;
+}
+
+#addressLabel4 {
+	position: relative;
+	top: 20px;
+	right: 123px;
+}
+
+#addressInput4 {
+	position: relative;
+	top: 6px;
+}
+
+#phoneInput1 {
+	position: relative;
+	right: 15px;
+}
+
+#phoneHyphen1 {
+	position: relative;
+	right: 53px;
+	top: 5px;
+}
+
+#phoneInput2 {
+	position: relative;
+	right: 95px;
+}
+
+#phoneHyphen2 {
+	position: relative;
+	right: 137px;
+	top: 5px;
+}
+
+#phoneInput3 {
+	position: relative;
+	right: 179px;
+}
+
+#payImage {
+	width: 100px;
+	height: 50px;
+}
+
+#inlineRadio1 {
+	position: relative;
+	top: 4px;
+}
+
+#inlineRadio2 {
+	position: relative;
+	top: 4px;
+}
+
+#inlineRadio3 {
+	position: relative;
+	top: 4px;
+}
+
+#inlineRadio4 {
+	position: relative;
+	top: 4px;
+}
+
+#inlineRadio5 {
+	position: relative;
+	top: 4px;
+}
+
+#payButton {
+	position: relative;
+	left: 500px;
+}
