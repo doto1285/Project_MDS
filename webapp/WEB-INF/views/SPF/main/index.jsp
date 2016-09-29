@@ -79,7 +79,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="row">
 				<div class="col-sm-6 col-md-3">
 					<div class="thumbnail">
@@ -130,7 +130,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="row">
 				<div class="col-sm-6 col-md-3">
 					<div class="thumbnail">
@@ -181,7 +181,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="row">
 				<div class="col-sm-6 col-md-3">
 					<div class="thumbnail">
@@ -232,7 +232,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="row">
 				<div class="col-sm-6 col-md-3">
 					<div class="thumbnail">
@@ -283,6 +283,9 @@
 					</div>
 				</div>
 			</div>
-			<c:import url='/WEB-INF/views/SPF/include/footer.jsp' />
+		</div>
+	</div>
+
+	<c:import url='/WEB-INF/views/SPF/include/footer.jsp' />
 </body>
 </html>
