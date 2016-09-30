@@ -115,7 +115,7 @@
 			</div>
 			<div class="form-group" id="inputButton">
 				<input type="hidden" name="mall_no" value="${mallVo.mall_no }"/>
-				<input class="btn btn-success" type="submit" value="수정하기">
+				<input class="btn btn-info" type="submit" value="수정하기">
 			</div>
 		</form>
 	</div>
