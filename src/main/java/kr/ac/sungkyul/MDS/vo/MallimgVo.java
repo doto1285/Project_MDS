@@ -1,6 +1,6 @@
 package kr.ac.sungkyul.MDS.vo;
 
-public class AttachFileVo {
+public class MallimgVo {
 	
 	private int fNo;
 	private int no;

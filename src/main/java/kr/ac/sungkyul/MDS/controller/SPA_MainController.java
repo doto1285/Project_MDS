@@ -41,6 +41,16 @@ public class SPA_MainController {
 		model.addAttribute("mallVo", mallVo);
 		return "SPA/mall/mall";
 	}
+	
+	@RequestMapping(value = "{domain}/malllogo", method = RequestMethod.GET)
+	public String malllogoimg(@PathVariable String domain, HttpSession session, Model model) {
+		return "SPA/mall/malllogoimg";
+	}
+	
+	@RequestMapping(value = "{domain}/mallmain", method = RequestMethod.GET)
+	public String mallmainimg(@PathVariable String domain, HttpSession session, Model model) {
+		return "SPA/mall/mallmainimg";
+	}
 
 	@RequestMapping(value = "{domain}/mallmodify", method = RequestMethod.POST)
 	public String mallmodify(@PathVariable String domain, HttpSession session, Model model, MallVo mallVo) {
@@ -115,17 +125,17 @@ public class SPA_MainController {
 	}
 	
 	@RequestMapping(value = "{domain}/qna", method = RequestMethod.GET)
-	public String h(@PathVariable String domain, HttpSession session, Model model) {
+	public String qnalist(@PathVariable String domain, HttpSession session, Model model) {
 		return "SPA/member/qnalist";
 	}
 	
 	@RequestMapping(value = "{domain}/qnaview", method = RequestMethod.GET)
-	public String i(@PathVariable String domain, HttpSession session, Model model) {
+	public String qnaview(@PathVariable String domain, HttpSession session, Model model) {
 		return "SPA/member/qnaview";
 	}
 	
 	@RequestMapping(value = "{domain}/qnainsertform", method = RequestMethod.GET)
-	public String j(@PathVariable String domain, HttpSession session, Model model) {
+	public String qnainsertform(@PathVariable String domain, HttpSession session, Model model) {
 		return "SPA/member/qnainsertform";
 	}
 
