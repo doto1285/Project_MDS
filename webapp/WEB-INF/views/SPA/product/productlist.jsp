@@ -18,11 +18,14 @@
 	<c:import url='/WEB-INF/views/SPA/include/navigation.jsp' />
 	<div class="section" id="contents">
 		<h3>상품 검색</h3>
-		<div class="form-group" id="inputFormGroup">
-			<input name="order" type="text" class="form-control" id="inputBox"
-				value=""> <input class="btn btn-info" type="submit"
-				value="검색">
-		</div>
+		<!-- 검색 미구현 -->
+		<form class="board-form" method="post" action="product">
+			<div class="form-group" id="inputFormGroup">
+				<input name="product_search" type="text" class="form-control"
+					id="inputBox" value=""> <input class="btn btn-info"
+					type="submit" value="검색">
+			</div>
+		</form>
 		<br>
 		<h3>상품목록</h3>
 		<table class="table" id="orderTable">
