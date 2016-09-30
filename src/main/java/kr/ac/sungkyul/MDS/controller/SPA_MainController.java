@@ -30,11 +30,26 @@ public class SPA_MainController {
 	@Autowired
 	SPA_CategoryListService categoryListService;
 
+	/**
+	 * 메인화면 컨트롤러
+	 * 
+	 * @param domain
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "{domain}/main", method = RequestMethod.GET)
 	public String index(@PathVariable String domain, HttpSession session) {
 		return "SPA/main/index";
 	}
 
+	/**
+	 * 쇼핑몰정보관리 컨트롤러
+	 * 
+	 * @param domain
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "{domain}/mall", method = RequestMethod.GET)
 	public String mall(@PathVariable String domain, HttpSession session, Model model) {
 		MallVo mallVo = SPA_mallservice.getSelectMall(domain);
@@ -42,6 +57,13 @@ public class SPA_MainController {
 		return "SPA/mall/mall";
 	}
 	
+	/**
+	 * 
+	 * @param domain
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "{domain}/malllogo", method = RequestMethod.GET)
 	public String malllogoimg(@PathVariable String domain, HttpSession session, Model model) {
 		return "SPA/mall/malllogoimg";
