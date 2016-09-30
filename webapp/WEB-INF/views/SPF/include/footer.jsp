@@ -6,9 +6,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<link href="/Project_MDS/assets/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link href="/Project_MDS/assets/css/SPF_main.css" rel="stylesheet" type="text/css">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css">
+<link href="/Project_MDS/assets/css/SPF_main.css" rel="stylesheet"
+	type="text/css">
 </head>
 <body>
 	<footer class="section section-primary">
@@ -16,10 +18,12 @@
 		<div class="row">
 			<div class="col-lg-12" id="footer">
 				<p>
-					회사명 : ${mallVo.mall_name } &nbsp; 대표 : 이민우 &nbsp; 개인정보관리책임자 : 이민우
-					&nbsp;&nbsp;사업자등록번호 : 123-45-67890 &nbsp; 통신판매신고번호 :
-					2016-대구북구-0987호 &nbsp;&nbsp; <br> 사업장 주소&nbsp;: 경기도 안양시 만안구
-					성결관 401호 &nbsp; 고객센터 : 1688-1234 &nbsp;&nbsp;팩스 : 031-123-4567
+					회사명 : ${mallVo.mall_companyname } &nbsp; 대표 : ${mallVo.mall_ceoname }
+					&nbsp; 개인정보관리책임자 : ${mallVo.mall_dataofficer } &nbsp;&nbsp;사업자등록번호
+					: ${mallVo.mall_licensee } &nbsp; 통신판매신고번호 : ${mallVo.mall_onlinemaketNo }
+					&nbsp;&nbsp; <br> 사업장 주소&nbsp;: ${mallVo.mall_address } &nbsp;
+					고객센터 : ${mallVo.mall_customerNo } &nbsp;&nbsp;팩스 :
+					${mallVo.mall_faxNo }
 				</p>
 			</div>
 		</div>
