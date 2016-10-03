@@ -12,7 +12,7 @@
 
 <link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
-<link href="/Project_MDS/assets//css/TSA_main.css" rel="stylesheet"
+<link href="/Project_MDS/assets/css/TSA_main.css" rel="stylesheet"
 	type="text/css">
 
 <!--      ---------------------------------------------             -->
@@ -51,7 +51,7 @@
 	<!--      ---------------------------------------------             -->
 	<div class="jumbotron" id="maincol">
 		<center>
-			<P>공지사항</P>
+			<P id="notice_p">공지사항</P>
 		</center>
 
 		<form id="search_form" action="Project_MDS/main/" method="get">
@@ -59,59 +59,43 @@
 				type="submit" value="찾기">
 		</form>
 
-			<table class="table table-striped table-hover ">
-				<tr>
-					<th>번호</th>
-					<th>제목</th>
-					<th>작성일</th>
-				</tr>
+		<table class="table table-striped table-hover " id="table_notice">
+			<tr>
+				<th>번호</th>
+				<th>제목</th>
+				<th>글쓴이</th>
+				<th>조회수</th>
+				<th>작성일</th>
+			</tr>
 
-				<c:forEach items="${listBoard }" var="boardVo">
+			<c:forEach items="${listBoard }" var="boardVo">
+				<tr>
+					<td>${boardVo.no}</td>
+					<td><a href="view?no=${boardVo.no}">${boardVo.title}</a></td>
+					<td>${boardVo.regDate}</td>
+				</tr>
+			</c:forEach>
+			<tbody>
+
+				<c:forEach items="${GetBoardContentsList }"
+					var="GetBoardContentsList">
 					<tr>
-						<td>${boardVo.no}</td>
-						<td><a href="view?no=${boardVo.no}">${boardVo.title}</a></td>
-						<td>${boardVo.regDate}</td>
+						<!--글번호-->
+						<td>${GetBoardContentsList.board_no}</td>
+						<!--제목-->
+						<td><a href="view?no=${GetBoardContentsList.board_no}">${GetBoardContentsList.board_title}</a></td>
+						<!--글쓴이  -->
+						<td>${GetBoardContentsList.name}</td>
+						<!--조회수  -->
+						<td>${GetBoardContentsList.board_hit}</td>
+						<!--작성일  -->
+						<td>${GetBoardContentsList.board_date}</td>
 					</tr>
 				</c:forEach>
-				<tbody>
-					<tr>
-						<td>1</td>
-						<td>Column content</td>
-						<td>Column content</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Column content</td>
-						<td>Column content</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>Column content</td>
-						<td>Column content</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>Column content</td>
-						<td>Column content</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td>Column content</td>
-						<td>Column content</td>
-					</tr>
-					<tr>
-						<td>6</td>
-						<td>Column content</td>
-						<td>Column content</td>
-					</tr>
-					<tr>
-						<td>7</td>
-						<td>Column content</td>
-						<td>Column content</td>
-					</tr>
 
-				</tbody>
-			</table>
+
+			</tbody>
+		</table>
 		</table>
 
 
@@ -121,8 +105,7 @@
 				<c:when test='${authUser.member_distinction == 9}'>
 					<!-- admin만 글쓰기 버튼 보여준다  -->
 
-
-					<a href="#" id="write">글쓰기</a>
+					<a href="#" class="btn btn-primary" id="write">글쓰기</a>
 		</div>
 		</c:when>
 		</c:choose>
