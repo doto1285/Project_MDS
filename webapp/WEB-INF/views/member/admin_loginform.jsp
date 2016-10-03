@@ -7,32 +7,32 @@
 <head>
 <title>mysite</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link href="/Project_MDS/assets/css/main.css" rel="stylesheet"
-	type="text/css">
+<link href="/Project_MDS/assets/css/TSA_admin_loginform.css"
+	rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div id="container">
 		<div id="content">
 			<div id="user">
-
-				
-				<form id="login-form" name="loginform" method="post"
-					action="/Project_MDS/TSA/main/login">
-					
-				<input type="radio"  name="member_distinction" checked="" value="9">관리자 로그인<br>
-				
-				
-					<label class="block-label">아이디</label> <input id="id" name="id"
-						type="text" value=""> <label class="block-label">패스워드</label>
-					<input name="password" type="password" value="">
-
-					<c:if test='${param.r == "fail" }'>
-						<p>로그인이 실패 했습니다.</p>
-					</c:if>
-					<input type="submit" value="로그인">
-				</form>
-			</div>
+	<div class="login-page">
+		<div class="form">
+			<form class="login-form" id="login-form" name="loginform"
+				method="post" action="/Project_MDS/TSA/main/login">
+			<input type="radio" id="admin_radio" name="member_distinction"value="9" checked>
+			<label for="admin_radio" id="radio_label">관리자 로그인</label>
+				<input id="id" name="id" value="" type="text" placeholder="ID" /> 
+				<input name="password"type="password" value="" placeholder="password" />
+				<c:if test='${param.r == "fail" }'>
+					<p>로그인이 실패 했습니다.</p>
+				</c:if>
+				<input type="submit" id="button" value="로그인">
+				<p class="message">관리자 페이지로 일반 사용자는 로그인이 불가능합니다.</p>
+			</form>
 		</div>
 	</div>
+	</div>
+	</div>
+	</div>
+
 </body>
 </html>

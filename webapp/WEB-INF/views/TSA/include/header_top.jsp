@@ -36,7 +36,7 @@
 				</c:when>
 				<c:otherwise>
 					<a href="#" span class="navbar-brand" id="user_hi">${authUser.member_name }님 안녕하세요 ^^;</span></a>
-					<a href="/Project_MDS/main/logout" class="navbar-brand" id="admin_logout"><strong>로그아웃</strong></strong></a>
+					<a href="/Project_MDS/TSA/main/logout" class="navbar-brand" id="admin_logout"><strong>로그아웃</strong></strong></a>
 				</c:otherwise>
 			</c:choose>
 

@@ -66,13 +66,13 @@ public class TSA_MainController {
 
 		return "TSA/main/index";
 	}
-	@RequestMapping("/main/logout")
+	@RequestMapping("TSA/main/logout")
 	// 로그아웃
 	public String logout(HttpSession session) {
 		System.out.println("로그아웃");
 		session.removeAttribute("authUser");
 		session.invalidate();
-		return "member/admin_loginform";
+		return "redirect:/TSA/admin/main";
 	}
 	
 	
