@@ -7,18 +7,14 @@ import kr.ac.sungkyul.MDS.dao.MallDao;
 import kr.ac.sungkyul.MDS.vo.MallVo;
 
 @Service
-public class SPA_MallService {
+public class SPF_MainService {
 	
 	@Autowired
-	private MallDao mallDao;
-
-	public MallVo getSelectMall(String domain){
+	MallDao mallDao;
+	
+	public MallVo get_footer(String domain) {
 		MallVo mallVo = mallDao.get_select_Mall(domain);
 		return mallVo;
-	}
-	
-	public boolean modifyMall(MallVo mallVo) {
-		return mallDao.updateMall(mallVo);
 	}
 
 }

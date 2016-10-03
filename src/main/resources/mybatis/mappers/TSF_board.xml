@@ -2,9 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="TSF_board">
 
-
-
-
 	<select id="boardlist_no" parameterType="String"
 		resultType="kr.ac.sungkyul.MDS.vo.BoardVo">
 		<!-- 해당 쇼핑몰의 생성되어있는 게시판 목록 가져오기 -->
@@ -21,5 +18,47 @@
  	   order by board_no desc
 		]]>
 	</select>
+
+
+
+	<insert id="NewWrite" parameterType="kr.ac.sungkyul.MDS.vo.BoardVo">
+		<!-- 새 글 등록하기 -->
+		<![CDATA[		
+insert into board values
+ (board_seq.nextval,
+ 	#{board_title},
+ 	#{board_password},
+    #{board_content},
+    0,
+    board_groupno_seq.nextval,
+    1,
+    1,
+    sysdate,
+    1,
+    #{boardlist_no},
+    #{member_no}
+    )
+		]]>
+	</insert>
+
+
+	<select id="GetBoardContent" parameterType="java.lang.Integer"
+		resultType="kr.ac.sungkyul.MDS.vo.BoardVo">
+		<!-- 해당 쇼핑몰의 생성되어있는 게시판 목록 가져오기 -->
+		<![CDATA[		
+	
+	
+	 select * from board
+	 
+	  where board_state = 1 
+	  and board_no = #{board_no}
+	
+		]]>
+	</select>
+
+
+
+
+
 
 </mapper>

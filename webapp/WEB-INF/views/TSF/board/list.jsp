@@ -49,15 +49,16 @@
 
 			<!-- 본문 시작-------------------------------------------- -->
 
-
-
+			<div class="col-md-9" id="margin50px">
 				<center>
-					<P>${GetBoard.boardlist_name }</P>
+					<p class="lead">${GetBoard.boardlist_name }</P>
 				</center>
 
-				<form id="search_form" action="/mysite5/board" method="get">
-					<input type="text" id="kwd" name="kwd" value="${keyword }">
-					<input type="submit" value="찾기">
+				<form id="search_form" action="#" method="get">
+					<center>
+						<input type="text" id="kwd" name="kwd" value="${keyword }">
+						<input type="submit" value="찾기">
+					</center>
 				</form>
 
 				<table class="tbl-ex">
@@ -97,21 +98,23 @@
 				<c:choose>
 					<c:when
 						test='${authUser.member_distinction >= GetBoard.boardlist_write_accessright }'>
-						<!-- admin만 글쓰기 버튼 보여준다  -->
+						<!-- 해당 게시판에 권한이 있는 사용자만 글쓰기 버튼 보여준다  -->
 
-						<div class="btn btn-default">
-							<a href="notice/writeform" id="new-book">글쓰기</a>
+						<div class="text-right">
+							<a href="writeform/${boardlist_no }" class="btn btn-success">글쓰기</a>
 						</div>
+
 
 					</c:when>
 					<c:otherwise>
 						<!-- 개인, 기업회원일 경우 글쓰기 버튼을 표시하지 않음  -->
 					</c:otherwise>
-				</c:choose> 
-		<!-- 본문 끝-------------------------------------------- -->
-			<div class="text-right">
-				<a class="btn btn-success">Leave a Review</a>
+				</c:choose>
 			</div>
+
+
+			<!-- 본문 끝-------------------------------------------- -->
+
 		</div>
 
 	</div>
@@ -130,10 +133,6 @@
 		</div>
 		</footer>
 
-
-
-
-
 	</div>
 	<!-- /.container -->
 
@@ -147,5 +146,4 @@
 
 </html>
 
-				
-				
+
