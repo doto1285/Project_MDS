@@ -17,7 +17,7 @@
 
 				
 				<form id="login-form" name="loginform" method="post"
-					action="/Project_MDS/main/login">
+					action="/Project_MDS/TSA/main/login">
 					
 				<input type="radio"  name="member_distinction" checked="" value="9">관리자 로그인<br>
 				
