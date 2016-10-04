@@ -16,23 +16,27 @@
 <body>
 	<c:import url='/WEB-INF/views/SPA/include/header.jsp' />
 	<c:import url='/WEB-INF/views/SPA/include/navigation.jsp' />
-	<div id="container">
-		<h2>카테고리 관리</h2>
-		<table>
-			<tbody>
-				<c:forEach var='vo1' items='${map.group}' varStatus='status'>
-					<tr>
-						<td>${vo1}</td>
-						<c:set var="vo1" value='${vo1}' />
-						<c:forEach var='vo2' items='${map.vo1}' varStatus='status'>
-							<td>${vo2}</td>
-						</c:forEach>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+	<div class="section" id="contents">
+		<h3>카테고리 관리</h3>
+		<form class="board-form" method="post" action="categorymodify">
+			<div class="form-group" id="inputFormGroup">
+				<label for="inputEmail3" class="col-lg-4 control-label"
+					id="inputText">1차 카테고리</label> <label for="inputEmail3"
+					class="col-lg-4 control-label" id="inputText">2차 카테고리</label> <br>
+			</div>
 
-		<a href="category">저장하기</a>
+
+			<c:forEach var='vo1' items='${map.group}' varStatus='status'>
+				<div class="form-group" id="inputFormGroup">
+					 <input name = "mall_name" type="text"
+					class="form-control" id="inputBox" value="${vo1}">
+				</div>
+			</c:forEach>
+			<div class="form-group" id="inputButton"> <input
+					type="hidden" name="" value="" /> <input
+					class="btn btn-info" type="submit" value="저장하기">
+			</div>
+		</form>
 	</div>
 
 </body>

@@ -28,13 +28,18 @@ a {
 	color: gray;
 }
 
-#orderTable {
+#productTable {
 	font-size: 14px;
 	text-align: center;
 }
 
 #tableContents {
 	position: relative;
+	top: 50px;
+}
+
+#productTableImage {
+	width: 90px;
 }
 
 #radioText {
@@ -46,6 +51,5 @@ a {
 	font-size: 14px;
 	position: relative;
 	top: 0px;
-	margin : 0 auto;
 	left: 455px;
 }

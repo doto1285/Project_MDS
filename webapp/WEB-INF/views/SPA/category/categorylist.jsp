@@ -16,22 +16,26 @@
 <body>
 	<c:import url='/WEB-INF/views/SPA/include/header.jsp' />
 	<c:import url='/WEB-INF/views/SPA/include/navigation.jsp' />
-	<div id="container">
-		<h2>카테고리 관리</h2>
-		<table>
-			<tbody>
-				<c:forEach var='vo1' items='${map.group}' varStatus='status'>
-					<tr>
-						<td>${vo1}</td>
-						<c:set var="vo1" value='${vo1}' />
-						<c:forEach var='vo2' items='${map.vo1}' varStatus='status'>
-							<td>${vo2}</td>
-						</c:forEach>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		<a href="categorymodifyform">수정하기</a>
+	<div class="section" id="contents">
+		<h3>카테고리 관리</h3>
+			<div class="form-group" id="inputFormGroup">
+				<label for="inputEmail3" class="col-lg-4 control-label"
+					id="inputText">1차 카테고리</label> <label for="inputEmail3"
+					class="col-lg-4 control-label" id="inputText">2차 카테고리</label>
+					<br>
+			</div>
+
+
+			<c:forEach var='vo1' items='${map.group}' varStatus='status'>
+				<div class="form-group" id="inputFormGroup">
+					<label for="inputEmail3" class="col-lg-4 control-label"
+						id="inputText">${vo1}</label>
+						<br>
+				</div>
+			</c:forEach>
+			<div class="form-group" id="inputButton">
+			 <a href='categorymodifyform' class="btn btn-info" >수정하기</a>
+			</div>
 	</div>
 
 </body>
