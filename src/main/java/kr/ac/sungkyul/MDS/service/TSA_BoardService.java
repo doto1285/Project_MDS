@@ -5,24 +5,38 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.ac.sungkyul.MDS.dao.BoardDao;
 import kr.ac.sungkyul.MDS.dao.BoardListDao;
+import kr.ac.sungkyul.MDS.dao.MemberDao;
 import kr.ac.sungkyul.MDS.vo.BoardListVo;
 import kr.ac.sungkyul.MDS.vo.BoardVo;
+import kr.ac.sungkyul.MDS.vo.MallVo;
+import kr.ac.sungkyul.MDS.vo.MemberVo;
+
 
 @Service
-public class BoardService {
-
+public class TSA_BoardService {
+	@Autowired
+	private BoardDao boardDao;
 	@Autowired
 	private BoardListDao boardListDao;
-	
 	@Autowired
-	private BoardListDao boardDao;
+	private MemberDao memberDao;
+	
 
-	public List<BoardListVo> GetBoardList(String userid) {
+	public void join(MemberVo vo) {
+		memberDao.insert(vo);
+	}
+
+	public MemberVo login(String id, String password, int member_distinction) {
+		System.out.println("service - " + id + " " + password);
+		MemberVo authUser = memberDao.get(id, password, member_distinction);
+		return authUser;
+	}
+
+	public MallVo GetJoinMall() {
 		// TODO Auto-generated method stub
-		List<BoardListVo> GetBoardList = boardListDao.GetBoardList(userid);
-		
-		return GetBoardList;
+		return null;
 	}
 
 	public BoardListVo GetBoard(String userid, int boardlist_no) {
@@ -39,33 +53,7 @@ public class BoardService {
 		List<BoardVo> GetBoardContentsList = boardDao.GetBoardContentsList(boardlist_no);
 		
 		return GetBoardContentsList;
+
+	
 	}
-
-	public void NewWrite(BoardVo boardVo) {
-		// TODO Auto-generated method stub
-		// 새 글 등록하기
-		boardDao.NewWrite(boardVo);
-		
-		
-		
-	}
-
-	public BoardVo GetBoardContent(int board_no) {
-		// TODO Auto-generated method stub
-		// 선택한 게시글 내용 가져오기
-		
-		return boardDao.GetBoardContent(board_no);
-	}
-
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-
 }

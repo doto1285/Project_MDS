@@ -58,6 +58,7 @@ public class SPA_MainController {
 	}
 	
 	/**
+	 * 쇼핑몰 로고이미지 관리 컨트롤러
 	 * 
 	 * @param domain
 	 * @param session
@@ -69,11 +70,28 @@ public class SPA_MainController {
 		return "SPA/mall/malllogoimg";
 	}
 	
+	/**
+	 * 쇼핑몰 메인이미지 관리 컨트롤러
+	 * 
+	 * @param domain
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "{domain}/mallmain", method = RequestMethod.GET)
 	public String mallmainimg(@PathVariable String domain, HttpSession session, Model model) {
 		return "SPA/mall/mallmainimg";
 	}
 
+	/**
+	 * 쇼핑몰 정보수정 컨트롤러
+	 * 
+	 * @param domain
+	 * @param session
+	 * @param model
+	 * @param mallVo
+	 * @return
+	 */
 	@RequestMapping(value = "{domain}/mallmodify", method = RequestMethod.POST)
 	public String mallmodify(@PathVariable String domain, HttpSession session, Model model, MallVo mallVo) {
 		System.out.println(mallVo);
@@ -161,6 +179,13 @@ public class SPA_MainController {
 		return "SPA/member/qnainsertform";
 	}
 
+	/**
+	 * 유저가 세션에 있고, 유효한 유저인지 확인
+	 * 
+	 * @param domain
+	 * @param session
+	 * @return
+	 */
 	public boolean isUserCheck(String domain, HttpSession session) {
 
 		// 사용법

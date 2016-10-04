@@ -33,7 +33,35 @@
 }
 
 #admin_login {
+	margin-left: 1100px;
+}
 
-    margin-left: 1100px;
+#admin_logout {
+	margin-top: -55px;
+	margin-left: 1200px;
+}
 
+#user_hi {
+	padding: 10px;
+	margin-left: 770px;
+}
+
+#img01 {
+width: 150px; 	
+}
+#logo{
+	    padding-top: 5px;
+	
+}
+#notice_p{
+	margin-top: -35px;
+}
+#search_form{
+    margin-left: 40px;
+}
+#table_notice{
+	margin-left: 0px;
+}
+#write{
+	margin-left:1100px
 }

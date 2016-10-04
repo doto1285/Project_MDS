@@ -26,18 +26,17 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" id="logo" z
-				href="http://localhost:8088/Project_MDS/main">logo</a>
+			<a class="navbar-brand" id="logo" 
+				href="http://localhost:8088/Project_MDS/TSA/main"><img src="/Project_MDS/assets/image/logo.png" id="img01"></a>
 
 			<c:choose>
 				<c:when test='${empty authUser }'>
-					<a href="/Project_MDS/main/admin_loginform"
-						class="navbar-brand btn btn-danger" id="admin_login">관리자 로그인</a>
+					<a href="http://localhost:8088/Project_MDS/main/loginfromadmin"
+						class="navbar-brand" id="admin_login">관리자 로그인</a>
 				</c:when>
 				<c:otherwise>
-					<li><a href="#">${authUser.member_name }님 안녕하세요 ^^;</a></li>
-					<li><a href="#">회원정보수정</a></li>
-					<li><a href="/Project_MDS/main/logout">로그아웃</a></li>
+					<a href="#" span class="navbar-brand" id="user_hi">${authUser.member_name }님 안녕하세요 ^^;</span></a>
+					<a href="/Project_MDS/TSA/main/logout" class="navbar-brand" id="admin_logout"><strong>로그아웃</strong></strong></a>
 				</c:otherwise>
 			</c:choose>
 
