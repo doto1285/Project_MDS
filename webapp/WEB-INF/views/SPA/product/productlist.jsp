@@ -10,7 +10,7 @@
 <title>모두의 쇼핑몰</title>
 <link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
-<link href="/Project_MDS/assets/css/SPA_order.css" rel="stylesheet"
+<link href="/Project_MDS/assets/css/SPA_product.css" rel="stylesheet"
 	type="text/css">
 </head>
 <body>
@@ -19,7 +19,7 @@
 	<div class="section" id="contents">
 		<h3>상품 검색</h3>
 		<!-- 검색 미구현 -->
-		<form class="board-form" method="post" action="product">
+		<form class="form-inline" method="post" action="product">
 			<div class="form-group" id="inputFormGroup">
 				<input name="product_search" type="text" class="form-control"
 					id="inputBox" value=""> <input class="btn btn-info"
@@ -28,7 +28,7 @@
 		</form>
 		<br>
 		<h3>상품목록</h3>
-		<table class="table" id="orderTable">
+		<table class="table" id="productTable">
 			<colgroup>
 				<col width="10%" />
 				<col width="15%" />
@@ -40,45 +40,43 @@
 			</colgroup>
 
 			<tr class="active">
-				<td>선택</td>
-				<td>이미지</td>
+				<td>쇼핑몰 이름</td>
+				<td>상품 사진</td>
 				<td>상품명</td>
 				<td>판매가</td>
 				<td>수량</td>
-				<td>배송비</td>
-				<td>합계</td>
+				<td>삭제</td>
 			</tr>
 			<tr>
+				<td id="tableContents">지마킛</td>
+				<td><img
+					src="/Project_MDS/assets/image/SPF_orderProductSample1.png"
+					alt="상품 이미지" class="img-thumbnail" id="productTableImage"></td>
+				<td id="tableContents">엠보단가라</td>
+				<td id="tableContents">13500원</td>
+				<td id="tableContents">2개</td>
 				<td><div class="form-group">
 						<div class="checkbox">
 							<label> <input type="checkbox" id="tableContents">
 							</label>
 						</div>
 					</div></td>
+			</tr>
+			
+			<tr>
+				<td id="tableContents">지마킛</td>
 				<td><img
 					src="/Project_MDS/assets/image/SPF_orderProductSample1.png"
-					alt="상품 이미지" class="img-thumbnail" id="orderProductImage"></td>
+					alt="상품 이미지" class="img-thumbnail" id="productTableImage"></td>
 				<td id="tableContents">엠보단가라</td>
 				<td id="tableContents">13500원</td>
 				<td id="tableContents">2개</td>
-				<td id="tableContents">2500원</td>
-				<td id="tableContents">29500원</td>
-			</tr>
-			<tr>
 				<td><div class="form-group">
 						<div class="checkbox">
 							<label> <input type="checkbox" id="tableContents">
 							</label>
 						</div>
 					</div></td>
-				<td><img
-					src="/Project_MDS/assets/image/SPF_orderProductSample1.png"
-					alt="상품 이미지" class="img-thumbnail" id="orderProductImage"></td>
-				<td id="tableContents">엠보단가라</td>
-				<td id="tableContents">13500원</td>
-				<td id="tableContents">2개</td>
-				<td id="tableContents">2500원</td>
-				<td id="tableContents">29500원</td>
 			</tr>
 		</table>
 		<nav>

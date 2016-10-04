@@ -10,7 +10,7 @@
 <title>모두의 쇼핑몰</title>
 <link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
-<link href="/Project_MDS/assets/css/SPA_main.css" rel="stylesheet"
+<link href="/Project_MDS/assets/css/SPA_product.css" rel="stylesheet"
 	type="text/css">
 </head>
 <body>

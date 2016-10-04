@@ -16,7 +16,6 @@ import kr.ac.sungkyul.MDS.service.SPA_CategoryListService;
 import kr.ac.sungkyul.MDS.service.SPA_MainService;
 import kr.ac.sungkyul.MDS.service.SPA_MallService;
 import kr.ac.sungkyul.MDS.vo.MallVo;
-import kr.ac.sungkyul.MDS.vo.MemberVo;
 
 @Controller
 @RequestMapping("/SPA")
@@ -117,10 +116,10 @@ public class SPA_MainController {
 		return "SPA/category/categorymodifyform";
 	}
 
-	@RequestMapping(value = "{domain}/categorymodify", method = RequestMethod.GET)
+	@RequestMapping(value = "{domain}/categorymodify", method = RequestMethod.POST)
 	public String categorylistModify(@PathVariable String domain, HttpSession session, Model model) {
 		// 미구현
-		return null;
+		return "redirect:/SPA/" + domain + "/category";
 	}
 
 	@RequestMapping(value = "{domain}/product", method = RequestMethod.GET)
@@ -181,26 +180,5 @@ public class SPA_MainController {
 	@RequestMapping(value = "{domain}/qnainsertform", method = RequestMethod.GET)
 	public String qnainsertform(@PathVariable String domain, HttpSession session, Model model) {
 		return "SPA/member/qnainsertform";
-	}
-
-	/**
-	 * 유저가 세션에 있고, 유효한 유저인지 확인
-	 * 
-	 * @param domain
-	 * @param session
-	 * @return
-	 */
-	public boolean isUserCheck(String domain, HttpSession session) {
-
-		// 사용법
-		// if(!isUserCheck(domain, session)) {
-		// return "redirect:/main";
-		// }
-
-		MemberVo memberVo = (MemberVo) session.getAttribute("authUser");
-		if (memberVo == null || !(SPA_mainservice.get_member_admin(domain, memberVo))) {
-			return false;
-		}
-		return true;
 	}
 }
