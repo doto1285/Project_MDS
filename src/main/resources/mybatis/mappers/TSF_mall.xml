@@ -67,6 +67,16 @@
 		from mall
 		where mall_domain = #{mall_domain } and mall_state = 1
 	</select>
+	
+		<select id="get_member_admin" parameterType="kr.ac.sungkyul.MDS.vo.MemberVo" resultType="kr.ac.sungkyul.MDS.vo.MallVo">
+		<!-- 쇼핑몰 운영자가 맞는지 확인한다. -->
+		<![CDATA[	
+	 		 select mall_domain, mall_name
+			from mall 
+			where mall_state = 1 and member_no = #{member_no } and mall_domain = #{member_id }
+		]]>
+
+	</select>
 
 
 </mapper>
