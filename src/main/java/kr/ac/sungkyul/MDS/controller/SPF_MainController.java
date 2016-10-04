@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.ac.sungkyul.MDS.service.MemberService;
 import kr.ac.sungkyul.MDS.service.SPF_MainService;
+import kr.ac.sungkyul.MDS.service.SPF_MallService;
 import kr.ac.sungkyul.MDS.vo.MallVo;
 import kr.ac.sungkyul.MDS.vo.MemberVo;
 
@@ -18,19 +20,11 @@ public class SPF_MainController {
 	@Autowired
 	SPF_MainService mainService;
 
-	public boolean isUserCheck(String domain, HttpSession session) {
+	@Autowired
+	MemberService memberService;
 
-		// 사용법
-		// if(!isUserCheck(domain, session)) {
-		// return "redirect:/main";
-		// }
-
-		MemberVo memberVo = (MemberVo) session.getAttribute("authUser");
-		if (memberVo == null || memberVo.getMember_id() != domain) {
-			return false;
-		}
-		return true;
-	}
+	@Autowired
+	SPF_MallService mallService;
 
 	/**
 	 * 쇼핑몰 프론트 메인화면
@@ -39,67 +33,77 @@ public class SPF_MainController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("{domain}/main")
-	public String index(@PathVariable String domain, Model model, HttpSession session) {
-		MallVo mallVo = mainService.get_footer(domain);
-		model.addAttribute("mallVo", mallVo);
-
-		MemberVo memberVo = (MemberVo) session.getAttribute("authUser");
-		model.addAttribute("memberVo", memberVo);
-
-		if (!isUserCheck(domain, session)) {
-			return "redirect:/main";
+	@RequestMapping("{mall_domain}/main")
+	public String index(@PathVariable String mall_domain, Model model, HttpSession session) {
+		MallVo mallVo = mallService.domainCheck(mall_domain);
+		//도메인 체크
+		if ((mallService.isDomainCheck(mallVo.getMall_no())) == false){
+			//없는 도메인일 경우 실행
+			return "404 error";
 		}
 		
+		//TSF에서 로그인한 회원인지 판단
+		if(memberService.isUserCheck(session) == false){
+			//TSF에서 로그인 안한 회원일 경우
+			mallVo = mainService.get_Footer(mallVo.getMall_no());
+			model.addAttribute("mallVo", mallVo);
+			//쇼핑몰 로고이미지, 대문이미지, 카테고리리스트, 게시판리스트, 상품리스트 뿌려줌
+			return "SPF/main/index";
+		}
+		
+		MemberVo memberVo = (MemberVo) session.getAttribute("authUser");
+		model.addAttribute("memberVo", memberVo);
+		
+		//TSF에서 로그인한 유저일 경우 현재 쇼핑몰에 가입된 회원인지 판단
+		//if(){
+			//TSF에서 로그인한 유저이지만, 현재 쇼핑몰에 가입되지 않은 경우
+			
+		//}
+
 		return "SPF/main/index";
 	}
 
+	
+	
 	@RequestMapping("{domain}/join")
 	public String join(@PathVariable String domain, Model model) {
-		MallVo mallVo = mainService.get_footer(domain);
-		model.addAttribute("mallVo", mallVo);
+		
 		return "SPF/member/join";
 	}
 
 	@RequestMapping("{domain}/login")
 	public String login(@PathVariable String domain, Model model) {
-		MallVo mallVo = mainService.get_footer(domain);
-		model.addAttribute("mallVo", mallVo);
+		
 		return "SPF/member/login";
 	}
 
 	@RequestMapping("{domain}/list")
 	public String list(@PathVariable String domain, Model model) {
-		MallVo mallVo = mainService.get_footer(domain);
-		model.addAttribute("mallVo", mallVo);
+		
 		return "SPF/product/list";
 	}
 
 	@RequestMapping("{domain}/list/detail")
 	public String listDetail(@PathVariable String domain, Model model) {
-		MallVo mallVo = mainService.get_footer(domain);
-		model.addAttribute("mallVo", mallVo);
+		
 		return "SPF/product/listDetail";
 	}
 
 	@RequestMapping("{domain}/order")
 	public String order(@PathVariable String domain, Model model) {
-		MallVo mallVo = mainService.get_footer(domain);
-		model.addAttribute("mallVo", mallVo);
+		
 		return "SPF/order/order";
 	}
 
 	@RequestMapping("{domain}/shoppingbasket")
 	public String shoppingBasket(@PathVariable String domain, Model model) {
-		MallVo mallVo = mainService.get_footer(domain);
-		model.addAttribute("mallVo", mallVo);
+		
 		return "SPF/subMenu/shoppingBasket";
 	}
 
 	@RequestMapping("{domain}/orderdelivery")
 	public String orderDelivery(@PathVariable String domain, Model model) {
-		MallVo mallVo = mainService.get_footer(domain);
-		model.addAttribute("mallVo", mallVo);
+		
 		return "SPF/subMenu/orderDelivery";
 	}
 

@@ -12,9 +12,10 @@ public class SPF_MainService {
 	@Autowired
 	MallDao mallDao;
 	
-	public MallVo get_footer(String domain) {
-		MallVo mallVo = mallDao.get_select_Mall(domain);
+	public MallVo get_Footer(int mall_no) {
+		MallVo mallVo = mallDao.get_Footer(mall_no);
 		return mallVo;
 	}
+
 
 }

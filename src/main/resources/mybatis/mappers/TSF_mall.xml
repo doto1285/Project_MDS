@@ -75,7 +75,6 @@
 			from mall 
 			where mall_state = 1 and member_no = #{member_no } and mall_domain = #{member_id }
 		]]>
-
 	</select>
 
 
