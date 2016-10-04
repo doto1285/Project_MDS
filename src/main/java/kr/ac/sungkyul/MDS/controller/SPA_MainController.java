@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.ac.sungkyul.MDS.service.MemberService;
 import kr.ac.sungkyul.MDS.service.SPA_CategoryListService;
+import kr.ac.sungkyul.MDS.service.SPA_MainService;
 import kr.ac.sungkyul.MDS.service.SPA_MallService;
 import kr.ac.sungkyul.MDS.vo.MallVo;
 import kr.ac.sungkyul.MDS.vo.MemberVo;
@@ -23,7 +24,10 @@ public class SPA_MainController {
 
 	@Autowired
 	MemberService memberService;
-	
+
+	@Autowired
+	SPA_MainService SPA_mainservice;
+
 	@Autowired
 	SPA_MallService SPA_mallservice;
 
@@ -56,7 +60,7 @@ public class SPA_MainController {
 		model.addAttribute("mallVo", mallVo);
 		return "SPA/mall/mall";
 	}
-	
+
 	/**
 	 * 쇼핑몰 로고이미지 관리 컨트롤러
 	 * 
@@ -69,7 +73,7 @@ public class SPA_MainController {
 	public String malllogoimg(@PathVariable String domain, HttpSession session, Model model) {
 		return "SPA/mall/malllogoimg";
 	}
-	
+
 	/**
 	 * 쇼핑몰 메인이미지 관리 컨트롤러
 	 * 
@@ -96,7 +100,7 @@ public class SPA_MainController {
 	public String mallmodify(@PathVariable String domain, HttpSession session, Model model, MallVo mallVo) {
 		System.out.println(mallVo);
 		System.out.println(SPA_mallservice.modifyMall(mallVo));
-		return "redirect:/SPA/"+domain+"/mall";
+		return "redirect:/SPA/" + domain + "/mall";
 	}
 
 	@RequestMapping(value = "{domain}/category", method = RequestMethod.GET)
@@ -118,62 +122,62 @@ public class SPA_MainController {
 		// 미구현
 		return null;
 	}
-	
+
 	@RequestMapping(value = "{domain}/product", method = RequestMethod.GET)
 	public String productlist(@PathVariable String domain, HttpSession session, Model model) {
 		return "SPA/product/productlist";
 	}
-	
+
 	@RequestMapping(value = "{domain}/productinsertform", method = RequestMethod.GET)
 	public String productinsert(@PathVariable String domain, HttpSession session, Model model) {
 		return "SPA/product/productinsertform";
 	}
-	
+
 	@RequestMapping(value = "{domain}/productmodifyform", method = RequestMethod.GET)
 	public String productmodifyform(@PathVariable String domain, HttpSession session, Model model) {
 		return "SPA/product/productmodifyform";
 	}
-	
+
 	@RequestMapping(value = "{domain}/order", method = RequestMethod.GET)
 	public String orderlist(@PathVariable String domain, HttpSession session, Model model) {
 		return "SPA/order/orderlist";
 	}
-	
+
 	@RequestMapping(value = "{domain}/ordermanagement", method = RequestMethod.GET)
 	public String ordermanagement(@PathVariable String domain, HttpSession session, Model model) {
 		return "SPA/order/ordermanagement";
 	}
-	
+
 	@RequestMapping(value = "{domain}/member", method = RequestMethod.GET)
 	public String memberlist(@PathVariable String domain, HttpSession session, Model model) {
 		return "SPA/member/memberlist";
 	}
-	
+
 	@RequestMapping(value = "{domain}/faq", method = RequestMethod.GET)
 	public String faqlist(@PathVariable String domain, HttpSession session, Model model) {
 		return "SPA/member/faqlist";
 	}
-	
+
 	@RequestMapping(value = "{domain}/faqview", method = RequestMethod.GET)
 	public String faqview(@PathVariable String domain, HttpSession session, Model model) {
 		return "SPA/member/faqview";
 	}
-	
+
 	@RequestMapping(value = "{domain}/faqinsertform", method = RequestMethod.GET)
 	public String faqinsert(@PathVariable String domain, HttpSession session, Model model) {
 		return "SPA/member/faqinsertform";
 	}
-	
+
 	@RequestMapping(value = "{domain}/qna", method = RequestMethod.GET)
 	public String qnalist(@PathVariable String domain, HttpSession session, Model model) {
 		return "SPA/member/qnalist";
 	}
-	
+
 	@RequestMapping(value = "{domain}/qnaview", method = RequestMethod.GET)
 	public String qnaview(@PathVariable String domain, HttpSession session, Model model) {
 		return "SPA/member/qnaview";
 	}
-	
+
 	@RequestMapping(value = "{domain}/qnainsertform", method = RequestMethod.GET)
 	public String qnainsertform(@PathVariable String domain, HttpSession session, Model model) {
 		return "SPA/member/qnainsertform";
@@ -189,12 +193,12 @@ public class SPA_MainController {
 	public boolean isUserCheck(String domain, HttpSession session) {
 
 		// 사용법
-		// if(!isUserCheck(userid, session)) {
+		// if(!isUserCheck(domain, session)) {
 		// return "redirect:/main";
 		// }
 
-		MemberVo memberVo = (MemberVo) session.getAttribute("member");
-		if (memberVo == null || memberVo.getMember_id() != domain) {
+		MemberVo memberVo = (MemberVo) session.getAttribute("authUser");
+		if (memberVo == null || !(SPA_mainservice.get_member_admin(domain, memberVo))) {
 			return false;
 		}
 		return true;

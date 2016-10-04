@@ -51,12 +51,17 @@ public class MallDao {
 	}
 	
 	public MallVo get_select_Mall(String mallName) {
-		MallVo mallVo = (MallVo) sqlSession.selectOne("get_select_Mall", mallName);
+		MallVo mallVo = (MallVo) sqlSession.selectOne("TSF_mall.get_select_Mall", mallName);
 		return mallVo;
 	}
 
 	public boolean updateMall(MallVo mallVo) {
 		return sqlSession.update("mallupdate", mallVo) !=0 ;
+	}
+	
+	public MallVo get_member_admin(MemberVo memberVo) {
+		MallVo mallVo = (MallVo) sqlSession.selectOne("TSF_mall.get_member_admin", memberVo );
+		return mallVo;
 	}
 
 }
