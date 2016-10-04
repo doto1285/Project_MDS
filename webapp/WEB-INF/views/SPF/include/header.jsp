@@ -31,8 +31,8 @@
 			<div class="col-lg-3">
 				<ul class="nav nav-pills">
 					<!-- class="active" -->
-					<li role="presentation"><a href="#">로그인</a></li>
-					<li role="presentation"><a href="#">회원가입</a></li>
+					<li role="presentation"><a href="login">로그인</a></li>
+					<li role="presentation"><a href="join">회원가입</a></li>
 					<div class="row">
 						<div class="col-lg-12">
 							<form class="form-inline">
