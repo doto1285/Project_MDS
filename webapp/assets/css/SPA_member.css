@@ -1,0 +1,51 @@
+@CHARSET "UTF-8";
+
+html, body {
+	margin: 20;
+	padding:
+}
+
+body {
+	font: 76% arial, sans-serif
+}
+
+p {
+	margin: 0 10px 10px
+}
+
+a {
+	display: block;
+	color: #000000;
+}
+
+/* --------------- order 화면 css --------------- */
+#boardTitle {
+	text-align: center;
+}
+
+#description {
+	font-size: 14px;
+	color: gray;
+}
+
+#memberTable {
+	font-size: 14px;
+	text-align: center;
+}
+
+#tableContents {
+	position: relative;
+}
+
+#radioText {
+	text-align: left;
+}
+
+/* paging */
+#paging {
+	font-size: 14px;
+	position: relative;
+	top: 0px;
+	margin : 0 auto;
+	left: 455px;
+}
