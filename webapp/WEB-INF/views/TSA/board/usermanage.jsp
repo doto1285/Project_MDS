@@ -31,7 +31,7 @@
 		<c:import url='/WEB-INF/views/TSA/include/header_top.jsp' />
 		<c:import url='/WEB-INF/views/TSA/include/header_tap.jsp' />
 	</div>
-<!--      ---------------------------------------------             -->
+	<!--      ---------------------------------------------             -->
 	<!--   <div class="section">
 		<div class="container">
 			<div class="row">
@@ -48,10 +48,105 @@
 			</div>
 		</div>
 		-->
-<!--      ---------------------------------------------             -->
+	<!--      ---------------------------------------------             -->
 	<div class="jumbotron" id="maincol">
-		
+
+
+		<center>
+			<P id="center_p">회원관리</P>
+		</center>
+
+		<form id="search_form" action="/mysite5/board" method="get">
+			<input type="text" id="kwd" name="kwd" value="${keyword }"> <input
+				type="submit" value="찾기">
+		</form>
+
+
+		<table class="table table-striped table-hover ">
+			<tr>
+				<th>번호</th>
+				<th>회원 아이디</th>
+				<th>이름</th>
+				<th>가입일</th>
+				<th>구매금액</th>
+			</tr>
+
+			<c:forEach items="${listBoard }" var="boardVo">
+				<tr>
+					<td>${boardVo.no}</td>
+					<td><a href="view?no=${boardVo.no}">${boardVo.title}</a></td>
+					<td>${boardVo.regDate}</td>
+				</tr>
+			</c:forEach>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+				</tr>
+				<tr>
+					<td>7</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+				</tr>
+				<tr>
+					<td>8</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+				</tr>
+				<tr>
+					<td>9</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+				</tr>
+
+			</tbody>
+		</table>
+
 	</div>
-<!--      ---------------------------------------------             -->
+	<!--      ---------------------------------------------             -->
 </body>
 </html>

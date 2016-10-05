@@ -17,7 +17,7 @@
 	<div class="login-page">
 		<div class="form">
 			<form class="login-form" id="login-form" name="loginform"
-				method="post" action="/Project_MDS/TSA/main/login">
+				method="post" action="/Project_MDS/TSA/main/slrkdurlfdkfdktjanjgkrpdy">
 			<input type="radio" id="admin_radio" name="member_distinction"value="9" checked>
 			<label for="admin_radio" id="radio_label">관리자 로그인</label>
 				<input id="id" name="id" value="" type="text" placeholder="ID" /> 

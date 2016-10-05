@@ -51,7 +51,7 @@
 	<!--      ---------------------------------------------             -->
 	<div class="jumbotron" id="maincol">
 		<center>
-			<P id="notice_p">공지사항</P>
+			<P id="center_p">공지사항</P>
 		</center>
 
 		<form id="search_form" action="Project_MDS/main/" method="get">
@@ -96,7 +96,6 @@
 
 			</tbody>
 		</table>
-		</table>
 
 
 
@@ -106,14 +105,9 @@
 					<!-- admin만 글쓰기 버튼 보여준다  -->
 
 					<a href="#" class="btn btn-primary" id="write">글쓰기</a>
+				</c:when>
+			</c:choose>
 		</div>
-		</c:when>
-		</c:choose>
-		<!-- -------------------------------- -->
-		</nav>
 	</div>
-
-	</div>
-	<!--      ---------------------------------------------             -->
 </body>
 </html>

@@ -53,8 +53,10 @@ width: 150px;
 	    padding-top: 5px;
 	
 }
-#notice_p{
+#center_p{
 	margin-top: -35px;
+    margin-bottom: -5px;
+	
 }
 #search_form{
     margin-left: 40px;

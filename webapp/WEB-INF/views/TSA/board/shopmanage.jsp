@@ -49,9 +49,104 @@
 		</div>
 		-->
 <!--      ---------------------------------------------             -->
-	<div class="jumbotron" id="maincol">
-		
+<div class="jumbotron" id="maincol">
+
+
+		<center>
+			<P id="center_p">쇼핑몰관리</P>
+		</center>
+
+		<form id="search_form" action="/mysite5/board" method="get">
+			<input type="text" id="kwd" name="kwd" value="${keyword }"> <input
+				type="submit" value="찾기">
+		</form>
+
+
+		<table class="table table-striped table-hover ">
+			<tr>
+				<th>번호</th>
+				<th>쇼핑몰 명</th>
+				<th>쇼핑몰 생성일</th>
+				<th>판매금액</th>
+				<th>관리자</th>
+			</tr>
+
+			<c:forEach items="${listBoard }" var="boardVo">
+				<tr>
+					<td>${boardVo.no}</td>
+					<td><a href="view?no=${boardVo.no}">${boardVo.title}</a></td>
+					<td>${boardVo.regDate}</td>
+				</tr>
+			</c:forEach>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+				</tr>
+				<tr>
+					<td>7</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+				</tr>
+				<tr>
+					<td>8</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+				</tr>
+				<tr>
+					<td>9</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+					<td>Column content</td>
+				</tr>
+
+			</tbody>
+		</table>
+
 	</div>
-<!--      ---------------------------------------------             -->
+	<!--      ---------------------------------------------             -->
 </body>
 </html>
