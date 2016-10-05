@@ -35,75 +35,88 @@ public class SPF_MainController {
 	 */
 	@RequestMapping("{mall_domain}/main")
 	public String index(@PathVariable String mall_domain, Model model, HttpSession session) {
+		// 현재 접속한 SPF 쇼핑몰 도메인을 mallVo에 넣음
 		MallVo mallVo = mallService.domainCheck(mall_domain);
-		//도메인 체크
-		if ((mallService.isDomainCheck(mallVo.getMall_no())) == false){
-			//없는 도메인일 경우 실행
+
+		// 도메인 체크
+		if ((mallService.isDomainCheck(mallVo.getMall_no())) == false) {
+			// 없는 도메인일 경우 실행되는 코드
 			return "404 error";
 		}
-		
-		//TSF에서 로그인한 회원인지 판단
-		if(memberService.isUserCheck(session) == false){
-			//TSF에서 로그인 안한 회원일 경우
+
+		// TSF에서 로그인한 회원인지 판단
+		if (memberService.isUserCheck(session) == false) {
+			// TSF에서 로그인 안한 회원일 경우 실행되는 코드
+			// 쇼핑몰 footer 뿌려줌
 			mallVo = mainService.get_Footer(mallVo.getMall_no());
 			model.addAttribute("mallVo", mallVo);
-			//쇼핑몰 로고이미지, 대문이미지, 카테고리리스트, 게시판리스트, 상품리스트 뿌려줌
+			// 쇼핑몰 로고이미지, 대문이미지, 카테고리리스트, 게시판리스트, 상품리스트 뿌려줌
 			return "SPF/main/index";
 		}
-		
+
+		// TSF에서 로그인한 세션을 memberVo에 넣음
 		MemberVo memberVo = (MemberVo) session.getAttribute("authUser");
 		model.addAttribute("memberVo", memberVo);
-		
-		//TSF에서 로그인한 유저일 경우 현재 쇼핑몰에 가입된 회원인지 판단
-		//if(){
-			//TSF에서 로그인한 유저이지만, 현재 쇼핑몰에 가입되지 않은 경우
-			
-		//}
+
+		// TSF에서 로그인한 유저가 SPF 접속시 현재 쇼핑몰에 가입된 회원인지 체크
+		if (memberService.isSPFUserCheck(memberVo, mallVo) == false) {
+			// TSF에서 로그인한 유저이지만, 현재 쇼핑몰에 가입되지 않은 경우 실행되는 코드
+			// 쇼핑몰 footer 뿌려줌
+			mallVo = mainService.get_Footer(mallVo.getMall_no());
+			model.addAttribute("mallVo", mallVo);
+			// 쇼핑몰 로고이미지, 대문이미지, 카테고리리스트, 게시판리스트, 상품리스트 뿌려줌
+			return "SPF/main/index";
+		}
+
+		// SPF에 가입된 회원이 어떤 회원인지 체크
+		/*if (memberService.SPFWhatUser(memberVo, mallVo)) {
+
+		}*/
+		// TSF에서 로그인한 유저이고, 현재 쇼핑몰에 가입된 경우
+		// 쇼핑몰 로고이미지, 대문이미지, 카테고리리스트, 게시판리스트, 상품리스트 뿌려줌
 
 		return "SPF/main/index";
 	}
 
-	
-	
 	@RequestMapping("{domain}/join")
 	public String join(@PathVariable String domain, Model model) {
-		
+
 		return "SPF/member/join";
 	}
 
 	@RequestMapping("{domain}/login")
 	public String login(@PathVariable String domain, Model model) {
-		
+
 		return "SPF/member/login";
 	}
 
 	@RequestMapping("{domain}/list")
 	public String list(@PathVariable String domain, Model model) {
-		
+
 		return "SPF/product/list";
 	}
 
 	@RequestMapping("{domain}/list/detail")
 	public String listDetail(@PathVariable String domain, Model model) {
-		
+
 		return "SPF/product/listDetail";
 	}
 
 	@RequestMapping("{domain}/order")
 	public String order(@PathVariable String domain, Model model) {
-		
+
 		return "SPF/order/order";
 	}
 
 	@RequestMapping("{domain}/shoppingbasket")
 	public String shoppingBasket(@PathVariable String domain, Model model) {
-		
+
 		return "SPF/subMenu/shoppingBasket";
 	}
 
 	@RequestMapping("{domain}/orderdelivery")
 	public String orderDelivery(@PathVariable String domain, Model model) {
-		
+
 		return "SPF/subMenu/orderDelivery";
 	}
 
