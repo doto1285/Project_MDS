@@ -9,7 +9,6 @@ import kr.ac.sungkyul.MDS.dao.MemberDao;
 import kr.ac.sungkyul.MDS.vo.MallVo;
 import kr.ac.sungkyul.MDS.vo.MemberVo;
 
-
 @Service
 public class MemberService {
 
@@ -39,21 +38,27 @@ public class MemberService {
 	 * @return
 	 */
 	public boolean isUserCheck(HttpSession session) {
-
 		MemberVo memberVo = (MemberVo) session.getAttribute("authUser");
 		if (memberVo == null) {
 			return false;
 		}
 		return true;
 	}
-	
-	public boolean isSPFUserCheck(String domain, HttpSession session) {
 
-		MemberVo memberVo = (MemberVo) session.getAttribute("authUser");
-		if (memberVo == null) {
+	/**
+	 * TSF에서 로그인한 유저일 경우 SPF 접속시 현재 쇼핑몰에 가입된 회원인지 판단
+	 * 
+	 * @param memberVo
+	 * @param mallVo
+	 * @return
+	 */
+	public boolean isSPFUserCheck(MemberVo memberVo, MallVo mallVo) {
+		if (memberVo == null || mallVo == null) {
 			return false;
 		}
 		return true;
 	}
 	
+	
+
 }
