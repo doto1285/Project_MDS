@@ -79,8 +79,8 @@ public class TSA_MainController {
 	@RequestMapping("/main/notice")
 	public String list(HttpSession session) {
 		//해당 게시판에 게시글 가져오기
-				List<BoardVo> GetBoardContentsList= boardService.GetBoardContentsList(1);
-				session.setAttribute("GetBoardContentsList", GetBoardContentsList);
+				//List<BoardVo> GetBoardContentsList= boardService.GetBoardContentsList(1);
+				//session.setAttribute("GetBoardContentsList", GetBoardContentsList);
 		System.out.println("notice");
 		return "TSA/board/notice";
 	}

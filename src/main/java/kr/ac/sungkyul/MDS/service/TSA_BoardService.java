@@ -50,9 +50,10 @@ public class TSA_BoardService {
 		// TODO Auto-generated method stub
 		// 해당 게시판의 게시글들을 가져온다.
 		
-		List<BoardVo> GetBoardContentsList = boardDao.GetBoardContentsList(boardlist_no);
+		//List<BoardVo> GetBoardContentsList = boardDao.GetBoardContentsList(boardlist_no);
 		
-		return GetBoardContentsList;
+		//return GetBoardContentsList;
+		return null;
 
 	
 	}

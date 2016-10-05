@@ -15,24 +15,22 @@ import kr.ac.sungkyul.MDS.vo.BoardVo;
 
 @Service
 public class BoardService {
-	
-
 
 	// 리스팅 되는 게시물 수
-	private static final int LIST_PAGESIZE = 5; 
+	private static final int LIST_PAGESIZE = 5;
 	// 페이지 리스트에 표시되는 페이지 수
-	private static final int LIST_BLOCKSIZE = 5; 
+	private static final int LIST_BLOCKSIZE = 5;
 
 	@Autowired
 	private BoardListDao boardListDao;
-	
+
 	@Autowired
 	private BoardDao boardDao;
 
 	public List<BoardListVo> GetBoardList(String userid) {
 		// TODO Auto-generated method stub
 		List<BoardListVo> GetBoardList = boardListDao.GetBoardList(userid);
-		
+
 		return GetBoardList;
 	}
 
@@ -43,14 +41,16 @@ public class BoardService {
 		return GetBoard;
 	}
 
-//	public List<BoardVo> GetBoardContentsList(int boardlist_no, int page, int pagesize) {
-//		// TODO Auto-generated method stub
-//		// 해당 게시판의 게시글들을 가져온다.
-//		
-////		List<BoardVo> GetBoardContentsList = boardDao.GetBoardContentsList(boardlist_no, page, pagesize);
-//		
-//		return GetBoardContentsList;
-//	}
+	// public List<BoardVo> GetBoardContentsList(int boardlist_no, int page, int
+	// pagesize) {
+	// // TODO Auto-generated method stub
+	// // 해당 게시판의 게시글들을 가져온다.
+	//
+	//// List<BoardVo> GetBoardContentsList =
+	// boardDao.GetBoardContentsList(boardlist_no, page, pagesize);
+	//
+	// return GetBoardContentsList;
+	// }
 
 	public void NewWrite(BoardVo boardVo) {
 		// TODO Auto-generated method stub
@@ -61,21 +61,20 @@ public class BoardService {
 	public BoardVo GetBoardContent(int board_no) {
 		// TODO Auto-generated method stub
 		// 선택한 게시글 내용 가져오기
-		
+
 		return boardDao.GetBoardContent(board_no);
 	}
 
 	@Transactional
 	public void ReplyWrite(BoardVo boardVo) {
 		// TODO Auto-generated method stub
-		//답글 등록하기
+		// 답글 등록하기
 		boardDao.ReplyWrite_orderno_update(boardVo);
 		boardDao.ReplyWrite(boardVo);
 	}
-	
-	
-public Map<String, Object> GetBoardContentsList(int boardlist_no, int page, String keyword) {
-		
+
+	public Map<String, Object> GetBoardContentsList(int boardlist_no, int page, String keyword) {
+
 		// 1. 현재 페이지 값 받기 = page
 
 		// 2. 페이지를 그리기 위한 기초 작업
@@ -101,11 +100,10 @@ public Map<String, Object> GetBoardContentsList(int boardlist_no, int page, Stri
 		int nexttoPage = (currentBlock < blockCount) ? currentBlock * LIST_BLOCKSIZE + 1 : page;
 		int prevtoPage = (currentBlock > 1) ? startPage - 3 : page;
 
-
 		List<BoardVo> GetBoardContentsList = boardDao.GetBoardContentsList(boardlist_no, page, LIST_PAGESIZE, keyword);
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		
+
 		// 5. map에 객체 담기
 		map.put("sizeList", LIST_PAGESIZE);
 		map.put("firstPage", startPage);
@@ -123,5 +121,7 @@ public Map<String, Object> GetBoardContentsList(int boardlist_no, int page, Stri
 
 		return map;
 	}
+
+
 
 }

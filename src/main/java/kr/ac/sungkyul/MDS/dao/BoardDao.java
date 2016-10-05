@@ -1,6 +1,5 @@
 package kr.ac.sungkyul.MDS.dao;
 
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,29 +17,26 @@ public class BoardDao {
 	@Autowired
 	private SqlSession sqlSession;
 
-	
-	public int insertBoard(BoardVo boardVo){
+	public int insertBoard(BoardVo boardVo) {
 		sqlSession.insert("TSF_board.insertBoard", boardVo);
 		return boardVo.getBoard_no();
 	}
-	
 
 	public List<BoardVo> GetBoardContentsList(int boardlist_no, int page, int pagesize, String keyword) {
-		
-		
+
 		// 해당 게시판의 게시글들을 가져온다.
-		Map<String, Object> map=new HashMap<>();
+		Map<String, Object> map = new HashMap<>();
 		map.put("page_start", (page - 1) * pagesize + 1);
 		map.put("page_end", page * pagesize);
 		map.put("boardlist_no", boardlist_no);
 		System.out.println("맵 출력 " + map);
 		List<BoardVo> listvo = sqlSession.selectList("TSF_board.GetBoardContentsList", map);
-		
-//		
-//		for (BoardVo vo : listvo) {
-//			System.out.println("게시글 " + vo);
-//		}
-//		
+
+		//
+		// for (BoardVo vo : listvo) {
+		// System.out.println("게시글 " + vo);
+		// }
+		//
 		return listvo;
 
 	}
@@ -73,10 +69,11 @@ public class BoardDao {
 		sqlSession.insert("TSF_board.ReplyWrite", boardVo);
 	}
 
-
 	public int getTotalCount(int boardlist_no) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("TSF_board.totalCount", boardlist_no);
 	}
+
+	
 
 }
