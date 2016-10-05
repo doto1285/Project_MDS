@@ -51,9 +51,47 @@ public class MallDao {
 	}
 	
 	public MallVo get_select_Mall(String mallName) {
-		MallVo mallVo = (MallVo) sqlSession.selectOne("get_select_Mall", mallName);
+		MallVo mallVo = (MallVo) sqlSession.selectOne("TSF_mall.get_select_Mall", mallName);
 		return mallVo;
 	}
 
+	public boolean updateMall(MallVo mallVo) {
+		return sqlSession.update("mallupdate", mallVo) !=0 ;
+	}
+	
+	public MallVo get_member_admin(MemberVo memberVo) {
+		MallVo mallVo = (MallVo) sqlSession.selectOne("TSF_mall.get_member_admin", memberVo );
+		return mallVo;
+	}
+	
+	/**
+	 * SPF 도메인 이름으로 mallVo 가져옴
+	 * @param domain
+	 * @return
+	 */
+	public MallVo domainCheck(String mall_domain){
+		MallVo mallVo = (MallVo) sqlSession.selectOne("SPF_mall.domain_Name_Check", mall_domain);
+		return mallVo;
+	}
+	
+	/**
+	 * SPF 쇼핑몰 넘버로 유효 도메인인지 체크
+	 * @param domain
+	 * @return
+	 */
+	public MallVo domainCheck(int mall_no){
+		MallVo mallVo = (MallVo) sqlSession.selectOne("SPF_mall.domain_No_Check", mall_no);
+		return mallVo;
+	}
+	
+	/**
+	 * SPF 쇼핑몰 넘버 기준 푸터 정보 가져오기
+	 * @param mall_no
+	 * @return
+	 */
+	public MallVo get_Footer(int mall_no) {
+		MallVo mallVo = (MallVo) sqlSession.selectOne("SPF_mall.get_Footer", mall_no);
+		return mallVo;
+	}
 
 }

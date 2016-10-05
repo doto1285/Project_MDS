@@ -12,7 +12,7 @@
 
 <link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
-<link href="/Project_MDS/assets//css/TSA_main.css" rel="stylesheet"
+<link href="/Project_MDS/assets/css/TSA_main.css" rel="stylesheet"
 	type="text/css">
 
 <!--      ---------------------------------------------             -->

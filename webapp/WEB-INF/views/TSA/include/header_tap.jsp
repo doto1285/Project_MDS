@@ -13,10 +13,10 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li id="menu1"><a href="http://localhost:8088/Project_MDS/main/notice">공지사항</a></li>
-				<li id="menu2"><a href="http://localhost:8088/Project_MDS/main/usermanage">회원관리</a></li>
-				<li id="menu3"><a href="http://localhost:8088/Project_MDS/main/shopmanage">쇼핑몰관리</a></li>
-				<li id="menu4"><a href="http://localhost:8088/Project_MDS/main/servicecenter">고객센터</a></li>
+				<li id="menu1"><a href="/Project_MDS/TSA/main/notice">공지사항</a></li>
+				<li id="menu2"><a href="/Project_MDS/TSA/main/usermanage">회원관리</a></li>
+				<li id="menu3"><a href="/Project_MDS/TSA/main/shopmanage">쇼핑몰관리</a></li>
+				<li id="menu4"><a href="/Project_MDS/TSA/main/servicecenter">고객센터</a></li>
 			</ul>
 			
 		</div>

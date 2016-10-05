@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SPF_mall">
+
+	<select id="domain_Name_Check" parameterType="String"
+		resultType="kr.ac.sungkyul.MDS.vo.MallVo">
+		<!-- SPF 도메인 네임을 이용해 mallVo 가져오기 -->
+		<![CDATA[	
+			select 
+			mall_no,
+			mall_domain
+			 from mall where mall_domain = #{mall_domain } and mall_state = 1
+		]]>
+	</select>
+
+	<select id="domain_No_Check" parameterType="Integer"
+		resultType="kr.ac.sungkyul.MDS.vo.MallVo">
+		<!-- SPF 도메인 넘버를 이용해 mall_no 가져오기 -->
+		<![CDATA[	
+			select 
+			mall_no,
+			mall_domain
+			 from mall where mall_no = #{mall_no } and mall_state = 1
+		]]>
+	</select>
+
+	<select id="get_Footer" parameterType="Integer"
+		resultType="kr.ac.sungkyul.MDS.vo.MallVo">
+		select mall_no, mall_name, mall_domain, mall_type,
+		mall_licensee,
+		mall_companyname, mall_ceoname, mall_address,
+		mall_phone,
+		mall_email, mall_account, mall_onlinemaketNo,
+		mall_dataofficer,
+		mall_customerNo, mall_faxNo
+		from mall
+		where mall_no =
+		#{mall_no } and mall_state = 1
+	</select>
+
+</mapper>

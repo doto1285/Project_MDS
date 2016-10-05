@@ -20,7 +20,7 @@ public class MallVo {
 	private String mall_customerNo;
 	private String mall_faxNo;
 	private int mall_state;
-	private int mall_member;
+	private int member_no;
 
 	public int getMall_no() {
 		return mall_no;
@@ -166,23 +166,23 @@ public class MallVo {
 		this.mall_state = mall_state;
 	}
 
-	public int getMall_member() {
-		return mall_member;
+	public int getMember_no() {
+		return member_no;
 	}
 
-	public void setMall_member(int mall_member) {
-		this.mall_member = mall_member;
+	public void setMember_no(int member_no) {
+		this.member_no = member_no;
 	}
 
 	@Override
 	public String toString() {
-		return "MemberVo [mall_no=" + mall_no + ", mall_name=" + mall_name + ", mall_domain=" + mall_domain
+		return "MallVo [mall_no=" + mall_no + ", mall_name=" + mall_name + ", mall_domain=" + mall_domain
 				+ ", mall_type=" + mall_type + ", mall_style=" + mall_style + ", mall_creationdate=" + mall_creationdate
 				+ ", mall_licensee=" + mall_licensee + ", mall_companyname=" + mall_companyname + ", mall_ceoname="
 				+ mall_ceoname + ", mall_address=" + mall_address + ", mall_phone=" + mall_phone + ", mall_email="
 				+ mall_email + ", mall_account=" + mall_account + ", mall_onlinemaketNo=" + mall_onlinemaketNo
 				+ ", mall_dataofficer=" + mall_dataofficer + ", mall_customerNo=" + mall_customerNo + ", mall_faxNo="
-				+ mall_faxNo + ", mall_state=" + mall_state + ", mall_member=" + mall_member + "]";
+				+ mall_faxNo + ", mall_state=" + mall_state + ", member_no=" + member_no + "]";
 	}
 
 }

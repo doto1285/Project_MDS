@@ -18,6 +18,8 @@
 		<mapper resource="mybatis/mappers/TSF_board.xml" />
 		<mapper resource="mybatis/mappers/TSF_boardList.xml" />
 		<mapper resource="mybatis/mappers/SPA_categorylist.xml" />
+		<mapper resource="mybatis/mappers/SPF_mall.xml" />
+		<mapper resource="mybatis/mappers/SPF_member.xml" />
 	</mappers>
 	
 </configuration>

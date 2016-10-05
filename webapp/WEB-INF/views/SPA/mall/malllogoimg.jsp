@@ -7,37 +7,25 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>모두의 쇼핑몰</title>
 <link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
 <link href="/Project_MDS/assets/css/SPA_main.css" rel="stylesheet"
 	type="text/css">
-<title>모두의 쇼핑몰</title>
 </head>
 <body>
 	<c:import url='/WEB-INF/views/SPA/include/header.jsp' />
 	<c:import url='/WEB-INF/views/SPA/include/navigation.jsp' />
 	<div class="section" id="contents">
-		<h3>카테고리 관리</h3>
-		<form class="board-form" method="post" action="categorymodify">
-			<div class="form-group" id="inputFormGroup">
-				<label for="inputEmail3" class="col-lg-6 control-label"
-					id="inputText">1차 카테고리</label> <label for="inputEmail3"
-					class="col-lg-4 control-label" id="inputText">2차 카테고리</label> <br>
-			</div>
-
-
-			<c:forEach var='vo1' items='${map.group}' varStatus='status'>
-				<div class="form-group" id="inputFormGroup">
-					 <input name = "mall_name" type="text"
-					class="form-control" id="inputBox" value="${vo1}">
-				</div>
-			</c:forEach>
-			<div class="form-group" id="inputButton"> <input
-					type="hidden" name="" value="" /> <input
-					class="btn btn-info" type="submit" value="저장하기">
-			</div>
-		</form>
+		<h3>로고 이미지 관리</h3>
+		<div class="form-group" id="inputFormGroup">
+			<img src="/Project_MDS/assets/image/SPA_logo.png" alt="로고이미지"
+				id="logoimg" class="img-thumbnail">
+		</div>
+		<div class="form-group" id="inputButton">
+			<input class="btn btn-info" type="submit" value="첨부하기">
+			<input class="btn btn-info" type="submit" value="파일삭제">
+		</div>
 	</div>
-
 </body>
 </html>

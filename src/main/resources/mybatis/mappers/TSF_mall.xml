@@ -4,7 +4,7 @@
 
 
 	<insert id="insert_Mall" parameterType="kr.ac.sungkyul.MDS.vo.MallVo">
-	<!-- 쇼핑몰 생성하기, 미구현 -->
+		<!-- 쇼핑몰 생성하기, 미구현 -->
 		<![CDATA[	
 		insert into mall values(
 		mall_seq .nextVal, #{mall_no}, #{mall_name}, #{mall_domain}, #{mall_type},
@@ -27,7 +27,7 @@
 	</select>
 
 	<select id="get_Random_Mall_List" resultType="kr.ac.sungkyul.MDS.vo.MallVo">
-		<!-- 쇼핑몰 목록 랜덤으로 가져오기-->
+		<!-- 쇼핑몰 목록 랜덤으로 가져오기 -->
 		<![CDATA[	
 		select mall_name, mall_domain, mall_state 
 			 from (select * from mall where mall_state = 1 order by dbms_random.value)
@@ -37,36 +37,44 @@
 	</select>
 
 
-	<update id="mallmodify" parameterType="kr.ac.sungkyul.MDS.vo.MallVo">
+	<update id="mallupdate" parameterType="kr.ac.sungkyul.MDS.vo.MallVo">
 		<!-- 쇼핑몰 정보 수정 -->
 		<![CDATA[	
 			update mall
-				 set mall_name = #{mall_name }, 
-				 mall_domain = #{mall_domain },
-				 mall_type = #{mall_type },
-				 mall_licensee = #{mall_licensee },
-				 mall_companyname = #{mall_companyname },
-				 mall_ceoname = #{mall_ceoname },
-				 mall_address = #{mall_address },
-				 mall_phone = #{mall_phone },
-				 mall_email = #{mall_email },
-				 mall_account = #{mall_account },
-				 mall_onlinemaketNo = #{mall_onlinemaketNo },
-				 mall_dataofficer = #{mall_dataofficer },
-				 mall_customerNo = #{mall_customerNo },
-				 mall_faxNo = #{mall_faxNo }
-				 where mall_no = #{mall_no }
+				 set mall_name = #{mall_name},
+				 mall_type = #{mall_type},
+				 mall_licensee = #{mall_licensee},
+				 mall_companyname = #{mall_companyname},
+				 mall_ceoname = #{mall_ceoname},
+				 mall_address = #{mall_address},
+				 mall_phone = #{mall_phone},
+				 mall_email = #{mall_email},
+				 mall_account = #{mall_account},
+				 mall_onlinemaketNo = #{mall_onlinemaketNo},
+				 mall_dataofficer = #{mall_dataofficer},
+				 mall_customerNo = #{mall_customerNo},
+				 mall_faxNo = #{mall_faxNo}
+				 where mall_no = #{mall_no}
 		]]>
 	</update>
 
 	<select id="get_select_Mall" parameterType="String"
 		resultType="kr.ac.sungkyul.MDS.vo.MallVo">
-		 	select mall_name, mall_domain, mall_type, mall_licensee,
-		 	mall_companyname, mall_ceoname, mall_address, mall_phone,
-		 	mall_email, mall_account, mall_onlinemaketNo, mall_dataofficer,
-		 	mall_customerNo, mall_faxNo
+		select mall_no, mall_name, mall_domain, mall_type, mall_licensee,
+		mall_companyname, mall_ceoname, mall_address, mall_phone,
+		mall_email, mall_account, mall_onlinemaketNo, mall_dataofficer,
+		mall_customerNo, mall_faxNo
+		from mall
+		where mall_domain = #{mall_domain } and mall_state = 1
+	</select>
+	
+		<select id="get_member_admin" parameterType="kr.ac.sungkyul.MDS.vo.MemberVo" resultType="kr.ac.sungkyul.MDS.vo.MallVo">
+		<!-- 쇼핑몰 운영자가 맞는지 확인한다. -->
+		<![CDATA[	
+	 		 select mall_domain, mall_name
 			from mall 
-			where mall_domain = #{mall_domain } and mall_state = 1
+			where mall_state = 1 and member_no = #{member_no } and mall_domain = #{member_id }
+		]]>
 	</select>
 
 
