@@ -27,7 +27,7 @@
 			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
 			<span class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="http://localhost:8088/Project_MDS/main">Start Bootstrap</a>
+		<a class="navbar-brand" href="http://localhost:8088/Project_MDS/main"><img id ="logo" src = "/Project_MDS/assets/image/logo.png"></a>
 	</div>
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -38,7 +38,7 @@
 			<c:choose>
 					<c:when test='${empty authUser }'>
 						<li><a href="/Project_MDS/main/loginfrom"  id = "padding-left_600px">로그인</a></li>
-						<li><a href="/Project_MDS/main/personal_Joinform">회원가입</a></li>
+						<li><a href="/Project_MDS/main/joinform_choose">회원가입</a></li>
 					</c:when>
 					<c:otherwise>
 						<li><a href="#"  id = "padding-left_450px">${authUser.member_name }님 안녕하세요 ^^;</a></li>

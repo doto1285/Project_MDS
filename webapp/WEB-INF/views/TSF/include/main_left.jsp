@@ -54,7 +54,7 @@
 <div class="list-group">
 	<c:forEach items="${GetBoardList }" var="GetBoardList">
 		<a
-			href="http://localhost:8088/Project_MDS/main/board/${GetBoardList.boardlist_no } "
+			href="/Project_MDS/main/board/${GetBoardList.boardlist_no } "
 			class="list-group-item"> ${GetBoardList.boardlist_name }</a>
 
 	</c:forEach>

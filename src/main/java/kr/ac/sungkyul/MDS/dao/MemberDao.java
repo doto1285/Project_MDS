@@ -14,9 +14,7 @@ public class MemberDao {
 
 	public void insert(MemberVo vo) {
 
-		int count = sqlSession.insert( "user.insert", vo );
-		System.out.println( count );
-		
+		sqlSession.insert( "TSF_member.insertMember", vo );
 	}
 
 	public MemberVo get(String member_id, String member_password, int member_distinction) {

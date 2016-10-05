@@ -13,8 +13,6 @@
 	rel="stylesheet" type="text/css">
 <link href="/Project_MDS/assets/css/TSF_main.css" rel="stylesheet"
 	type="text/css">
-<link href="/Project_MDS/assets/css/TSF_board.css" rel="stylesheet"
-	type="text/css">
 
 <title>Shop Item - Start Bootstrap Template</title>
 
@@ -43,43 +41,27 @@
 	<!-- Page Content -->
 	<div class="container">
 
-		<div class="row">
+		<div class="row" id="margin50px">
 
-			<div class="col-md-3" id="margin50px">
+			<div class="col-md-3">
 				<c:import url='/WEB-INF/views/TSF/include/main_left.jsp' />
 			</div>
 
 			<!-- 본문 시작-------------------------------------------- -->
-
-			<div id="content">
-				<div id="board" class="board-form" id="margin50px">
-					<table class="tbl-ex" id="margin50px">
-						<tr>
-							<th colspan="2">글보기</th>
-						</tr>
-						<tr>
-							<td>제목</td>
-							<td>${GetBoardContent.board_title}</td>
-						</tr>
-						<tr>
-							<td>내용</td>
-							<td>
-								<div class="view-content">${GetBoardContent.board_content}</div>
-							</td>
-						</tr>
-
-					</table>
-					<div class="bottom">
-						<a href="replyform/${GetBoardContent.board_no }">답글</a> <a
-							href="javascript:history.back(-1);">목록</a> <a
-							href="modify?no=${GetBoardContent.board_no }">글수정</a> <a
-							href="delete?no=${GetBoardContent.board_no }">삭제</a>
-					</div>
-				</div>
+					
+					회원가입 선택 화면
+			<div>
+				<a class="btn btn-success" href="/Project_MDS/main/Joinform_personal">개인 회원 가입</a>
 			</div>
-
+			
+			<div >
+				<a class="btn btn-success" href="/Project_MDS/main/Joinform_company">기업 회원 가입</a>
+			</div>
+		
+		
+		
+		
 			<!-- 본문 끝-------------------------------------------- -->
-
 		</div>
 
 	</div>
@@ -98,6 +80,10 @@
 		</div>
 		</footer>
 
+
+
+
+
 	</div>
 	<!-- /.container -->
 
@@ -110,5 +96,3 @@
 </body>
 
 </html>
-
-

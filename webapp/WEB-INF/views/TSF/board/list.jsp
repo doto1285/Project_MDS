@@ -74,13 +74,16 @@
 
 						<tbody>
 
-							<c:forEach items="${GetBoardContentsList }"
-								var="GetBoardContentsList">
+							<c:forEach items="${map.GetBoardContentsList}" var="GetBoardContentsList">
 								<tr>
 									<!--글번호-->
 									<td>${GetBoardContentsList.board_no}</td>
 									<!--제목-->
-									<td><a href="view?no=${GetBoardContentsList.board_no}">${GetBoardContentsList.board_title}</a></td>
+									<td><c:forEach var="i" begin="2"
+											end="${GetBoardContentsList.board_depth}" step="1">
+						 ↳ 
+						</c:forEach> <a href="view?no=${GetBoardContentsList.board_no}">${GetBoardContentsList.board_title}</a>
+									</td>
 									<!--글쓴이  -->
 									<td>${GetBoardContentsList.name}</td>
 									<!--조회수  -->
@@ -94,6 +97,37 @@
 						</tbody>
 					</table>
 				</table>
+						<!-- begin:paging -->
+				<div class="pager">
+					<ul>
+
+						<c:if test="${map.prevPage >= 0 }">
+							<li><a href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${map.prevPage }">◀</a></li>
+						</c:if>
+
+						<c:forEach begin='${map.firstPage }' end='${map.lastPage }'
+							step='1' var='i'>
+							<c:choose>
+								<c:when test='${map.currentPage == i }'>
+									<li class="selected">${i }</li>
+								</c:when>
+								<c:when test='${i > map.pageCount }'>
+									<li>${i }</li>
+								</c:when>
+								<c:otherwise>
+									<li><a href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${i }">${i }</a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+
+						<c:if test='${map.nextPage > 0 }'>
+							<li><a href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${map.nextPage }">▶</a></li>
+						</c:if>
+					</ul>
+				</div>
+			<!-- end:paging -->
+				
+				
 
 				<c:choose>
 					<c:when
@@ -111,7 +145,7 @@
 					</c:otherwise>
 				</c:choose>
 			</div>
-
+	
 
 			<!-- 본문 끝-------------------------------------------- -->
 

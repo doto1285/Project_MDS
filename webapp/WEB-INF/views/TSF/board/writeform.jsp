@@ -59,11 +59,9 @@
 								action="/Project_MDS/main/board/write/${boardlist_no}">
 								<input type="hidden" name="a" value="write"> <br> <input
 									type="hidden" name="member_no" value="${authUser.member_no }">
-								<!-- 
-								<input type="text" name="board_group" value="${vo.groupNo }"><br>
-								<input type="text" name="board_orderno" value="${vo.orderNo }"><br>
-								<input type="text" name="board_depth" value="${vo.depth }"><br>
- -->
+									 <input
+									type="hidden" name="boardlist_no" value="${boardlist_no}">
+			
 								<table class="tbl-ex">
 									<tr>
 										<th colspan="2">글쓰기</th>
@@ -85,7 +83,7 @@
 								</table>
 
 								<div class="bottom">
-									<a href="/mysite_jstl/board">취소</a> <input type="submit"
+									<a href="javascript:history.back(-1);">취소</a> <input type="submit"
 										value="등록">
 								</div>
 							</form>

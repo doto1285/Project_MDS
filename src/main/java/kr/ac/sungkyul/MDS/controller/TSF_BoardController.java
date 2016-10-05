@@ -1,11 +1,13 @@
 package kr.ac.sungkyul.MDS.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +27,10 @@ public class TSF_BoardController {
 	BoardService BoardService;
 
 	@RequestMapping("/{userid}/board/{boardlist_no}")
-	public String notice(@PathVariable String userid, @PathVariable int boardlist_no, HttpSession session) {
+	public String notice(Model model, @PathVariable String userid, @PathVariable int boardlist_no,
+			HttpSession session, @RequestParam(value = "p", required = true, defaultValue = "1") int page,
+			@RequestParam(value = "kwd", required = false, defaultValue = "") String keyword
+			) {
 		/*
 		 * // 게시판 System.out.println("게시판 번호" + boardlist_no);
 		 * 
@@ -38,9 +43,13 @@ public class TSF_BoardController {
 		BoardListVo GetBoard = BoardService.GetBoard(userid, boardlist_no);
 		session.setAttribute("GetBoard", GetBoard);
 
+		int pagesize = 5;
+		
 		// 해당 게시판에 게시글 가져오기
-		List<BoardVo> GetBoardContentsList = BoardService.GetBoardContentsList(boardlist_no);
-		session.setAttribute("GetBoardContentsList", GetBoardContentsList);
+		Map<String, Object> map = BoardService.GetBoardContentsList(boardlist_no, page, keyword) ;
+		model.addAttribute("map", map);
+		
+		
 
 		return "TSF/board/list";
 	}
@@ -62,44 +71,37 @@ public class TSF_BoardController {
 	@RequestMapping("main/board/writeform/{boardlist_no}")
 	public String writeform(HttpSession session, @PathVariable int boardlist_no) {
 		// list에서 글쓰기 버튼 클릭시 writeform으로 연결
-
-		
-		
-		System.out.println("main/notice/writeform");
 		return "TSF/board/writeform";
 	}
 
 	@RequestMapping(value = "main/board/write/{boardlist_no}", method = RequestMethod.POST)
-	public String write(
-			// 글쓰기창에서 등록버튼 눌렀을때 DB에 데이터 삽입후, list페이지로 복귀
-			// HttpSession session, @RequestParam(value = "id", required =
-			// false, defaultValue = "") String id,
-			// @RequestParam(value = "password", required = false, defaultValue
-			// = "") String password,
-			// @RequestParam(value = "member_distinction", required = false,
-			// defaultValue = "") int member_distinction
-			@PathVariable int boardlist_no, @ModelAttribute BoardVo boardVo, HttpSession session) {
+	public String write(@PathVariable int boardlist_no, @ModelAttribute BoardVo boardVo, HttpSession session) {
 		System.out.println("write 등록버튼 클릭");
-		
-		System.out.println(boardlist_no + ", " + boardVo);
-
+		System.out.println("모델 객체 테스트" + boardVo);
 		
 		// 새 글 등록하기
 		BoardService.NewWrite(boardVo);
 
 		return "redirect:/main/board/" + boardlist_no;
 	}
+	
+	@RequestMapping("main/board/replyform/{boardlist_no}")
+	public String replyform(HttpSession session, @PathVariable int boardlist_no) {
+		// view에서 답글버튼 클릭시
+		return "TSF/board/replyform";
+		
+	}
+	
+	
+	@RequestMapping(value = "main/board/reply/{board_no}", method = RequestMethod.POST)
+	public String reply(@PathVariable int board_no, @ModelAttribute BoardVo boardVo, HttpSession session) {
+		System.out.println("답글 모델 객체 테스트" + boardVo);
+		
+		// 답글 등록하기
+		BoardService.ReplyWrite(boardVo);
+		
+		return "redirect:/main/board/" + boardVo.getBoardlist_no();
+	}
 
-	// @RequestMapping(value = "main/notice/write", method = RequestMethod.POST)
-	// // 글등록
-	// public String registerBoard(BoardVo boardVo, MultipartFile file) throws
-	// Exception {
-	// System.out.println("글등록");
-	//
-	// BoardService.insertBoard(boardVo, file);
-	//// System.out.println(file.getOriginalFilename().toString());
-	//
-	// return "redirect:/main/notice";
-	// }
 
 }

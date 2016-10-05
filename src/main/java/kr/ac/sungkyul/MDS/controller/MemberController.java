@@ -6,12 +6,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.ac.sungkyul.MDS.service.MemberService;
 import kr.ac.sungkyul.MDS.service.TSF_MainService;
+import kr.ac.sungkyul.MDS.vo.BoardVo;
 import kr.ac.sungkyul.MDS.vo.MallVo;
 import kr.ac.sungkyul.MDS.vo.MemberVo;
 
@@ -24,13 +26,45 @@ public class MemberController {
 	@Autowired
 	TSF_MainService TSF_MainService;
 
-	@RequestMapping("/main/personal_Joinform")
-	public String personal_Joinform() {
+	@RequestMapping("/main/joinform_choose")
+	public String Joinform_choose() {
+		// 회원가입시 회원 종류 선택 화면
+		System.out.println("가입 종류 선택");
+		
+		return "member/Joinform_choose";
+	}
+	
+	@RequestMapping("/main/Joinform_personal")
+	public String joinform_Personal() {
 		// 개인회원 회원가입
 		System.out.println("개인 회원 가입");
 		
-		return "member/personal_Joinform";
+		return "member/Joinform_personal";
 	}
+	
+	
+	@RequestMapping("/main/Join")
+	public String Join(@ModelAttribute MemberVo memberVo) {
+		// 일반, 기업 회원 가입
+		
+		System.out.println("가입할 member " + memberVo );
+		
+		
+		memberService.join(memberVo);
+		
+		return "redirect:/main";
+	}
+	
+	@RequestMapping("/main/Joinform_company")
+	public String Joinform_company() {
+		// 기업회원 회원가입
+		System.out.println("기업 회원 가입");
+		
+		return "member/Joinform_company";
+	}
+	
+	
+	
 	
 	@RequestMapping("/main/loginfrom")
 	public String index() {
@@ -54,7 +88,6 @@ public class MemberController {
 			HttpSession session, @RequestParam(value = "id", required = false, defaultValue = "") String id,
 			@RequestParam(value = "password", required = false, defaultValue = "") String password,
 			@RequestParam(value = "member_distinction", required = false, defaultValue = "") int member_distinction
-
 	) {
 
 		System.out.println("controller - " + id + "  " + password + member_distinction);

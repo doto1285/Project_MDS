@@ -7,11 +7,11 @@ public class MemberVo {
 	private String member_password;
 	private String member_name;
 	private String member_email;
-	private String member_birth;
+	private String member_birth ="";
 	private String member_phone;
 	private String member_address;
 	private String member_joindate;
-	private String member_licensee;
+	private String member_licensee ="";
 	private int member_distinction;
 	private int member_state;
 
