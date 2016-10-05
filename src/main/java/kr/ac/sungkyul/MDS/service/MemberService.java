@@ -16,6 +16,7 @@ public class MemberService {
 
 	public void join(MemberVo vo) {
 		memberDao.insert(vo);
+		System.out.println("회원가입 완료");
 	}
 
 	public MemberVo login(String id, String password, int member_distinction) {

@@ -15,6 +15,8 @@ public class BoardVo {
 	private int boardlist_no;
 	private int member_no;
 	private String name;
+	private String rnum;
+	
 
 	public int getBoard_no() {
 		return board_no;
@@ -118,6 +120,18 @@ public class BoardVo {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	
+	
+	
+
+	public String getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(String rnum) {
+		this.rnum = rnum;
 	}
 
 	@Override

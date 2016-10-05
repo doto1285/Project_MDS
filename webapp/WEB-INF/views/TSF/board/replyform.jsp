@@ -14,6 +14,9 @@
 <link href="/Project_MDS/assets/css/TSF_main.css" rel="stylesheet"
 	type="text/css">
 
+<link href="/Project_MDS/assets/css/TSF_board.css" rel="stylesheet"
+	type="text/css">
+
 <title>Shop Item - Start Bootstrap Template</title>
 
 <!-- Bootstrap Core CSS -->
@@ -41,55 +44,59 @@
 	<!-- Page Content -->
 	<div class="container">
 
-		<div class="row" id="margin50px">
+		<div class="row">
 
-			<div class="col-md-3">
+			<div class="col-md-3" id="margin50px">
 				<c:import url='/WEB-INF/views/TSF/include/main_left.jsp' />
 			</div>
+			<div class="col-md-9" id="margin50px">
+				<!-- 본문 시작-------------------------------------------- -->
 
-			<!-- 본문 시작-------------------------------------------- -->
-			<div id="content">
-				<div id="user">
+				<div id="container">
+					<div id="content">
+						<div id="board">
+							<form class="board-form" method="post"
+								action="/Project_MDS/main/board/reply/${boardlist_no}">
+								<input type="hidden" name="a" value="write"> <br> <input
+									type="hidden" name="member_no" value="${authUser.member_no }">
+									 <input
+									type="text" name="boardlist_no" value="${GetBoardContent.boardlist_no}">
+									
+							
+								<input type="text" name="board_group" value="${GetBoardContent.board_group }"><br>
+								<input type="text" name="board_orderno" value="${GetBoardContent.board_orderno }"><br>
+								<input type="text" name="board_depth" value="${GetBoardContent.board_depth }"><br>
 
+								<table class="tbl-ex">
+									<tr>
+										<th colspan="2">글쓰기</th>
+									</tr>
+									<tr>
+										<td class=>제목</td>
+										<td><input type="text" name="board_title" value=""></td>
+									</tr>
+									<tr>
+										<td class=>내용</td>
+										<td><textarea id="content" name="board_content"></textarea></td>
+									</tr>
 
-					<p class="lead">회원가입</p>
+									<tr>
+										<td class=>비밀번호</td>
+										<td><textarea id="text" name="board_password"></textarea></td>
+									</tr>
 
-					<form id="join-form" name="joinForm" method="post"
-						action="/mysite5/user/join">
-						<label class="block-label" for="name">이름</label><input id="name"
-							name="name" type="text" value=""> <br> <label
-							class="block-label" for="email">이메일</label> <input id="email"
-							name="email" type="text" value=""> <img
-							id="image-checked" style="width: 16px; display: none"
-							src="/mysite5/assets/images/check.png" /> <input type="button"
-							id="btn-checkemail" value="id 중복체크"> <br> <label
-							class="block-label">패스워드</label> <input name="password"
-							type="password" value="">
+								</table>
 
-						<fieldset>
-							<legend>성별</legend>
-							<label>여</label> <input type="radio" name="gender" value="FEMALE"
-								checked="checked"> <label>남</label> <input type="radio"
-								name="gender" value="MALE">
-						</fieldset>
-
-						<fieldset>
-							<legend>약관동의</legend>
-							<input id="agree-prov" type="checkbox" name="agreeProv" value="y">
-							<label>서비스 약관에 동의합니다.</label>
-						</fieldset>
-
-						<input type="submit" value="가입하기">
-					</form>
+								<div class="bottom">
+									<a href="javascript:history.back(-1);">취소</a> <input type="submit"
+										value="등록">
+								</div>
+							</form>
+						</div>
+					</div>
 				</div>
-			</div>
 
-
-
-
-			<!-- 본문 끝-------------------------------------------- -->
-			<div class="text-right">
-				<a class="btn btn-success">Leave a Review</a>
+				<!-- 본문 끝-------------------------------------------- -->
 			</div>
 		</div>
 
@@ -125,3 +132,5 @@
 </body>
 
 </html>
+
+
