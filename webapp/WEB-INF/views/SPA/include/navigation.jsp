@@ -44,10 +44,6 @@
 			</ul>
 			<ul>
 				<li><a href='order'>주문관리</a>
-					<ul>
-						<li><a href='order'>주문목록/검색</a></li>
-						<li><a href='ordermanagement'>취소/교환/반품/환불</a></li>
-					</ul></li>
 			</ul>
 			<ul>
 				<li><a href='member'>고객관리</a></li>

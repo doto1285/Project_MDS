@@ -16,8 +16,16 @@
 <body>
 	<c:import url='/WEB-INF/views/SPA/include/header.jsp' />
 	<c:import url='/WEB-INF/views/SPA/include/navigation.jsp' />
-	<div id="container">
-		상품추가
+	<div class="section" id="contents">
+		<h3>상품추가</h3>
+		<div class="form-group" id="inputFormGroup">
+			<img src="/Project_MDS/assets/image/SPA_main.png" alt="대문이미지"
+				id="productmainimg" class="img-thumbnail">
+		</div>
+		<div class="form-group" id="inputButton">
+			<input class="btn btn-info" type="submit" value="첨부하기">
+			<input class="btn btn-info" type="submit" value="파일삭제">
+		</div>
 	</div>
 </body>
 </html>
