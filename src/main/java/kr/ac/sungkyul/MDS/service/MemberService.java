@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.ac.sungkyul.MDS.dao.MemberDao;
+import kr.ac.sungkyul.MDS.vo.JoinMallVo;
 import kr.ac.sungkyul.MDS.vo.MallVo;
 import kr.ac.sungkyul.MDS.vo.MemberVo;
 
@@ -60,6 +61,10 @@ public class MemberService {
 		return true;
 	}
 	
-	
+	public JoinMallVo SPFWhatUser(JoinMallVo joinmallVo){
+		
+		
+		return joinmallVo;
+	}
 
 }

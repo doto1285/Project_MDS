@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import kr.ac.sungkyul.MDS.service.MemberService;
 import kr.ac.sungkyul.MDS.service.SPF_MainService;
 import kr.ac.sungkyul.MDS.service.SPF_MallService;
+import kr.ac.sungkyul.MDS.vo.JoinMallVo;
 import kr.ac.sungkyul.MDS.vo.MallVo;
 import kr.ac.sungkyul.MDS.vo.MemberVo;
 
@@ -68,11 +69,16 @@ public class SPF_MainController {
 			return "SPF/main/index";
 		}
 
-		// SPF에 가입된 회원이 어떤 회원인지 체크
-		/*if (memberService.SPFWhatUser(memberVo, mallVo)) {
-
-		}*/
-		// TSF에서 로그인한 유저이고, 현재 쇼핑몰에 가입된 경우
+		// SPF에 가입된 정보(joinmall 테이블)를 joinmallVo에 넣음
+		JoinMallVo joinmallVo = null;
+		joinmallVo.setMember_no(String.valueOf(memberVo.getMember_no()));
+		joinmallVo.setMall_no(String.valueOf(mallVo.getMall_no()));
+		memberService.SPFWhatUser(joinmallVo);
+		
+		// 현재 쇼핑몰에 가입된 경우 실행되는 코드
+		// 쇼핑몰 footer 뿌려줌
+		mallVo = mainService.get_Footer(mallVo.getMall_no());
+		model.addAttribute("mallVo", mallVo);
 		// 쇼핑몰 로고이미지, 대문이미지, 카테고리리스트, 게시판리스트, 상품리스트 뿌려줌
 
 		return "SPF/main/index";
