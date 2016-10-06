@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.ac.sungkyul.MDS.dao.MallDao;
 import kr.ac.sungkyul.MDS.vo.MallVo;
@@ -29,6 +30,16 @@ public class TSF_MainService {
 		
 		List<MallVo> RandomMallList = mallDao.get_Random_Mall_List();
 		return RandomMallList;
+	}
+
+	@Transactional
+	public void insert_mall(MallVo mallVo) {
+		// TODO Auto-generated method stub
+		// 쇼핑몰 생성하기
+		int mall_no = mallDao.insert_mall(mallVo);		//mall테이블에 쇼핑몰 정보 입력
+		mallVo.setMall_no(mall_no);
+		mallDao.insert_joinmall(mallVo);	//joinmall테이블에 가입한 쇼핑몰 정보 입력 (쇼핑몰 가입하기)
+		
 	}
 
 

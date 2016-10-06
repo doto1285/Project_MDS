@@ -6,6 +6,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -42,14 +44,19 @@ public class TSF_MainController {
 		return url;
 	}
 	
-	
-	@RequestMapping("/main/join_mall")
-	public String personal_Joinform() {
-		// 쇼핑몰 만들기
-		System.out.println("쇼핑몰 만들기");
+	@RequestMapping("main/join_mallform")
+	public String join_mallform() {
+		// 쇼핑몰 만들기 화면으로 연결
 		
-		return "member/join_mall";
+		return "TSF/main/join_mall";
 	}
 
+	@RequestMapping("main/insert_mall")
+	public String insert_mall(@ModelAttribute MallVo mallVo) {
+		// 쇼핑몰 생성하기
+		TSF_MainService.insert_mall(mallVo);
+		
+		return "redirect:/main";
+	}
 
 }

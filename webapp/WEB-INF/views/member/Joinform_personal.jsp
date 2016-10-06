@@ -48,7 +48,7 @@
 			</div>
 
 			<!-- 본문 시작-------------------------------------------- -->
-			개인회원 가입 <input type="text" value=8 name="member_distinction">
+			개인회원 가입 <input type="text" value=0 name="member_distinction">
 			<form id="login-form" name="loginform" method="post"
 				action="/Project_MDS/main/Join">
 				<table>

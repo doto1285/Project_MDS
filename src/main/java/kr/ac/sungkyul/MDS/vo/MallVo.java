@@ -6,7 +6,7 @@ public class MallVo {
 	private String mall_name;
 	private String mall_domain;
 	private String mall_type;
-	private int mall_style;
+	private int mall_style=0;
 	private int mall_creationdate;
 	private String mall_licensee;
 	private String mall_companyname;
