@@ -33,7 +33,7 @@ public class MemberService {
 	}
 
 	/**
-	 * SPF접속 시 TSF에서 로그인 했었는지 체크
+	 * 로그인 세션 체크
 	 * 
 	 * @param domain
 	 * @param session
@@ -48,23 +48,24 @@ public class MemberService {
 	}
 
 	/**
-	 * TSF에서 로그인한 유저일 경우 SPF 접속시 현재 쇼핑몰에 가입된 회원인지 판단
-	 * 
-	 * @param memberVo
-	 * @param mallVo
+	 * 로그인 세션이 있는 회원이 현재 쇼핑몰 회원인지 체크
+	 * @param joinmallVo
 	 * @return
 	 */
-	public boolean isSPFUserCheck(MemberVo memberVo, MallVo mallVo) {
-		if (memberVo == null || mallVo == null) {
+	public boolean SPFWhatUser(JoinMallVo joinmallVo) {
+		JoinMallVo joinmallVo2 = memberDao.get(joinmallVo);
+		if (joinmallVo2 == null) {
 			return false;
 		}
 		return true;
 	}
 	
-	public JoinMallVo SPFWhatUser(JoinMallVo joinmallVo){
-		
-		
-		return joinmallVo;
+	/**
+	 * 개인 쇼핑몰 회원가입
+	 * @param joinmallVo
+	 */
+	public void SPFJoin(JoinMallVo joinmallVo){
+		memberDao.SPFJoin(joinmallVo);
 	}
 
 }

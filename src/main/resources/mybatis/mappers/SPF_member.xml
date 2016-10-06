@@ -3,15 +3,24 @@
 <mapper namespace="SPF_member">
 
 
-	<select id="get_By_SPF_Member_Check" parameterType="java.lang.Integer"
-		resultType="kr.ac.sungkyul.MDS.vo.MemberVo">
+	<select id="get_By_SPF_Member_Check" parameterType="kr.ac.sungkyul.MDS.vo.JoinMallVo"
+		resultType="kr.ac.sungkyul.MDS.vo.JoinMallVo">
 		<!-- SPF에 가입한 회원인지 체크 -->
 		<![CDATA[
 		select * 
-		  from member 
-		 where member_no = #{member_no }
+		  from joinmall 
+		 where member_no = #{member_no } and mall_no = #{mall_no}
 		]]>
 	</select>
+
+	<insert id="insert_SPF_Member" parameterType="kr.ac.sungkyul.MDS.vo.JoinMallVo">
+		<!-- SPF 회원가입 -->
+		<![CDATA[				
+		insert into joinmall values
+		(#{member_no}, #{mall_no}) 	
+
+		]]>
+	</insert>
 
 	<select id="getByIdAndPassword" parameterType="kr.ac.sungkyul.MDS.vo.MemberVo"
 		resultType="kr.ac.sungkyul.MDS.vo.MemberVo">
@@ -27,17 +36,6 @@
 	</select>
 
 
-	<insert id="insertMember" parameterType="kr.ac.sungkyul.MDS.vo.MemberVo">
-		<!-- 회원가입 -->
-		<![CDATA[				
-		insert into member values
-		
-		(member_seq.nextVal, #{member_id}, #{member_password}, #{member_name},
-		 #{member_email}, #{member_birth}, #{member_phone}, #{member_address},sysdate,
-  		#{member_licensee}, #{member_distinction}, 1
-		) 	
 
-		]]>
-	</insert>
 
 </mapper>

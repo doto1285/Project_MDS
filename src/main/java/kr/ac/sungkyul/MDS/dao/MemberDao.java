@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.ac.sungkyul.MDS.vo.JoinMallVo;
 import kr.ac.sungkyul.MDS.vo.MemberVo;
 
 @Repository
@@ -39,6 +40,20 @@ public class MemberDao {
 		MemberVo vo = sqlSession.selectOne( "TSF_member.selectOne", member_no );
 		return vo;
 		
+	}
+	
+	/**
+	 * 로그인 세션이 있는 회원이 현재 개인 쇼핑몰 회원인지 체크
+	 * @param joinmallVo
+	 * @return
+	 */
+	public JoinMallVo get(JoinMallVo joinmallVo) {
+		JoinMallVo joinmallVo2 = sqlSession.selectOne( "SPF_member.get_By_SPF_Member_Check", joinmallVo );
+		return joinmallVo2;
+	}
+	
+	public void SPFJoin(JoinMallVo joinmallVo){
+		sqlSession.insert( "SPF_member.insert_SPF_Member", joinmallVo );
 	}
 
 

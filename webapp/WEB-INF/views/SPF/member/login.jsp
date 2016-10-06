@@ -21,7 +21,7 @@
 	<br>
 	<br>
 	<br>
-	<div class="container" style="text-align: center">
+	<div class="container" style="text-align: center" action="loginCheck">
 		<label id="joinText">아직 회원이 아니십니까?</label> <br> <label
 			id="joinText">회원을 위한 다양한 혜택이 준비되어 있습니다.</label> <br> <br> <br>
 		<br>
