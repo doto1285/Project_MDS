@@ -3,16 +3,38 @@
 <mapper namespace="TSF_mall">
 
 
-	<insert id="insert_Mall" parameterType="kr.ac.sungkyul.MDS.vo.MallVo">
-		<!-- 쇼핑몰 생성하기, 미구현 -->
+
+	<insert id="insert_mall" parameterType="kr.ac.sungkyul.MDS.vo.MallVo" >
+		<!-- 쇼핑몰 만들기 -->
+		
+				
+		<selectKey resultType="java.lang.Integer" keyProperty="mall_no" order="BEFORE">
+       	<![CDATA[
+       		SELECT mall_seq.nextVal as no FROM DUAL
+       	]]>
+    	</selectKey>
+		
 		<![CDATA[	
 		insert into mall values(
-		mall_seq .nextVal, #{mall_no}, #{mall_name}, #{mall_domain}, #{mall_type},
-		 #{mall_style}, #{mall_creationdate}, #{mall_licensee}, #{mall_companyname}, #{mall_ceoname},
+		#{mall_no}, #{mall_name}, #{mall_domain}, #{mall_type},
+		 #{mall_style},sysdate, #{mall_licensee}, #{mall_companyname}, #{mall_ceoname},
 		  #{mall_address}, #{mall_phone}, #{mall_email}, #{mall_account}, #{mall_onlinemaketNo},
-		   #{mall_dateofficer}, #{mall_customerNo}, #{mall_faxNo}, #{mall_state} )
+		   #{mall_dataofficer}, #{mall_customerNo}, #{mall_faxNo}, 1,
+		    #{member_no} )
 		]]>
 	</insert>
+	
+	
+	<insert id="insert_joinmall" parameterType="kr.ac.sungkyul.MDS.vo.MallVo">
+		<!-- 가입한 쇼핑몰 추가하기 (쇼핑몰 가입하기) -->
+		<![CDATA[	
+		insert into joinmall values(
+		#{member_no} , #{mall_no}
+		   )
+		]]>
+
+	</insert>
+
 
 	<select id="get_joinmall_list" parameterType="kr.ac.sungkyul.MDS.vo.MemberVo"
 		resultType="kr.ac.sungkyul.MDS.vo.MallVo">
@@ -60,15 +82,20 @@
 
 	<select id="get_select_Mall" parameterType="String"
 		resultType="kr.ac.sungkyul.MDS.vo.MallVo">
-		select mall_no, mall_name, mall_domain, mall_type, mall_licensee,
-		mall_companyname, mall_ceoname, mall_address, mall_phone,
-		mall_email, mall_account, mall_onlinemaketNo, mall_dataofficer,
+		select mall_no, mall_name, mall_domain, mall_type,
+		mall_licensee,
+		mall_companyname, mall_ceoname, mall_address,
+		mall_phone,
+		mall_email, mall_account, mall_onlinemaketNo,
+		mall_dataofficer,
 		mall_customerNo, mall_faxNo
 		from mall
-		where mall_domain = #{mall_domain } and mall_state = 1
+		where mall_domain
+		= #{mall_domain } and mall_state = 1
 	</select>
-	
-		<select id="get_member_admin" parameterType="kr.ac.sungkyul.MDS.vo.MemberVo" resultType="kr.ac.sungkyul.MDS.vo.MallVo">
+
+	<select id="get_member_admin" parameterType="kr.ac.sungkyul.MDS.vo.MemberVo"
+		resultType="kr.ac.sungkyul.MDS.vo.MallVo">
 		<!-- 쇼핑몰 운영자가 맞는지 확인한다. -->
 		<![CDATA[	
 	 		 select mall_domain, mall_name
@@ -76,6 +103,7 @@
 			where mall_state = 1 and member_no = #{member_no } and mall_domain = #{member_id }
 		]]>
 	</select>
+
 
 
 </mapper>

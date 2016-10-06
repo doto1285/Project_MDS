@@ -31,7 +31,7 @@
 
 		<c:when test='${authUser.member_distinction == 1 }'>
 			<!-- 기업 회원일경우 표시되는 메뉴  -->
-			<a href="/Project_MDS/main/join_mall" class="list-group-item">쇼핑몰
+			<a href="/Project_MDS/main/join_mallform" class="list-group-item">쇼핑몰
 				만들기</a>
 		</c:when>
 

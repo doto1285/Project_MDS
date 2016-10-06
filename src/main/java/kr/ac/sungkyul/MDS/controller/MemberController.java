@@ -46,9 +46,7 @@ public class MemberController {
 	@RequestMapping("/main/Join")
 	public String Join(@ModelAttribute MemberVo memberVo) {
 		// 일반, 기업 회원 가입
-		
 		System.out.println("가입할 member " + memberVo );
-		
 		
 		memberService.join(memberVo);
 		

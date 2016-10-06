@@ -48,78 +48,81 @@
 			</div>
 
 			<!-- 본문 시작-------------------------------------------- -->
-			기업 회원 가입
-
-			<table>
-				<tr>
-					<td id="td-size">아이디</td>
-					<td><input id="textbox" name="name" type="text"  placeholder= " 중복확인 하세요" value="">
-					</td>
-					<td style = "padding-left:15px"> <button>중복확인</button></td>
-				</tr>
-				<tr>
-					<td id="td-size">비밀번호</td>
-					<td><input id="textbox" name="name" type="password" value="">
-					</td>
-				</tr>
-				<tr>
-					<td id="td-size">비밀번호 확인</td>
-					<td><input id="textbox" name="name" type="password" value="">
-					</td>
-				</tr>
-				<tr>
-					<td id="td-size">이름</td>
-					<td><input id="textbox" name="name" type="text" value="">
-					</td>
-				</tr>
-				<tr>
-					<td id="td-size">주소</td>
-					<td><input id="textbox" name="name" type="text" placeholder= " 직접 입력 하세요 ㅋㅋ" value="">
-					</td>
-				</tr>
-				<tr>
-					<td id="td-size">핸드폰번호</td>
-					<td><input id="textbox" name="name" type="text"
-						placeholder=" - 없이 입력해 주세요" value=""></td>
-				</tr>
-				<tr>
-					<td id="td-size">사업자등록번호</td>
-					<td><input id="textbox" name="name" type="text"
-						placeholder="10자리 사업자등록번호" value=""></td>
-				</tr>
-
-				<tr>
-					<td id="td-size">성별</td>
-					<td><label>여</label> <input type="radio" name="gender"
-						value="FEMALE" checked="checked"> <label>남</label> <input
-						type="radio" name="gender" value="MALE"></td>
-				</tr>
-				<tr>
-					<td id="td-size">약관동의</td>
-					<td><input type="checkbox" name="agreeProv" value="y">
-						<label>서비스 약관에 동의합니다.&nbsp&nbsp&nbsp&nbsp</label> 
-						<a type = href="/Project_MDS/main/#"> 내용확인</a>
+			개인회원 가입 <input type="text" value=1 name="member_distinction">
+			<form id="login-form" name="loginform" method="post"
+				action="/Project_MDS/main/Join">
+				<table>
+					<tr>
+						<td id="td-size">아이디</td>
+						<td><input id="textbox" name="member_id" type="text" value="">
 						</td>
-				</tr>
-				<tr>
-					<td id="td-size">개인정보활용동의</td>
-					<td><input type="checkbox" name="agreeProv" value="y">
-						<label>개인정보 활용에 동의합니다.&nbsp&nbsp&nbsp</label>
-						<a type = href="/Project_MDS/main/#"> 내용확인
+						<td style="padding-left: 15px">
+							<button>중복확인</button>
 						</td>
-				</tr>
+					</tr>
+					<tr>
+						<td id="td-size">비밀번호</td>
+						<td><input id="textbox" type="password" value=""></td>
+					</tr>
+					<tr>
+						<td id="td-size">비밀번호 확인</td>
+						<td><input id="textbox" name="member_password"
+							type="password" value=""></td>
+					</tr>
+					<tr>
+						<td id="td-size">이름</td>
+						<td><input id="textbox" name="member_name" type="text"
+							value=""></td>
+					</tr>
+					<tr>
+						<td id="td-size">주소</td>
+						<td><input id="textbox" name="member_address" type="text"
+							placeholder=" 직접 입력 하세요 ㅋㅋ" value=""></td>
+					</tr>
+					<tr>
+						<td id="td-size">이메일</td>
+						<td><input id="textbox" name="member_email" type="text"
+							placeholder="끝까지 똑바로 입력해라" value=""></td>
+					</tr>
+					<tr>
+						<td id="td-size">핸드폰번호</td>
+						<td><input id="textbox" name="member_phone" type="text"
+							placeholder=" - 없이 입력해 주세요" value=""></td>
+					</tr>
+					<tr>
+						<td id="td-size">사업자 등록 번호</td>
+						<td><input id="textbox" name="member_licensee" type="text"
+							placeholder=" - 없이 입력해 주세요" value=""></td>
+					</tr>
 
-				<tr>
-					<td><label  style = "padding-left:50px"><a class="btn btn-success" href="/Project_MDS/main/#">가입하기</a></label></td>
-					<td><a class="btn btn-success" href="javascript:history.back(-1);">취소</a></td>
-				</tr>
+					<tr>
+						<td id="td-size">약관동의</td>
+						<td><input type="checkbox" name="agreeProv" value="y">
+							<label>서비스 약관에 동의합니다.&nbsp&nbsp&nbsp&nbsp</label> <a type=href="/Project_MDS/main/#">
+								내용확인</a></td>
+					</tr>
+					<tr>
+						<td id="td-size">개인정보활용동의</td>
+						<td><input type="checkbox" name="agreeProv" value="y">
+							<label>개인정보 활용에 동의합니다.&nbsp&nbsp&nbsp</label> <a type=href="/Project_MDS/main/#">
+								내용확인 </td>
+					</tr>
+
+					<tr>
+						<td><label style="padding-left: 50px"> <input
+								type="submit" class="btn btn-success" value="가입하기"></label></td>
 
 
-			</table>
+						<td><a class="btn btn-success"
+							href="javascript:history.back(-1);">취소</a></td>
+					</tr>
 
 
 
 
+				</table>
+			</form>
+			
 			<!-- 본문 끝-------------------------------------------- -->
 		</div>
 
