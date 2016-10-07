@@ -10,6 +10,7 @@ public class OrderinfoVo {
 	private int product_no;
 	private int member_no;
 	private int productoption_no;
+	private int mall_no;
 
 	public int getOrderinfo_no() {
 		return orderinfo_no;
@@ -83,12 +84,21 @@ public class OrderinfoVo {
 		this.productoption_no = productoption_no;
 	}
 
+	public int getMall_no() {
+		return mall_no;
+	}
+
+	public void setMall_no(int mall_no) {
+		this.mall_no = mall_no;
+	}
+
 	@Override
 	public String toString() {
 		return "OrderinfoVo [orderinfo_no=" + orderinfo_no + ", orderinfo_count=" + orderinfo_count
 				+ ", orderinfo_price=" + orderinfo_price + ", orderinfo_address=" + orderinfo_address
 				+ ", orderinfo_date=" + orderinfo_date + ", orderinfo_state=" + orderinfo_state + ", product_no="
-				+ product_no + ", member_no=" + member_no + ", productoption_no=" + productoption_no + "]";
+				+ product_no + ", member_no=" + member_no + ", productoption_no=" + productoption_no + ", mall_no="
+				+ mall_no + "]";
 	}
 
 }

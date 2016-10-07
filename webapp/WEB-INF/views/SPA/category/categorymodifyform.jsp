@@ -20,7 +20,7 @@
 		<h3>카테고리 관리</h3>
 		<form class="board-form" method="post" action="categorymodify">
 			<div class="form-group" id="inputFormGroup">
-				<label for="inputEmail3" class="col-lg-6 control-label"
+				<label for="inputEmail3" class="col-lg-4 control-label"
 					id="inputText">1차 카테고리</label> <label for="inputEmail3"
 					class="col-lg-4 control-label" id="inputText">2차 카테고리</label> <br>
 			</div>

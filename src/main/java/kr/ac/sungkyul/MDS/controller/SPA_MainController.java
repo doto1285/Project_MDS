@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import kr.ac.sungkyul.MDS.service.MemberService;
 import kr.ac.sungkyul.MDS.service.SPA_CategoryListService;
 import kr.ac.sungkyul.MDS.service.SPA_MainService;
-import kr.ac.sungkyul.MDS.service.SPA_MallService;
 import kr.ac.sungkyul.MDS.vo.MallVo;
 
 @Controller
@@ -26,9 +25,6 @@ public class SPA_MainController {
 
 	@Autowired
 	SPA_MainService SPA_mainservice;
-
-	@Autowired
-	SPA_MallService SPA_mallservice;
 
 	@Autowired
 	SPA_CategoryListService categoryListService;
@@ -55,7 +51,7 @@ public class SPA_MainController {
 	 */
 	@RequestMapping(value = "{domain}/mall", method = RequestMethod.GET)
 	public String mall(@PathVariable String domain, HttpSession session, Model model) {
-		MallVo mallVo = SPA_mallservice.getSelectMall(domain);
+		MallVo mallVo = SPA_mainservice.getSelectMall(domain);
 		model.addAttribute("mallVo", mallVo);
 		return "SPA/mall/mall";
 	}
@@ -97,8 +93,7 @@ public class SPA_MainController {
 	 */
 	@RequestMapping(value = "{domain}/mallmodify", method = RequestMethod.POST)
 	public String mallmodify(@PathVariable String domain, HttpSession session, Model model, MallVo mallVo) {
-		System.out.println(mallVo);
-		System.out.println(SPA_mallservice.modifyMall(mallVo));
+		SPA_mainservice.modifyMall(mallVo);
 		return "redirect:/SPA/" + domain + "/mall";
 	}
 
@@ -140,11 +135,6 @@ public class SPA_MainController {
 	@RequestMapping(value = "{domain}/order", method = RequestMethod.GET)
 	public String orderlist(@PathVariable String domain, HttpSession session, Model model) {
 		return "SPA/order/orderlist";
-	}
-
-	@RequestMapping(value = "{domain}/ordermanagement", method = RequestMethod.GET)
-	public String ordermanagement(@PathVariable String domain, HttpSession session, Model model) {
-		return "SPA/order/ordermanagement";
 	}
 
 	@RequestMapping(value = "{domain}/member", method = RequestMethod.GET)
