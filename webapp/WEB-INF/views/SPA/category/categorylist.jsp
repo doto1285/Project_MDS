@@ -7,10 +7,13 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <!-- 공통 -->
+<script type="text/javascript" src="/Project_MDS/assets/js/jquery/jquery-3.1.1.js"></script>
+
 <link href="/Project_MDS/assets/dist/css/bootstrap.min.css"	rel="stylesheet" type="text/css">
+<script src="/Project_MDS/assets/dist/js/bootstrap.min.js"></script>
 <link href="/Project_MDS/assets/css/SPA_main.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="/Project_MDS/assets/js/jquery/jquery-1.9.0.js"></script>
 <!-- /공통 -->
+
 
 <!--  개인별 -->
 <link href="/Project_MDS/assets/css/TSF_main.css" rel="stylesheet"	type="text/css">
@@ -113,6 +116,15 @@
 
 
 
+
+
+</body>
+
+
+</html>
+
+
+
 <!-- 부모카테고리 수정 모달창 -->
 <div class="modal fade" id="modal_cateP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -131,16 +143,6 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-</body>
-
-
-</html>
 
 
 
