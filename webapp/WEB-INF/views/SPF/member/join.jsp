@@ -12,7 +12,7 @@
 <link href="/Project_MDS/assets/css/SPF_member.css" rel="stylesheet"
 	type="text/css">
 
-<SCRIPT TYPE="TEXT/JAVASCRIPT">
+<SCRIPT TYPE="TEXT/JAVASCRIPT" src="/Project_MDS/assets/js/jquery/jquery-3.1.1.js">
 	//<![CDATA[
 	function check_input() {
 		if (document.joinForm.enable.checked) {
