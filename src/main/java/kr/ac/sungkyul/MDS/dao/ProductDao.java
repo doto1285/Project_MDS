@@ -6,23 +6,18 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kr.ac.sungkyul.MDS.vo.OrderinfoVo;
-
+import kr.ac.sungkyul.MDS.vo.ProductVo;
 
 @Repository
-public class OrderinfoDao {
+public class ProductDao {
 	
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<OrderinfoVo> get_Orderinfo_List(int no) {
+	public ProductVo get_Product_name(int no) {
 		//추천 쇼핑몰 목록에 가져온 쇼핑몰 리스트를 랜덤으로 생성한다
-		List<OrderinfoVo> listvo = sqlSession.selectList("SPA_orderinfo.get_Orderinfo_List", no);
-		return listvo;
+		ProductVo vo = sqlSession.selectOne("SPA_product.get_produnt_name", no);
+		return vo;
 	}
-	
-
-
-	
 
 }
