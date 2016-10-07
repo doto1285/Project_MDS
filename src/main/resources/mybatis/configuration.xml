@@ -20,6 +20,7 @@
 		<mapper resource="mybatis/mappers/SPA_categorylist.xml" />
 		<mapper resource="mybatis/mappers/SPF_mall.xml" />
 		<mapper resource="mybatis/mappers/SPF_member.xml" />
+		<mapper resource="mybatis/mappers/SPA_orderinfo.xml" />
 	</mappers>
 	
 </configuration>

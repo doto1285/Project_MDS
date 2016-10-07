@@ -20,7 +20,7 @@
 	<div class="section" id="contents">
 		<h3>주문 검색</h3>
 		<!-- 검색 미구현 -->
-		<form class="form-inline" method="post" action="product">
+		<form class="form-inline" method="post" action="order">
 			<div class="form-group" id="inputFormGroup">
 				<input name="product_search" type="text" class="form-control"
 					id="inputBox" value=""> <input class="btn btn-info"
@@ -46,7 +46,7 @@
 				<td>상품명</td>
 				<td>수량</td>
 				<td>총 가격</td>
-				<td>취소</td>
+				<td>상태</td>
 			</tr>
 			
 			<tr>
@@ -55,12 +55,7 @@
 				<td id="tableContents">엠보단가라</td>
 				<td id="tableContents">2개</td>
 				<td id="tableContents">13500원</td>
-				<td><div class="form-group">
-						<div class="checkbox">
-							<label> <input type="checkbox" id="tableContents">
-							</label>
-						</div>
-					</div></td>
+				<td id="tableContents">배송완료</td>
 			</tr>
 			
 			<tr>
@@ -69,12 +64,7 @@
 				<td id="tableContents">엠보단가라</td>
 				<td id="tableContents">2개</td>
 				<td id="tableContents">13500원</td>
-				<td><div class="form-group">
-						<div class="checkbox">
-							<label> <input type="checkbox" id="tableContents">
-							</label>
-						</div>
-					</div></td>
+				<td id="tableContents">배송완료</td>
 			</tr>
 		</table>
 		<nav>
