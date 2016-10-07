@@ -22,7 +22,7 @@
 		]]>
 	</insert>
 
-	<select id="getByIdAndPassword" parameterType="kr.ac.sungkyul.MDS.vo.MemberVo"
+	<select id="get_By_SPF_IdAndPassword" parameterType="kr.ac.sungkyul.MDS.vo.MemberVo"
 		resultType="kr.ac.sungkyul.MDS.vo.MemberVo">
 		<!-- 로그인 -->
 		<![CDATA[
@@ -30,7 +30,6 @@
 		  from member 
 		 where member_id = #{member_id }
 		 and member_password = #{member_password }
-		 and member_distinction = #{member_distinction }
 		 and member_state = 1
 		]]>
 	</select>

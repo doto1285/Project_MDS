@@ -21,31 +21,38 @@
 	<br>
 	<br>
 	<br>
-	<div class="container" style="text-align: center" action="loginCheck">
+	<div class="container" style="text-align: center">
 		<label id="joinText">아직 회원이 아니십니까?</label> <br> <label
 			id="joinText">회원을 위한 다양한 혜택이 준비되어 있습니다.</label> <br> <br> <br>
 		<br>
 		<div id="loginForm">
-			<form class="form-inline">
+			<form class="form-inline" method="post" action="loginCheck">
 				<div class="form-group">
-					<label for="exampleInputName2" id="loginText">아이디 &nbsp;
-						&nbsp;</label> <input type="text" class="form-control"
+					<label for="exampleInputName2" id="loginTextId">아이디 &nbsp;
+						&nbsp;</label> <input type="text" class="form-control" name="id"
 						id="exampleInputName2" placeholder="아이디">
 				</div>
 				<br> <br>
 				<div class="form-group" id="passwordForm">
-					<label for="exampleInputPassword3" id="loginText">비밀번호
+					<label for="exampleInputPassword3" id="loginTextPassword">비밀번호
 						&nbsp; &nbsp;</label> <input type="password" class="form-control"
-						id="exampleInputPassword3" placeholder="비밀번호">
+						name="password" id="exampleInputPassword3" placeholder="비밀번호">
 				</div>
+
+				<button id="loginButton" type="submit"
+					class="btn btn-default btn-lg">로그인</button>
 			</form>
 			<br>
-			<button id="loginButton" type="submit" class="btn btn-default btn-lg">로그인</button>
+			<br>
+			<br>
+			<br>
+			<br>
 		</div>
 		<div id="loginFormBottomLabel">
-			<label id="loginText"><a href="">아이디 찾기</a></label> <label id="loginText">&nbsp;|&nbsp;</label>
-			<label id="loginText"><a href="">비밀번호 찾기</a></label> <label id="loginText">&nbsp;|&nbsp;</label>
-			<label id="loginText"><a href="./join">회원가입</a></label>
+			<label id="loginText"><a href="">아이디 찾기</a></label> <label
+				id="loginText">&nbsp;|&nbsp;</label> <label id="loginText"><a
+				href="">비밀번호 찾기</a></label> <label id="loginText">&nbsp;|&nbsp;</label> <label
+				id="loginText"><a href="./join">회원가입</a></label>
 		</div>
 	</div>
 	<br>

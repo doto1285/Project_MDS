@@ -19,7 +19,6 @@ a {
 }
 
 /* --------------- join 화면 css --------------- */
-
 #joinText {
 	font-size: 14px;
 	text-align: center;
@@ -38,23 +37,35 @@ a {
 
 #loginButton {
 	position: relative;
-	left: 195px;
-	bottom: 75px;
+	left: 50px;
+	bottom: 25px;
 }
 
-#loginText {
+#loginTextId {
 	font-size: 14px;
 	text-align: center;
+}
+
+#loginTextPassword {
+	font-size: 14px;
+	text-align: center;
+	position: relative;
+	left: 44px;
 }
 
 #loginForm {
 	position: relative;
 	right: 25px;
-
 }
 
 #loginFormBottomLabel {
+	font-size: 12px;
 	position: relative;
 	left: 88px;
-	bottom:40px;
+	bottom: 40px;
+}
+
+#exampleInputPassword3 {
+	position: relative;
+	left: 44px;
 }

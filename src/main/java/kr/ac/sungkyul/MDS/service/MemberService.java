@@ -49,6 +49,7 @@ public class MemberService {
 
 	/**
 	 * 로그인 세션이 있는 회원이 현재 쇼핑몰 회원인지 체크
+	 * 
 	 * @param joinmallVo
 	 * @return
 	 */
@@ -59,13 +60,25 @@ public class MemberService {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * 개인 쇼핑몰 회원가입
+	 * 
 	 * @param joinmallVo
 	 */
-	public void SPFJoin(JoinMallVo joinmallVo){
+	public void SPFJoin(JoinMallVo joinmallVo) {
 		memberDao.SPFJoin(joinmallVo);
+	}
+
+	/**
+	 * 개인 쇼핑몰 로그인
+	 * @param id
+	 * @param paasword
+	 * @return
+	 */
+	public MemberVo loginCheck(String id, String password) {
+		MemberVo memberVo = memberDao.SPFLoginCheck(id, password);
+		return memberVo;
 	}
 
 }
