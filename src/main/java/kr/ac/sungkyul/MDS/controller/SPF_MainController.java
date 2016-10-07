@@ -216,7 +216,7 @@ public class SPF_MainController {
 		session.removeAttribute("SPFauthUser");
 		session.invalidate();
 
-		return "redirect:/" + mall_domain +"/main";
+		return "redirect:/" + mall_domain + "/main";
 	}
 
 	@RequestMapping("{mall_domain}/list")
