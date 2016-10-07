@@ -212,11 +212,11 @@ public class SPF_MainController {
 	}
 
 	@RequestMapping("{mall_domain}/logout")
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session, @PathVariable String mall_domain) {
 		session.removeAttribute("SPFauthUser");
 		session.invalidate();
 
-		return "SPF/main/index";
+		return "redirect:/" + mall_domain + "/main";
 	}
 
 	@RequestMapping("{mall_domain}/list")
