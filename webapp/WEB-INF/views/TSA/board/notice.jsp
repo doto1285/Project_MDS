@@ -96,10 +96,39 @@
 
 			</tbody>
 		</table>
-
+	
 
 
 		<div class="bottom">
+				<!-- begin:paging -->
+				<div class="pager">
+					<ul>
+
+						<c:if test="${map.prevPage >= 0 }">
+							<li><a href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${map.prevPage }">◀</a></li>
+						</c:if>
+
+						<c:forEach begin='${map.firstPage }' end='${map.lastPage }'
+							step='1' var='i'>
+							<c:choose>
+								<c:when test='${map.currentPage == i }'>
+									<li class="selected">${i }</li>
+								</c:when>
+								<c:when test='${i > map.pageCount }'>
+									<li>${i }</li>
+								</c:when>
+								<c:otherwise>
+									<li><a href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${i }">${i }</a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+
+						<c:if test='${map.nextPage > 0 }'>
+							<li><a href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${map.nextPage }">▶</a></li>
+						</c:if>
+					</ul>
+				</div>
+			<!-- end:paging -->s
 			<c:choose>
 				<c:when test='${authUser.member_distinction == 9}'>
 					<!-- admin만 글쓰기 버튼 보여준다  -->

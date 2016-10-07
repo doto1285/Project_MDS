@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -83,11 +84,11 @@ public class MemberController {
 	@RequestMapping(value = "/main/login", method = RequestMethod.POST)
 	public String login(
 			// 개인, 기업회원 로그인
-			HttpSession session, @RequestParam(value = "id", required = false, defaultValue = "") String id,
+			HttpSession session, 
+			@RequestParam(value = "id", required = false, defaultValue = "") String id,
 			@RequestParam(value = "password", required = false, defaultValue = "") String password,
 			@RequestParam(value = "member_distinction", required = false, defaultValue = "") int member_distinction
 	) {
-
 		System.out.println("controller - " + id + "  " + password + member_distinction);
 		MemberVo authUser = memberService.login(id, password, member_distinction);
 

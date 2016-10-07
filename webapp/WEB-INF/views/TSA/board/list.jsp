@@ -62,62 +62,70 @@
 		</form>
 
 
-		<table class="tbl-ex">
-			<table class="table table-striped table-hover ">
-				<tr>
-					<th>번호</th>
-					<th>제목</th>
-					<th>작성일</th>
-				</tr>
+		<table class="table table-striped table-hover ">
+						<tr>
+							<th>번호</th>
+							<th>제목</th>
+							<th>글쓴이</th>
+							<th>조회수</th>
+							<th>작성일</th>
+						</tr>
 
-				<c:forEach items="${listBoard }" var="boardVo">
-					<tr>
-						<td>${boardVo.no}</td>
-						<td><a href="view?no=${boardVo.no}">${boardVo.title}</a></td>
-						<td>${boardVo.regDate}</td>
-					</tr>
-				</c:forEach>
-				<tbody>
-					<tr>
-						<td>1</td>
-						<td>Column content</td>
-						<td>Column content</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Column content</td>
-						<td>Column content</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>Column content</td>
-						<td>Column content</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>Column content</td>
-						<td>Column content</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td>Column content</td>
-						<td>Column content</td>
-					</tr>
-					<tr>
-						<td>6</td>
-						<td>Column content</td>
-						<td>Column content</td>
-					</tr>
-					<tr>
-						<td>7</td>
-						<td>Column content</td>
-						<td>Column content</td>
-					</tr>
 
-				</tbody>
-			</table>
-		</table>
+						<tbody>
 
+							<c:forEach items="${map.GetBoardContentsList}" var="GetBoardContentsList">
+								<tr>
+									<!--글번호-->
+									<td>${GetBoardContentsList.board_no}</td>
+									<!--제목-->
+									<td><c:forEach var="i" begin="2"
+											end="${GetBoardContentsList.board_depth}" step="1">
+						 ↳ 
+						</c:forEach> <a href="view?no=${GetBoardContentsList.board_no}">${GetBoardContentsList.board_title}</a>
+									</td>
+									<!--글쓴이  -->
+									<td>${GetBoardContentsList.name}</td>
+									<!--조회수  -->
+									<td>${GetBoardContentsList.board_hit}</td>
+									<!--작성일  -->
+									<td>${GetBoardContentsList.board_date}</td>
+								</tr>
+							</c:forEach>
+
+
+						</tbody>
+					</table>
+				</table>
+						<!-- begin:paging -->
+				<div class="pager">
+					<ul>
+
+						<c:if test="${map.prevPage >= 0 }">
+							<li><a href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${map.prevPage }">◀</a></li>
+						</c:if>
+
+						<c:forEach begin='${map.firstPage }' end='${map.lastPage }'
+							step='1' var='i'>
+							<c:choose>
+								<c:when test='${map.currentPage == i }'>
+									<li class="selected">${i }</li>
+								</c:when>
+								<c:when test='${i > map.pageCount }'>
+									<li>${i }</li>
+								</c:when>
+								<c:otherwise>
+									<li><a href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${i }">${i }</a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+
+						<c:if test='${map.nextPage > 0 }'>
+							<li><a href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${map.nextPage }">▶</a></li>
+						</c:if>
+					</ul>
+				</div>
+			<!-- end:paging -->
 		<c:choose>
 			<c:when
 				test='${authUser.member_distinction } >= ${GetBoard.boardlist_write_accessright }'>
