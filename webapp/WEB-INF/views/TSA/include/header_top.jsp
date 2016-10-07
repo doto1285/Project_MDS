@@ -2,18 +2,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 
 <html>
-
 <head>
-
-<script type="text/javascript"
-	src="/Project_MDS/assets/js/jquery/jquery-1.9.0.js"></script>
-<link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
-	rel="stylesheet" type="text/css">
-<link href="/Project_MDS/assets//css/TSA_main.css" rel="stylesheet"
-	type="text/css">
 
 </head>
 
