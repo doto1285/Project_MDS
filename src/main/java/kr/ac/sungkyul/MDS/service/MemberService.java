@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.ac.sungkyul.MDS.dao.MemberDao;
+import kr.ac.sungkyul.MDS.vo.JoinMallVo;
 import kr.ac.sungkyul.MDS.vo.MallVo;
 import kr.ac.sungkyul.MDS.vo.MemberVo;
 
@@ -32,7 +33,7 @@ public class MemberService {
 	}
 
 	/**
-	 * SPF접속 시 TSF에서 로그인 했었는지 체크
+	 * 로그인 세션 체크
 	 * 
 	 * @param domain
 	 * @param session
@@ -47,19 +48,37 @@ public class MemberService {
 	}
 
 	/**
-	 * TSF에서 로그인한 유저일 경우 SPF 접속시 현재 쇼핑몰에 가입된 회원인지 판단
+	 * 로그인 세션이 있는 회원이 현재 쇼핑몰 회원인지 체크
 	 * 
-	 * @param memberVo
-	 * @param mallVo
+	 * @param joinmallVo
 	 * @return
 	 */
-	public boolean isSPFUserCheck(MemberVo memberVo, MallVo mallVo) {
-		if (memberVo == null || mallVo == null) {
+	public boolean SPFWhatUser(JoinMallVo joinmallVo) {
+		JoinMallVo joinmallVo2 = memberDao.get(joinmallVo);
+		if (joinmallVo2 == null) {
 			return false;
 		}
 		return true;
 	}
-	
-	
+
+	/**
+	 * 개인 쇼핑몰 회원가입
+	 * 
+	 * @param joinmallVo
+	 */
+	public void SPFJoin(JoinMallVo joinmallVo) {
+		memberDao.SPFJoin(joinmallVo);
+	}
+
+	/**
+	 * 개인 쇼핑몰 로그인
+	 * @param id
+	 * @param paasword
+	 * @return
+	 */
+	public MemberVo loginCheck(String id, String password) {
+		MemberVo memberVo = memberDao.SPFLoginCheck(id, password);
+		return memberVo;
+	}
 
 }

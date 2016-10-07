@@ -14,4 +14,8 @@
 				order by categorylist_group, categorylist_orderno asc
 		]]>
 	</select>
+	 
+	 
+	 
+	
 </mapper>

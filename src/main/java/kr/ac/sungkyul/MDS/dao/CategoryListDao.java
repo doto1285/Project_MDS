@@ -14,9 +14,9 @@ public class CategoryListDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<CategoryListVo> get(String domain) {
-		List<CategoryListVo> listvo = sqlSession.selectList( "SPA_categorylist.get_damain_categorylist", domain );
-		return listvo;
-	}
+//	public List<CategoryListVo> get(String domain) {
+//		List<CategoryListVo> listvo = sqlSession.selectList( "SPA_categorylist.get_damain_categorylist", domain );
+//		return listvo;
+//	}
 
 }
