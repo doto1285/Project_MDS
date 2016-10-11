@@ -25,9 +25,9 @@
 	<div class="section" id="contents">
 		<h3>상품 검색</h3>
 		<!-- 검색 미구현 -->
-		<form class="form-inline" method="post" action="product">
+		<form class="form-inline" method="get" action="">
 			<div class="form-group" id="inputFormGroup">
-				<input name="product_search" type="text" class="form-control"
+				<input name="" type="text" class="form-control"
 					id="inputBox" value=""> <input class="btn btn-info"
 					type="submit" value="검색">
 			</div>
@@ -92,10 +92,6 @@
 					aria-hidden="true">&laquo;</span>
 			</a></li>
 			<li><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">4</a></li>
-			<li><a href="#">5</a></li>
 			<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 			</a></li>
 		</ul>

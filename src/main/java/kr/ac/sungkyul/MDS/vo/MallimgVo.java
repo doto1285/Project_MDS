@@ -3,12 +3,15 @@ package kr.ac.sungkyul.MDS.vo;
 public class MallimgVo {
 	
 	private int mallimg_no;
-	private int mallimg_flag;
 	private String mallimg_filename;
 	private String mallimg_savename;
-	private String mallimg_path;
-	private long fileSize;
+	private int mallimg_flag;
 	private int mall_no;
+	private String mallimg_path;
+	private long mallimg_fileSize;
+	private String mallimg_image;
+	
+	
 	public int getMallimg_no() {
 		return mallimg_no;
 	}
@@ -39,22 +42,30 @@ public class MallimgVo {
 	public void setMallimg_path(String mallimg_path) {
 		this.mallimg_path = mallimg_path;
 	}
-	public long getFileSize() {
-		return fileSize;
-	}
-	public void setFileSize(long fileSize) {
-		this.fileSize = fileSize;
-	}
 	public int getMall_no() {
 		return mall_no;
 	}
 	public void setMall_no(int mall_no) {
 		this.mall_no = mall_no;
 	}
+	public long getMallimg_fileSize() {
+		return mallimg_fileSize;
+	}
+	public void setMallimg_fileSize(long mallimg_fileSize) {
+		this.mallimg_fileSize = mallimg_fileSize;
+	}
+	public String getMallimg_image() {
+		return mallimg_image;
+	}
+	public void setMallimg_image(String mallimg_image) {
+		this.mallimg_image = mallimg_image;
+	}
 	@Override
 	public String toString() {
-		return "MallimgVo [mallimg_no=" + mallimg_no + ", mallimg_flag=" + mallimg_flag + ", mallimg_filename="
-				+ mallimg_filename + ", mallimg_savename=" + mallimg_savename + ", mallimg_path=" + mallimg_path
-				+ ", fileSize=" + fileSize + ", mall_no=" + mall_no + "]";
+		return "MallimgVo [mallimg_no=" + mallimg_no + ", mallimg_filename=" + mallimg_filename + ", mallimg_savename="
+				+ mallimg_savename + ", mallimg_flag=" + mallimg_flag + ", mall_no=" + mall_no + ", mallimg_path="
+				+ mallimg_path + ", mallimg_fileSize=" + mallimg_fileSize + ", mallimg_image=" + mallimg_image + "]";
 	}
+	
+	
 }

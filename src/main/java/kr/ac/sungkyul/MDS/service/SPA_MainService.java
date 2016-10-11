@@ -1,5 +1,6 @@
 package kr.ac.sungkyul.MDS.service;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,17 +10,25 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import kr.ac.sungkyul.MDS.dao.JoinMallDao;
 import kr.ac.sungkyul.MDS.dao.MallDao;
+import kr.ac.sungkyul.MDS.dao.MemberDao;
 import kr.ac.sungkyul.MDS.dao.OrderinfoDao;
 import kr.ac.sungkyul.MDS.dao.ProductDao;
+import kr.ac.sungkyul.MDS.vo.JoinMallVo;
 import kr.ac.sungkyul.MDS.vo.MallVo;
+import kr.ac.sungkyul.MDS.vo.MallimgVo;
 import kr.ac.sungkyul.MDS.vo.MemberVo;
 import kr.ac.sungkyul.MDS.vo.OrderinfoVo;
-import kr.ac.sungkyul.MDS.vo.ProductVo;
 
 @Service
 public class SPA_MainService {
+	
+	@Autowired
+	MemberDao memberDao;
 
 	@Autowired
 	MallDao mallDao;
@@ -29,6 +38,9 @@ public class SPA_MainService {
 	
 	@Autowired
 	ProductDao productDao;
+	
+	@Autowired
+	JoinMallDao joinMallDao;
 
 	/**
 	 * 유저가 세션에 있고, 유효한 유저인지 확인
@@ -69,22 +81,90 @@ public class SPA_MainService {
 	}
 
 	
-	public Map<String, Object> getOrderinfo(String domain){
+	/**
+	 * 주문목록을 가져온다.
+	 * @param domain
+	 * @return
+	 */
+	public Map<String, Object> getOrderInfo(String domain){
+		// 주문vo, 상품vo가 들어감
+		Map<String, Object> map = new HashMap<String, Object>();
+		
 		//도메인을 이용하여 쇼핑몰 번호, 이름을 알아냄
 		MallVo mallVo = mallDao.domainCheck(domain);
 		//쇼핑몰 번호로 주문에 테이블 참조해서 값을 알아냄
 		List<OrderinfoVo> orderlist = orderinfoDao.get_Orderinfo_List(mallVo.getMall_no());
-		//상품번호를 통하여 상품이름을 알아냄
-		List<ProductVo> productlist = new ArrayList<ProductVo>();
-		for(OrderinfoVo vo : orderlist){
-			productlist.add(productDao.get_Product_name(vo.getProduct_no()));
+		//상품번호를 통하여 상품이름을 알아낸 후 orderlist address에 넣어줌
+		for(int i=0; i<orderlist.size(); i++){
+			orderlist.get(i).setOrderinfo_address((productDao.get_Product_name(orderlist.get(i).getProduct_no()).getProduct_name()));
 		}
-		//맵에는 몰vo, 주문vo, 상품vo가 들어감
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("mallVo", mallVo);
+
 		map.put("orderlist", orderlist);
-		map.put("productlist", productlist);
 		return map;
 		
 	}
+	
+	/**
+	 * 고객목록을 가져온다.
+	 * @param domain
+	 * @return
+	 */
+	public List<MemberVo> getMemberInfo(String domain) {
+		List<MemberVo> memberlist = new ArrayList<MemberVo>();
+		//도메인을 이용하여 쇼핑몰 번호, 이름을 알아냄
+		MallVo mallVo = mallDao.domainCheck(domain);
+		//쇼핑몰 번호를 이용하여 회원 번호를 받아옴
+		List<JoinMallVo> joinmalllist = joinMallDao.get_joinmall(mallVo.getMall_no());
+		//회원번호에 맞는 회원정보를 저장
+		for(int i=0; i<joinmalllist.size(); i++) {
+			memberlist.add(memberDao.get(Integer.parseInt(joinmalllist.get(i).getMember_no())));
+		}
+		return memberlist;
+	}
+	
+	/**
+	 * 로고 이미지 삽입
+	 * @param domain
+	 * @param file
+	 */
+	public void insertLogoImg (String domain, MultipartFile file) {
+		//도메인을 이용하여 쇼핑몰 번호, 이름을 알아냄
+		MallVo mallVo = mallDao.domainCheck(domain);
+		
+		// 2. orgName
+		String orgName = file.getOriginalFilename();
+	
+		// 3. fileSize
+		long fileSize = file.getSize();
+		
+		// 4. saveName
+		String saveName = orgName;
+		
+		// 5. path 경로 정하기
+	    String path ="C:\\Users\\Jungminki\\Desktop\\skubit\\java\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Project_MDS\\assets\\image";
+
+	    // 6. imageurl 경로
+		String imageurl="/assets/image/"+saveName;
+		
+		//7. 첨부파일 객체에 담기
+	    MallimgVo mallimgVo = new MallimgVo();
+	    
+	    mallimgVo.setMall_no(mallVo.getMall_no());
+	    mallimgVo.setMallimg_flag(0);
+	    mallimgVo.setMallimg_path(path);
+	    mallimgVo.setMallimg_filename(orgName);
+	    mallimgVo.setMallimg_savename(saveName);
+	    mallimgVo.setMallimg_fileSize(fileSize);
+	    mallimgVo.setMallimg_image(imageurl);
+		
+		//8. 첨부파일 삽입
+//		productdao.insertAttachPrFile(attachFilePrVO);
+	
+		//9. 파일 복사 및 이동
+//		File target = new File(path, saveName);
+//		FileCopyUtils.copy(file.getBytes(),target);
+		
+	}
+	
+	
  }

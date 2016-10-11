@@ -26,9 +26,9 @@
 	<div class="section" id="contents">
 		<h3>고객 검색</h3>
 		<!-- 검색 미구현 -->
-		<form class="form-inline" method="post" action="product">
+		<form class="form-inline" method="get" action="">
 			<div class="form-group" id="inputFormGroup">
-				<input name="product_search" type="text" class="form-control"
+				<input name="" type="text" class="form-control"
 					id="inputBox" value=""> <input class="btn btn-info"
 					type="submit" value="검색">
 			</div>
@@ -47,22 +47,21 @@
 			</colgroup>
 
 			<tr class="active">
-				<td>번호</td>
 				<td>아이디</td>
 				<td>이름</td>
 				<td>이메일</td>
 				<td>전화번호</td>
 				<td>주소</td>
 			</tr>
-			
-			<tr>
-				<td id="tableContents">010101010101</td>
-				<td id="tableContents">test</td>
-				<td id="tableContents">테스터</td>
-				<td id="tableContents">test@test.com</td>
-				<td id="tableContents">000-1111-2222</td>
-				<td id="tableContents">주소오</td>
-			</tr>
+		<c:forEach var='vo' items='${list}' varStatus='status'>
+				<tr>
+					<td id="tableContents">${vo.member_id }</td>
+					<td id="tableContents">${vo.member_name }</td>
+					<td id="tableContents">${vo.member_email }</td>
+					<td id="tableContents">${vo.member_phone }</td>
+					<td id="tableContents">${vo.member_address }</td>
+				</tr>
+			</c:forEach>
 			
 		</table>
 		<nav>
@@ -71,10 +70,6 @@
 					aria-hidden="true">&laquo;</span>
 			</a></li>
 			<li><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">4</a></li>
-			<li><a href="#">5</a></li>
 			<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 			</a></li>
 		</ul>

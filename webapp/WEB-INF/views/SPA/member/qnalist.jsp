@@ -24,9 +24,9 @@
 	<c:import url='/WEB-INF/views/SPA/include/navigation.jsp' />
 	<div class="section" id="contents">
 		<h3>Q&A 검색</h3>
-		<form class="form-inline" method="post" action="product">
+		<form class="form-inline" method="get" action="">
 			<div class="form-group" id="inputFormGroup">
-				<input name="product_search" type="text" class="form-control"
+				<input name="" type="text" class="form-control"
 					id="inputBox" value=""> <input class="btn btn-info"
 					type="submit" value="검색">
 			</div>

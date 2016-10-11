@@ -46,7 +46,7 @@
 				</select>
 			</div>
 
-			<br> <br> <br> <br>
+			<br> <br>
 			<h3>사업자 정보(쇼핑몰 Footer 내용)</h3>
 			<div class="form-group" id="inputFormGroup">
 				<label for="inputEmail3" class="col-lg-2 control-label"
@@ -123,4 +123,5 @@
 		</form>
 	</div>
 </body>
+
 </html>

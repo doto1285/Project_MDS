@@ -44,6 +44,7 @@ public class MallDao {
 	}
 
 	public MallVo get_select_Mall(String mallName) {
+		//쇼핑몰 이름으로 쇼핑몰 정보를 가져온다
 		MallVo mallVo = (MallVo) sqlSession.selectOne("TSF_mall.get_select_Mall", mallName);
 		return mallVo;
 	}
@@ -104,5 +105,7 @@ public class MallDao {
 		//가입한 쇼핑몰 추가하기 (쇼핑몰 가입하기)
 		sqlSession.insert("TSF_mall.insert_joinmall", mallVo);
 	}
+	
+	
 
 }

@@ -9,15 +9,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>모두의 쇼핑몰</title>
 <!-- 공통 -->
-<script type="text/javascript" src="/Project_MDS/assets/js/jquery/jquery-3.1.1.js"></script>
+<script type="text/javascript"
+	src="/Project_MDS/assets/js/jquery/jquery-3.1.1.js"></script>
 
-<link href="/Project_MDS/assets/dist/css/bootstrap.min.css"	rel="stylesheet" type="text/css">
+<link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css">
 <script src="/Project_MDS/assets/dist/js/bootstrap.min.js"></script>
-<link href="/Project_MDS/assets/css/SPA_main.css" rel="stylesheet" type="text/css">
+<link href="/Project_MDS/assets/css/SPA_main.css" rel="stylesheet"
+	type="text/css">
 
 <!-- /공통 -->
 <!-- 개인 -->
-<link href="/Project_MDS/assets/css/SPA_order.css" rel="stylesheet" type="text/css">
+<link href="/Project_MDS/assets/css/SPA_order.css" rel="stylesheet"
+	type="text/css">
 <!-- /개인 -->
 </head>
 <body>
@@ -26,9 +30,9 @@
 	<div class="section" id="contents">
 		<h3>주문 검색</h3>
 		<!-- 검색 미구현 -->
-		<form class="form-inline" method="post" action="order">
+		<form class="form-inline" method="get" action="">
 			<div class="form-group" id="inputFormGroup">
-				<input name="product_search" type="text" class="form-control"
+				<input name="" type="text" class="form-control"
 					id="inputBox" value=""> <input class="btn btn-info"
 					type="submit" value="검색">
 			</div>
@@ -47,31 +51,36 @@
 			</colgroup>
 
 			<tr class="active">
-				<td>쇼핑몰 이름</td>
 				<td>주문 번호</td>
 				<td>상품명</td>
 				<td>수량</td>
 				<td>총 가격</td>
 				<td>상태</td>
 			</tr>
-			
-			<tr>
-				<td id="tableContents">지마킛</td>
-				<td id="tableContents">10101010102020</td>
-				<td id="tableContents">엠보단가라</td>
-				<td id="tableContents">2개</td>
-				<td id="tableContents">13500원</td>
-				<td id="tableContents">배송완료</td>
-			</tr>
-			
-			<tr>
-				<td id="tableContents">지마킛</td>
-				<td id="tableContents">10101010102020</td>
-				<td id="tableContents">엠보단가라</td>
-				<td id="tableContents">2개</td>
-				<td id="tableContents">13500원</td>
-				<td id="tableContents">배송완료</td>
-			</tr>
+
+			<c:forEach var='vo' items='${map.orderlist}' varStatus='status'>
+				<tr>
+					<td id="tableContents">${vo.orderinfo_no }</td>
+					<td id="tableContents">${vo.orderinfo_address }</td>
+					<td id="tableContents">${vo.orderinfo_count }개</td>
+					<td id="tableContents">${vo.orderinfo_price }원</td>
+					<td id="tableContents"><c:choose>
+							<c:when test="${vo.orderinfo_state == 1 }">
+								결제 전
+							</c:when>
+							<c:when test="${vo.orderinfo_state == 2 }">
+								결제완료
+							</c:when>
+							<c:when test="${vo.orderinfo_state == 3 }">
+								배송중
+							</c:when>
+							<c:when test="${vo.orderinfo_state == 4 }">
+								배송완료
+							</c:when>
+						</c:choose></td>
+				</tr>
+			</c:forEach>
+
 		</table>
 		<nav>
 		<ul class="pagination" id="paging">
@@ -79,10 +88,6 @@
 					aria-hidden="true">&laquo;</span>
 			</a></li>
 			<li><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">4</a></li>
-			<li><a href="#">5</a></li>
 			<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 			</a></li>
 		</ul>

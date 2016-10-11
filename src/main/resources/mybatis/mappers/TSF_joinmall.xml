@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="member">
-
+<mapper namespace="TSF_joinmall">
 
 	<insert id="TSF_insert_joinmall" parameterType="kr.ac.sungkyul.MDS.vo.JoinMallVo">
 		<![CDATA[						
 		insert into joinmall values(
-		#{member_no}, {#mall_no}
-		 );
+		#{member_no}, #{mall_no})
 		]]>
 	</insert>
-	
-	
-	
-	
 
-
+	<!-- 쇼핑몰 번호에 맞는 회원번호를 모두 출력한다 -->
+	<select id="get_joinmall_list" parameterType="java.lang.Integer"
+		resultType="kr.ac.sungkyul.MDS.vo.JoinMallVo">
+		<![CDATA[
+			select member_no, mall_no from joinmall where mall_no=#{mall_no}
+		]]>
+	</select>
 
 </mapper>
