@@ -1,5 +1,7 @@
 package kr.ac.sungkyul.MDS.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import kr.ac.sungkyul.MDS.service.MemberService;
 import kr.ac.sungkyul.MDS.service.SPF_MainService;
 import kr.ac.sungkyul.MDS.service.SPF_MallService;
+import kr.ac.sungkyul.MDS.vo.CategoryListVo;
 import kr.ac.sungkyul.MDS.vo.JoinMallVo;
 import kr.ac.sungkyul.MDS.vo.MallVo;
 import kr.ac.sungkyul.MDS.vo.MemberVo;
@@ -54,6 +57,10 @@ public class SPF_MainController {
 			// 쇼핑몰 footer 뿌려줌
 			mallVo = mainService.get_Footer(mallVo.getMall_no());
 			model.addAttribute("mallVo", mallVo);
+			// 카테고리 메뉴 뿌려줌
+			List<CategoryListVo> categoryList1st = mainService.get_1stCategoryList(mallVo);			
+			model.addAttribute("categoryList1st", categoryList1st);
+			model.addAttribute("categoryList2nd", categoryList1st);
 			// 헤더, 쇼핑몰 로고이미지, 대문이미지, 카테고리리스트, 게시판리스트, 상품리스트 뿌려줌
 			return "SPF/main/index";
 		}
