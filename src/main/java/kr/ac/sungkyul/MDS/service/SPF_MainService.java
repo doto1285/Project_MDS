@@ -19,19 +19,26 @@ public class SPF_MainService {
 	@Autowired
 	CategoryListDao categoryListDao;
 	
+	/**
+	 * SPF 개인 쇼핑몰의 Footer을 가져옴
+	 * 만든이 : 이민우
+	 * @param mall_no
+	 * @return
+	 */
 	public MallVo get_Footer(int mall_no) {
 		MallVo mallVo = mallDao.get_Footer(mall_no);
 		return mallVo;
 	}
 	
-	public List<CategoryListVo> get_1stCategoryList(MallVo mallVo){
-		List<CategoryListVo> categoryList1st = categoryListDao.get_1stCategoryList(mallVo);
-		return categoryList1st;
-	}
-	
-	public List<CategoryListVo> get_2stCategoryList(CategoryListVo catecoryListVo) {
-		List<CategoryListVo> categoryList2nd = categoryListDao.get_2ndCategoryList(catecoryListVo);
-		return categoryList2nd;
+	/**
+	 * SPF 개인 쇼핑몰의 카테고리를 가져옴
+	 * 만든이 : 이민우
+	 * @param mallVo
+	 * @return
+	 */
+	public List<CategoryListVo> get_CategoryList(MallVo mallVo){
+		List<CategoryListVo> categoryList = categoryListDao.get_CategoryList(mallVo);
+		return categoryList;
 	}
 
 

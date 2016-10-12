@@ -1,15 +1,27 @@
 package kr.ac.sungkyul.MDS.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.ac.sungkyul.MDS.service.MemberService;
 import kr.ac.sungkyul.MDS.service.SPF_MainService;
 import kr.ac.sungkyul.MDS.service.SPF_MallService;
 import kr.ac.sungkyul.MDS.service.TSF_MainService;
+import kr.ac.sungkyul.MDS.vo.CategoryListVo;
+import kr.ac.sungkyul.MDS.vo.JoinMallVo;
+import kr.ac.sungkyul.MDS.vo.MallVo;
+import kr.ac.sungkyul.MDS.vo.MemberVo;
 
+@Controller
 public class SPF_ListController {
 
 	@Autowired
@@ -29,7 +41,7 @@ public class SPF_ListController {
 
 		return "SPF/product/list";
 	}
-
+	
 	@RequestMapping("{mall_domain}/list/detail")
 	public String listDetail(@PathVariable String mall_domain, Model model) {
 

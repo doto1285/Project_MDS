@@ -26,7 +26,7 @@ public class SPF_MallService {
 
 	/**
 	 * SPF 접속 시 등록된 도메인인지 체크, mallVo 전달
-	 * 
+	 * 만든이 : 이민우
 	 * @param domain
 	 * @return
 	 */
@@ -37,7 +37,7 @@ public class SPF_MallService {
 
 	/**
 	 * SPF 접속 시 등록된 도메인인지 체크, boolean값 전달
-	 * 
+	 * 만든이 : 이민우
 	 * @param domain
 	 * @return
 	 */

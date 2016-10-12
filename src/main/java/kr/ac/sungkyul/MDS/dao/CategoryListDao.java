@@ -15,19 +15,16 @@ public class CategoryListDao {
 	@Autowired
 	private SqlSession sqlSession;
 
-	// public List<CategoryListVo> get(String domain) {
-	// List<CategoryListVo> listvo = sqlSession.selectList(
-	// "SPA_categorylist.get_damain_categorylist", domain );
-	// return listvo;
-	// }
 
-	public List<CategoryListVo> get_1stCategoryList(MallVo mallVo) {
-		List<CategoryListVo> categoryList1st = sqlSession.selectList("SPF_categorylist.1st_category_Name", mallVo);
-		return categoryList1st;
+	/**
+	 * SPF 개인 쇼핑몰의 카테고리를 가져옴
+	 * 만든이 : 이민우
+	 * @param mallVo
+	 * @return
+	 */
+	public List<CategoryListVo> get_CategoryList(MallVo mallVo) {
+		List<CategoryListVo> categoryList = sqlSession.selectList("SPF_categorylist.get_category_List", mallVo);
+		return categoryList;
 	}
-	
-	public List<CategoryListVo> get_2ndCategoryList(CategoryListVo catecoryListVo) {
-		List<CategoryListVo> categoryList2nd = sqlSession.selectList("SPF_categorylist.2nd_category_Name", catecoryListVo);
-		return categoryList2nd;
-	}
+
 }

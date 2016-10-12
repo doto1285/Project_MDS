@@ -60,7 +60,7 @@ public class MallDao {
 
 	/**
 	 * SPF 도메인 이름으로 mallVo 가져옴
-	 * 
+	 * 만든이 : 이민우
 	 * @param domain
 	 * @return
 	 */
@@ -71,7 +71,7 @@ public class MallDao {
 
 	/**
 	 * SPF 쇼핑몰 넘버로 유효 도메인인지 체크
-	 * 
+	 * 만든이 : 이민우
 	 * @param domain
 	 * @return
 	 */
@@ -82,7 +82,7 @@ public class MallDao {
 
 	/**
 	 * SPF 쇼핑몰 넘버 기준 푸터 정보 가져오기
-	 * 
+	 * 만든이 : 이민우
 	 * @param mall_no
 	 * @return
 	 */
