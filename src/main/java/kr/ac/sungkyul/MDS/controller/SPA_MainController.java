@@ -108,6 +108,7 @@ public class SPA_MainController {
 		if (file.isEmpty()) {
 			return "redirect:/SPA/" + domain + "/malllogo";
 		}
+		SPA_mainservice.deleteMallImg(domain, 0);
 		SPA_mainservice.insertMallImg(domain, file, 0);
 		return "redirect:/SPA/" + domain + "/malllogo";
 	}
@@ -117,6 +118,7 @@ public class SPA_MainController {
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
 			return "redirect:/main";
 		}
+		SPA_mainservice.deleteMallImg(domain, 0);
 		return "redirect:/SPA/" + domain + "/malllogo";
 	}
 
@@ -129,10 +131,12 @@ public class SPA_MainController {
 	 * @return
 	 */
 	@RequestMapping(value = "{domain}/mallmain", method = RequestMethod.GET)
-	public String mallMainImg(@PathVariable String domain, HttpSession session) {
+	public String mallMainImg(@PathVariable String domain, HttpSession session, Model model) {
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
 			return "redirect:/main";
 		}
+		String url = SPA_mainservice.getMallImg(domain, 1);
+		model.addAttribute("url", url);
 		return "SPA/mall/mallmainimg";
 	}
 	
@@ -141,7 +145,11 @@ public class SPA_MainController {
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
 			return "redirect:/main";
 		}
-		
+		if (file.isEmpty()) {
+			return "redirect:/SPA/" + domain + "/malllogo";
+		}
+		SPA_mainservice.deleteMallImg(domain, 1);
+		SPA_mainservice.insertMallImg(domain, file, 1);
 		return "redirect:/SPA/" + domain + "/mallmain";
 	}
 	
@@ -150,6 +158,7 @@ public class SPA_MainController {
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
 			return "redirect:/main";
 		}
+		SPA_mainservice.deleteMallImg(domain, 1);
 		return "redirect:/SPA/" + domain + "/mallmain";
 	}
 

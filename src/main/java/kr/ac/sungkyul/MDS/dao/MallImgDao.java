@@ -16,20 +16,23 @@ public class MallImgDao {
 	public void insertMallimg(MallimgVo mallimgVo) {
 		sqlSession.insert("SPA_mallimg.insertmallimg", mallimgVo);
 	}
-	
+
 	public MallimgVo getmallimg(MallimgVo mallimgVo) {
 		return sqlSession.selectOne("SPA_mallimg.getmallimg", mallimgVo);
 	}
-	
-	public MallimgVo get_selectMallimg_logo(MallVo mallVo){
+
+	public MallimgVo get_selectMallimg_logo(MallVo mallVo) {
 		System.out.println(mallVo.toString());
 		return sqlSession.selectOne("SPF_mallimg.selectMallimg_logo", mallVo);
-		
+
+	}
+
+	public MallimgVo get_selectMallimg_gate(MallVo mallVo) {
+		return sqlSession.selectOne("SPF_mallimg.selectMallimg_gate", mallVo);
 	}
 	
-public MallimgVo get_selectMallimg_gate(MallVo mallVo){
-		
-		return sqlSession.selectOne("SPF_mallimg.selectMallimg_gate", mallVo);
+	public void deleteMallimg(MallimgVo mallimgVo) {
+		sqlSession.delete("SPA_mallimg.deletemallimg", mallimgVo);
 	}
 
 }

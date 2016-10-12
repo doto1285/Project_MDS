@@ -191,5 +191,21 @@ public class SPA_MainService {
 		return vo.getMallimg_image();
 	}
 	
+	public void deleteMallImg (String domain, int flag) {
+		//도메인을 이용하여 쇼핑몰 번호, 이름을 알아냄
+		MallVo mallVo = mallDao.domainCheck(domain);
+		
+		MallimgVo vo = new MallimgVo();
+		vo.setMall_no(mallVo.getMall_no());
+		vo.setMallimg_flag(flag);
+		
+		vo = mallImgDao.getmallimg(vo);
+		if(vo == null) {
+			return;
+		}
+		mallImgDao.deleteMallimg(vo);
+		
+	}
+	
 	
  }

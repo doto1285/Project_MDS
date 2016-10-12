@@ -16,10 +16,14 @@
 	
 	<select id="getmallimg" parameterType="kr.ac.sungkyul.MDS.vo.MallimgVo"
 		resultType="kr.ac.sungkyul.MDS.vo.MallimgVo">
-			 select mallimg_image
+			 select mallimg_no, mallimg_image
 	 		 from mallimg
 	 		 where mall_no = #{mall_no } and mallimg_flag = #{mallimg_flag }
 	
 	</select>
+	
+	<delete id="deletemallimg" parameterType="kr.ac.sungkyul.MDS.vo.MallimgVo">
+		delete mallimg where mallimg_no =  #{mallimg_no }
+	</delete>
 
 </mapper>

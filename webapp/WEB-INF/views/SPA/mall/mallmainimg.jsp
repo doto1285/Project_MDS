@@ -25,12 +25,12 @@
 	<div class="section" id="contents">
 		<h3>대문 이미지 관리</h3>
 		<div class="form-group" id="inputFormGroup">
-			<img src="/Project_MDS/assets/image/SPA_main.png" alt="대문이미지"
+			<img src="${url }" alt="대문이미지"
 				id="mainimg" class="img-thumbnail">
 		</div>
 		<div class="form-group" id="inputButton">
-			<form class="board-form" method="post" action="mallmainmodify">
-				<input class="btn btn-info" type="file" id="file" value="첨부하기">
+			<form class="board-form" method="post" enctype="multipart/form-data" action="mallmainmodify">
+				<input class="btn btn-info" id="file" name="file" type="file" value="첨부하기">
 				<br> <input class="btn btn-info" type="submit" value="저장하기">
 			</form>
 
