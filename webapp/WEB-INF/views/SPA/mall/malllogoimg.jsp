@@ -25,12 +25,12 @@
 	<div class="section" id="contents">
 		<h3>로고 이미지 관리</h3>
 		<div class="form-group" id="inputFormGroup">
-			<img src="/Project_MDS/assets/image/SPA_logo.png" alt="로고이미지"
+			<img src="${url }" alt="로고이미지"
 				id="logoimg" class="img-thumbnail">
 		</div>
 		<div class="form-group" id="inputButton">
-			<form class="board-form" method="post" action="malllogomodify">
-				<input class="btn btn-info" type="file" value="첨부하기"> <br>
+			<form class="board-form" method="post" enctype="multipart/form-data" action="malllogomodify">
+				<input class="btn btn-info" id="file" name="file" type="file" value="첨부하기"> <br>
 				<input class="btn btn-info" type="submit" value="저장하기">
 			</form>
 			<form class="board-form" method="post" action="malllogodelete">

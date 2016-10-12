@@ -32,56 +32,49 @@
 		<!-- 검색 미구현 -->
 		<form class="form-inline" method="get" action="">
 			<div class="form-group" id="inputFormGroup">
-				<input name="" type="text" class="form-control"
-					id="inputBox" value=""> <input class="btn btn-info"
-					type="submit" value="검색">
+				<input name="" type="text" class="form-control" id="inputBox"
+					value=""> <input class="btn btn-info" type="submit"
+					value="검색">
 			</div>
 		</form>
 		<br>
 		<h3>주문목록</h3>
-		<table class="table" id="orderTable">
-			<colgroup>
-				<col width="10%" />
-				<col width="15%" />
-				<col width="15%" />
-				<col width="15%" />
-				<col width="15%" />
-				<col width="15%" />
-				<col width="15%" />
-			</colgroup>
+		<div class="col-lg-11">
+			<table class="table" id="orderTable">
 
-			<tr class="active">
-				<td>주문 번호</td>
-				<td>상품명</td>
-				<td>수량</td>
-				<td>총 가격</td>
-				<td>상태</td>
-			</tr>
+				<tr class="active">
+					<td>주문 번호</td>
+					<td>상품명</td>
+					<td>수량</td>
+					<td>총 가격</td>
+					<td>상태</td>
+				</tr>
 
-			<c:forEach var='vo' items='${map.orderlist}' varStatus='status'>
-				<tr>
-					<td id="tableContents">${vo.orderinfo_no }</td>
-					<td id="tableContents">${vo.orderinfo_address }</td>
-					<td id="tableContents">${vo.orderinfo_count }개</td>
-					<td id="tableContents">${vo.orderinfo_price }원</td>
-					<td id="tableContents"><c:choose>
-							<c:when test="${vo.orderinfo_state == 1 }">
+				<c:forEach var='vo' items='${map.orderlist}' varStatus='status'>
+					<tr>
+						<td id="tableContents">${vo.orderinfo_no }</td>
+						<td id="tableContents">${vo.orderinfo_address }</td>
+						<td id="tableContents">${vo.orderinfo_count }개</td>
+						<td id="tableContents">${vo.orderinfo_price }원</td>
+						<td id="tableContents"><c:choose>
+								<c:when test="${vo.orderinfo_state == 1 }">
 								결제 전
 							</c:when>
-							<c:when test="${vo.orderinfo_state == 2 }">
+								<c:when test="${vo.orderinfo_state == 2 }">
 								결제완료
 							</c:when>
-							<c:when test="${vo.orderinfo_state == 3 }">
+								<c:when test="${vo.orderinfo_state == 3 }">
 								배송중
 							</c:when>
-							<c:when test="${vo.orderinfo_state == 4 }">
+								<c:when test="${vo.orderinfo_state == 4 }">
 								배송완료
 							</c:when>
-						</c:choose></td>
-				</tr>
-			</c:forEach>
+							</c:choose></td>
+					</tr>
+				</c:forEach>
 
-		</table>
+			</table>
+		</div>
 		<nav>
 		<ul class="pagination" id="paging">
 			<li><a href="#" aria-label="Previous"> <span

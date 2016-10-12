@@ -1,6 +1,7 @@
 package kr.ac.sungkyul.MDS.service;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.ac.sungkyul.MDS.dao.JoinMallDao;
 import kr.ac.sungkyul.MDS.dao.MallDao;
+import kr.ac.sungkyul.MDS.dao.MallImgDao;
 import kr.ac.sungkyul.MDS.dao.MemberDao;
 import kr.ac.sungkyul.MDS.dao.OrderinfoDao;
 import kr.ac.sungkyul.MDS.dao.ProductDao;
@@ -41,6 +43,9 @@ public class SPA_MainService {
 	
 	@Autowired
 	JoinMallDao joinMallDao;
+	
+	@Autowired
+	MallImgDao mallImgDao;
 
 	/**
 	 * 유저가 세션에 있고, 유효한 유저인지 확인
@@ -126,8 +131,9 @@ public class SPA_MainService {
 	 * 로고 이미지 삽입
 	 * @param domain
 	 * @param file
+	 * @throws IOException 
 	 */
-	public void insertLogoImg (String domain, MultipartFile file) {
+	public void insertMallImg (String domain, MultipartFile file, int flag) throws IOException {
 		//도메인을 이용하여 쇼핑몰 번호, 이름을 알아냄
 		MallVo mallVo = mallDao.domainCheck(domain);
 		
@@ -138,19 +144,19 @@ public class SPA_MainService {
 		long fileSize = file.getSize();
 		
 		// 4. saveName
-		String saveName = orgName;
+		String saveName = orgName+domain;
 		
 		// 5. path 경로 정하기
 	    String path ="C:\\Users\\Jungminki\\Desktop\\skubit\\java\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Project_MDS\\assets\\image";
 
 	    // 6. imageurl 경로
-		String imageurl="/assets/image/"+saveName;
+		String imageurl="/Project_MDS/assets/image/"+saveName;
 		
 		//7. 첨부파일 객체에 담기
 	    MallimgVo mallimgVo = new MallimgVo();
 	    
 	    mallimgVo.setMall_no(mallVo.getMall_no());
-	    mallimgVo.setMallimg_flag(0);
+	    mallimgVo.setMallimg_flag(flag);
 	    mallimgVo.setMallimg_path(path);
 	    mallimgVo.setMallimg_filename(orgName);
 	    mallimgVo.setMallimg_savename(saveName);
@@ -158,12 +164,31 @@ public class SPA_MainService {
 	    mallimgVo.setMallimg_image(imageurl);
 		
 		//8. 첨부파일 삽입
-//		productdao.insertAttachPrFile(attachFilePrVO);
+		mallImgDao.insertMallimg(mallimgVo);
 	
 		//9. 파일 복사 및 이동
-//		File target = new File(path, saveName);
-//		FileCopyUtils.copy(file.getBytes(),target);
+		File target = new File(path, saveName);
+		FileCopyUtils.copy(file.getBytes(),target);
 		
+	}
+	
+	public String getMallImg (String domain, int flag) {
+		//도메인을 이용하여 쇼핑몰 번호, 이름을 알아냄
+		MallVo mallVo = mallDao.domainCheck(domain);
+		
+		MallimgVo vo = new MallimgVo();
+		vo.setMall_no(mallVo.getMall_no());
+		vo.setMallimg_flag(flag);
+		
+		vo = mallImgDao.getmallimg(vo);
+		
+		if(vo == null && flag == 0) {
+			return "/Project_MDS/assets/image/SPA_logo.png";
+		}else if(vo == null && flag == 1){
+			return "/Project_MDS/assets/image/SPA_main.png";
+		}
+		
+		return vo.getMallimg_image();
 	}
 	
 	
