@@ -176,7 +176,7 @@ public class SPA_MainController {
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
 			return "redirect:/main";
 		}
-		Map<String, Object> map = SPA_mainservice.getOrderinfo(domain);
+		Map<String, Object> map = SPA_mainservice.getOrderInfo(domain);
 		model.addAttribute("map", map);
 		return "SPA/order/orderlist";
 	}

@@ -18,10 +18,21 @@
 					<li role="presentation"><a href="#">고객센터</a></li>
 				</ul>
 			</div>
-			<div class="col-lg-3">
-				<img id="logo" src="/Project_MDS/assets/image/logo.png"
-					class="img-responsive" alt="Responsive image">
-			</div>
+			<c:choose>
+				<c:when test='${empty mallimgVoLogo }'>
+					<div class="col-lg-3">
+						<img id="logo" src="/Project_MDS/assets/image/logo.png"
+							class="img-responsive" alt="Responsive image">
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="col-lg-3">
+						<img id="logo" src="${mallimgVoLogo.mallimg_path }"
+							class="img-responsive" alt="Responsive image">
+					</div>
+				</c:otherwise>
+			</c:choose>
+
 
 			<c:choose>
 				<c:when test='${empty authUser }'>

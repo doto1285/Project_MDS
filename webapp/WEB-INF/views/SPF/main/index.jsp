@@ -27,10 +27,21 @@
 	<div class="section">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-4">
-					<img src="/Project_MDS/assets/image/SPF_index1.png" alt="대문이미지"
-						id="indexImage">
-				</div>
+				<c:choose>
+					<c:when test='${empty mallimgVoLogo }'>
+						<div class="col-lg-4">
+							<img src="/Project_MDS/assets/image/SPF_index1.png" alt="대문이미지"
+								id="indexImage">
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class="col-lg-4">
+							<img src="${mallimgVoGate.mallimg_path }" alt="대문이미지"
+								id="indexImage">
+						</div>
+					</c:otherwise>
+				</c:choose>
+
 				<div class="col-lg-8">
 					<br>
 				</div>
