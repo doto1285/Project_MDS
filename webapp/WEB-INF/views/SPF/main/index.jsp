@@ -36,7 +36,7 @@
 					</c:when>
 					<c:otherwise>
 						<div class="col-lg-4">
-							<img src="${mallimgVoGate.mallimg_path }" alt="대문이미지"
+							<img src="${mallimgVoGate.mallimg_image }" alt="대문이미지"
 								id="indexImage">
 						</div>
 					</c:otherwise>

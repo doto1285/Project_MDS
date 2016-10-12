@@ -27,7 +27,7 @@
 				</c:when>
 				<c:otherwise>
 					<div class="col-lg-3">
-						<img id="logo" src="${mallimgVoLogo.mallimg_path }"
+						<img id="logo" src="${mallimgVoLogo.mallimg_image }"
 							class="img-responsive" alt="Responsive image">
 					</div>
 				</c:otherwise>
