@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="SPF_member">
 
+<!-- 16/10/05 개발 당시 TSF_member.xml만 존재하고 공통으로 쓰는 member.xml이 없었기에 SPF_member.xml을 새로 만듭니다. -->
 
 	<select id="get_By_SPF_Member_Check" parameterType="kr.ac.sungkyul.MDS.vo.JoinMallVo"
 		resultType="kr.ac.sungkyul.MDS.vo.JoinMallVo">
@@ -24,7 +25,7 @@
 
 	<select id="get_By_SPF_IdAndPassword" parameterType="kr.ac.sungkyul.MDS.vo.MemberVo"
 		resultType="kr.ac.sungkyul.MDS.vo.MemberVo">
-		<!-- 로그인 -->
+		<!-- SPF 로그인 -->
 		<![CDATA[
 		select * 
 		  from member 

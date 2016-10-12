@@ -34,7 +34,7 @@ public class SPF_MainController {
 
 	/**
 	 * 쇼핑몰 프론트 메인화면
-	 * 
+	 * 만든이 : 이민우
 	 * @param domain
 	 * @param model
 	 * @return
@@ -57,9 +57,9 @@ public class SPF_MainController {
 			mallVo = SPF_mainService.get_Footer(mallVo.getMall_no());
 			model.addAttribute("mallVo", mallVo);
 			// 카테고리 메뉴 뿌려줌
-			List<CategoryListVo> categoryList1st = SPF_mainService.get_1stCategoryList(mallVo);
-			model.addAttribute("categoryList1st", categoryList1st);
-			model.addAttribute("categoryList2nd", categoryList1st);
+			List<CategoryListVo> categoryList = SPF_mainService.get_CategoryList(mallVo);
+			model.addAttribute("categoryList1st", categoryList);
+			model.addAttribute("categoryList2nd", categoryList);
 			// 헤더, 쇼핑몰 로고이미지, 대문이미지, 카테고리리스트, 게시판리스트, 상품리스트 뿌려줌
 			return "SPF/main/index";
 		}
@@ -79,9 +79,9 @@ public class SPF_MainController {
 			mallVo = SPF_mainService.get_Footer(mallVo.getMall_no());
 			model.addAttribute("mallVo", mallVo);
 			// 카테고리 메뉴 뿌려줌
-			List<CategoryListVo> categoryList1st = SPF_mainService.get_1stCategoryList(mallVo);
-			model.addAttribute("categoryList1st", categoryList1st);
-			model.addAttribute("categoryList2nd", categoryList1st);
+			List<CategoryListVo> categoryList = SPF_mainService.get_CategoryList(mallVo);
+			model.addAttribute("categoryList1st", categoryList);
+			model.addAttribute("categoryList2nd", categoryList);
 			// 헤더, 쇼핑몰 로고이미지, 대문이미지, 게시판리스트, 상품리스트 뿌려줌
 			return "SPF/main/index";
 		}
@@ -94,9 +94,9 @@ public class SPF_MainController {
 		mallVo = SPF_mainService.get_Footer(mallVo.getMall_no());
 		model.addAttribute("mallVo", mallVo);
 		// 카테고리 메뉴 뿌려줌
-		List<CategoryListVo> categoryList1st = SPF_mainService.get_1stCategoryList(mallVo);
-		model.addAttribute("categoryList1st", categoryList1st);
-		model.addAttribute("categoryList2nd", categoryList1st);
+		List<CategoryListVo> categoryList = SPF_mainService.get_CategoryList(mallVo);
+		model.addAttribute("categoryList1st", categoryList);
+		model.addAttribute("categoryList2nd", categoryList);
 		// 헤더, 쇼핑몰 로고이미지, 대문이미지, 게시판리스트, 상품리스트 뿌려줌
 
 		return "SPF/main/index";

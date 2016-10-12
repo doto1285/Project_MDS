@@ -34,7 +34,7 @@ public class MemberService {
 
 	/**
 	 * 로그인 세션 체크
-	 * 
+	 * 만든이 : 이민우
 	 * @param domain
 	 * @param session
 	 * @return
@@ -49,7 +49,7 @@ public class MemberService {
 
 	/**
 	 * 로그인 세션이 있는 회원이 현재 쇼핑몰 회원인지 체크
-	 * 
+	 * 만든이 : 이민우
 	 * @param joinmallVo
 	 * @return
 	 */
@@ -63,7 +63,7 @@ public class MemberService {
 
 	/**
 	 * 개인 쇼핑몰 회원가입
-	 * 
+	 * 만든이 : 이민우
 	 * @param joinmallVo
 	 */
 	public void SPFJoin(JoinMallVo joinmallVo) {
@@ -72,6 +72,7 @@ public class MemberService {
 
 	/**
 	 * 개인 쇼핑몰 로그인
+	 * 만든이 : 이민우
 	 * @param id
 	 * @param paasword
 	 * @return
