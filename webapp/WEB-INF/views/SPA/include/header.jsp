@@ -2,7 +2,7 @@
 
 	<div class="section">
 				<a href="main"><img src="/Project_MDS/assets/image/logo.png"
-					id="logoImage"></a> <a href="../../../Project_MDS/main"><button
+					id="logoImage"></a> <a href='logout'><button
 						type="button" class="btn btn-default" id="headerButton">로그아웃</button></a><label
 					id="headerText"> 환영합니다. ${authUser.member_name } 운영자님.</label>
 	</div>

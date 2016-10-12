@@ -33,15 +33,15 @@
 		</form>
 		<br>
 		<h3>FAQ 목록</h3>
-		<div class="col-lg-9">
-			<table class="tbl-ex">
-				<table class="table table-striped table-hover ">
-					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>글쓴이</th>
-						<th>조회수</th>
-						<th>작성일</th>
+		<div class="col-lg-11">
+			<table class="table"  id="memberTable">
+
+					<tr class="active">
+						<td>번호</td>
+						<td>제목</td>
+						<td>글쓴이</td>
+						<td>조회수</td>
+						<td>작성일</td>
 					</tr>
 
 
@@ -65,7 +65,6 @@
 
 
 					</tbody>
-				</table>
 			</table>
 
 			<c:choose>

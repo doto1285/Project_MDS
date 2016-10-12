@@ -12,8 +12,12 @@ public class MallImgDao {
 	private SqlSession sqlSession;
 
 	// 로고 첨부파일 등록
-	public void insertAttachPrFile(MallimgVo mallimgVo) {
-		sqlSession.insert("product.insertAttachPrFile", mallimgVo);
+	public void insertMallimg(MallimgVo mallimgVo) {
+		sqlSession.insert("SPA_mallimg.insertmallimg", mallimgVo);
+	}
+	
+	public MallimgVo getmallimg(MallimgVo mallimgVo) {
+		return sqlSession.selectOne("SPA_mallimg.getmallimg", mallimgVo);
 	}
 
 }
