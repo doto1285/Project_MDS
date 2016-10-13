@@ -79,7 +79,7 @@
 						</ul>
 					</div>
 				</c:when>
-				<c:otherwise>
+				<c:when test='${not empty SPFauthUser.member_no}'>
 					<div class="col-lg-5">
 						<ul class="nav nav-pills">
 							<!-- class="active" -->
@@ -87,6 +87,28 @@
 							<li role="presentation"><a href="join">장바구니</a></li>
 							<li role="presentation"><a href="login">주문배송조회</a></li>
 							<li role="presentation"><a href="join">마이페이지</a></li>
+							<div class="row">
+								<div class="col-lg-12">
+									<form class="form-inline">
+										<div class="form-group">
+											<label for="inputEmail3" class="sr-only">Password</label> <input
+												type="Email" class="form-control" id="inputEmail3"
+												placeholder="SERACH">
+										</div>
+										<button type="submit" class="btn btn-default">검색</button>
+									</form>
+								</div>
+							</div>
+						</ul>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="col-lg-2"></div>
+					<div class="col-lg-3">
+						<ul class="nav nav-pills">
+							<!-- class="active" -->
+							<li role="presentation"><a href="login">로그인</a></li>
+							<li role="presentation"><a href="join">회원가입</a></li>
 							<div class="row">
 								<div class="col-lg-12">
 									<form class="form-inline">

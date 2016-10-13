@@ -69,14 +69,21 @@ ul {
 /* index image */
 #indexImage {
 	width: 1140px;
+	height: 666px;
 }
 
 /* product image */
 #productImage{
 	width: 230px;
+	height: 347px;
 }
 
 /* product Contents */
 #productContents{
 	text-align:center;
+}
+
+/* productDiv */
+#productDiv{
+	padding: 5px;
 }

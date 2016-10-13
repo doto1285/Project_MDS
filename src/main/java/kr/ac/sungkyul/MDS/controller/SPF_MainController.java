@@ -38,7 +38,7 @@ public class SPF_MainController {
 
 	@Autowired
 	SPF_MallimgService SPF_mallimgService;
-	
+
 	@Autowired
 	SPF_ProductService SPF_productService;
 
@@ -76,7 +76,7 @@ public class SPF_MainController {
 			// 메인의 대문이미지 뿌려줌
 			MallimgVo mallimgVoGate = SPF_mallimgService.get_selectMallimg_gate(mallVo);
 			model.addAttribute("mallimgVoGate", mallimgVoGate);
-			// 게시판리스트, 상품리스트 뿌려줌
+			// 상품리스트 뿌려줌
 			List<ProductListVo> productListVo = SPF_productService.get_Product_Content(mallVo);
 			model.addAttribute("productListVo", productListVo);
 			return "SPF/main/index";
@@ -93,6 +93,10 @@ public class SPF_MainController {
 		// 로그인 세션이 있는 회원이 현재 개인 쇼핑몰 회원인지 체크
 		if (memberService.SPFWhatUser(joinmallVo) == false) {
 			// 로그인 세션이 있는 회원이 현재 쇼핑몰에 가입되지 않은 경우 실행되는 코드
+			joinmallVo.setMember_no(null);
+			session.setAttribute("SPFauthUserSession", joinmallVo);
+			JoinMallVo SPFauthUser = (JoinMallVo) session.getAttribute("SPFauthUserSession");
+			model.addAttribute("SPFauthUser", SPFauthUser);
 			// 쇼핑몰 footer 뿌려줌
 			mallVo = SPF_mainService.get_Footer(mallVo.getMall_no());
 			model.addAttribute("mallVo", mallVo);
@@ -106,7 +110,9 @@ public class SPF_MainController {
 			// 메인의 대문이미지 뿌려줌
 			MallimgVo mallimgVoGate = SPF_mallimgService.get_selectMallimg_gate(mallVo);
 			model.addAttribute("mallimgVoGate", mallimgVoGate);
-			// 게시판리스트, 상품리스트 뿌려줌
+			// 상품리스트 뿌려줌
+			List<ProductListVo> productListVo = SPF_productService.get_Product_Content(mallVo);
+			model.addAttribute("productListVo", productListVo);
 			return "SPF/main/index";
 		}
 
@@ -127,8 +133,9 @@ public class SPF_MainController {
 		// 메인의 대문이미지 뿌려줌
 		MallimgVo mallimgVoGate = SPF_mallimgService.get_selectMallimg_gate(mallVo);
 		model.addAttribute("mallimgVoGate", mallimgVoGate);
-		//게시판리스트, 상품리스트 뿌려줌
-
+		// 상품리스트 뿌려줌
+		List<ProductListVo> productListVo = SPF_productService.get_Product_Content(mallVo);
+		model.addAttribute("productListVo", productListVo);
 		return "SPF/main/index";
 	}
 

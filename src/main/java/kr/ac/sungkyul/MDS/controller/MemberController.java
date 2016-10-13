@@ -16,10 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import kr.ac.sungkyul.MDS.service.MemberService;
 import kr.ac.sungkyul.MDS.service.SPF_MainService;
 import kr.ac.sungkyul.MDS.service.SPF_MallService;
+import kr.ac.sungkyul.MDS.service.SPF_MallimgService;
 import kr.ac.sungkyul.MDS.service.TSF_MainService;
 import kr.ac.sungkyul.MDS.vo.BoardVo;
+import kr.ac.sungkyul.MDS.vo.CategoryListVo;
 import kr.ac.sungkyul.MDS.vo.JoinMallVo;
 import kr.ac.sungkyul.MDS.vo.MallVo;
+import kr.ac.sungkyul.MDS.vo.MallimgVo;
 import kr.ac.sungkyul.MDS.vo.MemberVo;
 
 @Controller
@@ -30,51 +33,50 @@ public class MemberController {
 
 	@Autowired
 	TSF_MainService TSF_MainService;
-	
+
 	@Autowired
 	SPF_MainService SPF_mainService;
-	
+
 	@Autowired
 	SPF_MallService SPF_mallService;
+	
+	@Autowired
+	SPF_MallimgService SPF_mallimgService;
 
 	@RequestMapping("/main/joinform_choose")
 	public String Joinform_choose() {
 		// 회원가입시 회원 종류 선택 화면
 		System.out.println("가입 종류 선택");
-		
+
 		return "member/Joinform_choose";
 	}
-	
+
 	@RequestMapping("/main/Joinform_personal")
 	public String joinform_Personal() {
 		// 개인회원 회원가입
 		System.out.println("개인 회원 가입");
-		
+
 		return "member/Joinform_personal";
 	}
-	
-	
+
 	@RequestMapping("/main/Join")
 	public String Join(@ModelAttribute MemberVo memberVo) {
 		// 일반, 기업 회원 가입
-		System.out.println("가입할 member " + memberVo );
-		
+		System.out.println("가입할 member " + memberVo);
+
 		memberService.join(memberVo);
-		
+
 		return "redirect:/main";
 	}
-	
+
 	@RequestMapping("/main/Joinform_company")
 	public String Joinform_company() {
 		// 기업회원 회원가입
 		System.out.println("기업 회원 가입");
-		
+
 		return "member/Joinform_company";
 	}
-	
-	
-	
-	
+
 	@RequestMapping("/main/loginfrom")
 	public String index() {
 		// 개인회원, 기업회원 로그인
@@ -94,11 +96,9 @@ public class MemberController {
 	@RequestMapping(value = "/main/login", method = RequestMethod.POST)
 	public String login(
 			// 개인, 기업회원 로그인
-			HttpSession session, 
-			@RequestParam(value = "id", required = false, defaultValue = "") String id,
+			HttpSession session, @RequestParam(value = "id", required = false, defaultValue = "") String id,
 			@RequestParam(value = "password", required = false, defaultValue = "") String password,
-			@RequestParam(value = "member_distinction", required = false, defaultValue = "") int member_distinction
-	) {
+			@RequestParam(value = "member_distinction", required = false, defaultValue = "") int member_distinction) {
 		System.out.println("controller - " + id + "  " + password + member_distinction);
 		MemberVo authUser = memberService.login(id, password, member_distinction);
 
@@ -112,11 +112,10 @@ public class MemberController {
 		session.setAttribute("authUser", authUser);
 
 		// 가입한 쇼핑몰 가져오기
-		List<MallVo> auth_MallList = 
-				TSF_MainService.GetJoinMall(authUser.getMember_no(), authUser.getMember_id(), authUser.getMember_state());
+		List<MallVo> auth_MallList = TSF_MainService.GetJoinMall(authUser.getMember_no(), authUser.getMember_id(),
+				authUser.getMember_state());
 
 		session.setAttribute("auth_MallList", auth_MallList);
-		
 
 		return "redirect:/main";
 	}
@@ -129,11 +128,10 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/main";
 	}
-	
 
 	/**
-	 * SPF 회원가입 화면
-	 * 만든이 : 이민우
+	 * SPF 회원가입 화면 만든이 : 이민우
+	 * 
 	 * @param mall_domain
 	 * @param model
 	 * @param session
@@ -160,14 +158,20 @@ public class MemberController {
 		// 쇼핑몰 footer 뿌려줌
 		mallVo = SPF_mainService.get_Footer(mallVo.getMall_no());
 		model.addAttribute("mallVo", mallVo);
-		// 헤더, 카테고리리스트
+		// 카테고리 메뉴 뿌려줌
+		List<CategoryListVo> categoryList = SPF_mainService.get_CategoryList(mallVo);
+		model.addAttribute("categoryList1st", categoryList);
+		model.addAttribute("categoryList2nd", categoryList);
+		// 헤더의 로고이미지 뿌려줌
+		MallimgVo mallimgVoLogo = SPF_mallimgService.get_selectMallimg_logo(mallVo);
+		model.addAttribute("mallimgVoLogo", mallimgVoLogo);
 
 		return "SPF/member/join";
 	}
 
 	/**
-	 * SPF 회원가입 완료
-	 * 만든이 : 이민우
+	 * SPF 회원가입 완료 만든이 : 이민우
+	 * 
 	 * @param mall_domain
 	 * @param model
 	 * @param session
@@ -201,12 +205,12 @@ public class MemberController {
 
 		memberService.SPFJoin(joinmallVo);
 
-		return "SPF/main/index";
+		return "redirect:/" + mall_domain + "/main";
 	}
 
 	/**
-	 * SPF 로그인 화면
-	 * 만든이 : 이민우
+	 * SPF 로그인 화면 만든이 : 이민우
+	 * 
 	 * @param mall_domain
 	 * @param model
 	 * @return
@@ -221,13 +225,23 @@ public class MemberController {
 			// 없는 도메인일 경우 실행되는 코드
 			return "404 error";
 		}
+		// 쇼핑몰 footer 뿌려줌
+		mallVo = SPF_mainService.get_Footer(mallVo.getMall_no());
+		model.addAttribute("mallVo", mallVo);
+		// 카테고리 메뉴 뿌려줌
+		List<CategoryListVo> categoryList = SPF_mainService.get_CategoryList(mallVo);
+		model.addAttribute("categoryList1st", categoryList);
+		model.addAttribute("categoryList2nd", categoryList);
+		// 헤더의 로고이미지 뿌려줌
+		MallimgVo mallimgVoLogo = SPF_mallimgService.get_selectMallimg_logo(mallVo);
+		model.addAttribute("mallimgVoLogo", mallimgVoLogo);
 
 		return "SPF/member/login";
 	}
 
 	/**
-	 * SPF 로그인 완료
-	 * 만든이 : 이민우
+	 * SPF 로그인 완료 만든이 : 이민우
+	 * 
 	 * @param mall_domain
 	 * @param session
 	 * @param model
@@ -286,12 +300,12 @@ public class MemberController {
 		model.addAttribute("mallVo", mallVo);
 		// 헤더, 쇼핑몰 로고이미지, 대문이미지, 카테고리리스트, 게시판리스트, 상품리스트 뿌려줌
 
-		return "SPF/main/index";
+		return "redirect:/" + mall_domain + "/main";
 	}
 
 	/**
-	 * SPF 로그아웃
-	 * 만든이 : 이민우
+	 * SPF 로그아웃 만든이 : 이민우
+	 * 
 	 * @param session
 	 * @param mall_domain
 	 * @return

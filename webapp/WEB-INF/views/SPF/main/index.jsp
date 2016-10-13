@@ -46,13 +46,12 @@
 					<br>
 				</div>
 			</div>
-
 			<c:forEach items="${productListVo }" var="productListVo"
 				varStatus="status">
 				<c:if test="${status.index%4==0 }">
 					<div class="row"></div>
 				</c:if>
-				<div class="col-lg-3">
+				<div class="col-lg-3" id="productDiv">
 					<div class="thumbnail">
 						<img src="${productListVo.productimg_img }" alt="상품이미지"
 							id="productImage">

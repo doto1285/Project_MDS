@@ -5,11 +5,13 @@
 	<select id="get_product_content" parameterType="kr.ac.sungkyul.MDS.vo.MallVo"
 		resultType="kr.ac.sungkyul.MDS.vo.ProductListVo">
 		<!-- mall_no을 이용해 올바른 상품이름, 가격, 상품 이미지URL 가져오기 -->
-			 select product_name, product_price, productimg_img from 
+				<![CDATA[	
+			 select product_name, product_price, productimg_img, productimg_no from 
 			 categorylist c FULL OUTER JOIN product p on c.categorylist_no = p.categorylist_no 
 			 FULL OUTER JOIN productimg i on p.product_no = i.product_no 
 			 where productimg_img is not null and mall_no= #{mall_no } and product_state = 1
-	
+			 and rownum <= 20 order by productimg_no desc
+			 ]]>
 	</select>
 
 </mapper>
