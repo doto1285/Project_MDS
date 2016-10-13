@@ -128,12 +128,11 @@
 				</ul>
 			</div>
 			<!-- end:paging -->
-			s
 			<c:choose>
 				<c:when test='${authUser.member_distinction == 9}'>
 					<!-- admin만 글쓰기 버튼 보여준다  -->
 
-					<a href="#" class="btn btn-primary" id="write">글쓰기</a>
+					<a href="/Project_MDS/main/board/writeform/notice" class="btn btn-primary" id="write">글쓰기</a>
 				</c:when>
 			</c:choose>
 		</div>

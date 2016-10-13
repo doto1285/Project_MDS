@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.ac.sungkyul.MDS.dao.BoardDao;
 import kr.ac.sungkyul.MDS.dao.BoardListDao;
+import kr.ac.sungkyul.MDS.dao.TSA_BoardDao;
+import kr.ac.sungkyul.MDS.dao.TSA_BoardListDao;
 import kr.ac.sungkyul.MDS.vo.BoardListVo;
 import kr.ac.sungkyul.MDS.vo.BoardVo;
 
@@ -22,14 +24,14 @@ public class TSA_BoardService {
 	private static final int LIST_BLOCKSIZE = 5;
 
 	@Autowired
-	private BoardListDao boardListDao;
+	private TSA_BoardListDao tsa_boardListDao;
 
 	@Autowired
-	private BoardDao boardDao;
+	private TSA_BoardDao tsa_boardDao;
 
 	public List<BoardListVo> GetBoardList(String userid) {
 		// TODO Auto-generated method stub
-		List<BoardListVo> GetBoardList = boardListDao.GetBoardList(userid);
+		List<BoardListVo> GetBoardList = tsa_boardListDao.GetBoardList(userid);
 
 		return GetBoardList;
 	}
@@ -37,7 +39,7 @@ public class TSA_BoardService {
 	public BoardListVo GetBoard(String userid, int boardlist_no) {
 		// TODO Auto-generated method stub
 		// 게시판 정보 가져오기
-		BoardListVo GetBoard = boardListDao.GetBoard(userid, boardlist_no);
+		BoardListVo GetBoard = tsa_boardListDao.GetBoard(userid, boardlist_no);
 		return GetBoard;
 	}
 
@@ -55,22 +57,22 @@ public class TSA_BoardService {
 	public void NewWrite(BoardVo boardVo) {
 		// TODO Auto-generated method stub
 		// 새 글 등록하기
-		boardDao.NewWrite(boardVo);
+		tsa_boardDao.NewWrite(boardVo);
 	}
 
 	public BoardVo GetBoardContent(int board_no) {
 		// TODO Auto-generated method stub
 		// 선택한 게시글 내용 가져오기
 
-		return boardDao.GetBoardContent(board_no);
+		return tsa_boardDao.GetBoardContent(board_no);
 	}
 
 	@Transactional
 	public void ReplyWrite(BoardVo boardVo) {
 		// TODO Auto-generated method stub
 		// 답글 등록하기
-		boardDao.ReplyWrite_orderno_update(boardVo);
-		boardDao.ReplyWrite(boardVo);
+		tsa_boardDao.ReplyWrite_orderno_update(boardVo);
+		tsa_boardDao.ReplyWrite(boardVo);
 	}
 
 	public Map<String, Object> GetBoardContentsList(int boardlist_no, int page, String keyword) {
@@ -78,7 +80,7 @@ public class TSA_BoardService {
 		// 1. 현재 페이지 값 받기 = page
 
 		// 2. 페이지를 그리기 위한 기초 작업
-		int totalCount = boardDao.getTotalCount(boardlist_no);
+		int totalCount = tsa_boardDao.getTotalCount(boardlist_no);
 		int pageCount = (int) Math.ceil((double) totalCount / LIST_PAGESIZE);
 		int blockCount = (int) Math.ceil((double) pageCount / LIST_BLOCKSIZE);
 		int currentBlock = (int) Math.ceil((double) page / LIST_BLOCKSIZE);
@@ -100,7 +102,7 @@ public class TSA_BoardService {
 		int nexttoPage = (currentBlock < blockCount) ? currentBlock * LIST_BLOCKSIZE + 1 : page;
 		int prevtoPage = (currentBlock > 1) ? startPage - 3 : page;
 
-		List<BoardVo> GetBoardContentsList = boardDao.GetBoardContentsList(boardlist_no, page, LIST_PAGESIZE, keyword);
+		List<BoardVo> GetBoardContentsList = tsa_boardDao.GetBoardContentsList(boardlist_no, page, LIST_PAGESIZE, keyword);
 
 		Map<String, Object> map = new HashMap<String, Object>();
 

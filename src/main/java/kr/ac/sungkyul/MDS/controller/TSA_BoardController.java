@@ -69,38 +69,49 @@ public class TSA_BoardController {
 	// 로그아웃
 	public String logout(HttpSession session) {
 		System.out.println("로그아웃");
-		session.removeAttribute("authUser");
+		session.setAttribute("authUser",null);
 		session.invalidate();
 		return "redirect:/TSA/admin/main";
 	}
 
 	
 
+	@RequestMapping("/main/board/notice")
+	public String list() {
+		System.out.println("servicecenter");
+		return "TSA/board/notice";
+	}
+	
 	@RequestMapping("/main/board/servicecenter")
 	public String list1() {
 		System.out.println("servicecenter");
 		return "TSA/board/servicecenter";
 	}
+	@RequestMapping("/main/board/qna")
+	public String list2() {
+		System.out.println("servicecenter");
+		return "TSA/board/qna";
+	}
 
 	@RequestMapping("/main/board/shopmanage")
-	public String list2() {
+	public String list3() {
 		System.out.println("shopmanage");
 		return "TSA/board/shopmanage";
 	}
 
 	@RequestMapping("/main/board/usermanage")
-	public String list3() {
+	public String list4() {
 		System.out.println("usermanage");
 		return "TSA/board/usermanage";
 	}
 
-	@RequestMapping("/main/board/writeform/{boardlist_no}")
-	public String writeform(HttpSession session, @PathVariable int boardlist_no) {
+	@RequestMapping("/main/board/writeform/notice")
+	public String writeform(HttpSession session) {
 		// list에서 글쓰기 버튼 클릭시 writeform으로 연결
 		return "TSA/board/writeform";
 	}
 
-	@RequestMapping(value = "/main/board/write/{boardlist_no}", method = RequestMethod.POST)
+	@RequestMapping(value = "/main/board/write/notice", method = RequestMethod.POST)
 	public String write(@PathVariable int boardlist_no, @ModelAttribute BoardVo boardVo, HttpSession session) {
 		System.out.println("write 등록버튼 클릭");
 		System.out.println("모델 객체 테스트" + boardVo);

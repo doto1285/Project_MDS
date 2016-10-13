@@ -135,10 +135,45 @@
 					<td>Column content</td>
 				</tr>
 
-			</tbody>
+				</tbody>
 		</table>
 
 	</div>
+
+
+
+		<div class="bottom" id="serv_bot">
+			<!-- begin:paging -->
+			<div class="pager">
+				<ul>
+
+					<c:if test="${map.prevPage >= 0 }">
+						<li><a
+							href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${map.prevPage }">◀</a></li>
+					</c:if>
+
+					<c:forEach begin='${map.firstPage }' end='${map.lastPage }'
+						step='1' var='i'>
+						<c:choose>
+							<c:when test='${map.currentPage == i }'>
+								<li class="selected">${i }</li>
+							</c:when>
+							<c:when test='${i > map.pageCount }'>
+								<li>${i }</li>
+							</c:when>
+							<c:otherwise>
+								<li><a
+									href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${i }">${i }</a></li>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+
+					<c:if test='${map.nextPage > 0 }'>
+						<li><a
+							href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${map.nextPage }">▶</a></li>
+					</c:if>
+				</ul>
+			</div>
 	<!--      ---------------------------------------------             -->
 </body>
 </html>

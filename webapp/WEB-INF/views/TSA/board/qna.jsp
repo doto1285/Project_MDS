@@ -2,13 +2,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <!-- 공통 -->
-<script type="text/javascript" src="/Project_MDS/assets/js/jquery/jquery-3.1.1.js"></script>
+<script type="text/javascript"
+	src="/Project_MDS/assets/js/jquery/jquery-3.1.1.js"></script>
 <script src="/Project_MDS/assets/dist/js/bootstrap.min.js"></script>
 <link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
@@ -23,38 +24,29 @@
 		<c:import url='/WEB-INF/views/TSA/include/header_top.jsp' />
 		<c:import url='/WEB-INF/views/TSA/include/header_tap.jsp' />
 	</div>
-<!--      ---------------------------------------------             -->
-	<!--   <div class="section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12"></div>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-			</div>
-		</div>
-		-->
-<!--      ---------------------------------------------             -->
-<div class="jumbotron" id="maincol">
 
-
+	<div class="jumbotron" id="maincol">
+		<nav id="navline">
 		<center>
-			<P id="center_p">쇼핑몰관리</P>
+		<br>
+			<P id="center_p">고객센터</P>
+			<br>
+			<a href="/Project_MDS/TSA/main/board/servicecenter" class="btn btn-default" id="serv_button">FAQ</a>
+			<br>
+			<br>
+			<a href="/Project_MDS/TSA/main/board/qna" class="btn btn-default" id="serv_button">QNA</a>
+		</center>
+			</nav>
+		<center>
+			<P id="center_p">QNA</P>
 		</center>
 
-		<form id="search_form" action="/mysite5/board" method="get">
+		<form id="search_form" action="Project_MDS/main/" method="get">
 			<input type="text" id="kwd" name="kwd" value="${keyword }"> <input
 				type="submit" value="찾기">
 		</form>
 
-
-		<table class="table table-striped table-hover ">
+		<table class="table table-striped table-hover " id="serv_table">
 			<tr>
 				<th>번호</th>
 				<th>쇼핑몰 명</th>
@@ -135,7 +127,7 @@
 					<td>Column content</td>
 				</tr>
 
-				</tbody>
+			</tbody>
 		</table>
 
 	</div>
@@ -174,7 +166,19 @@
 					</c:if>
 				</ul>
 			</div>
-	
+			<!-- end:paging -->
+			<c:choose>
+				<c:when test='${authUser.member_distinction == 9}'>
+					<!-- admin만 글쓰기 버튼 보여준다  -->
+
+					<a href="#" class="btn btn-primary" id="write">글쓰기</a>
+				</c:when>
+			</c:choose>
+		</div>
+
+
+
+	</div>
 	<!--      ---------------------------------------------             -->
 </body>
 </html>
