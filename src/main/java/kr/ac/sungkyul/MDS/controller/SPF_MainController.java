@@ -16,11 +16,13 @@ import kr.ac.sungkyul.MDS.service.MemberService;
 import kr.ac.sungkyul.MDS.service.SPF_MainService;
 import kr.ac.sungkyul.MDS.service.SPF_MallService;
 import kr.ac.sungkyul.MDS.service.SPF_MallimgService;
+import kr.ac.sungkyul.MDS.service.SPF_ProductService;
 import kr.ac.sungkyul.MDS.vo.CategoryListVo;
 import kr.ac.sungkyul.MDS.vo.JoinMallVo;
 import kr.ac.sungkyul.MDS.vo.MallVo;
 import kr.ac.sungkyul.MDS.vo.MallimgVo;
 import kr.ac.sungkyul.MDS.vo.MemberVo;
+import kr.ac.sungkyul.MDS.vo.ProductListVo;
 
 @Controller
 public class SPF_MainController {
@@ -36,6 +38,9 @@ public class SPF_MainController {
 
 	@Autowired
 	SPF_MallimgService SPF_mallimgService;
+	
+	@Autowired
+	SPF_ProductService SPF_productService;
 
 	/**
 	 * 쇼핑몰 프론트 메인화면 만든이 : 이민우
@@ -71,7 +76,9 @@ public class SPF_MainController {
 			// 메인의 대문이미지 뿌려줌
 			MallimgVo mallimgVoGate = SPF_mallimgService.get_selectMallimg_gate(mallVo);
 			model.addAttribute("mallimgVoGate", mallimgVoGate);
-			// 카테고리리스트, 게시판리스트, 상품리스트 뿌려줌
+			// 게시판리스트, 상품리스트 뿌려줌
+			List<ProductListVo> productListVo = SPF_productService.get_Product_Content(mallVo);
+			model.addAttribute("productListVo", productListVo);
 			return "SPF/main/index";
 		}
 

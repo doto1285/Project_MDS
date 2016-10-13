@@ -23,6 +23,7 @@
 		<mapper resource="mybatis/mappers/SPF_member.xml" />
 		<mapper resource="mybatis/mappers/SPA_orderinfo.xml" />
 		<mapper resource="mybatis/mappers/SPA_product.xml" />
+		<mapper resource="mybatis/mappers/SPF_product.xml" />
 		<mapper resource="mybatis/mappers/SPF_categorylist.xml" />
 		<mapper resource="mybatis/mappers/SPA_mallimg.xml" />
 		<mapper resource="mybatis/mappers/SPF_mallimg.xml" />
