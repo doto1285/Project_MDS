@@ -169,7 +169,6 @@ public class SPA_MainService {
 		//9. 파일 복사 및 이동
 		File target = new File(path, saveName);
 		FileCopyUtils.copy(file.getBytes(),target);
-		
 	}
 	
 	public String getMallImg (String domain, int flag) {
@@ -204,7 +203,6 @@ public class SPA_MainService {
 			return;
 		}
 		mallImgDao.deleteMallimg(vo);
-		
 	}
 	
 	
