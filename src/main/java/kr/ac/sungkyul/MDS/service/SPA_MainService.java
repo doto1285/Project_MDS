@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
->>>>>>> 76cb27f2669504889ec3f0602f4da479c637d583
 import java.util.List;
 import java.util.Map;
 
@@ -15,25 +14,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-<<<<<<< HEAD
 import kr.ac.sungkyul.MDS.dao.CategoryListDao;
-=======
 import kr.ac.sungkyul.MDS.dao.JoinMallDao;
->>>>>>> 76cb27f2669504889ec3f0602f4da479c637d583
 import kr.ac.sungkyul.MDS.dao.MallDao;
 import kr.ac.sungkyul.MDS.dao.MallImgDao;
 import kr.ac.sungkyul.MDS.dao.MemberDao;
 import kr.ac.sungkyul.MDS.dao.OrderinfoDao;
-<<<<<<< HEAD
-import kr.ac.sungkyul.MDS.vo.CategoryListVo;
-=======
 import kr.ac.sungkyul.MDS.dao.ProductDao;
 import kr.ac.sungkyul.MDS.vo.JoinMallVo;
->>>>>>> 76cb27f2669504889ec3f0602f4da479c637d583
 import kr.ac.sungkyul.MDS.vo.MallVo;
 import kr.ac.sungkyul.MDS.vo.MallimgVo;
 import kr.ac.sungkyul.MDS.vo.MemberVo;
 import kr.ac.sungkyul.MDS.vo.OrderinfoVo;
+
+
 
 @Service
 public class SPA_MainService {
