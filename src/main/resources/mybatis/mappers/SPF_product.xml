@@ -10,7 +10,7 @@
 			 categorylist c FULL OUTER JOIN product p on c.categorylist_no = p.categorylist_no 
 			 FULL OUTER JOIN productimg i on p.product_no = i.product_no 
 			 where productimg_image is not null and mall_no= #{mall_no } and product_state = 1
-			 and productimg_falg = 0 and rownum <= 20 order by productimg_no desc
+			 and productimg_flag = 0 and rownum <= 20 order by productimg_no desc
 			 ]]>
 	</select>
 
