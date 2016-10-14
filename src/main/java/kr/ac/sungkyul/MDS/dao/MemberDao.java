@@ -44,7 +44,7 @@ public class MemberDao {
 
 	/**
 	 * 로그인 세션이 있는 회원이 현재 개인 쇼핑몰 회원인지 체크
-	 * 
+	 * 만든이 : 이민우
 	 * @param joinmallVo
 	 * @return
 	 */
@@ -53,12 +53,24 @@ public class MemberDao {
 		return joinmallVo2;
 	}
 
+	
+	/**
+	 * 개인 쇼핑몰 회원가입
+	 * 만든이 : 이민우
+	 * @param joinmallVo
+	 */
 	public void SPFJoin(JoinMallVo joinmallVo) {
 		sqlSession.insert("SPF_member.insert_SPF_Member", joinmallVo);
 	}
 
+	/**
+	 * 개인 쇼핑몰 로그인
+	 * 만든이 : 이민우
+	 * @param id
+	 * @param password
+	 * @return
+	 */
 	public MemberVo SPFLoginCheck(String id, String password) {
-
 		MemberVo memberVo = new MemberVo();
 		memberVo.setMember_id(id);
 		memberVo.setMember_password(password);

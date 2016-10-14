@@ -13,11 +13,6 @@ p {
 	margin: 0 10px 10px
 }
 
-a {
-	display: block;
-	color: #000000;
-}
-
 /* --------------- order 화면 css --------------- */
 #boardTitle {
 	text-align: center;

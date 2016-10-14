@@ -8,34 +8,39 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>모두의 쇼핑몰</title>
-<link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
-	rel="stylesheet" type="text/css">
-<link href="/Project_MDS/assets/css/SPA_main.css" rel="stylesheet"
-	type="text/css">
+<!-- 공통 -->
+<script type="text/javascript" src="/Project_MDS/assets/js/jquery/jquery-3.1.1.js"></script>
+
+<link href="/Project_MDS/assets/dist/css/bootstrap.min.css"	rel="stylesheet" type="text/css">
+<script src="/Project_MDS/assets/dist/js/bootstrap.min.js"></script>
+<link href="/Project_MDS/assets/css/SPA_main.css" rel="stylesheet" type="text/css">
+<!-- /공통 -->
+<!-- 개인 -->
+<link href="/Project_MDS/assets/css/SPA_member.css" rel="stylesheet" type="text/css">
+<!-- /개인 -->
 </head>
 <body>
 	<c:import url='/WEB-INF/views/SPA/include/header.jsp' />
 	<c:import url='/WEB-INF/views/SPA/include/navigation.jsp' />
 	<div class="section" id="contents">
 		<h3>Q&A 검색</h3>
-		<form class="form-inline" method="post" action="product">
+		<form class="form-inline" method="get" action="">
 			<div class="form-group" id="inputFormGroup">
-				<input name="product_search" type="text" class="form-control"
+				<input name="" type="text" class="form-control"
 					id="inputBox" value=""> <input class="btn btn-info"
 					type="submit" value="검색">
 			</div>
 		</form>
 		<br>
 		<h3>Q&A 목록</h3>
-		<div class="col-lg-9">
-			<table class="tbl-ex">
-				<table class="table table-striped table-hover ">
-					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>글쓴이</th>
-						<th>조회수</th>
-						<th>작성일</th>
+		<div class="col-lg-11">
+			<table class="table" id="memberTable">
+					<tr class="active">
+						<td>번호</td>
+						<td>제목</td>
+						<td>글쓴이</td>
+						<td>조회수</td>
+						<td>작성일</td>
 					</tr>
 
 
@@ -60,7 +65,6 @@
 
 					</tbody>
 				</table>
-			</table>
 
 			<c:choose>
 				<c:when

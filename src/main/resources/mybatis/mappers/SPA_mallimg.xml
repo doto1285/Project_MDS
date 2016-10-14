@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SPA_mallimg">
+
+	<!--첨부파일 삽입 -->
+	<insert id="insertmallimg" parameterType="kr.ac.sungkyul.MDS.vo.MallimgVo">
+		<![CDATA[
+			insert into mallimg(
+				mallimg_no, mallimg_filename, mallimg_savename, mallimg_flag, mall_no, mallimg_path, mallimg_fileSize, mallimg_image
+			)
+			values (
+				mallimg_seq.nextVal, #{mallimg_filename}, #{mallimg_savename}, #{mallimg_flag}, #{mall_no}, #{mallimg_path}, #{mallimg_fileSize}, #{mallimg_image}
+			)
+		]]>
+	</insert>
+	
+	<select id="getmallimg" parameterType="kr.ac.sungkyul.MDS.vo.MallimgVo"
+		resultType="kr.ac.sungkyul.MDS.vo.MallimgVo">
+			 select mallimg_no, mallimg_image
+	 		 from mallimg
+	 		 where mall_no = #{mall_no } and mallimg_flag = #{mallimg_flag }
+	
+	</select>
+	
+	<delete id="deletemallimg" parameterType="kr.ac.sungkyul.MDS.vo.MallimgVo">
+		delete mallimg where mallimg_no =  #{mallimg_no }
+	</delete>
+
+</mapper>

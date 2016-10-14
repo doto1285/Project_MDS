@@ -47,23 +47,51 @@
 }
 
 #img01 {
-width: 150px; 	
+	width: 150px;
 }
-#logo{
-	    padding-top: 5px;
-	
+
+#logo {
+	padding-top: 5px;
 }
-#center_p{
+
+#center_p {
 	margin-top: -35px;
-    margin-bottom: -5px;
-	
+	margin-bottom: -5px;
 }
-#search_form{
-    margin-left: 40px;
+
+#search_form {
+	margin-left: 40px;
 }
-#table_notice{
+
+#table_notice {
 	margin-left: 0px;
 }
-#write{
-	margin-left:1100px
+
+#write {
+	margin-left: 1100px;
+	margin-top: -20px;
+}
+
+#navline {
+	border-right: 1px solid #ffffff;
+	width: 200px;
+	height: 0px;
+	float: left;
+	margin-top: 40px;
+}
+
+#serv_table {
+	margin-left:190px;
+	width: 1149.5px;
+}
+
+#serv_bot {
+	margin-top: -130px;
+}
+
+#maincol {
+	height: 546px;
+}
+#serv_button{
+	width: 126px;
 }

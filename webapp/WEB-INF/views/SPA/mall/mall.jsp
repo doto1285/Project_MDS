@@ -7,10 +7,13 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
-	rel="stylesheet" type="text/css">
-<link href="/Project_MDS/assets/css/SPA_main.css" rel="stylesheet"
-	type="text/css">
+<!-- 공통 -->
+<script type="text/javascript" src="/Project_MDS/assets/js/jquery/jquery-3.1.1.js"></script>
+
+<link href="/Project_MDS/assets/dist/css/bootstrap.min.css"	rel="stylesheet" type="text/css">
+<script src="/Project_MDS/assets/dist/js/bootstrap.min.js"></script>
+<link href="/Project_MDS/assets/css/SPA_main.css" rel="stylesheet" type="text/css">
+<!-- /공통 -->
 <title>모두의 쇼핑몰</title>
 </head>
 <body>
@@ -43,7 +46,7 @@
 				</select>
 			</div>
 
-			<br> <br> <br> <br>
+			<br> <br>
 			<h3>사업자 정보(쇼핑몰 Footer 내용)</h3>
 			<div class="form-group" id="inputFormGroup">
 				<label for="inputEmail3" class="col-lg-2 control-label"
@@ -120,4 +123,5 @@
 		</form>
 	</div>
 </body>
+
 </html>

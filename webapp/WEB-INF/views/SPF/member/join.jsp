@@ -7,12 +7,18 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<!-- 공통 -->
+<script type="text/javascript"
+	src="/Project_MDS/assets/js/jquery/jquery-3.1.1.js"></script>
+
 <link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
+<script src="/Project_MDS/assets/dist/js/bootstrap.min.js"></script>
 <link href="/Project_MDS/assets/css/SPF_member.css" rel="stylesheet"
 	type="text/css">
-
-<SCRIPT TYPE="TEXT/JAVASCRIPT">
+<!-- /공통 -->
+<title>모두의 쇼핑몰</title>
+<SCRIPT>
 	//<![CDATA[
 	function check_input() {
 		if (document.joinForm.enable.checked) {
@@ -93,7 +99,6 @@
 	<br>
 	<br>
 	<br>
-
 
 	<c:import url='/WEB-INF/views/SPF/include/footer.jsp' />
 </body>

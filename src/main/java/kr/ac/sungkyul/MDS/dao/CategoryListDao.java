@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.ac.sungkyul.MDS.vo.BoardVo;
 import kr.ac.sungkyul.MDS.vo.CategoryListVo;
+import kr.ac.sungkyul.MDS.vo.MallVo;
 
 @Repository
 public class CategoryListDao {
@@ -74,6 +75,17 @@ public class CategoryListDao {
 		// TODO Auto-generated method stub
 		//자신보다 orderNo가 1높은 카테고리 정보를 가져온다
 		 return sqlSession.selectOne("SPA_categorylist.getAboveOrderNo", vo);
+	}
+
+	/**
+	 * SPF 개인 쇼핑몰의 카테고리를 가져옴
+	 * 만든이 : 이민우
+	 * @param mallVo
+	 * @return
+	 */
+	public List<CategoryListVo> get_CategoryList(MallVo mallVo) {
+		List<CategoryListVo> categoryList = sqlSession.selectList("SPF_categorylist.get_category_List", mallVo);
+		return categoryList;
 	}
 
 }

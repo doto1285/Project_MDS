@@ -44,6 +44,7 @@ public class MallDao {
 	}
 
 	public MallVo get_select_Mall(String mallName) {
+		//쇼핑몰 이름으로 쇼핑몰 정보를 가져온다
 		MallVo mallVo = (MallVo) sqlSession.selectOne("TSF_mall.get_select_Mall", mallName);
 		return mallVo;
 	}
@@ -59,7 +60,7 @@ public class MallDao {
 
 	/**
 	 * SPF 도메인 이름으로 mallVo 가져옴
-	 * 
+	 * 만든이 : 이민우
 	 * @param domain
 	 * @return
 	 */
@@ -70,7 +71,7 @@ public class MallDao {
 
 	/**
 	 * SPF 쇼핑몰 넘버로 유효 도메인인지 체크
-	 * 
+	 * 만든이 : 이민우
 	 * @param domain
 	 * @return
 	 */
@@ -81,7 +82,7 @@ public class MallDao {
 
 	/**
 	 * SPF 쇼핑몰 넘버 기준 푸터 정보 가져오기
-	 * 
+	 * 만든이 : 이민우
 	 * @param mall_no
 	 * @return
 	 */
@@ -104,5 +105,7 @@ public class MallDao {
 		//가입한 쇼핑몰 추가하기 (쇼핑몰 가입하기)
 		sqlSession.insert("TSF_mall.insert_joinmall", mallVo);
 	}
+	
+	
 
 }

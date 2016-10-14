@@ -7,10 +7,17 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<!-- 공통 -->
+<script type="text/javascript"
+	src="/Project_MDS/assets/js/jquery/jquery-3.1.1.js"></script>
+
 <link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
+<script src="/Project_MDS/assets/dist/js/bootstrap.min.js"></script>
 <link href="/Project_MDS/assets/css/SPF_main.css" rel="stylesheet"
 	type="text/css">
+<!-- /공통 -->
+<title>모두의 쇼핑몰</title>
 </head>
 <body>
 
@@ -20,269 +27,44 @@
 	<div class="section">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-4">
-					<img src="/Project_MDS/assets/image/SPF_index1.png" alt="대문이미지"
-						id="indexImage">
-				</div>
+				<c:choose>
+					<c:when test='${empty mallimgVoLogo }'>
+						<div class="col-lg-4">
+							<img src="/Project_MDS/assets/image/SPF_index1.png" alt="대문이미지"
+								id="indexImage">
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class="col-lg-4">
+							<img src="${mallimgVoGate.mallimg_image }" alt="대문이미지"
+								id="indexImage">
+						</div>
+					</c:otherwise>
+				</c:choose>
+
 				<div class="col-lg-8">
 					<br>
 				</div>
 			</div>
+			<c:forEach items="${productListVo }" var="productListVo"
+				varStatus="status">
+				<c:if test="${status.index%4==0 }">
+					<div class="row"></div>
+				</c:if>
+				<div class="col-lg-3" id="productDiv">
+					<div class="thumbnail">
+						<img src="${productListVo.productimg_image }" alt="상품이미지"
+							id="productImage">
+						<div class="caption" id="productContents">
+							<h4>${productListVo.product_name }</h4>
+							<h5>
+								<strong>${productListVo.product_price }</strong><strong>원</strong>
+							</h5>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
 
-			<div class="row">
-				<div class="col-sm-6 col-md-3">
-					<div class="thumbnail">
-						<img src="/Project_MDS/assets/image/SPF_productSample1.png"
-							alt="상품이미지" id="productImage">
-						<div class="caption" id="productContents">
-							<h4>심장폭격!! 후리스후드!!</h4>
-							<h5>
-								<strong>17,500</strong><strong>원</strong>
-							</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-3">
-					<div class="thumbnail">
-						<img src="/Project_MDS/assets/image/SPF_productSample2.png"
-							alt="상품이미지" id="productImage">
-						<div class="caption" id="productContents">
-							<h4>데일리보카시</h4>
-							<h5>
-								<strong>6,900</strong><strong>원</strong>
-							</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-3">
-					<div class="thumbnail">
-						<img src="/Project_MDS/assets/image/SPF_productSample3.png"
-							alt="상품이미지" id="productImage">
-						<div class="caption" id="productContents">
-							<h4>20수 7부 무지티</h4>
-							<h5>
-								<strong>6,500</strong><strong>원</strong>
-							</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-3">
-					<div class="thumbnail">
-						<img src="/Project_MDS/assets/image/SPF_productSample4.png"
-							alt="상품이미지" id="productImage">
-						<div class="caption" id="productContents">
-							<h4>엠보단가라</h4>
-							<h5>
-								<strong>13,500</strong><strong>원</strong>
-							</h5>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-sm-6 col-md-3">
-					<div class="thumbnail">
-						<img src="/Project_MDS/assets/image/SPF_productSample1.png"
-							alt="상품이미지" id="productImage">
-						<div class="caption" id="productContents">
-							<h4>심장폭격!! 후리스후드!!</h4>
-							<h5>
-								<strong>17,500</strong><strong>원</strong>
-							</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-3">
-					<div class="thumbnail">
-						<img src="/Project_MDS/assets/image/SPF_productSample2.png"
-							alt="상품이미지" id="productImage">
-						<div class="caption" id="productContents">
-							<h4>데일리보카시</h4>
-							<h5>
-								<strong>6,900</strong><strong>원</strong>
-							</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-3">
-					<div class="thumbnail">
-						<img src="/Project_MDS/assets/image/SPF_productSample3.png"
-							alt="상품이미지" id="productImage">
-						<div class="caption" id="productContents">
-							<h4>20수 7부 무지티</h4>
-							<h5>
-								<strong>6,500</strong><strong>원</strong>
-							</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-3">
-					<div class="thumbnail">
-						<img src="/Project_MDS/assets/image/SPF_productSample4.png"
-							alt="상품이미지" id="productImage">
-						<div class="caption" id="productContents">
-							<h4>엠보단가라</h4>
-							<h5>
-								<strong>13,500</strong><strong>원</strong>
-							</h5>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-sm-6 col-md-3">
-					<div class="thumbnail">
-						<img src="/Project_MDS/assets/image/SPF_productSample1.png"
-							alt="상품이미지" id="productImage">
-						<div class="caption" id="productContents">
-							<h4>심장폭격!! 후리스후드!!</h4>
-							<h5>
-								<strong>17,500</strong><strong>원</strong>
-							</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-3">
-					<div class="thumbnail">
-						<img src="/Project_MDS/assets/image/SPF_productSample2.png"
-							alt="상품이미지" id="productImage">
-						<div class="caption" id="productContents">
-							<h4>데일리보카시</h4>
-							<h5>
-								<strong>6,900</strong><strong>원</strong>
-							</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-3">
-					<div class="thumbnail">
-						<img src="/Project_MDS/assets/image/SPF_productSample3.png"
-							alt="상품이미지" id="productImage">
-						<div class="caption" id="productContents">
-							<h4>20수 7부 무지티</h4>
-							<h5>
-								<strong>6,500</strong><strong>원</strong>
-							</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-3">
-					<div class="thumbnail">
-						<img src="/Project_MDS/assets/image/SPF_productSample4.png"
-							alt="상품이미지" id="productImage">
-						<div class="caption" id="productContents">
-							<h4>엠보단가라</h4>
-							<h5>
-								<strong>13,500</strong><strong>원</strong>
-							</h5>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-sm-6 col-md-3">
-					<div class="thumbnail">
-						<img src="/Project_MDS/assets/image/SPF_productSample1.png"
-							alt="상품이미지" id="productImage">
-						<div class="caption" id="productContents">
-							<h4>심장폭격!! 후리스후드!!</h4>
-							<h5>
-								<strong>17,500</strong><strong>원</strong>
-							</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-3">
-					<div class="thumbnail">
-						<img src="/Project_MDS/assets/image/SPF_productSample2.png"
-							alt="상품이미지" id="productImage">
-						<div class="caption" id="productContents">
-							<h4>데일리보카시</h4>
-							<h5>
-								<strong>6,900</strong><strong>원</strong>
-							</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-3">
-					<div class="thumbnail">
-						<img src="/Project_MDS/assets/image/SPF_productSample3.png"
-							alt="상품이미지" id="productImage">
-						<div class="caption" id="productContents">
-							<h4>20수 7부 무지티</h4>
-							<h5>
-								<strong>6,500</strong><strong>원</strong>
-							</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-3">
-					<div class="thumbnail">
-						<img src="/Project_MDS/assets/image/SPF_productSample4.png"
-							alt="상품이미지" id="productImage">
-						<div class="caption" id="productContents">
-							<h4>엠보단가라</h4>
-							<h5>
-								<strong>13,500</strong><strong>원</strong>
-							</h5>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-sm-6 col-md-3">
-					<div class="thumbnail">
-						<img src="/Project_MDS/assets/image/SPF_productSample1.png"
-							alt="상품이미지" id="productImage">
-						<div class="caption" id="productContents">
-							<h4>심장폭격!! 후리스후드!!</h4>
-							<h5>
-								<strong>17,500</strong><strong>원</strong>
-							</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-3">
-					<div class="thumbnail">
-						<img src="/Project_MDS/assets/image/SPF_productSample2.png"
-							alt="상품이미지" id="productImage">
-						<div class="caption" id="productContents">
-							<h4>데일리보카시</h4>
-							<h5>
-								<strong>6,900</strong><strong>원</strong>
-							</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-3">
-					<div class="thumbnail">
-						<img src="/Project_MDS/assets/image/SPF_productSample3.png"
-							alt="상품이미지" id="productImage">
-						<div class="caption" id="productContents">
-							<h4>20수 7부 무지티</h4>
-							<h5>
-								<strong>6,500</strong><strong>원</strong>
-							</h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-3">
-					<div class="thumbnail">
-						<img src="/Project_MDS/assets/image/SPF_productSample4.png"
-							alt="상품이미지" id="productImage">
-						<div class="caption" id="productContents">
-							<h4>엠보단가라</h4>
-							<h5>
-								<strong>13,500</strong><strong>원</strong>
-							</h5>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 
