@@ -20,18 +20,19 @@
 
 					<c:forEach items="${categoryList1st }" var="categoryList1st">
 						<c:set value="${categoryList1st.categorylist_group}" var="msg" />
-						<li id="categoryMenu2"><a href="#"> <c:if
-									test="${categoryList1st.categorylist_depth  == 1 }">
-							${ categoryList1st.categorylist_name}
+						<li id="categoryMenu2"><c:if
+								test="${categoryList1st.categorylist_depth  == 1
+									and not empty categoryList1st.categorylist_name }">
+								<a href="#" id="category1st"> ${ categoryList1st.categorylist_name}
+								</a>
 							</c:if>
-						</a>
 							<ul id="categoryMenu3">
 								<c:forEach items="${categoryList2nd }" var="categoryList2nd">
-									<li><a href="list?categorylist_no=${categoryList2nd.categorylist_no }">
+									<li><a
+										href="list?categorylist_no=${categoryList2nd.categorylist_no }">
 											<c:if
 												test="${categoryList2nd.categorylist_depth  == 2 
-									and categoryList2nd.categorylist_group == categoryList1st.categorylist_group
-									and categoryList1st.categorylist_name != categoryList2nd.categorylist_name}">
+									and categoryList2nd.categorylist_group == categoryList1st.categorylist_group}">
 									${ categoryList2nd.categorylist_name}
 											</c:if>
 									</a></li>
