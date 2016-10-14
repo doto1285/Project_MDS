@@ -184,6 +184,19 @@ public class SPA_CategoryController {
 		return "javascript:window.location.reload(true)";
 	}
 	
+	@RequestMapping(value = "{domain}/category", method = RequestMethod.GET)
+	// 리스트 출력
+	public String categorylist(@PathVariable String domain, HttpSession session, Model model) {
+		if (!SPA_mainservice.isUserCheck(domain, session)) {
+			return "redirect:/main";
+		}
+		// Map<String, Object> categoryListMap =
+		// categoryListService.getCategoryList(domain);
+		// model.addAttribute("map", categoryListMap);
+		return "SPA/category/categorylist";
+	}
+
+
 	
 
 }

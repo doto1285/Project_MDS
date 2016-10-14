@@ -188,38 +188,7 @@ public class SPA_MainController {
 	}
 
 	//////////////////////
-	@RequestMapping(value = "{domain}/category", method = RequestMethod.GET)
-	// 리스트 출력
-	public String categorylist(@PathVariable String domain, HttpSession session, Model model) {
-		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
-		}
-		// Map<String, Object> categoryListMap =
-		// categoryListService.getCategoryList(domain);
-		// model.addAttribute("map", categoryListMap);
-		return "SPA/category/categorylist";
-	}
-
-	@RequestMapping(value = "{domain}/categorymodifyform", method = RequestMethod.GET)
-	// 수정하는 폼
-	public String categorylistModifyForm(@PathVariable String domain, HttpSession session, Model model) {
-		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
-		}
-		// Map<String, Object> categoryListMap =
-		// categoryListService.getCategoryList(domain);
-		// model.addAttribute("map", categoryListMap);
-		return "SPA/category/categorymodifyform";
-	}
-
-	@RequestMapping(value = "{domain}/categorymodify", method = RequestMethod.POST)
-	public String categorylistModify(@PathVariable String domain, HttpSession session, Model model) {
-		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
-		}
-		// 저장하기 눌렀을때
-		return "redirect:/SPA/" + domain + "/category";
-	}
+	
 	///////////////////////////////////
 
 	/**
