@@ -48,8 +48,8 @@ public class SPF_ListController {
 	SPF_MallimgService SPF_mallimgService;
 
 	/**
-	 * 카테고리별 상품 리스트 화면 
-	 * 만든이 : 이민우
+	 * 카테고리별 상품 리스트 화면 만든이 : 이민우
+	 * 
 	 * @param mall_domain
 	 * @param model
 	 * @param productListVo
@@ -58,6 +58,9 @@ public class SPF_ListController {
 	@RequestMapping(value = "{mall_domain}/list", method = RequestMethod.GET)
 	public String list(@PathVariable String mall_domain, Model model, CategoryListVo categoryListVo) {
 		int categorylist_no = categoryListVo.getCategorylist_no();
+		CategoryListVo categoryListVoGroup = SPF_listService.getCategoryList(categorylist_no);
+		model.addAttribute("categoryListVoGroup", categoryListVoGroup);
+		
 		// 현재 접속한 SPF 쇼핑몰 도메인을 매개로 mall_domain, mall_no을 mallVo에 넣음
 		MallVo mallVo = SPF_mallService.domainCheck(mall_domain);
 
@@ -79,15 +82,14 @@ public class SPF_ListController {
 		model.addAttribute("mallimgVoLogo", mallimgVoLogo);
 		// 카테고리 넘버를 jsp에 넘겨줌
 		model.addAttribute("categoryListVo", categoryListVo);
-
 		List<CategoryProductListVo> categoryProductListVo = SPF_listService.getProductList(categorylist_no);
 		model.addAttribute("categoryProductListVo", categoryProductListVo);
 		return "SPF/product/list";
 	}
 
 	/**
-	 * 카테고리별 상품 중 낮은 가격 정렬 리스트 화면
-	 * 만든이 : 이민우 
+	 * 카테고리별 상품 중 낮은 가격 정렬 리스트 화면 만든이 : 이민우
+	 * 
 	 * @param model
 	 * @param categoryListVo
 	 * @param mall_domain
@@ -125,8 +127,8 @@ public class SPF_ListController {
 	}
 
 	/**
-	 * 카테고리별 상품 중 높은 가격 정렬 리스트 화면
-	 * 만든이 : 이민우
+	 * 카테고리별 상품 중 높은 가격 정렬 리스트 화면 만든이 : 이민우
+	 * 
 	 * @param model
 	 * @param categoryListVo
 	 * @param mall_domain

@@ -27,18 +27,15 @@
 		<div class="col-md-12">
 			<ul class="nav nav-pills" id="secondCategoryMenu1">
 				<!-- class="active" -->
-				<li role="presentation" class="active"><a href="#"><strong>아우터</strong></a></li>
-				<li role="presentation"><a href="#">자켓</a></li>
-				<li role="presentation"><a href="#">가디건</a></li>
-				<li role="presentation"><a href="#">집업</a></li>
-				<li role="presentation"><a href="#">야상</a></li>
-				<li role="presentation"><a href="#">코트</a></li>
-				<li role="presentation"><a href="#">패딩</a></li>
-				<li role="presentation"><a href="#">패딩조끼</a></li>
-				<li role="presentation"><a href="#">점퍼&블루종</a></li>
-				<li role="presentation"><a href="#">바람막이</a></li>
-				<li role="presentation"><a href="#">무스탕</a></li>
+				
+				<c:if test="${categoryListVoGroup.categorylist_depth } == 1">
+				<li role="presentation" class="active"><strong>{categoryListVoGroup.categorylist_name }</strong></li>
+				</c:if>
+				<c:if test="${categoryListVoGroup.categorylist_depth } == 2">
+				<li role="presentation"><a href="#">${categoryListVoGroup.categorylist_name }</a></li>
+				</c:if>
 			</ul>
+			
 			<hr>
 			<br>
 			<c:choose>
@@ -67,7 +64,6 @@
 				<li role="presentation"><a
 					href="highprice?categorylist_no= ${categoryListVo.categorylist_no }">높은가격</a></li>
 			</ul>
-
 			<c:forEach items="${categoryProductListVo }"
 				var="categoryProductListVo" varStatus="status">
 				<c:if test="${status.index%4==0 }">

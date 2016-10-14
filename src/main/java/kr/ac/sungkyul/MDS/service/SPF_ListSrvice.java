@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.ac.sungkyul.MDS.dao.ProductDao;
+import kr.ac.sungkyul.MDS.vo.CategoryListVo;
 import kr.ac.sungkyul.MDS.vo.CategoryProductListVo;
 import kr.ac.sungkyul.MDS.vo.ProductListVo;
 
@@ -24,6 +25,10 @@ public class SPF_ListSrvice {
 	public List<CategoryProductListVo> getProductList(int categorylist_no) {
 		
 		return productDao.getProductList(categorylist_no);
+	}
+	
+	public CategoryListVo getCategoryList(int categorylist_no) {
+		return productDao.getCategoryList(categorylist_no);
 	}
 	
 	/**
