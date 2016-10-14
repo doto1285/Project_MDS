@@ -18,7 +18,6 @@ import kr.ac.sungkyul.MDS.service.SPA_CategoryListService;
 import kr.ac.sungkyul.MDS.service.SPA_MainService;
 import kr.ac.sungkyul.MDS.service.SPF_MallService;
 import kr.ac.sungkyul.MDS.vo.CategoryListVo;
-import kr.ac.sungkyul.MDS.vo.MallVo;
 
 @Controller
 @RequestMapping("/SPA")
@@ -42,6 +41,11 @@ public class SPA_CategoryController {
 		// Map<String, Object> categoryListMap =
 		// categoryListService.getCategoryList(domain);
 		// model.addAttribute("map", categoryListMap);
+		
+		//쇼핑몰 관리자 세션확인
+		if (!SPA_mainservice.isUserCheck(domain, session)) {
+			return "redirect:/main";
+		}
 
 		// 해당 쇼핑몰의 카테고리 리스트를 불러온다 sky
 		List<CategoryListVo> categoryList = categoryListService.getCategoryList(domain);
@@ -64,12 +68,21 @@ public class SPA_CategoryController {
 		// Map<String, Object> categoryListMap =
 		// categoryListService.getCategoryList(domain);
 		// model.addAttribute("map", categoryListMap);
+		//쇼핑몰 관리자 세션확인
+		if (!SPA_mainservice.isUserCheck(domain, session)) {
+			return "redirect:/main";
+		}
 		return "SPA/category/categorymodifyform";
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "{domain}/categorymodify", method = RequestMethod.POST)
 	public String categorylistModify(@PathVariable String domain, HttpSession session,String msgchangeName, int msgchangecateNo) {
+		//쇼핑몰 관리자 세션확인
+		if (!SPA_mainservice.isUserCheck(domain, session)) {
+			return "redirect:/main";
+		}
+		
 		// 카테고리 이름 변경시 모달창에서 저장하기 눌렀을때 sky
 		
 		System.out.println("수정 이름"+msgchangeName);
@@ -94,8 +107,13 @@ public class SPA_CategoryController {
 	public String InsertCategory(@PathVariable String domain,
 			//새로운 1차 카테고리 추가
 			@RequestParam(value = "newCategorie") String newCategorie,
-			@RequestParam(value = "count_order") int count_order
+			@RequestParam(value = "count_order") int count_order, HttpSession session
 			) {
+		
+		//쇼핑몰 관리자 세션확인
+		if (!SPA_mainservice.isUserCheck(domain, session)) {
+			return "redirect:/main";
+		}
 		
 		System.out.println("버튼 클릭" + domain + newCategorie);
 		int mall_no =  (SPF_MallService.domainCheck(domain)).getMall_no();
@@ -119,8 +137,13 @@ public class SPA_CategoryController {
 			//새로운 2차 카테고리 추가
 			@RequestParam(value = "newCategorie") String newCategorie,
 			@RequestParam(value = "group_no") int group_no,
-			@RequestParam(value = "count_order") int count_order
+			@RequestParam(value = "count_order") int count_order,  HttpSession session
 			) {
+		
+		//쇼핑몰 관리자 세션확인
+		if (!SPA_mainservice.isUserCheck(domain, session)) {
+			return "redirect:/main";
+		}
 		
 		System.out.println("group_no: " + group_no);
 		System.out.println("버튼 클릭" + domain + newCategorie);
@@ -164,6 +187,10 @@ public class SPA_CategoryController {
 	@RequestMapping(value = "{domain}/categoryUp", method = RequestMethod.POST)
 	// 카테고리 Up sky
 	public String categoryUp(@PathVariable String domain, HttpSession session, Model model, int msgchangecateNo) {
+		//쇼핑몰 관리자 세션확인
+		if (!SPA_mainservice.isUserCheck(domain, session)) {
+			return "redirect:/main";
+		}
 		
 		System.out.println("위로 올라갈 카테고리 번호 : " + msgchangecateNo);
 		categoryListService.categoryUp(msgchangecateNo);
@@ -177,7 +204,10 @@ public class SPA_CategoryController {
 	@RequestMapping(value = "{domain}/categoryDown", method = RequestMethod.POST)
 	// 카테고리 Down sky
 	public String categoryDown(@PathVariable String domain, HttpSession session, Model model, int msgchangecateNo) {
-		
+		//쇼핑몰 관리자 세션확인
+		if (!SPA_mainservice.isUserCheck(domain, session)) {
+			return "redirect:/main";
+		}
 		System.out.println("아래로 내려갈 카테고리 번호 : " + msgchangecateNo);
 		categoryListService.categoryDown(msgchangecateNo);
 		
@@ -193,7 +223,7 @@ public class SPA_CategoryController {
 		// Map<String, Object> categoryListMap =
 		// categoryListService.getCategoryList(domain);
 		// model.addAttribute("map", categoryListMap);
-		return "SPA/category/categorylist";
+		return "redirect:/SPA/"+domain+"/category/0";
 	}
 
 
