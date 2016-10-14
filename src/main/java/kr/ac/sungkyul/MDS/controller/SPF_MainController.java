@@ -43,8 +43,8 @@ public class SPF_MainController {
 	SPF_ProductService SPF_productService;
 
 	/**
-	 * 쇼핑몰 프론트 메인화면 만든이 : 이민우
-	 * 
+	 * 쇼핑몰 프론트 메인화면 
+	 * 만든이 : 이민우
 	 * @param domain
 	 * @param model
 	 * @return

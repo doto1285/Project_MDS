@@ -25,11 +25,10 @@
 							${ categoryList1st.categorylist_name}
 							</c:if>
 						</a>
-
-
 							<ul id="categoryMenu3">
 								<c:forEach items="${categoryList2nd }" var="categoryList2nd">
-									<li><a href="#"> <c:if
+									<li><a href="list?no=${categoryList2nd.categorylist_no }">
+											<c:if
 												test="${categoryList2nd.categorylist_depth  == 2 
 									and categoryList2nd.categorylist_group == categoryList1st.categorylist_group
 									and categoryList1st.categorylist_name != categoryList2nd.categorylist_name}">

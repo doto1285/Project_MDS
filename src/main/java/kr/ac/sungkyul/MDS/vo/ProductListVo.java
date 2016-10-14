@@ -23,7 +23,9 @@ public class ProductListVo {
 	private int product_no_1;
 	private String productimg_path;
 	private int productimg_filesize;
-	private String productimg_img;
+	private String productimg_image;
+	private int productimg_flag;
+	
 	public int getCategorylist_no() {
 		return categorylist_no;
 	}
@@ -156,11 +158,17 @@ public class ProductListVo {
 	public void setProductimg_filesize(int productimg_filesize) {
 		this.productimg_filesize = productimg_filesize;
 	}
-	public String getProductimg_img() {
-		return productimg_img;
+	public String getProductimg_image() {
+		return productimg_image;
 	}
-	public void setProductimg_img(String productimg_img) {
-		this.productimg_img = productimg_img;
+	public void setProductimg_image(String productimg_image) {
+		this.productimg_image = productimg_image;
+	}
+	public int getProductimg_flag() {
+		return productimg_flag;
+	}
+	public void setProductimg_flag(int productimg_flag) {
+		this.productimg_flag = productimg_flag;
 	}
 	@Override
 	public String toString() {
@@ -173,7 +181,9 @@ public class ProductListVo {
 				+ ", member_no=" + member_no + ", categorylist_no_1=" + categorylist_no_1 + ", productimg_no="
 				+ productimg_no + ", productimg_filename=" + productimg_filename + ", productimg_savename="
 				+ productimg_savename + ", product_no_1=" + product_no_1 + ", productimg_path=" + productimg_path
-				+ ", productimg_filesize=" + productimg_filesize + ", productimg_img=" + productimg_img + "]";
+				+ ", productimg_filesize=" + productimg_filesize + ", productimg_image=" + productimg_image
+				+ ", productimg_flag=" + productimg_flag + "]";
 	}
+
 	
 }

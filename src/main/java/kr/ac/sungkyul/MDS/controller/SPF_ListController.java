@@ -29,19 +29,28 @@ public class SPF_ListController {
 
 	@Autowired
 	TSF_MainService TSF_MainService;
-	
+
 	@Autowired
 	SPF_MainService SPF_mainService;
-	
+
 	@Autowired
 	SPF_MallService SPF_mallService;
-	
-	@RequestMapping("{mall_domain}/list")
-	public String list(@PathVariable String mall_domain, Model model) {
 
+	@RequestMapping(value = "{mall_domain}/list", method = RequestMethod.GET)
+	public String list(@PathVariable String mall_domain, Model model) {
+		// 현재 접속한 SPF 쇼핑몰 도메인을 매개로 mall_domain, mall_no을 mallVo에 넣음
+		MallVo mallVo = SPF_mallService.domainCheck(mall_domain);
+
+		// 도메인 체크
+		if ((SPF_mallService.isDomainCheck(mallVo.getMall_no())) == false) {
+			// 없는 도메인일 경우 실행되는 코드
+			return "404 error";
+			
+			
+		}
 		return "SPF/product/list";
 	}
-	
+
 	@RequestMapping("{mall_domain}/list/detail")
 	public String listDetail(@PathVariable String mall_domain, Model model) {
 
@@ -65,5 +74,5 @@ public class SPF_ListController {
 
 		return "SPF/subMenu/orderDelivery";
 	}
-	
+
 }

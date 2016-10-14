@@ -53,7 +53,7 @@
 				</c:if>
 				<div class="col-lg-3" id="productDiv">
 					<div class="thumbnail">
-						<img src="${productListVo.productimg_img }" alt="상품이미지"
+						<img src="${productListVo.productimg_image }" alt="상품이미지"
 							id="productImage">
 						<div class="caption" id="productContents">
 							<h4>${productListVo.product_name }</h4>
