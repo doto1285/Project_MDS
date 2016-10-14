@@ -42,6 +42,9 @@
 						<li><a href='qna'>Q&A</a></li>
 					</ul></li>
 			</ul>
+			<ul>
+				<li><a href='makeboard'>게시판 만들기</a>
+			</ul>
 		</div>
 	</div>
 
