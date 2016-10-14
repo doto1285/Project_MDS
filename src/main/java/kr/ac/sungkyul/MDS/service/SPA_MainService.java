@@ -1,5 +1,6 @@
 package kr.ac.sungkyul.MDS.service;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -7,8 +8,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.ac.sungkyul.MDS.dao.CategoryListDao;
 import kr.ac.sungkyul.MDS.dao.MallDao;
 import kr.ac.sungkyul.MDS.dao.OrderinfoDao;
+import kr.ac.sungkyul.MDS.vo.CategoryListVo;
 import kr.ac.sungkyul.MDS.vo.MallVo;
 import kr.ac.sungkyul.MDS.vo.MemberVo;
 
@@ -17,6 +20,9 @@ public class SPA_MainService {
 
 	@Autowired
 	MallDao mallDao;
+	
+	@Autowired
+	CategoryListDao categoryListDao;
 	
 	@Autowired
 	OrderinfoDao orderinfoDao;
@@ -70,4 +76,5 @@ public class SPA_MainService {
 		return null;
 		
 	}
+
  }

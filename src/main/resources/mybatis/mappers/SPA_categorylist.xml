@@ -2,20 +2,178 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="SPA_categorylist">
 
-	<select id="get_damain_categorylist" parameterType="String"
-		resultType="categorylistVo">
-		<!-- 인풋으로 오는 mall no이 일치하는 모든 값을 뽑는다 -->
+	<select id="getCategoryList" parameterType="String" resultType="categorylistVo">
+		<!-- 인풋으로 오는 mall domain이 일치하는 모든 카테고리를 가져온다-->
 		<![CDATA[	
 	 	 select * from categorylist
 	 	 where mall_no =
 	 	 	( select mall_no from mall
 	 	 		where mall_state = 1 and mall_domain = #{mall_domain } )
 	 	 		and categorylist_state = 1
-				order by categorylist_group, categorylist_orderno asc
+				order by categorylist_orderno asc
 		]]>
 	</select>
-	 
-	 
-	 
-	
+
+	<select id="getMyVo" parameterType="java.lang.Integer"
+		resultType="categorylistVo">
+		<!-- 자신의 카테고리 정보를 가져온다 -->
+		<![CDATA[	
+		select * from categorylist
+		where categorylist_no = #{msgchangecateNo}
+		
+		
+		]]>
+	</select>
+
+	<select id="getAboveOrderNo" parameterType="categorylistVo"
+		resultType="categorylistVo">
+		<!-- 자신보다 orderNo가 1높은은 카테고리 정보를 가져온다-->
+			<choose>
+			<when test="categorylist_depth == 2">
+					<![CDATA[	
+		  		 	
+					select * from categorylist
+					where
+		  			categorylist_orderno = #{categorylist_orderno}+1
+		  		 	and categorylist_state = 1
+		  		 	and categorylist_group = ${categorylist_group }
+		  		 	and categorylist_depth = 2
+					and mall_no = #{mall_no }
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[			
+					select * from categorylist
+					where
+		  			categorylist_orderno = #{categorylist_orderno}+1
+		  		 	and categorylist_state = 1
+		  		 	and categorylist_depth = 1
+					and mall_no = #{mall_no }
+				]]>
+			</otherwise>
+		</choose>
+				
+	</select>
+
+	<select id="getBelowOrderNo" parameterType="categorylistVo"
+		resultType="categorylistVo">
+		<!-- 자신보다 orderNo가 1낮은 카테고리 정보를 가져온다-->
+			<choose>
+			<when test="categorylist_depth == 2">
+					<![CDATA[	
+		  		 	
+					select * from categorylist
+					where
+		  			categorylist_orderno = #{categorylist_orderno}-1
+		  		 	and categorylist_state = 1
+		  		 	and categorylist_group = ${categorylist_group }
+		  		 	and categorylist_depth = 2
+					and mall_no = #{mall_no }
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[			
+					select * from categorylist
+					where
+		  			categorylist_orderno = #{categorylist_orderno}-1
+		  		 	and categorylist_state = 1
+		  		 	and categorylist_depth = 1
+					and mall_no = #{mall_no }
+				]]>
+			</otherwise>
+		</choose>
+				
+	</select>
+
+	<update id="ModifyName" parameterType="kr.ac.sungkyul.MDS.vo.CategoryListVo">
+		<!-- 카테고리의 이름을 변경한다 -->
+		<![CDATA[	
+		
+		update categorylist set
+		 CATEGORYLIST_NAME = #{categorylist_name }
+		 where CATEGORYLIST_NO = #{categorylist_no }
+		
+		]]>
+	</update>
+
+
+	<insert id="InsertCategory" parameterType="kr.ac.sungkyul.MDS.vo.CategoryListVo">
+		<!-- 새 카테고리를 삽입한다 -->
+		<choose>
+			<when test="categorylist_depth == 2">
+				<![CDATA[				
+					insert into categorylist values
+					(categorylist_seq.nextval, #{categorylist_name }, 
+					#{categorylist_group }, #{categorylist_orderno }, 
+					#{categorylist_depth }, #{categorylist_state }, #{mall_no }
+				)
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[
+				insert into categorylist values
+				(categorylist_seq.nextval, #{categorylist_name }, 
+				categorylist_groupno_seq.nextval, #{categorylist_orderno }, 
+				#{categorylist_depth }, #{categorylist_state }, #{mall_no }
+				)
+				]]>
+			</otherwise>
+		</choose>
+	</insert>
+
+
+	<update id="DeleteCategory_OrderNoDown" parameterType="kr.ac.sungkyul.MDS.vo.CategoryListVo">
+		<!-- 카테고리 삭제시 자신보다 orderNo가 큰 카테고리들의 orderNo를 1씩 감소시킨다 -->
+				<choose>
+			<when test="categorylist_depth == 2">
+					<![CDATA[	
+					update categorylist set
+					categorylist_orderno = categorylist_orderno - 1
+					where
+		  			categorylist_orderno > (select categorylist_orderno from categorylist where categorylist_no = #{categorylist_no })
+		  			and categorylist_group = #{categorylist_group }
+		  		 	and categorylist_state = 1
+		  		 	and categorylist_depth = 2
+					and mall_no = (select mall_no from categorylist where categorylist_no = #{categorylist_no })
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[	
+					update categorylist set
+					categorylist_orderno = categorylist_orderno - 1
+					where
+		  			categorylist_orderno > (select categorylist_orderno from categorylist where categorylist_no = #{categorylist_no })
+		  		 	and categorylist_state = 1
+		  		 	and categorylist_depth = 1
+					and mall_no = (select mall_no from categorylist where categorylist_no = #{categorylist_no })
+				]]>
+			</otherwise>
+		</choose>
+				
+		
+	</update>
+
+	<update id="DeleteCategory" parameterType="java.lang.Integer">
+		<!-- 카테고리를 삭제한다 == state를 0으로 바꾼다. -->
+		
+		<![CDATA[	
+		update categorylist set
+		 categorylist_state = 0 ,
+		 categorylist_group = -1
+		 where CATEGORYLIST_NO = #{msgchangecateNo }
+		]]>
+	</update>
+
+
+	<update id="updateOrderno" parameterType="java.lang.Integer">
+		<!-- 변경된 orderno를 데이터베이스에 저장한다 -->
+		
+		<![CDATA[	
+		update categorylist set
+		 categorylist_orderno = #{categorylist_orderno}
+			 where
+		categorylist_no = #{categorylist_no} 
+		]]>
+	</update>
+
 </mapper>
