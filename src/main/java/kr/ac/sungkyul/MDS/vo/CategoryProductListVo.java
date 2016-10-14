@@ -20,6 +20,7 @@ public class CategoryProductListVo {
 	private int productimg_filesize;
 	private String productimg_image;
 	private int productimg_flag;
+	
 	public int getProduct_no() {
 		return product_no;
 	}

@@ -40,55 +40,69 @@
 				<li role="presentation"><a href="#">무스탕</a></li>
 			</ul>
 			<hr>
-			<ul class="nav nav-pills" id="priceArray">
-				<li role="presentation"><a href="#">낮은가격 &nbsp; </a></li>
-				<li role="presentation"><a href="#">높은가격</a></li>
-			</ul>
+			<br>
+			<c:choose>
+				<c:when test="${ empty categoryProductListVo }">
 		</div>
-		<br>
-		
-		<c:choose><c:when test="${ empty categoryProductListVo }"></c:when></c:choose>
+		<br> <br> <br> <br> <br> <br> <br>
+		<br> <br> <br> <br> <br> <br> <br>
+		<br> <br> <br> <br> <br> <br> <br>
 		<h5 style="text-align: center; font-size: 14px;">
 			<strong>등록된 상품이 없습니다.</strong>
 		</h5>
-		<!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-		<br><br><br><br><br><br><br><br><br><br><br><br> -->
+		<br> <br> <br> <br> <br> <br> <br>
+		<br> <br> <br> <br> <br> <br> <br>
+		<br> <br> <br> <br> <br> <br> <br>
+		<br> <br> <br> <br> <br> <br> <br>
+		<br> <br> <br> <br> <br> <br> <br>
+		<br> <br> <br> <br> <br> <br> <br>
+		<br>
+		</c:when>
 
-		<c:forEach items="${categoryProductListVo }" var="categoryProductListVo"
-			varStatus="status">
-			<c:if test="${status.index%4==0 }">
-				<div class="row"></div>
-			</c:if>
-			<div class="col-lg-3" id="productDiv">
-				<div class="thumbnail">
-					<img src="${categoryProductListVo.productimg_image }" alt="상품이미지"
-						id="productImage">
-					<div class="caption" id="productContents">
-						<h4>${categoryProductListVo.product_name }</h4>
-						<h5>
-							<strong>${categoryProductListVo.product_price }</strong><strong>원</strong>
-						</h5>
+		<c:otherwise>
+			<ul class="nav nav-pills" id="priceArray">
+				<li role="presentation"><a
+					href="lowprice?categorylist_no= ${categoryListVo.categorylist_no }">
+						낮은가격 &nbsp; </a></li>
+				<li role="presentation"><a
+					href="highprice?categorylist_no= ${categoryListVo.categorylist_no }">높은가격</a></li>
+			</ul>
+
+			<c:forEach items="${categoryProductListVo }"
+				var="categoryProductListVo" varStatus="status">
+				<c:if test="${status.index%4==0 }">
+					<div class="row"></div>
+				</c:if>
+				<div class="col-lg-3" id="productDiv">
+					<div class="thumbnail">
+						<img src="${categoryProductListVo.productimg_image }" alt="상품이미지"
+							id="productImage">
+						<div class="caption" id="productContents">
+							<h4>${categoryProductListVo.product_name }</h4>
+							<h5>
+								<strong>${categoryProductListVo.product_price }</strong><strong>원</strong>
+							</h5>
+						</div>
 					</div>
 				</div>
-			</div>
-		</c:forEach>
+			</c:forEach>
 
-		<nav>
-		<ul class="pagination" id="paging">
-			<li><a href="#" aria-label="Previous"> <span
-					aria-hidden="true">&laquo;</span>
-			</a></li>
-			<li><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">4</a></li>
-			<li><a href="#">5</a></li>
-			<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-			</a></li>
-		</ul>
-		</nav>
-
+			<nav>
+			<ul class="pagination" id="paging">
+				<li><a href="#" aria-label="Previous"> <span
+						aria-hidden="true">&laquo;</span>
+				</a></li>
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+				</a></li>
+			</ul>
+			</nav>
+		</c:otherwise>
+		</c:choose>
 	</div>
 	<c:import url='/WEB-INF/views/SPF/include/footer.jsp' />
 </body>

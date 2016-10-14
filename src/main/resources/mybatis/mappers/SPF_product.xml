@@ -18,12 +18,35 @@
 		resultType="kr.ac.sungkyul.MDS.vo.CategoryProductListVo">
 		<!-- category_no을 이용해 올바른 상품이름, 가격, 상품 이미지URL 가져오기 -->
 				<![CDATA[	
-			 select product_name, product_price, productimg_image, productimg_no 
+			 select product_name, product_price, productimg_image, productimg_no, categorylist_no 
 			 from product p FULL OUTER JOIN productimg i on p.product_no = i.product_no 
 			 where productimg_image is not null and CATEGORYLIST_NO= #{categorylist_no} 
-			 and product_state = 1 and productimg_flag = 0 and rownum <= 20 
-			 order by productimg_no desc
+			 and product_state = 1 and productimg_flag = 0 order by productimg_no desc
 			 ]]>
 	</select>
+	
+	<select id="get_product_list_lowprice" parameterType="java.lang.Integer"
+		resultType="kr.ac.sungkyul.MDS.vo.CategoryProductListVo">
+		<!-- category_no을 이용해 낮은가격부터 상품이름, 가격, 상품 이미지URL 가져오기 -->
+				<![CDATA[	
+			 select product_name, product_price, productimg_image, productimg_no, categorylist_no 
+			 from product p FULL OUTER JOIN productimg i on p.product_no = i.product_no 
+			 where productimg_image is not null and CATEGORYLIST_NO= #{CATEGORYLIST_NO} 
+			 and product_state = 1 and productimg_flag = 0 order by product_price asc
+			 ]]>
+	</select>
+	
+	<select id="get_product_list_highprice" parameterType="java.lang.Integer"
+		resultType="kr.ac.sungkyul.MDS.vo.CategoryProductListVo">
+		<!-- category_no을 이용해 높은가격부터 상품이름, 가격, 상품 이미지URL 가져오기 -->
+				<![CDATA[	
+			 select product_name, product_price, productimg_image, productimg_no, categorylist_no 
+			 from product p FULL OUTER JOIN productimg i on p.product_no = i.product_no 
+			 where productimg_image is not null and CATEGORYLIST_NO= #{CATEGORYLIST_NO} 
+			 and product_state = 1 and productimg_flag = 0 order by product_price desc
+			 ]]>
+	</select>
+	
+	
 
 </mapper>

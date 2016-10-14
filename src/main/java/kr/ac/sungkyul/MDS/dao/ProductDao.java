@@ -24,7 +24,7 @@ public class ProductDao {
 	}
 	
 	/**
-	 * mall_no을 이용해 올바른 상품이름, 가격, 상품 이미지URL 가져오기
+	 * mall_no을 이용해 올바른 상품이름, 가격, 상품 이미지URL 가져오기(메인에서 사용)
 	 * 만든이 : 이민우
 	 * @param mallVo
 	 * @return
@@ -33,9 +33,34 @@ public class ProductDao {
 		return sqlSession.selectList("SPF_product.get_product_content", mallVo);
 	}
 	
-	
+	/**
+	 * categorylist_no을 이용해 올바른 상품이름, 가격, 상품 이미지URL 가져오기(리스트화면에서 사용)
+	 * 만든이 : 이민우
+	 * @param categorylist_no
+	 * @return
+	 */
 	public List<CategoryProductListVo> getProductList(int categorylist_no){
 		return sqlSession.selectList("SPF_product.get_product_list", categorylist_no);
+	}
+	
+	/**
+	 * 낮은 가격 기준으로 categorylist_no을 이용해 올바른 상품이름, 가격, 상품 이미지URL 가져오기
+	 * 만든이 : 이민우
+	 * @param categorylist_no
+	 * @return
+	 */
+	public List<CategoryProductListVo> getProductListLowPrice(int categorylist_no){
+		return sqlSession.selectList("SPF_product.get_product_list_lowprice", categorylist_no);
+	}
+	
+	/**
+	 * 높은 가격 기준으로 categorylist_no을 이용해 올바른 상품이름, 가격, 상품 이미지URL 가져오기
+	 * 만든이 : 이민우
+	 * @param categorylist_no
+	 * @return
+	 */
+	public List<CategoryProductListVo> getProductListHighPrice(int categorylist_no){
+		return sqlSession.selectList("SPF_product.get_product_list_highprice", categorylist_no);
 	}
 
 }
