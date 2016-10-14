@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.ac.sungkyul.MDS.vo.CategoryProductListVo;
 import kr.ac.sungkyul.MDS.vo.MallVo;
 import kr.ac.sungkyul.MDS.vo.ProductListVo;
 import kr.ac.sungkyul.MDS.vo.ProductVo;
@@ -30,7 +31,11 @@ public class ProductDao {
 	 */
 	public List<ProductListVo> get_Product_Content(MallVo mallVo){
 		return sqlSession.selectList("SPF_product.get_product_content", mallVo);
-		
+	}
+	
+	
+	public List<CategoryProductListVo> getProductList(int categorylist_no){
+		return sqlSession.selectList("SPF_product.get_product_list", categorylist_no);
 	}
 
 }

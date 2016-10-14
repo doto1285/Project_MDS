@@ -1,14 +1,8 @@
 package kr.ac.sungkyul.MDS.vo;
 
-// 3개의 테이블 (CategoryList + product + productimg) VO
-public class ProductListVo {
-	private int categorylist_no;
-	private String categorylist_name;
-	private int categorylist_group;
-	private int categorylist_orderno;
-	private int categorylist_depth;
-	private int categorylist_state;
-	private int mall_no;
+//2개의 테이블 (product + productimg) VO
+public class CategoryProductListVo {
+
 	private int product_no;
 	private String product_name;
 	private int product_price;
@@ -17,7 +11,7 @@ public class ProductListVo {
 	private String product_makedate;
 	private int product_state;
 	private int member_no;
-	private int categorylist_no_1;
+	private int categorylist_no;
 	private int productimg_no;
 	private String productimg_filename;
 	private String productimg_savename;
@@ -26,49 +20,6 @@ public class ProductListVo {
 	private int productimg_filesize;
 	private String productimg_image;
 	private int productimg_flag;
-	
-	public int getCategorylist_no() {
-		return categorylist_no;
-	}
-	public void setCategorylist_no(int categorylist_no) {
-		this.categorylist_no = categorylist_no;
-	}
-	public String getCategorylist_name() {
-		return categorylist_name;
-	}
-	public void setCategorylist_name(String categorylist_name) {
-		this.categorylist_name = categorylist_name;
-	}
-	public int getCategorylist_group() {
-		return categorylist_group;
-	}
-	public void setCategorylist_group(int categorylist_group) {
-		this.categorylist_group = categorylist_group;
-	}
-	public int getCategorylist_orderno() {
-		return categorylist_orderno;
-	}
-	public void setCategorylist_orderno(int categorylist_orderno) {
-		this.categorylist_orderno = categorylist_orderno;
-	}
-	public int getCategorylist_depth() {
-		return categorylist_depth;
-	}
-	public void setCategorylist_depth(int categorylist_depth) {
-		this.categorylist_depth = categorylist_depth;
-	}
-	public int getCategorylist_state() {
-		return categorylist_state;
-	}
-	public void setCategorylist_state(int categorylist_state) {
-		this.categorylist_state = categorylist_state;
-	}
-	public int getMall_no() {
-		return mall_no;
-	}
-	public void setMall_no(int mall_no) {
-		this.mall_no = mall_no;
-	}
 	public int getProduct_no() {
 		return product_no;
 	}
@@ -117,11 +68,11 @@ public class ProductListVo {
 	public void setMember_no(int member_no) {
 		this.member_no = member_no;
 	}
-	public int getCategorylist_no_1() {
-		return categorylist_no_1;
+	public int getCategorylist_no() {
+		return categorylist_no;
 	}
-	public void setCategorylist_no_1(int categorylist_no_1) {
-		this.categorylist_no_1 = categorylist_no_1;
+	public void setCategorylist_no(int categorylist_no) {
+		this.categorylist_no = categorylist_no;
 	}
 	public int getProductimg_no() {
 		return productimg_no;
@@ -173,18 +124,16 @@ public class ProductListVo {
 	}
 	@Override
 	public String toString() {
-		return "ProductListVo [categorylist_no=" + categorylist_no + ", categorylist_name=" + categorylist_name
-				+ ", categorylist_group=" + categorylist_group + ", categorylist_orderno=" + categorylist_orderno
-				+ ", categorylist_depth=" + categorylist_depth + ", categorylist_state=" + categorylist_state
-				+ ", mall_no=" + mall_no + ", product_no=" + product_no + ", product_name=" + product_name
-				+ ", product_price=" + product_price + ", product_content=" + product_content + ", product_maker="
-				+ product_maker + ", product_makedate=" + product_makedate + ", product_state=" + product_state
-				+ ", member_no=" + member_no + ", categorylist_no_1=" + categorylist_no_1 + ", productimg_no="
-				+ productimg_no + ", productimg_filename=" + productimg_filename + ", productimg_savename="
-				+ productimg_savename + ", product_no_1=" + product_no_1 + ", productimg_path=" + productimg_path
-				+ ", productimg_filesize=" + productimg_filesize + ", productimg_image=" + productimg_image
-				+ ", productimg_flag=" + productimg_flag + "]";
+		return "CategoryProductimgVo [product_no=" + product_no + ", product_name=" + product_name + ", product_price="
+				+ product_price + ", product_content=" + product_content + ", product_maker=" + product_maker
+				+ ", product_makedate=" + product_makedate + ", product_state=" + product_state + ", member_no="
+				+ member_no + ", categorylist_no=" + categorylist_no + ", productimg_no=" + productimg_no
+				+ ", productimg_filename=" + productimg_filename + ", productimg_savename=" + productimg_savename
+				+ ", product_no_1=" + product_no_1 + ", productimg_path=" + productimg_path + ", productimg_filesize="
+				+ productimg_filesize + ", productimg_image=" + productimg_image + ", productimg_flag="
+				+ productimg_flag + "]";
 	}
-
+	
+	
 	
 }

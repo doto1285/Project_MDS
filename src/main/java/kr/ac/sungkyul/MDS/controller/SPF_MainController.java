@@ -70,6 +70,12 @@ public class SPF_MainController {
 			List<CategoryListVo> categoryList = SPF_mainService.get_CategoryList(mallVo);
 			model.addAttribute("categoryList1st", categoryList);
 			model.addAttribute("categoryList2nd", categoryList);
+			System.out.println("=====================================");
+			for(CategoryListVo aa: categoryList){
+				System.out.println(aa);
+			}
+			System.out.println("=====================================");
+			
 			// 헤더의 로고이미지 뿌려줌
 			MallimgVo mallimgVoLogo = SPF_mallimgService.get_selectMallimg_logo(mallVo);
 			model.addAttribute("mallimgVoLogo", mallimgVoLogo);

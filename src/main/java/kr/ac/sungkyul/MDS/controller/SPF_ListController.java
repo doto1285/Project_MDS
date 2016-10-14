@@ -13,13 +13,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.ac.sungkyul.MDS.service.MemberService;
+import kr.ac.sungkyul.MDS.service.SPF_ListSrvice;
 import kr.ac.sungkyul.MDS.service.SPF_MainService;
 import kr.ac.sungkyul.MDS.service.SPF_MallService;
+import kr.ac.sungkyul.MDS.service.SPF_MallimgService;
 import kr.ac.sungkyul.MDS.service.TSF_MainService;
 import kr.ac.sungkyul.MDS.vo.CategoryListVo;
+import kr.ac.sungkyul.MDS.vo.CategoryProductListVo;
 import kr.ac.sungkyul.MDS.vo.JoinMallVo;
 import kr.ac.sungkyul.MDS.vo.MallVo;
+import kr.ac.sungkyul.MDS.vo.MallimgVo;
 import kr.ac.sungkyul.MDS.vo.MemberVo;
+import kr.ac.sungkyul.MDS.vo.ProductListVo;
 
 @Controller
 public class SPF_ListController {
@@ -36,8 +41,24 @@ public class SPF_ListController {
 	@Autowired
 	SPF_MallService SPF_mallService;
 
+	@Autowired
+	SPF_ListSrvice SPF_listService;
+	
+	@Autowired
+	SPF_MallimgService SPF_mallimgService;
+
+	/**
+	 * 카테고리별 상품 리스트 화면 만든이 : 이민우
+	 * 
+	 * @param mall_domain
+	 * @param model
+	 * @param productListVo
+	 * @return
+	 */
 	@RequestMapping(value = "{mall_domain}/list", method = RequestMethod.GET)
-	public String list(@PathVariable String mall_domain, Model model) {
+	public String list(@PathVariable String mall_domain, Model model, CategoryListVo categoryListVo) {
+		int categorylist_no = categoryListVo.getCategorylist_no();
+		
 		// 현재 접속한 SPF 쇼핑몰 도메인을 매개로 mall_domain, mall_no을 mallVo에 넣음
 		MallVo mallVo = SPF_mallService.domainCheck(mall_domain);
 
@@ -45,9 +66,23 @@ public class SPF_ListController {
 		if ((SPF_mallService.isDomainCheck(mallVo.getMall_no())) == false) {
 			// 없는 도메인일 경우 실행되는 코드
 			return "404 error";
-			
-			
 		}
+
+		// 쇼핑몰 footer 뿌려줌
+		mallVo = SPF_mainService.get_Footer(mallVo.getMall_no());
+		model.addAttribute("mallVo", mallVo);
+		// 카테고리 메뉴 뿌려줌
+		List<CategoryListVo> categoryList = SPF_mainService.get_CategoryList(mallVo);
+		model.addAttribute("categoryList1st", categoryList);
+		model.addAttribute("categoryList2nd", categoryList);
+		// 헤더의 로고이미지 뿌려줌
+		MallimgVo mallimgVoLogo = SPF_mallimgService.get_selectMallimg_logo(mallVo);
+		model.addAttribute("mallimgVoLogo", mallimgVoLogo);
+
+		List<CategoryProductListVo> categoryProductListVo = SPF_listService.getProductList(categorylist_no);
+		model.addAttribute("categoryProductListVo", categoryProductListVo);
+
+		System.out.println(categoryProductListVo);
 		return "SPF/product/list";
 	}
 

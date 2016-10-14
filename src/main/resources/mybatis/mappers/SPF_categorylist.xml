@@ -4,7 +4,7 @@
 
 	<select id="get_category_List" parameterType="kr.ac.sungkyul.MDS.vo.MallVo"
 		resultType="kr.ac.sungkyul.MDS.vo.CategoryListVo">
-		<!-- 현재 쇼핑몰의 1차 카테고리 리스트 불러옴 -->
+		<!-- 현재 쇼핑몰의 1차, 2차 카테고리 리스트 불러옴 -->
 		<![CDATA[	
 			select * from categorylist where mall_no = #{ mall_no}  
 			and categorylist_state = 1
