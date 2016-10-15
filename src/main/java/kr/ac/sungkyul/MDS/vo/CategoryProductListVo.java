@@ -20,6 +20,7 @@ public class CategoryProductListVo {
 	private int productimg_filesize;
 	private String productimg_image;
 	private int productimg_flag;
+	private Integer pageNo;
 	
 	public int getProduct_no() {
 		return product_no;
@@ -123,18 +124,21 @@ public class CategoryProductListVo {
 	public void setProductimg_flag(int productimg_flag) {
 		this.productimg_flag = productimg_flag;
 	}
+	public Integer getPageNo() {
+		return pageNo;
+	}
+	public void setPageNo(Integer pageNo) {
+		this.pageNo = pageNo;
+	}
 	@Override
 	public String toString() {
-		return "CategoryProductimgVo [product_no=" + product_no + ", product_name=" + product_name + ", product_price="
+		return "CategoryProductListVo [product_no=" + product_no + ", product_name=" + product_name + ", product_price="
 				+ product_price + ", product_content=" + product_content + ", product_maker=" + product_maker
 				+ ", product_makedate=" + product_makedate + ", product_state=" + product_state + ", member_no="
 				+ member_no + ", categorylist_no=" + categorylist_no + ", productimg_no=" + productimg_no
 				+ ", productimg_filename=" + productimg_filename + ", productimg_savename=" + productimg_savename
 				+ ", product_no_1=" + product_no_1 + ", productimg_path=" + productimg_path + ", productimg_filesize="
 				+ productimg_filesize + ", productimg_image=" + productimg_image + ", productimg_flag="
-				+ productimg_flag + "]";
+				+ productimg_flag + ", pageNo=" + pageNo + "]";
 	}
-	
-	
-	
 }

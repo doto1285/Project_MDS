@@ -26,16 +26,16 @@
 	<div class="container">
 		<div class="col-md-12">
 			<ul class="nav nav-pills" id="secondCategoryMenu1">
-				<!-- class="active" -->
-				
-				<c:if test="${categoryListVoGroup.categorylist_depth } == 1">
-				<li role="presentation" class="active"><strong>{categoryListVoGroup.categorylist_name }</strong></li>
-				</c:if>
-				<c:if test="${categoryListVoGroup.categorylist_depth } == 2">
-				<li role="presentation"><a href="#">${categoryListVoGroup.categorylist_name }</a></li>
-				</c:if>
+				<c:forEach items="${categoryGroupList }" var="categoryGroupList">
+					 <c:if test="${categoryGroupList.categorylist_depth == 1 }">
+						<li role="presentation" class="active"><a href="#"><strong>${categoryGroupList.categorylist_name }</strong></a></li>
+					</c:if>
+					<c:if test="${categoryGroupList.categorylist_depth == 2 }">
+						<li role="presentation"><a href="/Project_MDS/${mall_domain }/list?categorylist_no=${categoryGroupList.categorylist_no }&categorylist_group=${category_groupNo }&pageNo=1">${categoryGroupList.categorylist_name }</a></li>
+					</c:if> 
+				</c:forEach>
 			</ul>
-			
+
 			<hr>
 			<br>
 			<c:choose>
@@ -59,10 +59,10 @@
 		<c:otherwise>
 			<ul class="nav nav-pills" id="priceArray">
 				<li role="presentation"><a
-					href="lowprice?categorylist_no= ${categoryListVo.categorylist_no }">
+					href="lowprice?categorylist_no= ${categoryListVo.categorylist_no }&categorylist_group=${category_groupNo }">
 						낮은가격 &nbsp; </a></li>
 				<li role="presentation"><a
-					href="highprice?categorylist_no= ${categoryListVo.categorylist_no }">높은가격</a></li>
+					href="highprice?categorylist_no= ${categoryListVo.categorylist_no }&categorylist_group=${category_groupNo }">높은가격</a></li>
 			</ul>
 			<c:forEach items="${categoryProductListVo }"
 				var="categoryProductListVo" varStatus="status">
@@ -83,20 +83,38 @@
 				</div>
 			</c:forEach>
 
-			<nav>
-			<ul class="pagination" id="paging">
-				<li><a href="#" aria-label="Previous"> <span
-						aria-hidden="true">&laquo;</span>
-				</a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-				</a></li>
-			</ul>
-			</nav>
+
+			<div class="pager">
+				<!-- class="pagination" id="paging" -->
+				<ul>
+					<c:if test="${beginPage>1 }">
+						<li><a
+							href="/Project_MDS/${mall_domain }/list?categorylist_no=${category_No }&categorylist_group=${category_groupNo }&pageNo=${beginPage-1 }">◀</a>
+							<input type="hidden" name="pageNo" value="${beginPage-1 }">
+						</li>
+					</c:if>
+					<c:forEach begin='${beginPage }' end='${endPage }' step='1' var='i'>
+						<c:choose>
+							<c:when test='${currentPage == i }'>
+								<li class="selected">${i }</li>
+							</c:when>
+							<c:otherwise>
+								<li><a
+									href="/Project_MDS/${mall_domain }/list?categorylist_no=${category_No }&categorylist_group=${category_groupNo }&pageNo=${i }">${i }</a>
+									<input type="hidden" name="pageNo" value="${i}"></li>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+
+					<c:if test='${endPage<total }'>
+						<li><a
+							href="/Project_MDS/${mall_domain }/list?categorylist_no=${category_No }&categorylist_group=${category_groupNo }&pageNo=${endPage+1 }&wKwd=${wKwd}">▶</a>
+							<input type="hidden" name="pageNo" value="${endPage+1}"></li>
+					</c:if>
+				</ul>
+
+			</div>
+
 		</c:otherwise>
 		</c:choose>
 	</div>

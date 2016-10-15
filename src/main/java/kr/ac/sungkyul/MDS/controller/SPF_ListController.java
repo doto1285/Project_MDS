@@ -56,13 +56,20 @@ public class SPF_ListController {
 	 * @return
 	 */
 	@RequestMapping(value = "{mall_domain}/list", method = RequestMethod.GET)
-	public String list(@PathVariable String mall_domain, Model model, CategoryListVo categoryListVo) {
+	public String list(@PathVariable String mall_domain, Model model, CategoryListVo categoryListVo,
+			CategoryProductListVo categoryProductListVoPaging) {
+		//GET 방식으로 링크 이동 시 데이터 넘길 때 필요한 변수들
 		int categorylist_no = categoryListVo.getCategorylist_no();
-		CategoryListVo categoryListVoGroup = SPF_listService.getCategoryList(categorylist_no);
-		model.addAttribute("categoryListVoGroup", categoryListVoGroup);
+		model.addAttribute("category_No", categorylist_no);
+		int categorylist_groupNo = categoryListVo.getCategorylist_group();
+		model.addAttribute("category_groupNo", categorylist_groupNo);
+		List<CategoryListVo> categoryGroupList = SPF_listService.getCategoryGroupList(categorylist_groupNo);
+		model.addAttribute("categoryGroupList", categoryGroupList);
 		
+
 		// 현재 접속한 SPF 쇼핑몰 도메인을 매개로 mall_domain, mall_no을 mallVo에 넣음
 		MallVo mallVo = SPF_mallService.domainCheck(mall_domain);
+		model.addAttribute("mall_domain", mall_domain);
 
 		// 도메인 체크
 		if ((SPF_mallService.isDomainCheck(mallVo.getMall_no())) == false) {
@@ -82,8 +89,34 @@ public class SPF_ListController {
 		model.addAttribute("mallimgVoLogo", mallimgVoLogo);
 		// 카테고리 넘버를 jsp에 넘겨줌
 		model.addAttribute("categoryListVo", categoryListVo);
+
+		// 페이징
 		List<CategoryProductListVo> categoryProductListVo = SPF_listService.getProductList(categorylist_no);
-		model.addAttribute("categoryProductListVo", categoryProductListVo);
+		if (categoryProductListVoPaging.getPageNo() == null) {
+			categoryProductListVoPaging.setPageNo(1);
+		}
+		int currentPage = categoryProductListVoPaging.getPageNo();
+		int pageLength = 4;
+		int beginPage;
+
+		List<CategoryProductListVo> listsplit = SPF_listService.getProductListPaging(categoryProductListVoPaging);
+		model.addAttribute("categoryProductListVo", listsplit);
+		
+		int currentBlock = (int) Math.ceil((double) categoryProductListVoPaging.getPageNo() / 5);
+
+		beginPage = (currentBlock - 1) * 5 + 1;
+
+		int total = (int) Math.ceil((double) categoryProductListVo.size() / pageLength);
+		int endPage = currentBlock * 5;
+		if (endPage > total) {
+			endPage = total;
+		}
+
+		model.addAttribute("beginPage", beginPage);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("total", total);
+
 		return "SPF/product/list";
 	}
 
@@ -96,12 +129,19 @@ public class SPF_ListController {
 	 * @return
 	 */
 	@RequestMapping(value = "{mall_domain}/lowprice", method = RequestMethod.GET)
-	public String listLowPrice(Model model, CategoryListVo categoryListVo, @PathVariable String mall_domain) {
+	public String listLowPrice(Model model, CategoryListVo categoryListVo, @PathVariable String mall_domain,
+			CategoryProductListVo categoryProductListVoPaging) {
+		//GET 방식으로 링크 이동 시 데이터 넘길 때 필요한 변수들
 		int categorylist_no = categoryListVo.getCategorylist_no();
-		List<CategoryProductListVo> categoryProductListVo = SPF_listService.getProductListLowPrice(categorylist_no);
-		model.addAttribute("categoryProductListVo", categoryProductListVo);
+		model.addAttribute("category_No", categorylist_no);
+		int categorylist_groupNo = categoryListVo.getCategorylist_group();
+		model.addAttribute("category_groupNo", categorylist_groupNo);
+		List<CategoryListVo> categoryGroupList = SPF_listService.getCategoryGroupList(categorylist_groupNo);
+		model.addAttribute("categoryGroupList", categoryGroupList);
+		
 		// 현재 접속한 SPF 쇼핑몰 도메인을 매개로 mall_domain, mall_no을 mallVo에 넣음
 		MallVo mallVo = SPF_mallService.domainCheck(mall_domain);
+		model.addAttribute("mall_domain", mall_domain);
 
 		// 도메인 체크
 		if ((SPF_mallService.isDomainCheck(mallVo.getMall_no())) == false) {
@@ -121,6 +161,33 @@ public class SPF_ListController {
 		model.addAttribute("mallimgVoLogo", mallimgVoLogo);
 		// 카테고리 넘버를 jsp에 넘겨줌
 		model.addAttribute("categoryListVo", categoryListVo);
+		// 페이징
+		List<CategoryProductListVo> categoryProductListVo = SPF_listService.getProductList(categorylist_no);
+		if (categoryProductListVoPaging.getPageNo() == null) {
+			categoryProductListVoPaging.setPageNo(1);
+		}
+		int currentPage = categoryProductListVoPaging.getPageNo();
+		int pageLength = 4;
+		int beginPage;
+
+		List<CategoryProductListVo> listsplit = SPF_listService.getProductListLowPrice(categoryProductListVoPaging);
+		model.addAttribute("categoryProductListVo", listsplit);
+		
+		int currentBlock = (int) Math.ceil((double) categoryProductListVoPaging.getPageNo() / 5);
+
+		beginPage = (currentBlock - 1) * 5 + 1;
+
+		int total = (int) Math.ceil((double) categoryProductListVo.size() / pageLength);
+		int endPage = currentBlock * 5;
+		if (endPage > total) {
+			endPage = total;
+		}
+
+		model.addAttribute("beginPage", beginPage);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("total", total);
+
 		// return "redirect:/" + mall_domain + "/list?categorylist_no=" +
 		// categorylist_no;
 		return "SPF/product/list";
@@ -135,12 +202,20 @@ public class SPF_ListController {
 	 * @return
 	 */
 	@RequestMapping(value = "{mall_domain}/highprice", method = RequestMethod.GET)
-	public String listHighPrice(Model model, CategoryListVo categoryListVo, @PathVariable String mall_domain) {
+	public String listHighPrice(Model model, CategoryListVo categoryListVo, @PathVariable String mall_domain,
+			CategoryProductListVo categoryProductListVoPaging) {
+		
+		//GET 방식으로 링크 이동 시 데이터 넘길 때 필요한 변수들
 		int categorylist_no = categoryListVo.getCategorylist_no();
-		List<CategoryProductListVo> categoryProductListVo = SPF_listService.getProductListHighPrice(categorylist_no);
-		model.addAttribute("categoryProductListVo", categoryProductListVo);
+		model.addAttribute("category_No", categorylist_no);
+		int categorylist_groupNo = categoryListVo.getCategorylist_group();
+		model.addAttribute("category_groupNo", categorylist_groupNo);
+		List<CategoryListVo> categoryGroupList = SPF_listService.getCategoryGroupList(categorylist_groupNo);
+		model.addAttribute("categoryGroupList", categoryGroupList);
+		
 		// 현재 접속한 SPF 쇼핑몰 도메인을 매개로 mall_domain, mall_no을 mallVo에 넣음
 		MallVo mallVo = SPF_mallService.domainCheck(mall_domain);
+		model.addAttribute("mall_domain", mall_domain);
 
 		// 도메인 체크
 		if ((SPF_mallService.isDomainCheck(mallVo.getMall_no())) == false) {
@@ -160,33 +235,38 @@ public class SPF_ListController {
 		model.addAttribute("mallimgVoLogo", mallimgVoLogo);
 		// 카테고리 넘버를 jsp에 넘겨줌
 		model.addAttribute("categoryListVo", categoryListVo);
+		// 페이징
+		List<CategoryProductListVo> categoryProductListVo = SPF_listService.getProductList(categorylist_no);
+		if (categoryProductListVoPaging.getPageNo() == null) {
+			categoryProductListVoPaging.setPageNo(1);
+		}
+		int currentPage = categoryProductListVoPaging.getPageNo();
+		int pageLength = 4;
+		int beginPage;
+
+		List<CategoryProductListVo> listsplit = SPF_listService.getProductListHighPrice(categoryProductListVoPaging);
+		model.addAttribute("categoryProductListVo", listsplit);
+		
+		int currentBlock = (int) Math.ceil((double) categoryProductListVoPaging.getPageNo() / 5);
+
+		beginPage = (currentBlock - 1) * 5 + 1;
+
+		int total = (int) Math.ceil((double) categoryProductListVo.size() / pageLength);
+		int endPage = currentBlock * 5;
+		if (endPage > total) {
+			endPage = total;
+		}
+
+		model.addAttribute("beginPage", beginPage);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("total", total);
+
 		// return "redirect:/" + mall_domain + "/list?categorylist_no=" +
 		// categorylist_no;
 		return "SPF/product/list";
 	}
 
-	@RequestMapping("{mall_domain}/list/detail")
-	public String listDetail(@PathVariable String mall_domain, Model model) {
-
-		return "SPF/product/listDetail";
-	}
-
-	@RequestMapping("{mall_domain}/order")
-	public String order(@PathVariable String mall_domain, Model model) {
-
-		return "SPF/order/order";
-	}
-
-	@RequestMapping("{mall_domain}/shoppingbasket")
-	public String shoppingBasket(@PathVariable String mall_domain, Model model) {
-
-		return "SPF/subMenu/shoppingBasket";
-	}
-
-	@RequestMapping("{mall_domain}/orderdelivery")
-	public String orderDelivery(@PathVariable String mall_domain, Model model) {
-
-		return "SPF/subMenu/orderDelivery";
-	}
+	
 
 }
