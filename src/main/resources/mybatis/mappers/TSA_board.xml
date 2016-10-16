@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="TSA_board">
+
+
+	<!--게시물 총 개수 얻기  -->
+	<select id="totalCount"  parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		<![CDATA[
+      select count(*) from board  where board_state = 1 and boardlist_no = #{boardlist_no }
+				]]>
+	</select>
+
+	<select id="GetBoardContentsList" parameterType="map"
+		resultType="kr.ac.sungkyul.MDS.vo.BoardVo">
+		<!-- 해당 게시판에 작성되어 있는 게시글 목록 가져오기 -->
+		<![CDATA[		
+		 SELECT * FROM ( SELECT A.*, ROWNUM AS RNUM FROM 
+      (
+		
+		select 
+		board_no, board_title, board_content, board_hits, board_group, board_orderno, board_depth, 
+		board_date, board_state, boardlist_no, member_no, 
+
+		(select member_name from member where board.member_no = member.member_no) as name
+
+		from board
+
+ 	   where board_state = 1 and boardlist_no = #{boardlist_no }
+ 	   order by board_group desc,
+ 	   board_orderno asc) A )
+ 	   
+ 	    where #{page_start }<= RNUM AND RNUM <= #{page_end }
+ 	   
+		]]>
+	</select>
+
+
+	<select id="GetBoardContent" parameterType="java.lang.Integer"
+		resultType="kr.ac.sungkyul.MDS.vo.BoardVo">
+		<!-- 해당 쇼핑몰의 생성되어있는 게시판 목록 가져오기 -->
+		<![CDATA[			
+	
+	 select * from board
+	 
+	  where board_state = 1 
+	  and board_no = #{board_no}
+	
+		]]>
+	</select>
+
+
+
+
+
+	<insert id="NewWrite" parameterType="kr.ac.sungkyul.MDS.vo.BoardVo">
+		<!-- 새 글 등록하기 -->
+		<![CDATA[		
+insert into board values
+ (board_seq.nextval,
+ 	#{board_title},
+ 	#{board_password},
+    #{board_content},
+    0,
+    board_groupno_seq.nextval,
+    1,
+    1,
+    sysdate,
+    1,
+    #{boardlist_no},
+    #{member_no}
+    )
+		]]>
+	</insert>
+
+	<update id="ReplyWrite_orderno_update" parameterType="kr.ac.sungkyul.MDS.vo.BoardVo">
+	<![CDATA[	
+	update board set 
+	board_orderno= board_orderno+1
+
+	 where 
+ 	board_group = #{board_group} 
+ 	and board_orderno > #{board_orderno}
+ 	and board_state = 1
+	]]>
+	</update>
+
+
+	<insert id="ReplyWrite" parameterType="kr.ac.sungkyul.MDS.vo.BoardVo">
+		<!-- 답글 등록하기 -->
+		<![CDATA[		
+insert into board values
+ (board_seq.nextval,
+ 	#{board_title},
+ 	#{board_password},
+    #{board_content},
+    0,
+    #{board_group},
+    #{board_orderno}+1,
+    #{board_depth}+1,
+    sysdate,
+    1,
+    #{boardlist_no},
+    #{member_no}
+    )
+		]]>
+		
+		
+	</insert>
+
+
+<select id="GetUserManage" 	resultType="kr.ac.sungkyul.MDS.vo.MemberVo">
+		<!-- 해당 쇼핑몰의 생성되어있는 게시판 목록 가져오기 -->
+		<![CDATA[			
+	
+	 select * from member
+	
+		]]>
+	</select>
+
+<select id="GetNotice" 	resultType="kr.ac.sungkyul.MDS.vo.BoardVo">
+		<!-- 해당 쇼핑몰의 생성되어있는 게시판 목록 가져오기 -->
+		<![CDATA[			
+	
+	SELECT board_no, board_title, board_content, board_hits, board_group, board_orderno, board_depth, 
+board_date, board_state, boardlist_no, member_name name FROM board full OUTER JOIN member on board.member_no = MEMBER.MEMBER_NO where boardlist_no=1
+	
+		]]>
+	</select>
+
+	
+	
+</mapper>
+
+	<!--   select * from board -->
+
+
+
+

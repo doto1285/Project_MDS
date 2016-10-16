@@ -57,83 +57,23 @@
 		<table class="table table-striped table-hover ">
 			<tr>
 				<th>번호</th>
-				<th>회원 아이디</th>
+				<th>아이디</th>
 				<th>이름</th>
 				<th>가입일</th>
-				<th>구매금액</th>
+				<th>구분</th>
 			</tr>
 
-			<c:forEach items="${listBoard }" var="boardVo">
+			
+			<tbody>
+				<c:forEach items="${GetUserManageList }" var="GetUserManageList">
 				<tr>
-					<td>${boardVo.no}</td>
-					<td><a href="view?no=${boardVo.no}">${boardVo.title}</a></td>
-					<td>${boardVo.regDate}</td>
+					<td>${GetUserManageList.member_no}</td>
+					<td><a href="view?no=${GetUserManageList.member_no}">${GetUserManageList.member_id}</a></td>
+					<td>${GetUserManageList.member_name}</td>
+					<td>${GetUserManageList.member_joindate}</td>
+					<td>${GetUserManageList.member_distinction}</td>
 				</tr>
 			</c:forEach>
-			<tbody>
-				<tr>
-					<td>1</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-				</tr>
-				<tr>
-					<td>4</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-				</tr>
-				<tr>
-					<td>5</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-				</tr>
-				<tr>
-					<td>6</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-				</tr>
-				<tr>
-					<td>7</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-				</tr>
-				<tr>
-					<td>8</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-				</tr>
 
 				</tbody>
 		</table>
