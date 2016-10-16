@@ -8,6 +8,7 @@ public class CategoryListVo {
 	private int categorylist_depth;
 	private int categorylist_state;
 	private int mall_no;
+	private String sorting;
 	
 	public int getCategorylist_no() {
 		return categorylist_no;
@@ -51,11 +52,17 @@ public class CategoryListVo {
 	public void setMall_no(int mall_no) {
 		this.mall_no = mall_no;
 	}
+	public String getSorting() {
+		return sorting;
+	}
+	public void setSorting(String sorting) {
+		this.sorting = sorting;
+	}
 	@Override
 	public String toString() {
 		return "CategoryListVo [categorylist_no=" + categorylist_no + ", categorylist_name=" + categorylist_name
 				+ ", categorylist_group=" + categorylist_group + ", categorylist_orderno=" + categorylist_orderno
 				+ ", categorylist_depth=" + categorylist_depth + ", categorylist_state=" + categorylist_state
-				+ ", mall_no=" + mall_no + "]";
+				+ ", mall_no=" + mall_no + ", sorting=" + sorting + "]";
 	}
 }
