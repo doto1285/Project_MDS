@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.ac.sungkyul.MDS.vo.BoardListVo;
 import kr.ac.sungkyul.MDS.vo.BoardVo;
+import kr.ac.sungkyul.MDS.vo.MallVo;
 
 @Repository
 public class BoardListDao {
@@ -41,4 +42,17 @@ public class BoardListDao {
 		return GetBoard;
 	}
 
+	/**
+	 * mallVo 안의 mall_no을 가지고 SPF 개인쇼핑몰에서 게시판 리스트를 가져옴
+	 * 만든이 : 이민우
+	 * @param mallVo
+	 * @return
+	 */
+	public List<BoardListVo> SPF_GetBoardList(MallVo mallVo) {
+		// TODO Auto-generated method stub
+		List<BoardListVo> BoardList = sqlSession.selectList("TSF_boardList.SPF_GetBoardList", mallVo);
+
+		return BoardList;
+	}
+	
 }

@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.ac.sungkyul.MDS.service.BoardService;
 import kr.ac.sungkyul.MDS.service.MemberService;
 import kr.ac.sungkyul.MDS.service.SPF_MainService;
 import kr.ac.sungkyul.MDS.service.SPF_MallService;
 import kr.ac.sungkyul.MDS.service.SPF_MallimgService;
 import kr.ac.sungkyul.MDS.service.SPF_ProductService;
+import kr.ac.sungkyul.MDS.vo.BoardListVo;
 import kr.ac.sungkyul.MDS.vo.CategoryListVo;
 import kr.ac.sungkyul.MDS.vo.JoinMallVo;
 import kr.ac.sungkyul.MDS.vo.MallVo;
@@ -41,6 +43,9 @@ public class SPF_MainController {
 
 	@Autowired
 	SPF_ProductService SPF_productService;
+	
+	@Autowired
+	BoardService boardService;
 
 	/**
 	 * 쇼핑몰 프론트 메인화면 
@@ -74,6 +79,9 @@ public class SPF_MainController {
 			// 헤더의 로고이미지 뿌려줌
 			MallimgVo mallimgVoLogo = SPF_mallimgService.get_selectMallimg_logo(mallVo);
 			model.addAttribute("mallimgVoLogo", mallimgVoLogo);
+			//헤더의 게시판 리스트 뿌려줌
+			List<BoardListVo> boardList = boardService.SPF_GetBoardList(mallVo);
+			model.addAttribute("boardList", boardList);
 			// 메인의 대문이미지 뿌려줌
 			MallimgVo mallimgVoGate = SPF_mallimgService.get_selectMallimg_gate(mallVo);
 			model.addAttribute("mallimgVoGate", mallimgVoGate);
