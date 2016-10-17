@@ -108,17 +108,6 @@
 		]]>
 	</select>
 
-	<select id="SPF_GetBoardList" parameterType="kr.ac.sungkyul.MDS.vo.MallVo"
-		resultType="kr.ac.sungkyul.MDS.vo.BoardListVo">
-		<!-- 해당 쇼핑몰의 생성되어있는 게시판 목록 가져오기 -->
-		<![CDATA[	
-		select * from boardlist where
-		boardlist_state = 1 and 
-		mall_no =  #{mall_no }
-order by boardlist_orderno asc
-		]]>
-	</select>
-
 
 
 
