@@ -31,154 +31,102 @@
 		<br>
 			<P id="center_p">고객센터</P>
 			<br>
-			<a href="/Project_MDS/TSA/main/board/servicecenter" class="btn btn-default" id="serv_button">FAQ</a>
+			<a href="/Project_MDS/TSA/main/board/2" class="btn btn-default" id="serv_button">FAQ</a>
 			<br>
 			<br>
-			<a href="/Project_MDS/TSA/main/board/qna" class="btn btn-default" id="serv_button">QNA</a>
+			<a href="/Project_MDS/TSA/main/board/3" class="btn btn-default" id="serv_button">QNA</a>
 		</center>
 			</nav>
 		<center>
-			<P id="center_p">FAQ</P>
+			<P>${GetBoard.boardlist_name }</P>
 		</center>
 
-		<form id="search_form" action="Project_MDS/main/" method="get">
+		<form id="search_form" action="/mysite5/board" method="get">
 			<input type="text" id="kwd" name="kwd" value="${keyword }"> <input
 				type="submit" value="찾기">
 		</form>
 
-		<table class="table table-striped table-hover " id="serv_table">
-			<tr>
-				<th>번호</th>
-				<th>쇼핑몰 명</th>
-				<th>쇼핑몰 생성일</th>
-				<th>판매금액</th>
-				<th>관리자</th>
-			</tr>
 
-			<c:forEach items="${listBoard }" var="boardVo">
-				<tr>
-					<td>${boardVo.no}</td>
-					<td><a href="view?no=${boardVo.no}">${boardVo.title}</a></td>
-					<td>${boardVo.regDate}</td>
-				</tr>
-			</c:forEach>
-			<tbody>
-				<tr>
-					<td>1</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-				</tr>
-				<tr>
-					<td>4</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-				</tr>
-				<tr>
-					<td>5</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-				</tr>
-				<tr>
-					<td>6</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-				</tr>
-				<tr>
-					<td>7</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-				</tr>
-				<tr>
-					<td>8</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-				</tr>
-
-			</tbody>
-		</table>
-
-	</div>
+		<table class="table table-striped table-hover ">
+						<tr>
+							<th>번호</th>
+							<th>제목</th>
+							<th>글쓴이</th>
+							<th>조회수</th>
+							<th>작성일</th>
+						</tr>
 
 
+						<tbody>
 
-		<div class="bottom" id="serv_bot">
-			<!-- begin:paging -->
-			<div class="pager">
-				<ul>
+							<c:forEach items="${map.GetBoardContentsList}" var="GetBoardContentsList">
+								<tr>
+									<!--글번호-->
+									<td>${GetBoardContentsList.board_no}</td>
+									<!--제목-->
+									<td><c:forEach var="i" begin="2"
+											end="${GetBoardContentsList.board_depth}" step="1">
+						 ↳ 
+						</c:forEach> <a href="view?no=${GetBoardContentsList.board_no}">${GetBoardContentsList.board_title}</a>
+									</td>
+									<!--글쓴이  -->
+									<td>${GetBoardContentsList.name}</td>
+									<!--조회수  -->
+									<td>${GetBoardContentsList.board_hit}</td>
+									<!--작성일  -->
+									<td>${GetBoardContentsList.board_date}</td>
+								</tr>
+							</c:forEach>
 
-					<c:if test="${map.prevPage >= 0 }">
-						<li><a
-							href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${map.prevPage }">◀</a></li>
-					</c:if>
 
-					<c:forEach begin='${map.firstPage }' end='${map.lastPage }'
-						step='1' var='i'>
-						<c:choose>
-							<c:when test='${map.currentPage == i }'>
-								<li class="selected">${i }</li>
-							</c:when>
-							<c:when test='${i > map.pageCount }'>
-								<li>${i }</li>
-							</c:when>
-							<c:otherwise>
-								<li><a
-									href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${i }">${i }</a></li>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
+						</tbody>
+					</table>
+				</table>
+						<!-- begin:paging -->
+				<div class="pager">
+					<ul>
 
-					<c:if test='${map.nextPage > 0 }'>
-						<li><a
-							href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${map.nextPage }">▶</a></li>
-					</c:if>
-				</ul>
-			</div>
+						<c:if test="${map.prevPage >= 0 }">
+							<li><a href="/Project_MDS/TSA/main/board/${GetBoard.boardlist_no }?p=${map.prevPage }">◀</a></li>
+						</c:if>
+
+						<c:forEach begin='${map.firstPage }' end='${map.lastPage }'
+							step='1' var='i'>
+							<c:choose>
+								<c:when test='${map.currentPage == i }'>
+									<li class="selected">${i }</li>
+								</c:when>
+								<c:when test='${i > map.pageCount }'>
+									<li>${i }</li>
+								</c:when>
+								<c:otherwise>
+									<li><a href="/Project_MDS/TSA/main/board/${GetBoard.boardlist_no }?p=${i }">${i }</a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+
+						<c:if test='${map.nextPage > 0 }'>
+							<li><a href="/Project_MDS/TSA/main/board/${GetBoard.boardlist_no }?p=${map.nextPage }">▶</a></li>
+						</c:if>
+					</ul>
+				</div>
 			<!-- end:paging -->
-			<c:choose>
-				<c:when test='${authUser.member_distinction == 9}'>
-					<!-- admin만 글쓰기 버튼 보여준다  -->
+		<c:choose>
+			<c:when
+				test='${authUser.member_distinction } >= ${GetBoard.boardlist_write_accessright }'>
+				<!-- admin만 글쓰기 버튼 보여준다  -->
 
-					<a href="#" class="btn btn-primary" id="write">글쓰기</a>
-				</c:when>
-			</c:choose>
+				<div class="bottom">
+					<a href="notice/writeform" id="new-book">글쓰기</a>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<!-- 개인, 기업회원일 경우 글쓰기 버튼을 표시하지 않음  -->
+			</c:otherwise>
+		</c:choose>
 		</div>
 
 
-
-	</div>
 	<!--      ---------------------------------------------             -->
 </body>
 </html>

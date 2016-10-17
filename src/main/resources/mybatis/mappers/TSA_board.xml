@@ -118,18 +118,8 @@ insert into board values
 		]]>
 	</select>
 
-	<select id="GetNotice" resultType="kr.ac.sungkyul.MDS.vo.BoardVo">
-		<!-- 해당 쇼핑몰의 생성되어있는 게시판 목록 가져오기 -->
-		<![CDATA[			
-	
-	SELECT board_no, board_title, board_content, board_hits, board_group, board_orderno, board_depth, 
-board_date, board_state, boardlist_no, member_name name FROM board full OUTER JOIN member on board.member_no = MEMBER.MEMBER_NO where boardlist_no=1
-	
-		]]>
-	</select>
-
-
-	<select id="GetShopManage" resultType="kr.ac.sungkyul.MDS.vo.MallVo">
+	<select id="GetShopManage" parameterType="map"
+		resultType="kr.ac.sungkyul.MDS.vo.MallVo">
 		<!-- 해당 쇼핑몰의 생성되어있는 게시판 목록 가져오기 -->
 		<![CDATA[			
 	
