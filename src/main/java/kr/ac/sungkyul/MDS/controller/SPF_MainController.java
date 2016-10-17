@@ -43,13 +43,13 @@ public class SPF_MainController {
 
 	@Autowired
 	SPF_ProductService SPF_productService;
-	
+
 	@Autowired
 	BoardService boardService;
 
 	/**
-	 * 쇼핑몰 프론트 메인화면 
-	 * 만든이 : 이민우
+	 * 쇼핑몰 프론트 메인화면 만든이 : 이민우
+	 * 
 	 * @param domain
 	 * @param model
 	 * @return
@@ -65,29 +65,29 @@ public class SPF_MainController {
 			return "404 error";
 		}
 
+		// 쇼핑몰 footer 뿌려줌
+		mallVo = SPF_mainService.get_Footer(mallVo.getMall_no());
+		model.addAttribute("mallVo", mallVo);
+		// 카테고리 메뉴 뿌려줌
+		List<CategoryListVo> categoryList = SPF_mainService.get_CategoryList(mallVo);
+		model.addAttribute("categoryList1st", categoryList);
+		model.addAttribute("categoryList2nd", categoryList);
+		// 헤더의 로고이미지 뿌려줌
+		MallimgVo mallimgVoLogo = SPF_mallimgService.get_selectMallimg_logo(mallVo);
+		model.addAttribute("mallimgVoLogo", mallimgVoLogo);
+		// 헤더의 게시판 리스트 뿌려줌
+		List<BoardListVo> boardList = boardService.SPF_GetBoardList(mallVo);
+		model.addAttribute("boardList", boardList);
+		// 메인의 대문이미지 뿌려줌
+		MallimgVo mallimgVoGate = SPF_mallimgService.get_selectMallimg_gate(mallVo);
+		model.addAttribute("mallimgVoGate", mallimgVoGate);
+		// 상품리스트 뿌려줌
+		List<ProductListVo> productListVo = SPF_productService.get_Product_Content(mallVo);
+		model.addAttribute("productListVo", productListVo);
+
 		// 로그인 세션 체크
 		if (memberService.isUserCheck(session) == false) {
 			// 로그인 안한 회원일 경우 실행되는 코드
-			// 쇼핑몰 footer 뿌려줌
-			mallVo = SPF_mainService.get_Footer(mallVo.getMall_no());
-			model.addAttribute("mallVo", mallVo);
-			// 카테고리 메뉴 뿌려줌
-			List<CategoryListVo> categoryList = SPF_mainService.get_CategoryList(mallVo);
-			model.addAttribute("categoryList1st", categoryList);
-			model.addAttribute("categoryList2nd", categoryList);
-			
-			// 헤더의 로고이미지 뿌려줌
-			MallimgVo mallimgVoLogo = SPF_mallimgService.get_selectMallimg_logo(mallVo);
-			model.addAttribute("mallimgVoLogo", mallimgVoLogo);
-			//헤더의 게시판 리스트 뿌려줌
-			List<BoardListVo> boardList = boardService.SPF_GetBoardList(mallVo);
-			model.addAttribute("boardList", boardList);
-			// 메인의 대문이미지 뿌려줌
-			MallimgVo mallimgVoGate = SPF_mallimgService.get_selectMallimg_gate(mallVo);
-			model.addAttribute("mallimgVoGate", mallimgVoGate);
-			// 상품리스트 뿌려줌
-			List<ProductListVo> productListVo = SPF_productService.get_Product_Content(mallVo);
-			model.addAttribute("productListVo", productListVo);
 			return "SPF/main/index";
 		}
 
@@ -106,22 +106,7 @@ public class SPF_MainController {
 			session.setAttribute("SPFauthUserSession", joinmallVo);
 			JoinMallVo SPFauthUser = (JoinMallVo) session.getAttribute("SPFauthUserSession");
 			model.addAttribute("SPFauthUser", SPFauthUser);
-			// 쇼핑몰 footer 뿌려줌
-			mallVo = SPF_mainService.get_Footer(mallVo.getMall_no());
-			model.addAttribute("mallVo", mallVo);
-			// 카테고리 메뉴 뿌려줌
-			List<CategoryListVo> categoryList = SPF_mainService.get_CategoryList(mallVo);
-			model.addAttribute("categoryList1st", categoryList);
-			model.addAttribute("categoryList2nd", categoryList);
-			// 헤더의 로고이미지 뿌려줌
-			MallimgVo mallimgVoLogo = SPF_mallimgService.get_selectMallimg_logo(mallVo);
-			model.addAttribute("mallimgVoLogo", mallimgVoLogo);
-			// 메인의 대문이미지 뿌려줌
-			MallimgVo mallimgVoGate = SPF_mallimgService.get_selectMallimg_gate(mallVo);
-			model.addAttribute("mallimgVoGate", mallimgVoGate);
-			// 상품리스트 뿌려줌
-			List<ProductListVo> productListVo = SPF_productService.get_Product_Content(mallVo);
-			model.addAttribute("productListVo", productListVo);
+
 			return "SPF/main/index";
 		}
 
@@ -129,25 +114,8 @@ public class SPF_MainController {
 		session.setAttribute("SPFauthUserSession", joinmallVo);
 		JoinMallVo SPFauthUser = (JoinMallVo) session.getAttribute("SPFauthUserSession");
 		model.addAttribute("SPFauthUser", SPFauthUser);
-		// 쇼핑몰 footer 뿌려줌
-		mallVo = SPF_mainService.get_Footer(mallVo.getMall_no());
-		model.addAttribute("mallVo", mallVo);
-		// 카테고리 메뉴 뿌려줌
-		List<CategoryListVo> categoryList = SPF_mainService.get_CategoryList(mallVo);
-		model.addAttribute("categoryList1st", categoryList);
-		model.addAttribute("categoryList2nd", categoryList);
-		// 헤더의 로고이미지 뿌려줌
-		MallimgVo mallimgVoLogo = SPF_mallimgService.get_selectMallimg_logo(mallVo);
-		model.addAttribute("mallimgVoLogo", mallimgVoLogo);
-		// 메인의 대문이미지 뿌려줌
-		MallimgVo mallimgVoGate = SPF_mallimgService.get_selectMallimg_gate(mallVo);
-		model.addAttribute("mallimgVoGate", mallimgVoGate);
-		// 상품리스트 뿌려줌
-		List<ProductListVo> productListVo = SPF_productService.get_Product_Content(mallVo);
-		model.addAttribute("productListVo", productListVo);
+
 		return "SPF/main/index";
 	}
 
-	
-	
 }

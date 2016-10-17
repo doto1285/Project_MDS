@@ -18,6 +18,7 @@
 	type="text/css">
 <!-- /공통 -->
 <title>모두의 쇼핑몰</title>
+
 </head>
 <body>
 	<c:import url='/WEB-INF/views/SPF/include/header.jsp' />
@@ -31,7 +32,13 @@
 						<li role="presentation" class="active"><a href="#"><strong>${categoryGroupList.categorylist_name }</strong></a></li>
 					</c:if>
 					<c:if test="${categoryGroupList.categorylist_depth == 2 }">
-						<li role="presentation"><a
+						<li role="presentation" id="secondCategoryMenu2nd"><a
+							href="/Project_MDS/${mall_domain }/list?categorylist_no=${categoryGroupList.categorylist_no }&categorylist_group=${category_groupNo }&pageNo=1">${categoryGroupList.categorylist_name }</a></li>
+					<li role="presentation" id="secondCategoryMenu2nd"><a
+							href="/Project_MDS/${mall_domain }/list?categorylist_no=${categoryGroupList.categorylist_no }&categorylist_group=${category_groupNo }&pageNo=1">${categoryGroupList.categorylist_name }</a></li>
+							<li role="presentation" id="secondCategoryMenu2nd"><a
+							href="/Project_MDS/${mall_domain }/list?categorylist_no=${categoryGroupList.categorylist_no }&categorylist_group=${category_groupNo }&pageNo=1">${categoryGroupList.categorylist_name }</a></li>
+							<li role="presentation" id="secondCategoryMenu2nd"><a
 							href="/Project_MDS/${mall_domain }/list?categorylist_no=${categoryGroupList.categorylist_no }&categorylist_group=${category_groupNo }&pageNo=1">${categoryGroupList.categorylist_name }</a></li>
 					</c:if>
 				</c:forEach>
@@ -121,4 +128,15 @@
 	</div>
 	<c:import url='/WEB-INF/views/SPF/include/footer.jsp' />
 </body>
+<script>
+ $(function(){
+  var sBtn = $("#secondCategoryMenu1 > #secondCategoryMenu2nd");    //  ul > li 이를 sBtn으로 칭한다. (클릭이벤트는 li에 적용 된다.)
+  sBtn.find("#secondCategoryMenu2nd").MouseDown(function(){   // sBtn에 속해 있는  a 찾아 클릭 하면.
+	$(this).parent().addClass("active"); // 클릭한 a에 (active)클래스를 넣는다.
+  })
+  sBtn.find("#secondCategoryMenu2nd").MouseUp(function(){   // sBtn에 속해 있는  a 찾아 클릭 하면.
+   sBtn.removeClass("active");     // sBtn 속에 (active) 클래스를 삭제 한다.
+  })
+ })
+</script>
 </html>
