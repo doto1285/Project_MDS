@@ -88,6 +88,7 @@ public class SPF_MainController {
 		// 로그인 세션 체크
 		if (memberService.isUserCheck(session) == false) {
 			// 로그인 안한 회원일 경우 실행되는 코드
+			
 			return "SPF/main/index";
 		}
 
