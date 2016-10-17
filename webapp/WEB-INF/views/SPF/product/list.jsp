@@ -27,12 +27,13 @@
 		<div class="col-md-12">
 			<ul class="nav nav-pills" id="secondCategoryMenu1">
 				<c:forEach items="${categoryGroupList }" var="categoryGroupList">
-					 <c:if test="${categoryGroupList.categorylist_depth == 1 }">
+					<c:if test="${categoryGroupList.categorylist_depth == 1 }">
 						<li role="presentation" class="active"><a href="#"><strong>${categoryGroupList.categorylist_name }</strong></a></li>
 					</c:if>
 					<c:if test="${categoryGroupList.categorylist_depth == 2 }">
-						<li role="presentation"><a href="/Project_MDS/${mall_domain }/list?categorylist_no=${categoryGroupList.categorylist_no }&categorylist_group=${category_groupNo }&pageNo=1">${categoryGroupList.categorylist_name }</a></li>
-					</c:if> 
+						<li role="presentation"><a
+							href="/Project_MDS/${mall_domain }/list?categorylist_no=${categoryGroupList.categorylist_no }&categorylist_group=${category_groupNo }&pageNo=1">${categoryGroupList.categorylist_name }</a></li>
+					</c:if>
 				</c:forEach>
 			</ul>
 
@@ -59,10 +60,10 @@
 		<c:otherwise>
 			<ul class="nav nav-pills" id="priceArray">
 				<li role="presentation"><a
-					href="lowprice?categorylist_no= ${categoryListVo.categorylist_no }&categorylist_group=${category_groupNo }">
+					href="/Project_MDS/${mall_domain }/list?categorylist_no= ${categoryListVo.categorylist_no }&categorylist_group=${category_groupNo }&sorting=lowprice">
 						낮은가격 &nbsp; </a></li>
 				<li role="presentation"><a
-					href="highprice?categorylist_no= ${categoryListVo.categorylist_no }&categorylist_group=${category_groupNo }">높은가격</a></li>
+					href="/Project_MDS/${mall_domain }/list?categorylist_no= ${categoryListVo.categorylist_no }&categorylist_group=${category_groupNo }&sorting=highprice">높은가격</a></li>
 			</ul>
 			<c:forEach items="${categoryProductListVo }"
 				var="categoryProductListVo" varStatus="status">
@@ -89,7 +90,7 @@
 				<ul>
 					<c:if test="${beginPage>1 }">
 						<li><a
-							href="/Project_MDS/${mall_domain }/list?categorylist_no=${category_No }&categorylist_group=${category_groupNo }&pageNo=${beginPage-1 }">◀</a>
+							href="/Project_MDS/${mall_domain }/list?categorylist_no=${category_No }&categorylist_group=${category_groupNo }&pageNo=${beginPage-1 }&sorting=${sorting}">◀</a>
 							<input type="hidden" name="pageNo" value="${beginPage-1 }">
 						</li>
 					</c:if>
@@ -100,7 +101,7 @@
 							</c:when>
 							<c:otherwise>
 								<li><a
-									href="/Project_MDS/${mall_domain }/list?categorylist_no=${category_No }&categorylist_group=${category_groupNo }&pageNo=${i }">${i }</a>
+									href="/Project_MDS/${mall_domain }/list?categorylist_no=${category_No }&categorylist_group=${category_groupNo }&pageNo=${i }&sorting=${sorting}">${i }</a>
 									<input type="hidden" name="pageNo" value="${i}"></li>
 							</c:otherwise>
 						</c:choose>
@@ -108,7 +109,7 @@
 
 					<c:if test='${endPage<total }'>
 						<li><a
-							href="/Project_MDS/${mall_domain }/list?categorylist_no=${category_No }&categorylist_group=${category_groupNo }&pageNo=${endPage+1 }&wKwd=${wKwd}">▶</a>
+							href="/Project_MDS/${mall_domain }/list?categorylist_no=${category_No }&categorylist_group=${category_groupNo }&pageNo=${endPage+1 }&sorting=${sorting}">▶</a>
 							<input type="hidden" name="pageNo" value="${endPage+1}"></li>
 					</c:if>
 				</ul>

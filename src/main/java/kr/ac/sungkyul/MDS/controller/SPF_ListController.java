@@ -65,7 +65,11 @@ public class SPF_ListController {
 		model.addAttribute("category_groupNo", categorylist_groupNo);
 		List<CategoryListVo> categoryGroupList = SPF_listService.getCategoryGroupList(categorylist_groupNo);
 		model.addAttribute("categoryGroupList", categoryGroupList);
-		
+		if (categoryListVo.getSorting() == null) {
+			categoryListVo.setSorting("");  
+		}
+		String sorting = categoryListVo.getSorting();
+		model.addAttribute("sorting", sorting);
 
 		// 현재 접속한 SPF 쇼핑몰 도메인을 매개로 mall_domain, mall_no을 mallVo에 넣음
 		MallVo mallVo = SPF_mallService.domainCheck(mall_domain);
@@ -99,8 +103,21 @@ public class SPF_ListController {
 		int pageLength = 4;
 		int beginPage;
 
-		List<CategoryProductListVo> listsplit = SPF_listService.getProductListPaging(categoryProductListVoPaging);
-		model.addAttribute("categoryProductListVo", listsplit);
+		if(sorting.equals("lowprice")){
+			List<CategoryProductListVo> listsplit = SPF_listService.getProductListLowPrice(categoryProductListVoPaging);
+			model.addAttribute("categoryProductListVo", listsplit);
+		}
+		
+		else if(sorting.equals("highprice")){
+			List<CategoryProductListVo> listsplit = SPF_listService.getProductListHighPrice(categoryProductListVoPaging);
+			model.addAttribute("categoryProductListVo", listsplit);
+		}
+		
+		else {
+			List<CategoryProductListVo> listsplit = SPF_listService.getProductListPaging(categoryProductListVoPaging);
+			model.addAttribute("categoryProductListVo", listsplit);
+		}
+		
 		
 		int currentBlock = (int) Math.ceil((double) categoryProductListVoPaging.getPageNo() / 5);
 
@@ -120,153 +137,5 @@ public class SPF_ListController {
 		return "SPF/product/list";
 	}
 
-	/**
-	 * 카테고리별 상품 중 낮은 가격 정렬 리스트 화면 만든이 : 이민우
-	 * 
-	 * @param model
-	 * @param categoryListVo
-	 * @param mall_domain
-	 * @return
-	 */
-	@RequestMapping(value = "{mall_domain}/lowprice", method = RequestMethod.GET)
-	public String listLowPrice(Model model, CategoryListVo categoryListVo, @PathVariable String mall_domain,
-			CategoryProductListVo categoryProductListVoPaging) {
-		//GET 방식으로 링크 이동 시 데이터 넘길 때 필요한 변수들
-		int categorylist_no = categoryListVo.getCategorylist_no();
-		model.addAttribute("category_No", categorylist_no);
-		int categorylist_groupNo = categoryListVo.getCategorylist_group();
-		model.addAttribute("category_groupNo", categorylist_groupNo);
-		List<CategoryListVo> categoryGroupList = SPF_listService.getCategoryGroupList(categorylist_groupNo);
-		model.addAttribute("categoryGroupList", categoryGroupList);
-		
-		// 현재 접속한 SPF 쇼핑몰 도메인을 매개로 mall_domain, mall_no을 mallVo에 넣음
-		MallVo mallVo = SPF_mallService.domainCheck(mall_domain);
-		model.addAttribute("mall_domain", mall_domain);
-
-		// 도메인 체크
-		if ((SPF_mallService.isDomainCheck(mallVo.getMall_no())) == false) {
-			// 없는 도메인일 경우 실행되는 코드
-			return "404 error";
-		}
-
-		// 쇼핑몰 footer 뿌려줌
-		mallVo = SPF_mainService.get_Footer(mallVo.getMall_no());
-		model.addAttribute("mallVo", mallVo);
-		// 카테고리 메뉴 뿌려줌
-		List<CategoryListVo> categoryList = SPF_mainService.get_CategoryList(mallVo);
-		model.addAttribute("categoryList1st", categoryList);
-		model.addAttribute("categoryList2nd", categoryList);
-		// 헤더의 로고이미지 뿌려줌
-		MallimgVo mallimgVoLogo = SPF_mallimgService.get_selectMallimg_logo(mallVo);
-		model.addAttribute("mallimgVoLogo", mallimgVoLogo);
-		// 카테고리 넘버를 jsp에 넘겨줌
-		model.addAttribute("categoryListVo", categoryListVo);
-		// 페이징
-		List<CategoryProductListVo> categoryProductListVo = SPF_listService.getProductList(categorylist_no);
-		if (categoryProductListVoPaging.getPageNo() == null) {
-			categoryProductListVoPaging.setPageNo(1);
-		}
-		int currentPage = categoryProductListVoPaging.getPageNo();
-		int pageLength = 4;
-		int beginPage;
-
-		List<CategoryProductListVo> listsplit = SPF_listService.getProductListLowPrice(categoryProductListVoPaging);
-		model.addAttribute("categoryProductListVo", listsplit);
-		
-		int currentBlock = (int) Math.ceil((double) categoryProductListVoPaging.getPageNo() / 5);
-
-		beginPage = (currentBlock - 1) * 5 + 1;
-
-		int total = (int) Math.ceil((double) categoryProductListVo.size() / pageLength);
-		int endPage = currentBlock * 5;
-		if (endPage > total) {
-			endPage = total;
-		}
-
-		model.addAttribute("beginPage", beginPage);
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("endPage", endPage);
-		model.addAttribute("total", total);
-
-		// return "redirect:/" + mall_domain + "/list?categorylist_no=" +
-		// categorylist_no;
-		return "SPF/product/list";
-	}
-
-	/**
-	 * 카테고리별 상품 중 높은 가격 정렬 리스트 화면 만든이 : 이민우
-	 * 
-	 * @param model
-	 * @param categoryListVo
-	 * @param mall_domain
-	 * @return
-	 */
-	@RequestMapping(value = "{mall_domain}/highprice", method = RequestMethod.GET)
-	public String listHighPrice(Model model, CategoryListVo categoryListVo, @PathVariable String mall_domain,
-			CategoryProductListVo categoryProductListVoPaging) {
-		
-		//GET 방식으로 링크 이동 시 데이터 넘길 때 필요한 변수들
-		int categorylist_no = categoryListVo.getCategorylist_no();
-		model.addAttribute("category_No", categorylist_no);
-		int categorylist_groupNo = categoryListVo.getCategorylist_group();
-		model.addAttribute("category_groupNo", categorylist_groupNo);
-		List<CategoryListVo> categoryGroupList = SPF_listService.getCategoryGroupList(categorylist_groupNo);
-		model.addAttribute("categoryGroupList", categoryGroupList);
-		
-		// 현재 접속한 SPF 쇼핑몰 도메인을 매개로 mall_domain, mall_no을 mallVo에 넣음
-		MallVo mallVo = SPF_mallService.domainCheck(mall_domain);
-		model.addAttribute("mall_domain", mall_domain);
-
-		// 도메인 체크
-		if ((SPF_mallService.isDomainCheck(mallVo.getMall_no())) == false) {
-			// 없는 도메인일 경우 실행되는 코드
-			return "404 error";
-		}
-
-		// 쇼핑몰 footer 뿌려줌
-		mallVo = SPF_mainService.get_Footer(mallVo.getMall_no());
-		model.addAttribute("mallVo", mallVo);
-		// 카테고리 메뉴 뿌려줌
-		List<CategoryListVo> categoryList = SPF_mainService.get_CategoryList(mallVo);
-		model.addAttribute("categoryList1st", categoryList);
-		model.addAttribute("categoryList2nd", categoryList);
-		// 헤더의 로고이미지 뿌려줌
-		MallimgVo mallimgVoLogo = SPF_mallimgService.get_selectMallimg_logo(mallVo);
-		model.addAttribute("mallimgVoLogo", mallimgVoLogo);
-		// 카테고리 넘버를 jsp에 넘겨줌
-		model.addAttribute("categoryListVo", categoryListVo);
-		// 페이징
-		List<CategoryProductListVo> categoryProductListVo = SPF_listService.getProductList(categorylist_no);
-		if (categoryProductListVoPaging.getPageNo() == null) {
-			categoryProductListVoPaging.setPageNo(1);
-		}
-		int currentPage = categoryProductListVoPaging.getPageNo();
-		int pageLength = 4;
-		int beginPage;
-
-		List<CategoryProductListVo> listsplit = SPF_listService.getProductListHighPrice(categoryProductListVoPaging);
-		model.addAttribute("categoryProductListVo", listsplit);
-		
-		int currentBlock = (int) Math.ceil((double) categoryProductListVoPaging.getPageNo() / 5);
-
-		beginPage = (currentBlock - 1) * 5 + 1;
-
-		int total = (int) Math.ceil((double) categoryProductListVo.size() / pageLength);
-		int endPage = currentBlock * 5;
-		if (endPage > total) {
-			endPage = total;
-		}
-
-		model.addAttribute("beginPage", beginPage);
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("endPage", endPage);
-		model.addAttribute("total", total);
-
-		// return "redirect:/" + mall_domain + "/list?categorylist_no=" +
-		// categorylist_no;
-		return "SPF/product/list";
-	}
-
-	
 
 }
