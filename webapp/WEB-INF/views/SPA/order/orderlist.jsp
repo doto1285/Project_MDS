@@ -48,10 +48,12 @@
 					<td>수량</td>
 					<td>총 가격</td>
 					<td>상태</td>
+					<td>배송관리</td>
 				</tr>
 
 				<c:forEach var='vo' items='${map.orderlist}' varStatus='status'>
-					<tr>
+					<tr data-orderinfono ='${vo.orderinfo_no}'
+					data-orderinfostate ='${vo.orderinfo_state}'>
 						<td id="tableContents">${vo.orderinfo_no }</td>
 						<td id="tableContents">${vo.orderinfo_address }</td>
 						<td id="tableContents">${vo.orderinfo_count }개</td>
@@ -69,6 +71,16 @@
 								<c:when test="${vo.orderinfo_state == 4 }">
 								배송완료
 							</c:when>
+							</c:choose></td>
+						<td id="tableContents"><c:choose>
+								<c:when test="${vo.orderinfo_state == 2 }">
+									<input type="button"
+										class="btn_Modify btn btn-info btn-sm" value="배송시작">
+								</c:when>
+								<c:when test="${vo.orderinfo_state == 3 }">
+									<input type="button"
+										class="btn_Modify btn btn-primary btn-sm" value="배송완료">
+								</c:when>
 							</c:choose></td>
 					</tr>
 				</c:forEach>
@@ -89,3 +101,35 @@
 	<c:import url='/WEB-INF/views/SPA/include/footer.jsp' />
 </body>
 </html>
+
+<script>
+	var orderinfoNo = "";
+	var orderinfoState = "";
+	$(".btn_Modify").on("click", function() {
+		orderinfoNo = $(this).parents("tr").data("orderinfono");
+		orderinfoState = $(this).parents("tr").data("orderinfostate");
+
+		console.log("배송관리 버튼 클릭시: " + orderinfoNo + orderinfoState); //로그에 찍히는 부분
+
+		$.ajax({
+			//값 넘기기 ( 삭제할 번호: productNo)
+			url : "orderinfoModify",
+			type : "POST",
+			data : {
+				"orderinfoNo" : orderinfoNo,
+				"orderinfoState" : orderinfoState,
+			},
+			dataType : "text",
+
+			success : function(url) {
+				//ajax가 성공했을때, 컨트롤러에서 리턴받는 url로 페이지를 최신화 시킨다.
+				location.href = url;
+
+			},
+			error : function(jqXHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+		alert("수정 완료");
+	});
+</script>

@@ -45,7 +45,7 @@ public class SPA_MainController {
 	public String index(@PathVariable String domain, HttpSession session) {
 		//쇼핑몰 관리자 세션확인
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
+			return "redirect:/main/loginfrom/loginfrom";
 		}
 		return "SPA/main/index";
 	}
@@ -60,7 +60,7 @@ public class SPA_MainController {
 	public String logout(@PathVariable String domain, HttpSession session) {
 		//쇼핑몰 관리자 세션확인
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
+			return "redirect:/main/loginfrom";
 		}
 		session.removeAttribute("authUser");
 		session.invalidate();
@@ -80,7 +80,7 @@ public class SPA_MainController {
 	public String mall(@PathVariable String domain, HttpSession session, Model model) {
 		//쇼핑몰 관리자 세션확인
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
+			return "redirect:/main/loginfrom";
 		}
 		MallVo mallVo = SPA_mainservice.getSelectMall(domain);
 		model.addAttribute("mallVo", mallVo);
@@ -99,7 +99,7 @@ public class SPA_MainController {
 	public String mallLogoImg(@PathVariable String domain, HttpSession session, Model model) {
 		//쇼핑몰 관리자 세션확인
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
+			return "redirect:/main/loginfrom";
 		}
 		String url = SPA_mainservice.getMallImg(domain, 0);
 		model.addAttribute("url", url);
@@ -118,7 +118,7 @@ public class SPA_MainController {
 	public String mallLogoImgModify(@PathVariable String domain, HttpSession session, MultipartFile file) throws Exception {
 		//쇼핑몰 관리자 세션확인
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
+			return "redirect:/main/loginfrom";
 		}
 		if (file.isEmpty()) {
 			return "redirect:/SPA/" + domain + "/malllogo";
@@ -138,7 +138,7 @@ public class SPA_MainController {
 	public String mallLogoImgDelete(@PathVariable String domain, HttpSession session) {
 		//쇼핑몰 관리자 세션확인
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
+			return "redirect:/main/loginfrom";
 		}
 		SPA_mainservice.deleteMallImg(domain, 0);
 		return "redirect:/SPA/" + domain + "/malllogo";
@@ -156,7 +156,7 @@ public class SPA_MainController {
 	public String mallMainImg(@PathVariable String domain, HttpSession session, Model model) {
 		//쇼핑몰 관리자 세션확인
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
+			return "redirect:/main/loginfrom";
 		}
 		String url = SPA_mainservice.getMallImg(domain, 1);
 		model.addAttribute("url", url);
@@ -175,7 +175,7 @@ public class SPA_MainController {
 	public String mallMainImgModify(@PathVariable String domain, HttpSession session, MultipartFile file) throws Exception {
 		//쇼핑몰 관리자 세션확인
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
+			return "redirect:/main/loginfrom";
 		}
 		if (file.isEmpty()) {
 			return "redirect:/SPA/" + domain + "/malllogo";
@@ -195,7 +195,7 @@ public class SPA_MainController {
 	public String mallMainImgDelete(@PathVariable String domain, HttpSession session) {
 		//쇼핑몰 관리자 세션확인
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
+			return "redirect:/main/loginfrom";
 		}
 		SPA_mainservice.deleteMallImg(domain, 1);
 		return "redirect:/SPA/" + domain + "/mallmain";
@@ -214,7 +214,7 @@ public class SPA_MainController {
 	public String mallModify(@PathVariable String domain, HttpSession session, MallVo mallVo) {
 		//쇼핑몰 관리자 세션확인
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
+			return "redirect:/main/loginfrom";
 		}
 		SPA_mainservice.modifyMall(mallVo);
 		return "redirect:/SPA/" + domain + "/mall";
@@ -231,9 +231,9 @@ public class SPA_MainController {
 	public String productList(@PathVariable String domain, HttpSession session, Model model) {
 		//쇼핑몰 관리자 세션확인
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
+			return "redirect:/main/loginfrom";
 		}
-		List<ProductListVo> productlist = SPA_mainservice.getProductInfo(domain);
+		List<ProductListVo> productlist = SPA_productService.getProductInfo(domain);
 		System.out.println(productlist);
 		model.addAttribute("list", productlist);
 		return "SPA/product/productlist";
@@ -243,7 +243,7 @@ public class SPA_MainController {
 	public String productInsert(@PathVariable String domain, HttpSession session) {
 		//쇼핑몰 관리자 세션확인
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
+			return "redirect:/main/loginfrom";
 		}
 		return "SPA/product/productinsertform";
 	}
@@ -252,7 +252,7 @@ public class SPA_MainController {
 	public String productModifyForm(@PathVariable String domain, HttpSession session, Model model) {
 		//쇼핑몰 관리자 세션확인
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
+			return "redirect:/main/loginfrom";
 		}
 		return "SPA/product/productmodifyform";
 	}
@@ -261,7 +261,10 @@ public class SPA_MainController {
 	@RequestMapping(value = "{domain}/productdelete", method = RequestMethod.POST)
 	// 상품삭제
 	public String productdelete(@PathVariable String domain, HttpSession session, Model model, int productNo) {
-
+		//쇼핑몰 관리자 세션확인
+		if (!SPA_mainservice.isUserCheck(domain, session)) {
+			return "javascript:window.location.reload(false)";
+		}
 		System.out.println("삭제할 상품 " + productNo);
 
 		SPA_productService.deleteProduct(productNo);
@@ -280,11 +283,31 @@ public class SPA_MainController {
 	public String orderList(@PathVariable String domain, HttpSession session, Model model) {
 		//쇼핑몰 관리자 세션확인
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
+			return "redirect:/main/loginfrom";
 		}
 		Map<String, Object> map = SPA_mainservice.getOrderInfo(domain);
 		model.addAttribute("map", map);
 		return "SPA/order/orderlist";
+	}
+
+	/**
+	 * 배송관리
+	 * @param domain
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@ResponseBody // ajax일때 return을 form의 위치를 찾는게 아니라 값을 넘겨준다
+	@RequestMapping(value = "{domain}/orderinfoModify", method = RequestMethod.POST)
+	public String orderinfoModify(@PathVariable String domain, HttpSession session, Model model, int orderinfoNo, int orderinfoState) {
+		//쇼핑몰 관리자 세션확인
+		if (!SPA_mainservice.isUserCheck(domain, session)) {
+			return "javascript:window.location.reload(false)";
+		}
+		
+		SPA_mainservice.updateOrderState(orderinfoNo, orderinfoState);
+		
+		return "javascript:window.location.reload(true)";
 	}
 
 	/**
@@ -298,78 +321,11 @@ public class SPA_MainController {
 	public String memberList(@PathVariable String domain, HttpSession session, Model model) {
 		//쇼핑몰 관리자 세션확인
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
+			return "redirect:/main/loginfrom";
 		}
 		List<MemberVo> list = SPA_mainservice.getMemberInfo(domain);
 		model.addAttribute("list", list);
 		return "SPA/member/memberlist";
 	}
 
-	/**
-	 * FAQ 게시판 출력
-	 * @param domain
-	 * @param session
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value = "{domain}/faq", method = RequestMethod.GET)
-	public String faqList(@PathVariable String domain, HttpSession session, Model model) {
-		//쇼핑몰 관리자 세션확인
-		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
-		}
-		return "SPA/member/faqlist";
-	}
-
-	@RequestMapping(value = "{domain}/faqview", method = RequestMethod.GET)
-	public String faqView(@PathVariable String domain, HttpSession session, Model model) {
-		//쇼핑몰 관리자 세션확인
-		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
-		}
-		return "SPA/member/faqview";
-	}
-
-	@RequestMapping(value = "{domain}/faqinsertform", method = RequestMethod.GET)
-	public String faqInsert(@PathVariable String domain, HttpSession session, Model model) {
-		//쇼핑몰 관리자 세션확인
-		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
-		}
-		return "SPA/member/faqinsertform";
-	}
-
-	/**
-	 * Q&A 게시판 출력
-	 * @param domain
-	 * @param session
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value = "{domain}/qna", method = RequestMethod.GET)
-	public String qnaList(@PathVariable String domain, HttpSession session, Model model) {
-		//쇼핑몰 관리자 세션확인
-		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
-		}
-		return "SPA/member/qnalist";
-	}
-
-	@RequestMapping(value = "{domain}/qnaview", method = RequestMethod.GET)
-	public String qnaView(@PathVariable String domain, HttpSession session, Model model) {
-		//쇼핑몰 관리자 세션확인
-		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
-		}
-		return "SPA/member/qnaview";
-	}
-
-	@RequestMapping(value = "{domain}/qnainsertform", method = RequestMethod.GET)
-	public String qnaInsertform(@PathVariable String domain, HttpSession session, Model model) {
-		//쇼핑몰 관리자 세션확인
-		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
-		}
-		return "SPA/member/qnainsertform";
-	}
 }

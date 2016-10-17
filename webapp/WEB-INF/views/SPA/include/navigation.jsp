@@ -23,14 +23,7 @@
 				<li><a href='member'>고객관리</a></li>
 			</ul>
 			<ul>
-				<li><a href='faq'>고객센터</a>
-					<ul>
-						<li><a href='faq'>--> FAQ</a></li>
-						<li><a href='qna'>--> Q&A</a></li>
-					</ul></li>
-			</ul>
-			<ul>
-				<li><a href='makeboard'>게시판 만들기</a>
+				<li><a href='makeboard'>게시판 관리</a>
 			</ul>
 		</div>
 	</div>

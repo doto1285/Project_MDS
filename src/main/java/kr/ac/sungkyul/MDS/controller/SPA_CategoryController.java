@@ -45,7 +45,7 @@ public class SPA_CategoryController {
 
 		// 쇼핑몰 관리자 세션확인
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
+			return "redirect:/main/loginfrom";
 		}
 
 		// 해당 쇼핑몰의 카테고리 리스트를 불러온다 sky
@@ -69,7 +69,7 @@ public class SPA_CategoryController {
 			int msgchangecateNo) {
 		// 쇼핑몰 관리자 세션확인
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
+			return "redirect:/main/loginfrom";
 		}
 
 		// 카테고리 이름 변경시 모달창에서 저장하기 눌렀을때 sky
@@ -99,7 +99,11 @@ public class SPA_CategoryController {
 
 		// 쇼핑몰 관리자 세션확인
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
+			return "redirect:/main/loginfrom";
+		}
+		
+		if ("".equals(newCategorie)) {
+			return "redirect:/SPA/" + domain + "/category";
 		}
 
 		System.out.println("버튼 클릭" + domain + newCategorie);
@@ -127,7 +131,11 @@ public class SPA_CategoryController {
 
 		// 쇼핑몰 관리자 세션확인
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
+			return "redirect:/main/loginfrom";
+		}
+		
+		if ("".equals(newCategorie)) {
+			return "redirect:/SPA/" + domain + "/category";
 		}
 
 		System.out.println("group_no: " + group_no);
@@ -156,6 +164,10 @@ public class SPA_CategoryController {
 	@RequestMapping(value = "{domain}/categorydelete", method = RequestMethod.POST)
 	// 카테고리 삭제 sky
 	public String categorydelete(@PathVariable String domain, HttpSession session, Model model, int msgchangecateNo) {
+		// 쇼핑몰 관리자 세션확인
+		if (!SPA_mainservice.isUserCheck(domain, session)) {
+			return "javascript:window.location.reload(false)";
+		}
 
 		System.out.println("삭제할 카테고리 " + msgchangecateNo);
 
@@ -170,7 +182,7 @@ public class SPA_CategoryController {
 	public String categoryUp(@PathVariable String domain, HttpSession session, Model model, int msgchangecateNo) {
 		// 쇼핑몰 관리자 세션확인
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
+			return "javascript:window.location.reload(false)";
 		}
 
 		System.out.println("위로 올라갈 카테고리 번호 : " + msgchangecateNo);
@@ -185,7 +197,7 @@ public class SPA_CategoryController {
 	public String categoryDown(@PathVariable String domain, HttpSession session, Model model, int msgchangecateNo) {
 		// 쇼핑몰 관리자 세션확인
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "redirect:/main";
+			return "javascript:window.location.reload(false)";
 		}
 		System.out.println("아래로 내려갈 카테고리 번호 : " + msgchangecateNo);
 		categoryListService.categoryDown(msgchangecateNo);

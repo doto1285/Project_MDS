@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.sungkyul.MDS.service.BoardService;
+import kr.ac.sungkyul.MDS.service.SPA_MainService;
 import kr.ac.sungkyul.MDS.service.SPF_MallService;
 import kr.ac.sungkyul.MDS.vo.BoardListVo;
 
@@ -23,6 +24,8 @@ import kr.ac.sungkyul.MDS.vo.BoardListVo;
 @RequestMapping("/SPA")
 public class SPA_BoardController {
 	
+	@Autowired
+	SPA_MainService SPA_mainservice;
 	
 	@Autowired
 	BoardService boardService;
@@ -31,7 +34,10 @@ public class SPA_BoardController {
 	
 	@RequestMapping(value = "{domain}/makeboard", method = RequestMethod.GET)
 	public String makeboardform(@PathVariable String domain, HttpSession session, Model model) {
-
+		// 쇼핑몰 관리자 세션확인
+		if (!SPA_mainservice.isUserCheck(domain, session)) {
+			return "redirect:/main/loginfrom";
+		}
 		List<BoardListVo> boardListVo= boardService.getBoardListInfo(domain);		//해당 도메인에 개설된 게시판 정보를 가져온다
 
 		for (BoardListVo vo : boardListVo) {
@@ -51,6 +57,14 @@ public class SPA_BoardController {
 			@RequestParam(value = "write_accessright") int write_accessright,
 			@RequestParam(value = "read_accessright") int read_accessright
 			) {
+		// 쇼핑몰 관리자 세션확인
+		if (!SPA_mainservice.isUserCheck(domain, session)) {
+			return "redirect:/main/loginfrom";
+		}
+		
+		if (("".equals(newBoardList)) || (write_accessright == -1) || (read_accessright == -1)) {
+			return "redirect:/SPA/"+domain+"/makeboard";
+		}
 		
 		System.out.println("삽입: "+ newBoardList +"번호"+ count_order + " 쓰기" +  write_accessright  + " 읽기" +read_accessright);
 		
@@ -80,6 +94,10 @@ public class SPA_BoardController {
 	public String boardListModify(@PathVariable String domain, HttpSession session, Model model
 			,int boardlistno,String boardlistname,int writeaccessright, int readaccessright
 			) {
+		// 쇼핑몰 관리자 세션확인
+		if (!SPA_mainservice.isUserCheck(domain, session)) {
+			return "redirect:/main/loginfrom";
+		}
 		//게시판 정보 수정
 		
 		BoardListVo vo = new BoardListVo();
@@ -100,6 +118,10 @@ public class SPA_BoardController {
 	@RequestMapping(value = "{domain}/boardlistUp", method = RequestMethod.POST)
 	public String boardlistUp(@PathVariable String domain, HttpSession session, Model model,int boardlistno
 			) {
+		// 쇼핑몰 관리자 세션확인
+		if (!SPA_mainservice.isUserCheck(domain, session)) {
+			return "redirect:/main/loginfrom";
+		}
 		//게시판 순서 위로 가기
 		 boardService.boardListUp(boardlistno);
 		
@@ -110,6 +132,10 @@ public class SPA_BoardController {
 	@RequestMapping(value = "{domain}/boardlistDown", method = RequestMethod.POST)
 	public String boardlistDown(@PathVariable String domain, HttpSession session, Model model,int boardlistno
 			) {
+		// 쇼핑몰 관리자 세션확인
+		if (!SPA_mainservice.isUserCheck(domain, session)) {
+			return "redirect:/main/loginfrom";
+		}
 		//게시판 순서 아래로 가기
 		boardService.boardListDown(boardlistno);
 		
@@ -121,6 +147,10 @@ public class SPA_BoardController {
 	@RequestMapping(value = "{domain}/boardlistdelete", method = RequestMethod.POST)
 	public String boardlistdelete(@PathVariable String domain, HttpSession session, Model model,int boardlistno
 			) {
+		// 쇼핑몰 관리자 세션확인
+		if (!SPA_mainservice.isUserCheck(domain, session)) {
+			return "redirect:/main/loginfrom";
+		}
 		//게시판 삭제
 		boardService.boardlistdelete(boardlistno);
 		

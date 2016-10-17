@@ -13,4 +13,15 @@
 		]]>
 
 	</select>
+
+	<update id="updateOrderState" parameterType="kr.ac.sungkyul.MDS.vo.OrderinfoVo">
+		<!-- 카테고리의 이름을 변경한다 -->
+		<![CDATA[	
+		
+		update orderinfo set
+		 orderinfo_state = #{orderinfo_state }
+		 where orderinfo_no = #{orderinfo_no }
+		
+		]]>
+	</update>
 </mapper>
