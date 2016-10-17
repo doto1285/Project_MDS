@@ -5,11 +5,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.ac.sungkyul.MDS.vo.ProductVo;
+
 @Controller
 public class SPF_ListDetailController {
 
-	@RequestMapping("{mall_domain}/list/detail")
-	public String listDetail(@PathVariable String mall_domain, Model model) {
+	@RequestMapping("{mall_domain}/listdetail")
+	public String listDetail(@PathVariable String mall_domain, Model model, ProductVo productVo) {
 
 		return "SPF/product/listDetail";
 	}

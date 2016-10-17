@@ -34,12 +34,7 @@
 					<c:if test="${categoryGroupList.categorylist_depth == 2 }">
 						<li role="presentation" id="secondCategoryMenu2nd"><a
 							href="/Project_MDS/${mall_domain }/list?categorylist_no=${categoryGroupList.categorylist_no }&categorylist_group=${category_groupNo }&pageNo=1">${categoryGroupList.categorylist_name }</a></li>
-					<li role="presentation" id="secondCategoryMenu2nd"><a
-							href="/Project_MDS/${mall_domain }/list?categorylist_no=${categoryGroupList.categorylist_no }&categorylist_group=${category_groupNo }&pageNo=1">${categoryGroupList.categorylist_name }</a></li>
-							<li role="presentation" id="secondCategoryMenu2nd"><a
-							href="/Project_MDS/${mall_domain }/list?categorylist_no=${categoryGroupList.categorylist_no }&categorylist_group=${category_groupNo }&pageNo=1">${categoryGroupList.categorylist_name }</a></li>
-							<li role="presentation" id="secondCategoryMenu2nd"><a
-							href="/Project_MDS/${mall_domain }/list?categorylist_no=${categoryGroupList.categorylist_no }&categorylist_group=${category_groupNo }&pageNo=1">${categoryGroupList.categorylist_name }</a></li>
+					
 					</c:if>
 				</c:forEach>
 			</ul>
@@ -78,7 +73,7 @@
 					<div class="row"></div>
 				</c:if>
 				<div class="col-lg-3" id="productDiv">
-					<div class="thumbnail">
+					<a href="/Project_MDS/${mall_domain }/listdetail?product_no=${categoryProductListVo.product_no }"><div class="thumbnail">
 						<img src="${categoryProductListVo.productimg_image }" alt="상품이미지"
 							id="productImage">
 						<div class="caption" id="productContents">
@@ -87,7 +82,7 @@
 								<strong>${categoryProductListVo.product_price }</strong><strong>원</strong>
 							</h5>
 						</div>
-					</div>
+					</div></a>
 				</div>
 			</c:forEach>
 

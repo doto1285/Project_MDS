@@ -15,7 +15,7 @@
 				<ul class="nav nav-pills">
 					<!-- class="active" -->
 					<c:forEach items="${boardList }" var="boardList">
-					<li role="presentation"><a href="#">${boardList.boardlist_name }</a></li>
+					<li role="presentation"><a href="/Project_MDS/${mall_domain }/boardlist?boardlist_no=${boardlist.boardlist_no }">${boardList.boardlist_name }</a></li>
 					</c:forEach>
 				</ul>
 			</div>
