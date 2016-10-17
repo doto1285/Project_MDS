@@ -27,15 +27,12 @@ public class TSA_BoardService {
 		
 		return TSA_boardDao.GetUserManageList(); 
 		// TSA_boardDao 라는 객체의 메소드를 실행  객체.메소드or필드
-		
 	}
 	
-	public List<BoardVo> GetNotice(/* 파라미터 int a*/){ 
-		
-		return TSA_boardDao.GetNotice(); 
-		// TSA_boardDao 라는 객체의 메소드를 실행  객체.메소드or필드
-		
-	}
+	
+	
+	
+	
 	
 	
 	public List<MallVo> GetShopManage(/* 파라미터 int a*/){ 
@@ -44,6 +41,9 @@ public class TSA_BoardService {
 		// TSA_boardDao 라는 객체의 메소드를 실행  객체.메소드or필드
 		
 	}
+	
+	
+	
 	
 	
 	
