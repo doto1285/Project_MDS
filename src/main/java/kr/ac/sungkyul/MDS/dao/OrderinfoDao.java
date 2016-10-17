@@ -21,8 +21,8 @@ public class OrderinfoDao {
 		return listvo;
 	}
 	
-
-
-	
-
+	public void updateOrderState(OrderinfoVo vo) {
+		sqlSession.update("SPA_orderinfo.updateOrderState", vo);
+		
+	}
 }

@@ -85,6 +85,21 @@ public class ProductDao {
 		return sqlSession.selectList("SPF_product.get_category_List", categorylist_groupNo);
 	}
 	
+	/**
+	 * 상품번호를 맞는 상품을 삭제한다.
+	 * @param productno
+	 */
+	public void deleteProduct(int productno) {
+		sqlSession.delete("SPA_product.deleteproduct", productno);
+	}
 	
+	/**
+	 * 상품이름을 통해 상품번호를 가져온다.
+	 * @param productName
+	 * @return
+	 */
+	public int getProductNo(String productName) {
+		return sqlSession.selectOne("SPA_product.get_produnt_no", productName);
+	}
 
 }

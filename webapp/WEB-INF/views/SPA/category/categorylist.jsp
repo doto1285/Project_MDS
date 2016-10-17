@@ -189,12 +189,12 @@
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title" id="exampleModalLabel">New message</h4>
+				<h4 class="modal-title" id="exampleModalLabel">카테고리 수정</h4>
 			</div>
 			<div class="modal-body">
 				<form>
 					<div class="form-group">
-						<label for="recipient-name" class="control-label">Recipient:</label>
+						<label for="recipient-name" class="control-label">변경할 카테고리 이름</label>
 						<input type="text" class="form-control" id="recipient_name">
 					</div>
 				</form>
@@ -203,9 +203,9 @@
 
 			<div class="modal-footer">
 				<div class="form-group" id="modalbtn">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 					<button type="button" class="btn_catePModalSave"
-						data-dismiss="modal">Send message</button>
+						data-dismiss="modal">수정하기</button>
 				</div>
 			</div>
 		</div>

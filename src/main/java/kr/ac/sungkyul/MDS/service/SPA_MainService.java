@@ -215,15 +215,10 @@ public class SPA_MainService {
 		mallImgDao.deleteMallimg(vo);
 	}
 
-	/**
-	 * 상품리스트를 가져온다
-	 * 
-	 * @param domain
-	 * @return
-	 */
-	public List<ProductListVo> getProductInfo(String domain) {
-		MallVo mallVo = mallDao.domainCheck(domain);
-		List<ProductListVo> productlist = productDao.get_Product_Content(mallVo);
-		return productlist;
+	public void updateOrderState(int orderinfoNo, int orderinfoState) {
+		OrderinfoVo vo = new OrderinfoVo();
+		vo.setOrderinfo_no(orderinfoNo);
+		vo.setOrderinfo_state( (orderinfoState +1) );
+		orderinfoDao.updateOrderState(vo);
 	}
 }

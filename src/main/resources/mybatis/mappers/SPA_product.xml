@@ -5,10 +5,26 @@
 	<select id="get_produnt_name" parameterType="java.lang.Integer"
 		resultType="kr.ac.sungkyul.MDS.vo.ProductVo">
 		<!-- product_no을 이용해 맞는 상품이름 가져오기 -->
-			 select product_name
-	 		 from product
-	 		 where product_no = #{product_no }
-	
+		select product_name
+		from product
+		where product_no = #{product_no }
+
 	</select>
+
+	<select id="get_produnt_no" parameterType="String"
+		resultType="java.lang.Integer">
+		<!-- product_name을 이용해 맞는 product_no 가져오기 -->
+		select product_no
+		from product
+		where product_name = #{product_name }
+	</select>
+
+	<delete id="deleteproduct" parameterType="java.lang.Integer">
+		<![CDATA[	
+		update product set
+		 product_state = 0
+		 where product_no = #{product_no }
+		]]>
+	</delete>
 
 </mapper>

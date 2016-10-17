@@ -56,7 +56,7 @@
 						src="${vo.productimg_image }"
 						alt="상품 이미지" class="img-thumbnail" id="productTableImage"></td>
 						<td id="tableContents">${vo.product_price }원</td>
-						<td><a href="?group_no=${vo.product_no}" class="btn btn-warning btn-sm">수정</a></td>
+						<td><a href="?product_no=${vo.product_no}" class="btn btn-warning btn-sm">수정</a></td>
 						<td><input type="button"
 							class="btn_Delete btn btn-danger btn-sm" value="삭제"></td>
 
@@ -87,7 +87,7 @@
 $(".btn_Delete").on("click", function() {
 	productNo = $(this).parents("tr").data("productno");
 
-	console.log("삭제 버튼 클릭시: " + msgchangecateNo); //로그에 찍히는 부분
+	console.log("삭제 버튼 클릭시: " + productNo); //로그에 찍히는 부분
 
 	$.ajax({
 		//값 넘기기 ( 삭제할 번호: productNo)
