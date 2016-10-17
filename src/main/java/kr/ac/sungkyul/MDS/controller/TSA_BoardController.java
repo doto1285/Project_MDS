@@ -49,12 +49,12 @@ public class TSA_BoardController {
 	}
 	
 	
-//	@RequestMapping("/main/board/notice")
-//	public String GetUserManageList(Model model){
-//		List<MemberVo> GetUserManageList = TSA_boardService.GetUserManageList(); // 서비스(객체).메소드/필드
-//		model.addAttribute("GetUserManageList", GetUserManageList);
-//		
-//		return "TSA/board/notice";
-//	}
+	@RequestMapping("/main/board/shopmanage")
+	public String GetShopManage(Model model){
+		List<MallVo> GetShopManage = TSA_boardService.GetShopManage(); // 서비스(객체).메소드/필드
+		model.addAttribute("GetShopManage", GetShopManage);
+		
+		return "TSA/board/shopmanage";
+	}
 	
 }

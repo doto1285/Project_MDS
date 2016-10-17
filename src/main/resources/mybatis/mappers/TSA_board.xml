@@ -3,8 +3,9 @@
 <mapper namespace="TSA_board">
 
 
-	<!--게시물 총 개수 얻기  -->
-	<select id="totalCount"  parameterType="java.lang.Integer" resultType="java.lang.Integer">
+	<!--게시물 총 개수 얻기 -->
+	<select id="totalCount" parameterType="java.lang.Integer"
+		resultType="java.lang.Integer">
 		<![CDATA[
       select count(*) from board  where board_state = 1 and boardlist_no = #{boardlist_no }
 				]]>
@@ -103,12 +104,12 @@ insert into board values
     #{member_no}
     )
 		]]>
-		
-		
+
+
 	</insert>
 
 
-<select id="GetUserManage" 	resultType="kr.ac.sungkyul.MDS.vo.MemberVo">
+	<select id="GetUserManage" resultType="kr.ac.sungkyul.MDS.vo.MemberVo">
 		<!-- 해당 쇼핑몰의 생성되어있는 게시판 목록 가져오기 -->
 		<![CDATA[			
 	
@@ -117,7 +118,7 @@ insert into board values
 		]]>
 	</select>
 
-<select id="GetNotice" 	resultType="kr.ac.sungkyul.MDS.vo.BoardVo">
+	<select id="GetNotice" resultType="kr.ac.sungkyul.MDS.vo.BoardVo">
 		<!-- 해당 쇼핑몰의 생성되어있는 게시판 목록 가져오기 -->
 		<![CDATA[			
 	
@@ -127,11 +128,26 @@ board_date, board_state, boardlist_no, member_name name FROM board full OUTER JO
 		]]>
 	</select>
 
+
+	<select id="GetShopManage" resultType="kr.ac.sungkyul.MDS.vo.MallVo">
+		<!-- 해당 쇼핑몰의 생성되어있는 게시판 목록 가져오기 -->
+		<![CDATA[			
 	
-	
+ 		select 
+ 		mall_no, mall_name, mall_creationdate, mall_ceoname, member_no
+ 		from 
+ 		mall 
+ 		full OUTER JOIN 
+ 		member 
+ 		on 
+ 		mall.member_no = MEMBER.MEMBER_NO where member_state = 1
+ 	
+		]]>
+	</select>
+
 </mapper>
 
-	<!--   select * from board -->
+<!-- select * from board -->
 
 
 

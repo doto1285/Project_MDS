@@ -59,8 +59,8 @@
 				<th>번호</th>
 				<th>쇼핑몰 명</th>
 				<th>쇼핑몰 생성일</th>
-				<th>판매금액</th>
-				<th>관리자</th>
+				<th>관리자 아이디</th>
+				<th>쇼핑몰 이름</th>
 			</tr>
 
 			<c:forEach items="${listBoard }" var="boardVo">
@@ -71,69 +71,15 @@
 				</tr>
 			</c:forEach>
 			<tbody>
+				<c:forEach items="${GetShopManage }" var="GetShopManage">
 				<tr>
-					<td>1</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
+					<td>${GetShopManage.mall_no}</td>
+					<td>${GetShopManage.mall_name}</td>
+					<td>${GetShopManage.mall_creationdate}</td>
+					<td>${GetShopManage.ID}</td>
+					<td>${GetShopManage.mall_ceoname}</td>
 				</tr>
-				<tr>
-					<td>2</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-				</tr>
-				<tr>
-					<td>4</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-				</tr>
-				<tr>
-					<td>5</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-				</tr>
-				<tr>
-					<td>6</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-				</tr>
-				<tr>
-					<td>7</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-				</tr>
-				<tr>
-					<td>8</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-					<td>Column content</td>
-				</tr>
+			</c:forEach>
 
 				</tbody>
 		</table>

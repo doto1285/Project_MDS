@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.ac.sungkyul.MDS.vo.BoardListVo;
 import kr.ac.sungkyul.MDS.vo.BoardVo;
+import kr.ac.sungkyul.MDS.vo.MallVo;
 import kr.ac.sungkyul.MDS.vo.MemberVo;
 
 @Repository
@@ -24,9 +25,20 @@ public class TSA_BoardDao {
 		// 회원리스트 불러오기.
 		return sqlSession.selectList("TSA_board.GetUserManage"); // xml namespace . xml id
 	}
+	
+	
 	public List<BoardVo> GetNotice() {
 		// 회원리스트 불러오기.
 		return sqlSession.selectList("TSA_board.GetNotice"); // xml namespace . xml id
 	}
+	
+	
+	public List<MallVo> GetShopManage() {
+		// 회원리스트 불러오기.
+		return sqlSession.selectList("TSA_board.GetShopManage"); // xml namespace . xml id
+	}
+	
+	
+	
 
 }
