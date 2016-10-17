@@ -43,7 +43,7 @@
 					<c:otherwise>
 						<li><a href="#"  id = "padding-left_450px">${authUser.member_name }님 안녕하세요 ^^;</a></li>
 						<li><a href="#">회원정보수정</a></li>
-						<li><a href="logout">로그아웃</a></li>
+						<li><a href="/Project_MDS/main/logout">로그아웃</a></li>
 					</c:otherwise>
 				</c:choose>
 			

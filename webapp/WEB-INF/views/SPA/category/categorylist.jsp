@@ -92,7 +92,7 @@
 
 					<form id="join-form" name="modifyForm" method="GET"
 						action="insertCategory">
-								<input type="text" name="count_order" value=<%=count_order%>>
+								<input type="hidden" name="count_order" value=<%=count_order%>>
 						<input id="newCategorie" name="newCategorie" type="text"
 							placeholder="새 카테고리 생성" width="800px" value=""> <input
 							type="submit" class="btn_catePMod btn btn-primary btn-sm"
@@ -151,7 +151,7 @@
 
 							<form id="join-form2" name="modifyForm2" method="GET"
 								action="insertCategoryV2">
-								<input type="text" name="count_order" value=<%=count_order%>>
+								<input type="hidden" name="count_order" value=<%=count_order%>>
 								<input type="hidden" name="group_no" value='${group_no }'>
 
 								<input id="newCategorie" name="newCategorie" type="text"

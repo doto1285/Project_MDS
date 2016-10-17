@@ -13,9 +13,22 @@
 		<div class="container">
 			<div class="col-lg-4">
 				<ul class="nav nav-pills">
+				
+				
+				
 					<!-- class="active" -->
-					<li role="presentation"><a href="#">Notice&Events</a></li>
-					<li role="presentation"><a href="#">고객센터</a></li>
+					
+					<!-- 게시판 추가 sky -->
+						<c:forEach items="${GetBoardList }" var="GetBoardList">
+					<li role="presentation"><a
+					href="board/${GetBoardList.boardlist_no } "
+					class="list-group-item"> ${GetBoardList.boardlist_name }</a></li>
+					
+					</c:forEach>
+					<!-- /게시판 추가 끝 sky -->
+					
+					
+					
 				</ul>
 			</div>
 			<c:choose>

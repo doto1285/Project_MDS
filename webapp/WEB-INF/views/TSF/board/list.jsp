@@ -79,10 +79,12 @@
 									<!--글번호-->
 									<td>${GetBoardContentsList.board_no}</td>
 									<!--제목-->
-									<td><c:forEach var="i" begin="2"
+									<td><a href="view?no=${GetBoardContentsList.board_no}">
+									<c:forEach var="i" begin="2"
 											end="${GetBoardContentsList.board_depth}" step="1">
-						 ↳ 
-						</c:forEach> <a href="view?no=${GetBoardContentsList.board_no}">${GetBoardContentsList.board_title}</a>
+											 ↳ 
+											</c:forEach> 
+									${GetBoardContentsList.board_title}</a>
 									</td>
 									<!--글쓴이  -->
 									<td>${GetBoardContentsList.name}</td>
@@ -97,7 +99,19 @@
 						</tbody>
 					</table>
 				</table>
+				
+				
+						<c:if test="${empty map.list}">
+							<div id="search">
+								<p class="search_list-right">
+									등록된 게시글이 없습니다.<br>
+								</p>
+							</div>
+						</c:if>
+				
+				
 						<!-- begin:paging -->
+						<c:if test='${not empty map.list }'>
 				<div class="pager">
 					<ul>
 
@@ -125,6 +139,7 @@
 						</c:if>
 					</ul>
 				</div>
+				</c:if>
 			<!-- end:paging -->
 				
 				

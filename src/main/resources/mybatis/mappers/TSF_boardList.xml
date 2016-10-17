@@ -2,41 +2,165 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="TSF_boardList">
 
+	<!-- TSF 사용부분 -->
+	<!-- 게시판 목록 가져오는 쿼리문 하나로 통합하셔 사용해야함 -->
+	<!-- 파라미터 타입 통일 -->
 
 	<select id="GetBoardList" parameterType="String"
 		resultType="kr.ac.sungkyul.MDS.vo.BoardListVo">
+		<!-- TSF 메인에서만 사용 -->
 		<!-- 해당 쇼핑몰의 생성되어있는 게시판 목록 가져오기 -->
 		<![CDATA[	
 		select * from boardlist where
 		boardlist_state = 1 and 
 		mall_no = (select mall_no from mall where mall_state = 1 and mall_name = #{userid })
+		order by board_orderno asc
 
 		]]>
 	</select>
 
+
+	<select id="SPF_GetBoardList" parameterType="kr.ac.sungkyul.MDS.vo.MallVo"
+		resultType="kr.ac.sungkyul.MDS.vo.BoardListVo">
+		<!-- 해당 쇼핑몰의 생성되어있는 게시판 목록 가져오기 -->
+      <![CDATA[   
+   	   select * from boardlist where
+   	   boardlist_state = 1 and 
+  	    mall_no =  #{mall_no }
+		order by boardlist_orderno asc
+      ]]>
+	</select>
+
+
+	<select id="getBoardListInfo" parameterType="String"
+		resultType="kr.ac.sungkyul.MDS.vo.BoardListVo">
+		<!-- SPA, SPF에서 사용 예정 -->
+		<!-- 해당 도메인에 개설된 게시판 정보를 가져온다 -->
+		<![CDATA[	
+		select * from boardlist
+		
+		 where
+		boardlist_state = 1 and 
+		mall_no = (select mall_no from mall where mall_state = 1 and mall_domain = #{domain })
+		
+		order by board_orderno asc
+		]]>
+	</select>
+
+
+
+	<!-- SPA 사용부분 -->
 	<select id="GetBoard" parameterType="kr.ac.sungkyul.MDS.vo.BoardListVo"
 		resultType="kr.ac.sungkyul.MDS.vo.BoardListVo">
-		<!-- 해당 게시판의 정보를 가져온다-->
+		<!-- 해당 게시판의 정보를 가져온다 -->
 	
 		<![CDATA[	
 		select * from boardlist
 		where mall_no = (select mall_no from mall where mall_state = 1 and mall_name = #{userid })
 		and boardlist_no = #{boardlist_no}
-		
-		
-		
 		]]>
 	</select>
 
 
+	<insert id="insertBoardList" parameterType="kr.ac.sungkyul.MDS.vo.BoardListVo">
+		<!-- 새 게시판을 생성한다 -->
+		<![CDATA[	
+			insert into boardlist values(
+			boardlist_seq.nextval, #{boardlist_name }, 
+			1, #{mall_no }, 
+			#{boardlist_write_accessright }, #{boardlist_read_accessright }, #{board_orderno })
+		]]>
+	</insert>
 
-	
-	
-	
-	
-	
-	
-	
-	
 
+	<update id="boardListModify" parameterType="kr.ac.sungkyul.MDS.vo.BoardListVo">
+		<!-- 게시판 정보를 수정한다 -->
+		<![CDATA[	
+		update boardlist set 
+		
+		boardlist_name = #{boardlist_name},
+		boardlist_write_accessright = #{boardlist_write_accessright},
+		boardlist_read_accessright = #{boardlist_read_accessright}
+		
+		where boardlist_no = #{boardlist_no}
+		]]>
+	</update>
+
+
+	<update id="updateOrderno" parameterType="kr.ac.sungkyul.MDS.vo.BoardListVo">
+		<!-- 게시판 순서(orderNo)를 수정한다. -->
+		<![CDATA[	
+		update boardlist set
+		
+		board_orderno = #{board_orderno}
+		
+		where boardlist_no = #{boardlist_no}
+		]]>
+	</update>
+
+
+	<select id="getMyVo" parameterType="kr.ac.sungkyul.MDS.vo.BoardListVo"
+		resultType="kr.ac.sungkyul.MDS.vo.BoardListVo">
+		<!-- 게시판 자신의 정보를 가져온다 -->
+		<![CDATA[	
+		select * from boardlist
+		where boardlist_no = #{boardlistno}
+		]]>
+	</select>
+
+
+	<select id="getBelowOrderNo" parameterType="kr.ac.sungkyul.MDS.vo.BoardListVo"
+		resultType="kr.ac.sungkyul.MDS.vo.BoardListVo">
+		<!-- 자신보다 orderNo가 1낮은 카테고리 정보를 가져온다 -->
+			<![CDATA[	
+			select * from boardlist
+			where
+			board_orderno = #{board_orderno}-1
+		 	and boardlist_state = 1
+			and mall_no = #{mall_no }
+			]]>
+
+	</select>
+
+	<select id="getAboveOrderNo" parameterType="kr.ac.sungkyul.MDS.vo.BoardListVo"
+		resultType="kr.ac.sungkyul.MDS.vo.BoardListVo">
+		<!-- 자신보다 orderNo가 1높은 카테고리 정보를 가져온다 -->
+			<![CDATA[	
+			select * from boardlist
+			where
+			board_orderno = #{board_orderno}+1
+		  	and boardlist_state = 1
+			and mall_no = #{mall_no }
+			]]>
+	</select>
+
+
+
+	<update id="boardlistdelete" parameterType="kr.ac.sungkyul.MDS.vo.BoardListVo">
+		<!-- 게시판을 삭제한다 (= stateNo를 0으로 수정한다 -->
+		<![CDATA[	
+		update boardlist set
+		
+		boardlist_state = 0 ,
+		board_orderno = -1
+		
+		where boardlist_no = #{boardlist_no}
+		]]>
+	</update>
+
+
+
+	<update id="DeleteCategory_OrderNoDown" parameterType="kr.ac.sungkyul.MDS.vo.BoardListVo">
+		<!-- 자신보다 orderNo가 큰 게시판들의 orderNo를 1씩 감소시킨다 -->
+		<![CDATA[	
+			update boardlist set
+			board_orderno = board_orderno - 1
+			where
+		  	board_orderno > #{board_orderno }
+		   	and boardlist_state = 1
+			and mall_no = #{mall_no }
+		]]>
+
+
+	</update>
 </mapper>

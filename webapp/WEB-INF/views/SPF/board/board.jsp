@@ -27,7 +27,7 @@
 	<div class="section">
 		<div class="container">
 			<!-- 본문 시작 -->
-			
+			게시판
 			<!-- 본문 끝 -->
 		</div>
 	</div>

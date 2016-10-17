@@ -120,7 +120,7 @@ public class MemberController {
 		return "redirect:/main";
 	}
 
-	@RequestMapping("/main/logout")
+	@RequestMapping(value = "/main/logout", method = RequestMethod.GET)
 	// 로그아웃
 	public String logout(HttpSession session) {
 		System.out.println("로그아웃");

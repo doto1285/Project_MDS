@@ -36,7 +36,8 @@ public class TSF_MainController {
 		
 		//게시판 목록 가져오기
 		List<BoardListVo> GetBoardList = BoardService.GetBoardList(userid);
-
+		
+		
 		session.setAttribute("Random_MallList", Random_MallList);
 		session.setAttribute("GetBoardList", GetBoardList);
 

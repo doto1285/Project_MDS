@@ -9,6 +9,7 @@ public class BoardListVo {
 	private int boardlist_write_accessright;
 	private int boardlist_read_accessright;
 	private String userid;
+	private int board_orderno;
 
 	public int getMall_no() {
 		return mall_no;
@@ -66,14 +67,23 @@ public class BoardListVo {
 		this.boardlist_read_accessright = boardlist_read_accessright;
 	}
 
+	public int getBoard_orderno() {
+		return board_orderno;
+	}
+
+	public void setBoard_orderno(int board_orderno) {
+		this.board_orderno = board_orderno;
+	}
+
 	@Override
 	public String toString() {
 		return "BoardListVo [boardlist_no=" + boardlist_no + ", boardlist_name=" + boardlist_name + ", boardlist_state="
 				+ boardlist_state + ", mall_no=" + mall_no + ", boardlist_write_accessright="
 				+ boardlist_write_accessright + ", boardlist_read_accessright=" + boardlist_read_accessright
-				+ ", userid=" + userid + "]";
+				+ ", userid=" + userid + ", board_orderno=" + board_orderno + "]";
 	}
 
+	
 	
 	
 
