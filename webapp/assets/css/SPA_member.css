@@ -1,19 +1,4 @@
 @CHARSET "UTF-8";
-
-html, body {
-	margin: 20;
-	padding:
-}
-
-body {
-	font: 76% arial, sans-serif
-}
-
-p {
-	margin: 0 10px 10px
-}
-
-/* --------------- order 화면 css --------------- */
 #boardTitle {
 	text-align: center;
 }

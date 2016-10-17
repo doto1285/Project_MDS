@@ -22,5 +22,6 @@
 	<div id="container">
 		FAQ 보기
 	</div>
+	<c:import url='/WEB-INF/views/SPA/include/footer.jsp' />
 </body>
 </html>

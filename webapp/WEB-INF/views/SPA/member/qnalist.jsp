@@ -83,5 +83,6 @@
 			</c:choose>
 		</div>
 	</div>
+	<c:import url='/WEB-INF/views/SPA/include/footer.jsp' />
 </body>
 </html>

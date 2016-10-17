@@ -23,10 +23,7 @@
 
 
 <!--  개인별 -->
-<link href="/Project_MDS/assets/css/TSF_main.css" rel="stylesheet"
-	type="text/css">
-<link href="/Project_MDS/assets/css/TSF_board.css" rel="stylesheet"
-	type="text/css">
+
 <!--  /개인별 -->
 
 
@@ -48,61 +45,63 @@
 
 
 	<!-- 개인별 개발영역 시작 -->
-	<h3>카테고리 관리</h3>
-	<!-- --------------------------------------------- -->
-	<div class="col-md-4" id="margin50px">
+	<div class="section" id="contents">
+		<h3>카테고리 관리</h3>
+		<!-- --------------------------------------------- -->
+		<div class="col-md-4" id="margin50px">
 
-		<table border="1" style="font-size: 20px">
-			<tr>
-				<td colspan="2" width="600px"><center>대분류</center></td>
-			</tr>
+			<table border="1" style="font-size: 20px">
+				<tr>
+					<td colspan="2" width="600px"><center>1차 카테고리</center></td>
+				</tr>
 
-			<%
-				int count_order = 1;
-			%>
+				<%
+					int count_order = 1;
+				%>
 
-			<!-- 1차 카테고리 반복 -->
-			<c:forEach items="${categoryList}" var="categoryList">
-				<c:if test='${categoryList.categorylist_depth == 1}'>
-					<c:set var="cateno2" value="${categoryList.categorylist_no }" />
-					<c:set var="cateName2" value=" ${categoryList.categorylist_name}" />
-					<%
-						count_order += 1;
-					%>
-					<tr data-cateno='${categoryList.categorylist_no}'
-						data-catename='${categoryList.categorylist_name}'>
-						<td><label class="cateP"><a
-								href="${categoryList.categorylist_group}">${categoryList.categorylist_name }</a></label></td>
-						<td><input type="button"
-							class="btn_Up btn btn-primary btn-sm" value="위"> <input
-							type="button" class="btn_Down btn btn-primary btn-sm" value="아래">
-							<input type="button" class="btn_catePMod btn btn-primary btn-sm"
-							data-toggle="modal" data-target="#modal_cateP" value="수정">
+				<!-- 1차 카테고리 반복 -->
+				<c:forEach items="${categoryList}" var="categoryList">
+					<c:if test='${categoryList.categorylist_depth == 1}'>
+						<c:set var="cateno2" value="${categoryList.categorylist_no }" />
+						<c:set var="cateName2" value=" ${categoryList.categorylist_name}" />
+						<%
+							count_order += 1;
+						%>
+						<tr data-cateno='${categoryList.categorylist_no}'
+							data-catename='${categoryList.categorylist_name}'>
+							<td><label class="cateP"><a
+									href="?group_no=${categoryList.categorylist_group}">${categoryList.categorylist_name }</a></label></td>
+							<td><input type="button"
+								class="btn_Up btn btn-primary btn-sm" value="위"> <input
+								type="button" class="btn_Down btn btn-primary btn-sm" value="아래">
+								<input type="button" class="btn_catePMod btn btn-warning btn-sm"
+								data-toggle="modal" data-target="#modal_cateP" value="수정">
 
-							<input type="button" class="btn_Delete btn btn-primary btn-sm"
-							value="삭제"></td>
-					</tr>
-				</c:if>
-			</c:forEach>
+								<input type="button" class="btn_Delete btn btn-danger btn-sm"
+								value="삭제"></td>
+						</tr>
+					</c:if>
+				</c:forEach>
 
-			<!-- // 1차 카테고리 반복 끝-->
-			<!--  신규 카테고리 생성 -->
-			<tr>
-				<td colspan="2" width="600px" style="border: 4px solid red">
+				<!-- // 1차 카테고리 반복 끝-->
+				<!--  신규 카테고리 생성 -->
+				<tr>
+					<td colspan="2" width="600px" style="border: 4px solid red">
 
-					<form id="join-form" name="modifyForm" method="GET"
-						action="insertCategory">
-								<input type="text" name="count_order" value=<%=count_order%>>
-						<input id="newCategorie" name="newCategorie" type="text"
-							placeholder="새 카테고리 생성" width="800px" value=""> <input
-							type="submit" class="btn_catePMod btn btn-primary btn-sm"
-							value="삽입">
-					</form>
-			</tr>
-			<!--  // 신규 카테고리 생성 끝-->
-		</table>
+						<form id="join-form" name="modifyForm" method="GET"
+							action="category/insertCategory">
+							<input type="hidden" name="count_order" value=<%=count_order%>>
+							<input id="newCategorie" name="newCategorie" type="text"
+								placeholder="새 카테고리 생성" width="800px" value=""> <input
+								type="submit" class="btn_catePMod btn btn-info btn-sm"
+								value="삽입">
+						</form>
+				</tr>
+				<!--  // 신규 카테고리 생성 끝-->
+			</table>
 
 
+		</div>
 	</div>
 
 	<div class="col-md-4" id="margin50px">
@@ -110,7 +109,7 @@
 
 		<table border="1" style="font-size: 20px">
 			<tr>
-				<td colspan="2" width="700px"><center>소분류</center></td>
+				<td colspan="2" width="700px"><center>2차 카테고리</center></td>
 			</tr>
 
 			<%
@@ -128,14 +127,14 @@
 					<tr data-cateno='${categoryList.categorylist_no}'
 						data-catename='${categoryList.categorylist_name}'>
 						<td><label class="cateP"><a
-								href="${categoryList.categorylist_no}">${categoryList.categorylist_name }</a></label></td>
+								href="#">${categoryList.categorylist_name }</a></label></td>
 						<td><input type="button"
 							class="btn_Up btn btn-primary btn-sm" value="위"> <input
 							type="button" class="btn_Down btn btn-primary btn-sm" value="아래">
-							<input type="button" class="btn_catePMod btn btn-primary btn-sm"
+							<input type="button" class="btn_catePMod btn btn-warning btn-sm"
 							data-toggle="modal" data-target="#modal_cateP" value="수정">
 
-							<input type="button" class="btn_Delete btn btn-primary btn-sm"
+							<input type="button" class="btn_Delete btn btn-danger btn-sm"
 							value="삭제"></td>
 					</tr>
 				</c:if>
@@ -150,13 +149,13 @@
 						<td colspan="2" width="600px" style="border: 4px solid red">
 
 							<form id="join-form2" name="modifyForm2" method="GET"
-								action="insertCategoryV2">
-								<input type="text" name="count_order" value=<%=count_order%>>
+								action="category/insertCategoryV2">
+								<input type="hidden" name="count_order" value=<%=count_order%>>
 								<input type="hidden" name="group_no" value='${group_no }'>
 
 								<input id="newCategorie" name="newCategorie" type="text"
 									placeholder="새 카테고리 생성" width="800px" value=""> <input
-									type="submit" class=" btn btn-primary btn-sm" value="삽입">
+									type="submit" class=" btn btn-info btn-sm" value="삽입">
 							</form>
 					</tr>
 					<!--  // 신규 카테고리 생성 끝-->
@@ -164,7 +163,7 @@
 
 				<c:otherwise>
 					<tr>
-						<td><p>← 대분류를 선택하세요</p></td>
+						<td><p>← 1차 카테고리를 선택하세요</p></td>
 					</tr>
 
 				</c:otherwise>
@@ -174,7 +173,7 @@
 	</div>
 
 	<!-- --------------------------------------------- -->
-
+	<c:import url='/WEB-INF/views/SPA/include/footer.jsp' />
 </body>
 </html>
 
@@ -257,7 +256,7 @@
 
 		//값 넘기기 ( 변경할 번호: msgchangecateNo, 변경할 내용:msgchangeName)
 		$.ajax({
-			url : "../categorymodify",
+			url : "categorymodify",
 			type : "POST",
 			data : {
 				"msgchangecateNo" : msgchangecateNo,
@@ -288,7 +287,7 @@
 
 		$.ajax({
 			//값 넘기기 ( 변경할 번호: msgchangecateNo)
-			url : "../categorydelete",
+			url : "categorydelete",
 			type : "POST",
 			data : {
 				"msgchangecateNo" : msgchangecateNo,
@@ -315,7 +314,7 @@
 
 		$.ajax({
 			//값 넘기기 ( 변경할 번호: msgchangecateNo)
-			url : "../categoryUp",
+			url : "categoryUp",
 			type : "POST",
 			data : {
 				"msgchangecateNo" : msgchangecateNo,
@@ -341,7 +340,7 @@
 
 		$.ajax({
 			//값 넘기기 ( 변경할 번호: msgchangecateNo)
-			url : "../categoryDown",
+			url : "categoryDown",
 			type : "POST",
 			data : {
 				"msgchangecateNo" : msgchangecateNo,
