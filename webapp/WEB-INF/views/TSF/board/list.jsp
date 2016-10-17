@@ -74,18 +74,18 @@
 
 						<tbody>
 
-							<c:forEach items="${map.GetBoardContentsList}" var="GetBoardContentsList">
+							<c:forEach items="${map.GetBoardContentsList}"
+								var="GetBoardContentsList">
 								<tr>
 									<!--글번호-->
 									<td>${GetBoardContentsList.board_no}</td>
 									<!--제목-->
 									<td><a href="view?no=${GetBoardContentsList.board_no}">
-									<c:forEach var="i" begin="2"
-											end="${GetBoardContentsList.board_depth}" step="1">
+											<c:forEach var="i" begin="2"
+												end="${GetBoardContentsList.board_depth}" step="1">
 											 ↳ 
-											</c:forEach> 
-									${GetBoardContentsList.board_title}</a>
-									</td>
+											</c:forEach> ${GetBoardContentsList.board_title}
+									</a></td>
 									<!--글쓴이  -->
 									<td>${GetBoardContentsList.name}</td>
 									<!--조회수  -->
@@ -99,50 +99,55 @@
 						</tbody>
 					</table>
 				</table>
-				
-				
-						<c:if test="${empty map.list}">
-							<div id="search">
-								<p class="search_list-right">
-									등록된 게시글이 없습니다.<br>
-								</p>
-							</div>
-						</c:if>
-				
-				
-						<!-- begin:paging -->
-						<c:if test='${not empty map.list }'>
-				<div class="pager">
-					<ul>
 
-						<c:if test="${map.prevPage >= 0 }">
-							<li><a href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${map.prevPage }">◀</a></li>
-						</c:if>
 
-						<c:forEach begin='${map.firstPage }' end='${map.lastPage }'
-							step='1' var='i'>
-							<c:choose>
-								<c:when test='${map.currentPage == i }'>
-									<li class="selected">${i }</li>
-								</c:when>
-								<c:when test='${i > map.pageCount }'>
-									<li>${i }</li>
-								</c:when>
-								<c:otherwise>
-									<li><a href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${i }">${i }</a></li>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
-
-						<c:if test='${map.nextPage > 0 }'>
-							<li><a href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${map.nextPage }">▶</a></li>
-						</c:if>
-					</ul>
-				</div>
+				<c:if test="${empty map.GetBoardContentsList}">
+					<div id="search">
+						<div id="search_risk">
+							<img src="/gs25/assets/images/customcenter/risk.png">
+						</div>
+						<p class="search_list-right">
+							검색된 결과를 찾을 수 없습니다. <br>
+						</p>
+					</div>
 				</c:if>
-			<!-- end:paging -->
-				
-				
+
+				<c:if test='${not empty map.GetBoardContentsList }'>
+					<!-- begin:paging -->
+					<div class="pager">
+						<ul>
+
+							<c:if test="${map.prevPage >= 0 }">
+								<li><a
+									href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${map.prevPage }">◀</a></li>
+							</c:if>
+
+							<c:forEach begin='${map.firstPage }' end='${map.lastPage }'
+								step='1' var='i'>
+								<c:choose>
+									<c:when test='${map.currentPage == i }'>
+										<li class="selected">${i }</li>
+									</c:when>
+									<c:when test='${i > map.pageCount }'>
+										<li>${i }</li>
+									</c:when>
+									<c:otherwise>
+										<li><a
+											href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${i }">${i }</a></li>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+
+							<c:if test='${map.nextPage > 0 }'>
+								<li><a
+									href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${map.nextPage }">▶</a></li>
+							</c:if>
+						</ul>
+					</div>
+				</c:if>
+				<!-- end:paging -->
+
+
 
 				<c:choose>
 					<c:when
@@ -160,7 +165,7 @@
 					</c:otherwise>
 				</c:choose>
 			</div>
-	
+
 
 			<!-- 본문 끝-------------------------------------------- -->
 

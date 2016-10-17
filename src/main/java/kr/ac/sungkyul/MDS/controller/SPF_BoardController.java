@@ -10,7 +10,7 @@ public class SPF_BoardController {
 	@RequestMapping("/{domain}/boardlist/{boardlist_no}")
 	public String boardlist(@PathVariable String domain, @PathVariable int boardlist_no){
 		
-		return "SPF/board/board";
+		return "SPF/board/list";
 	}
 	
 	@RequestMapping("/{domain}/view/{boardlist_no}")

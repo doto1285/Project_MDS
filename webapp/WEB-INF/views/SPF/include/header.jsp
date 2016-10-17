@@ -16,7 +16,7 @@
 					<!-- class="active" -->
 					<c:forEach items="${boardList }" var="GetBoardList">
 					<li role="presentation"><a
-					href="board/${GetBoardList.boardlist_no } "
+					href="boardlist/${GetBoardList.boardlist_no } "
 					class="list-group-item"> ${GetBoardList.boardlist_name }</a></li>
 					</c:forEach>
 				</ul>
