@@ -27,8 +27,11 @@ public class TSF_BoardController {
 	BoardService BoardService;
 
 	@RequestMapping("/{userid}/board/{boardlist_no}")
-	public String notice(Model model, @PathVariable String userid, @PathVariable int boardlist_no,
-			HttpSession session, @RequestParam(value = "p", required = true, defaultValue = "1") int page,
+	public String notice(Model model,
+			HttpSession session,
+			@PathVariable String userid, 
+			@PathVariable int boardlist_no,
+			@RequestParam(value = "p", required = true, defaultValue = "1") int page,
 			@RequestParam(value = "kwd", required = false, defaultValue = "") String keyword
 			) {
 		/*

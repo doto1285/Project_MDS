@@ -14,11 +14,18 @@
 			<div class="col-lg-4">
 				<ul class="nav nav-pills">
 					<!-- class="active" -->
-					<c:forEach items="${boardList }" var="boardList">
-					<li role="presentation"><a href="#">${boardList.boardlist_name }</a></li>
+					<c:forEach items="${boardList }" var="GetBoardList">
+					<li role="presentation"><a
+					href="board/${GetBoardList.boardlist_no } "
+					class="list-group-item"> ${GetBoardList.boardlist_name }</a></li>
 					</c:forEach>
 				</ul>
 			</div>
+
+
+					
+
+
 			<c:choose>
 				<c:when test='${empty mallimgVoLogo }'>
 					<div class="col-lg-3">
