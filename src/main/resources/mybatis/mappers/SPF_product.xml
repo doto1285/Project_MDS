@@ -2,6 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="SPF_product">
 
+	<select id="get_product_detail_product" parameterType="kr.ac.sungkyul.MDS.vo.ProductVo"
+		resultType="kr.ac.sungkyul.MDS.vo.ProductVo">
+	<![CDATA[
+		
+		]]>
+	</select>
+	
+	<select id="get_product_detail_productimg" parameterType="kr.ac.sungkyul.MDS.vo.ProductimgVo"
+		resultType="kr.ac.sungkyul.MDS.vo.ProductVo">
+	<![CDATA[
+		
+		]]>
+	</select>
+	
+	<select id="get_product_detail_productoption" parameterType="kr.ac.sungkyul.MDS.vo.ProductOptionVo"
+		resultType="kr.ac.sungkyul.MDS.vo.ProductVo">
+	<![CDATA[
+		
+		]]>
+	</select>
+	
 	<select id="get_product_content" parameterType="kr.ac.sungkyul.MDS.vo.MallVo"
 		resultType="kr.ac.sungkyul.MDS.vo.ProductListVo">
 		<!-- mall_no을 이용해 올바른 상품이름, 가격, 상품 이미지URL 가져오기 -->
@@ -64,7 +85,7 @@
 			 where (#{pageNo}-1)*4+1<=rnum and rnum<=#{pageNo}*4 
 			 ]]>
 	</select>
-	
+
 	<select id="get_category_List" parameterType="java.lang.Integer"
 		resultType="kr.ac.sungkyul.MDS.vo.CategoryListVo">
 		<!-- 현재 쇼핑몰의 1차, 2차 카테고리 리스트 불러옴 -->
@@ -74,5 +95,7 @@
 			categorylist_state = 1 order by categorylist_orderno asc
 		]]>
 	</select>
+
+	
 
 </mapper>

@@ -15,8 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.sungkyul.MDS.service.BoardService;
 import kr.ac.sungkyul.MDS.service.SPA_MainService;
+import kr.ac.sungkyul.MDS.service.SPF_MainService;
 import kr.ac.sungkyul.MDS.service.SPF_MallService;
+import kr.ac.sungkyul.MDS.service.SPF_MallimgService;
 import kr.ac.sungkyul.MDS.vo.BoardListVo;
+import kr.ac.sungkyul.MDS.vo.CategoryListVo;
+import kr.ac.sungkyul.MDS.vo.MallVo;
+import kr.ac.sungkyul.MDS.vo.MallimgVo;
 
 
 
@@ -31,6 +36,10 @@ public class SPA_BoardController {
 	BoardService boardService;
 	@Autowired
 	SPF_MallService SPF_MallService;
+	@Autowired
+	SPF_MainService SPF_mainService;
+	@Autowired
+	SPF_MallimgService SPF_mallimgService;
 	
 	@RequestMapping(value = "{domain}/makeboard", method = RequestMethod.GET)
 	public String makeboardform(@PathVariable String domain, HttpSession session, Model model) {
@@ -40,6 +49,8 @@ public class SPA_BoardController {
 		}
 		List<BoardListVo> boardListVo= boardService.getBoardListInfo(domain);		//해당 도메인에 개설된 게시판 정보를 가져온다
 
+		
+		
 		for (BoardListVo vo : boardListVo) {
 			System.out.println("개설된 게시판 리스트 " + vo);
 		}
