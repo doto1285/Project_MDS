@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.ac.sungkyul.MDS.service.BoardService;
 import kr.ac.sungkyul.MDS.service.MemberService;
 import kr.ac.sungkyul.MDS.service.SPF_MainService;
 import kr.ac.sungkyul.MDS.service.SPF_MallService;
 import kr.ac.sungkyul.MDS.service.SPF_MallimgService;
 import kr.ac.sungkyul.MDS.service.TSF_MainService;
+import kr.ac.sungkyul.MDS.vo.BoardListVo;
 import kr.ac.sungkyul.MDS.vo.BoardVo;
 import kr.ac.sungkyul.MDS.vo.CategoryListVo;
 import kr.ac.sungkyul.MDS.vo.JoinMallVo;
@@ -39,9 +41,12 @@ public class MemberController {
 
 	@Autowired
 	SPF_MallService SPF_mallService;
-	
+
 	@Autowired
 	SPF_MallimgService SPF_mallimgService;
+	
+	@Autowired
+	BoardService boardService;
 
 	@RequestMapping("/main/joinform_choose")
 	public String Joinform_choose() {
@@ -165,6 +170,9 @@ public class MemberController {
 		// 헤더의 로고이미지 뿌려줌
 		MallimgVo mallimgVoLogo = SPF_mallimgService.get_selectMallimg_logo(mallVo);
 		model.addAttribute("mallimgVoLogo", mallimgVoLogo);
+		// 헤더의 게시판 리스트 뿌려줌
+		List<BoardListVo> boardList = boardService.SPF_GetBoardList(mallVo);
+		model.addAttribute("boardList", boardList);
 
 		return "SPF/member/join";
 	}
@@ -235,6 +243,9 @@ public class MemberController {
 		// 헤더의 로고이미지 뿌려줌
 		MallimgVo mallimgVoLogo = SPF_mallimgService.get_selectMallimg_logo(mallVo);
 		model.addAttribute("mallimgVoLogo", mallimgVoLogo);
+		// 헤더의 게시판 리스트 뿌려줌
+		List<BoardListVo> boardList = boardService.SPF_GetBoardList(mallVo);
+		model.addAttribute("boardList", boardList);
 
 		return "SPF/member/login";
 	}
@@ -283,22 +294,28 @@ public class MemberController {
 		joinmallVo.setMember_no(String.valueOf(memberVo.getMember_no()));
 		joinmallVo.setMall_no(String.valueOf(mallVo.getMall_no()));
 
+		// 쇼핑몰 footer 뿌려줌
+		mallVo = SPF_mainService.get_Footer(mallVo.getMall_no());
+		model.addAttribute("mallVo", mallVo);
+		// 카테고리 메뉴 뿌려줌
+		List<CategoryListVo> categoryList = SPF_mainService.get_CategoryList(mallVo);
+		model.addAttribute("categoryList1st", categoryList);
+		model.addAttribute("categoryList2nd", categoryList);
+		// 헤더의 로고이미지 뿌려줌
+		MallimgVo mallimgVoLogo = SPF_mallimgService.get_selectMallimg_logo(mallVo);
+		model.addAttribute("mallimgVoLogo", mallimgVoLogo);
+		// 헤더의 게시판 리스트 뿌려줌
+		List<BoardListVo> boardList = boardService.SPF_GetBoardList(mallVo);
+		model.addAttribute("boardList", boardList);
+
 		// 로그인 세션이 있는 회원이 현재 개인 쇼핑몰 회원인지 체크
 		if (memberService.SPFWhatUser(joinmallVo) == false) {
 			// 로그인 세션이 있는 회원이 현재 쇼핑몰에 가입되지 않은 경우 실행되는 코드
-			// 쇼핑몰 footer 뿌려줌
-			mallVo = SPF_mainService.get_Footer(mallVo.getMall_no());
-			model.addAttribute("mallVo", mallVo);
-			// 헤더, 쇼핑몰 로고이미지, 대문이미지, 카테고리리스트, 게시판리스트, 상품리스트 뿌려줌
 			return "SPF/member/join";
 		}
 
 		// 현재 쇼핑몰에 가입된 경우 실행되는 코드
 		session.setAttribute("SPFauthUser", joinmallVo);
-		// 쇼핑몰 footer 뿌려줌
-		mallVo = SPF_mainService.get_Footer(mallVo.getMall_no());
-		model.addAttribute("mallVo", mallVo);
-		// 헤더, 쇼핑몰 로고이미지, 대문이미지, 카테고리리스트, 게시판리스트, 상품리스트 뿌려줌
 
 		return "redirect:/" + mall_domain + "/main";
 	}

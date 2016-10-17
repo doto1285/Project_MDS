@@ -6,7 +6,7 @@
 		resultType="kr.ac.sungkyul.MDS.vo.ProductListVo">
 		<!-- mall_no을 이용해 올바른 상품이름, 가격, 상품 이미지URL 가져오기 -->
 				<![CDATA[	
-			 select product_name, product_price, productimg_image, productimg_no from 
+			 select product_name, product_price, productimg_image, productimg_no, p.product_no from 
 			 categorylist c FULL OUTER JOIN product p on c.categorylist_no = p.categorylist_no 
 			 FULL OUTER JOIN productimg i on p.product_no = i.product_no 
 			 where productimg_image is not null and mall_no= #{mall_no } and product_state = 1
@@ -18,7 +18,7 @@
 		resultType="kr.ac.sungkyul.MDS.vo.CategoryProductListVo">
 		<!-- category_no을 이용해 올바른 상품이름, 가격, 상품 이미지URL 가져오기 -->
 				<![CDATA[	
-			 select product_name, product_price, productimg_image, productimg_no, categorylist_no 
+			 select product_name, product_price, productimg_image, productimg_no, categorylist_no, p.product_no 
 			 from product p FULL OUTER JOIN productimg i on p.product_no = i.product_no 
 			 where productimg_image is not null and CATEGORYLIST_NO= #{categorylist_no} 
 			 and product_state = 1 and productimg_flag = 0 order by productimg_no desc
@@ -30,7 +30,7 @@
 		<!-- category_no을 이용해 낮은가격부터 상품이름, 가격, 상품 이미지URL 가져오기 -->
 				<![CDATA[	
 			 select * from (select a.*, rownum as rnum from 
-			 (select product_name, product_price, productimg_image, productimg_no, categorylist_no 
+			 (select product_name, product_price, productimg_image, productimg_no, categorylist_no, p.product_no 
 			 from product p FULL OUTER JOIN productimg i on p.product_no = i.product_no 
 			 where productimg_image is not null and CATEGORYLIST_NO= #{categorylist_no} 
 			 and product_state = 1 and productimg_flag = 0 order by product_price asc) a)
@@ -43,7 +43,7 @@
 		<!-- category_no을 이용해 높은가격부터 상품이름, 가격, 상품 이미지URL 가져오기 -->
 				<![CDATA[	
 			 select * from (select a.*, rownum as rnum from 
-			 (select product_name, product_price, productimg_image, productimg_no, categorylist_no 
+			 (select product_name, product_price, productimg_image, productimg_no, categorylist_no, p.product_no 
 			 from product p FULL OUTER JOIN productimg i on p.product_no = i.product_no 
 			 where productimg_image is not null and CATEGORYLIST_NO= #{categorylist_no} 
 			 and product_state = 1 and productimg_flag = 0 order by product_price desc) a)
@@ -57,7 +57,7 @@
 				<![CDATA[	
 			 
 			 select * from (select a.*, rownum as rnum from 
-			 (select product_name, product_price, productimg_image, productimg_no, categorylist_no 
+			 (select product_name, product_price, productimg_image, productimg_no, categorylist_no, p.product_no 
 			 from product p FULL OUTER JOIN productimg i on p.product_no = i.product_no 
 			 where productimg_image is not null and CATEGORYLIST_NO= #{categorylist_no} 
 			 and product_state = 1 and productimg_flag = 0 order by productimg_no desc) a)

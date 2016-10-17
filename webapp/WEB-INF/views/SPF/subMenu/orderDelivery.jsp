@@ -25,7 +25,7 @@
 	<br>
 
 	<div class="container">
-		<h3 id="boardTitle">장바구니</h3>
+		<h3 id="boardTitle">주문배송조회</h3>
 		<table class="table" id="orderTable">
 			<colgroup>
 				<col width="13%" />
