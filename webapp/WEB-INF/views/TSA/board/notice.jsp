@@ -64,28 +64,22 @@
 				<th>작성일</th>
 			</tr>
 
-			<c:forEach items="${listBoard }" var="boardVo">
-				<tr>
-					<td>${boardVo.no}</td>
-					<td><a href="view?no=${boardVo.no}">${boardVo.title}</a></td>
-					<td>${boardVo.regDate}</td>
-				</tr>
-			</c:forEach>
+		
 			<tbody>
 
-				<c:forEach items="${GetBoardContentsList }"
-					var="GetBoardContentsList">
+				<c:forEach items="${GetNotice }"
+					var="GetNotice">
 					<tr>
 						<!--글번호-->
-						<td>${GetBoardContentsList.board_no}</td>
+						<td>${GetNotice.board_no}</td>
 						<!--제목-->
-						<td><a href="view?no=${GetBoardContentsList.board_no}">${GetBoardContentsList.board_title}</a></td>
+						<td><a href="view?no=${GetNotice.board_no}">${GetNotice.board_title}</a></td>
 						<!--글쓴이  -->
-						<td>${GetBoardContentsList.name}</td>
+						<td>${GetNotice.name}</td>
 						<!--조회수  -->
-						<td>${GetBoardContentsList.board_hit}</td>
+						<td>${GetNotice.board_hit}</td>
 						<!--작성일  -->
-						<td>${GetBoardContentsList.board_date}</td>
+						<td>${GetNotice.board_date}</td>
 					</tr>
 				</c:forEach>
 

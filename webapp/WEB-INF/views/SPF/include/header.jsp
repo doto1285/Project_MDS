@@ -13,37 +13,25 @@
 		<div class="container">
 			<div class="col-lg-4">
 				<ul class="nav nav-pills">
-				
-				
-				
 					<!-- class="active" -->
-					
-					<!-- 게시판 추가 sky -->
-						<c:forEach items="${GetBoardList }" var="GetBoardList">
-					<li role="presentation"><a
-					href="board/${GetBoardList.boardlist_no } "
-					class="list-group-item"> ${GetBoardList.boardlist_name }</a></li>
-					
+					<c:forEach items="${boardList }" var="boardList">
+					<li role="presentation"><a href="#">${boardList.boardlist_name }</a></li>
 					</c:forEach>
-					<!-- /게시판 추가 끝 sky -->
-					
-					
-					
 				</ul>
 			</div>
 			<c:choose>
 				<c:when test='${empty mallimgVoLogo }'>
 					<div class="col-lg-3">
-						<a href="http://localhost:8088/Project_MDS/12maket/main"> <img id="logo"
-							src="/Project_MDS/assets/image/logo.png" class="img-responsive"
-							alt="Responsive image"></a>
+						<a href="http://localhost:8088/Project_MDS/12maket/main"> <img
+							id="logo" src="/Project_MDS/assets/image/logo.png"
+							class="img-responsive" alt="Responsive image"></a>
 					</div>
 				</c:when>
 				<c:otherwise>
 					<div class="col-lg-3">
-						<a href="http://localhost:8088/Project_MDS/12maket/main"> <img id="logo"
-							src="${mallimgVoLogo.mallimg_image }" class="img-responsive"
-							alt="Responsive image"></a>
+						<a href="http://localhost:8088/Project_MDS/12maket/main"> <img
+							id="logo" src="${mallimgVoLogo.mallimg_image }"
+							class="img-responsive" alt="Responsive image"></a>
 					</div>
 				</c:otherwise>
 			</c:choose>

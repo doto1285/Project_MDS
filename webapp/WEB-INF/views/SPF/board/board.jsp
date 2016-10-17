@@ -28,6 +28,8 @@
 		<div class="container">
 			<!-- 본문 시작 -->
 			게시판
+			<!-- 링크 : http://localhost:8088/Project_MDS/{domain}/boardlist/{boardlist_no} -->
+
 			<!-- 본문 끝 -->
 		</div>
 	</div>

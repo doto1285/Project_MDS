@@ -29,7 +29,8 @@
 							<ul id="categoryMenu3">
 								<c:forEach items="${categoryList2nd }" var="categoryList2nd">
 									<li><a
-										href="list?categorylist_no=${categoryList2nd.categorylist_no }">
+										href="list?categorylist_no=${categoryList2nd.categorylist_no }
+										&categorylist_group=${categoryList2nd.categorylist_group }">
 											<c:if
 												test="${categoryList2nd.categorylist_depth  == 2 
 									and categoryList2nd.categorylist_group == categoryList1st.categorylist_group}">

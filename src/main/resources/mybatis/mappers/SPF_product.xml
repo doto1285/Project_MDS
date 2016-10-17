@@ -13,7 +13,7 @@
 			 and productimg_flag = 0 and rownum <= 20 order by productimg_no desc
 			 ]]>
 	</select>
-	
+
 	<select id="get_product_list" parameterType="java.lang.Integer"
 		resultType="kr.ac.sungkyul.MDS.vo.CategoryProductListVo">
 		<!-- category_no을 이용해 올바른 상품이름, 가격, 상품 이미지URL 가져오기 -->
@@ -24,29 +24,55 @@
 			 and product_state = 1 and productimg_flag = 0 order by productimg_no desc
 			 ]]>
 	</select>
-	
+
 	<select id="get_product_list_lowprice" parameterType="java.lang.Integer"
 		resultType="kr.ac.sungkyul.MDS.vo.CategoryProductListVo">
 		<!-- category_no을 이용해 낮은가격부터 상품이름, 가격, 상품 이미지URL 가져오기 -->
 				<![CDATA[	
-			 select product_name, product_price, productimg_image, productimg_no, categorylist_no 
+			 select * from (select a.*, rownum as rnum from 
+			 (select product_name, product_price, productimg_image, productimg_no, categorylist_no 
 			 from product p FULL OUTER JOIN productimg i on p.product_no = i.product_no 
-			 where productimg_image is not null and CATEGORYLIST_NO= #{CATEGORYLIST_NO} 
-			 and product_state = 1 and productimg_flag = 0 order by product_price asc
+			 where productimg_image is not null and CATEGORYLIST_NO= #{categorylist_no} 
+			 and product_state = 1 and productimg_flag = 0 order by product_price asc) a)
+			 where (#{pageNo}-1)*4+1<=rnum and rnum<=#{pageNo}*4 
 			 ]]>
 	</select>
-	
+
 	<select id="get_product_list_highprice" parameterType="java.lang.Integer"
 		resultType="kr.ac.sungkyul.MDS.vo.CategoryProductListVo">
 		<!-- category_no을 이용해 높은가격부터 상품이름, 가격, 상품 이미지URL 가져오기 -->
 				<![CDATA[	
-			 select product_name, product_price, productimg_image, productimg_no, categorylist_no 
+			 select * from (select a.*, rownum as rnum from 
+			 (select product_name, product_price, productimg_image, productimg_no, categorylist_no 
 			 from product p FULL OUTER JOIN productimg i on p.product_no = i.product_no 
-			 where productimg_image is not null and CATEGORYLIST_NO= #{CATEGORYLIST_NO} 
-			 and product_state = 1 and productimg_flag = 0 order by product_price desc
+			 where productimg_image is not null and CATEGORYLIST_NO= #{categorylist_no} 
+			 and product_state = 1 and productimg_flag = 0 order by product_price desc) a)
+			 where (#{pageNo}-1)*4+1<=rnum and rnum<=#{pageNo}*4 
+			 ]]>
+	</select>
+
+	<select id="get_product_list_paging" parameterType="kr.ac.sungkyul.MDS.vo.CategoryProductListVo"
+		resultType="kr.ac.sungkyul.MDS.vo.CategoryProductListVo">
+		<!-- 상품 리스트 페이징 -->
+				<![CDATA[	
+			 
+			 select * from (select a.*, rownum as rnum from 
+			 (select product_name, product_price, productimg_image, productimg_no, categorylist_no 
+			 from product p FULL OUTER JOIN productimg i on p.product_no = i.product_no 
+			 where productimg_image is not null and CATEGORYLIST_NO= #{categorylist_no} 
+			 and product_state = 1 and productimg_flag = 0 order by productimg_no desc) a)
+			 where (#{pageNo}-1)*4+1<=rnum and rnum<=#{pageNo}*4 
 			 ]]>
 	</select>
 	
-	
+	<select id="get_category_List" parameterType="java.lang.Integer"
+		resultType="kr.ac.sungkyul.MDS.vo.CategoryListVo">
+		<!-- 현재 쇼핑몰의 1차, 2차 카테고리 리스트 불러옴 -->
+		<![CDATA[	
+			select * from categorylist where categorylist_group = #{ categorylist_group}  
+			and 
+			categorylist_state = 1 order by categorylist_orderno asc
+		]]>
+	</select>
 
 </mapper>

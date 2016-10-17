@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.ac.sungkyul.MDS.vo.CategoryListVo;
 import kr.ac.sungkyul.MDS.vo.CategoryProductListVo;
 import kr.ac.sungkyul.MDS.vo.MallVo;
 import kr.ac.sungkyul.MDS.vo.ProductListVo;
@@ -34,6 +35,16 @@ public class ProductDao {
 	}
 	
 	/**
+	 * 페이징을 위해 한 페이지에 보여줄 상품들을 쪼개어 보내줌
+	 * 만든이 : 이민우
+	 * @param categoryProductListVoPaging
+	 * @return
+	 */
+	public List<CategoryProductListVo> getProductListPaging(CategoryProductListVo categoryProductListVoPaging){
+		return sqlSession.selectList("SPF_product.get_product_list_paging", categoryProductListVoPaging);
+	}
+	
+	/**
 	 * categorylist_no을 이용해 올바른 상품이름, 가격, 상품 이미지URL 가져오기(리스트화면에서 사용)
 	 * 만든이 : 이민우
 	 * @param categorylist_no
@@ -49,8 +60,8 @@ public class ProductDao {
 	 * @param categorylist_no
 	 * @return
 	 */
-	public List<CategoryProductListVo> getProductListLowPrice(int categorylist_no){
-		return sqlSession.selectList("SPF_product.get_product_list_lowprice", categorylist_no);
+	public List<CategoryProductListVo> getProductListLowPrice(CategoryProductListVo categoryProductListVoPaging){
+		return sqlSession.selectList("SPF_product.get_product_list_lowprice", categoryProductListVoPaging);
 	}
 	
 	/**
@@ -59,8 +70,21 @@ public class ProductDao {
 	 * @param categorylist_no
 	 * @return
 	 */
-	public List<CategoryProductListVo> getProductListHighPrice(int categorylist_no){
-		return sqlSession.selectList("SPF_product.get_product_list_highprice", categorylist_no);
+	public List<CategoryProductListVo> getProductListHighPrice(CategoryProductListVo categoryProductListVoPaging){
+		return sqlSession.selectList("SPF_product.get_product_list_highprice", categoryProductListVoPaging);
 	}
+
+	/**
+	 * 현재 선택된 상품 카테고리를 표현하기 위해 필요한 함수
+	 * 만든이 : 이민우
+	 * @param categorylist_groupNo
+	 * @return
+	 */
+	public List<CategoryListVo> getCategoryGroupList(int categorylist_groupNo){
+		
+		return sqlSession.selectList("SPF_product.get_category_List", categorylist_groupNo);
+	}
+	
+	
 
 }

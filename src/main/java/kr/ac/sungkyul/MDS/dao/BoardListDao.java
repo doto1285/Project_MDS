@@ -41,7 +41,7 @@ public class BoardListDao {
 
 		return GetBoard;
 	}
-
+	
 	public List<BoardListVo> getBoardListInfo(String domain) {
 		// TODO Auto-generated method stub
 		//해당 도메인에 개설된 게시판 정보를 가져온다
@@ -115,6 +115,4 @@ public class BoardListDao {
 
 	      return BoardList;
 	   }
-	
-	
 }

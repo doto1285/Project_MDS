@@ -11,14 +11,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.ac.sungkyul.MDS.service.MemberService;
-import kr.ac.sungkyul.MDS.service.SPA_CategoryListService;
 import kr.ac.sungkyul.MDS.service.SPA_MainService;
-import kr.ac.sungkyul.MDS.service.SPF_MallService;
+import kr.ac.sungkyul.MDS.service.SPA_ProductService;
 import kr.ac.sungkyul.MDS.vo.MallVo;
 import kr.ac.sungkyul.MDS.vo.MemberVo;
+import kr.ac.sungkyul.MDS.vo.ProductListVo;
 
 @Controller
 @RequestMapping("/SPA")
@@ -29,12 +30,9 @@ public class SPA_MainController {
 
 	@Autowired
 	SPA_MainService SPA_mainservice;
-	
-	@Autowired
-	SPF_MallService SPF_MallService;
 
 	@Autowired
-	SPA_CategoryListService categoryListService;
+	SPA_ProductService SPA_productService;
 
 	/**
 	 * 메인화면 컨트롤러
@@ -235,6 +233,9 @@ public class SPA_MainController {
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
 			return "redirect:/main";
 		}
+		List<ProductListVo> productlist = SPA_mainservice.getProductInfo(domain);
+		System.out.println(productlist);
+		model.addAttribute("list", productlist);
 		return "SPA/product/productlist";
 	}
 
@@ -254,6 +255,18 @@ public class SPA_MainController {
 			return "redirect:/main";
 		}
 		return "SPA/product/productmodifyform";
+	}
+	
+	@ResponseBody // ajax일때 return을 form의 위치를 찾는게 아니라 값을 넘겨준다
+	@RequestMapping(value = "{domain}/productdelete", method = RequestMethod.POST)
+	// 상품삭제
+	public String productdelete(@PathVariable String domain, HttpSession session, Model model, int productNo) {
+
+		System.out.println("삭제할 상품 " + productNo);
+
+		SPA_productService.deleteProduct(productNo);
+
+		return "javascript:window.location.reload(true)";
 	}
 
 	/**

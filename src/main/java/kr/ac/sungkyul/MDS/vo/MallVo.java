@@ -173,7 +173,8 @@ public class MallVo {
 	public void setMember_no(int member_no) {
 		this.member_no = member_no;
 	}
-
+	
+	
 	@Override
 	public String toString() {
 		return "MallVo [mall_no=" + mall_no + ", mall_name=" + mall_name + ", mall_domain=" + mall_domain

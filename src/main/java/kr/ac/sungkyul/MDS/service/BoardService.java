@@ -12,8 +12,7 @@ import kr.ac.sungkyul.MDS.dao.BoardDao;
 import kr.ac.sungkyul.MDS.dao.BoardListDao;
 import kr.ac.sungkyul.MDS.vo.BoardListVo;
 import kr.ac.sungkyul.MDS.vo.BoardVo;
-import kr.ac.sungkyul.MDS.vo.CategoryListVo;
-import oracle.net.aso.b;
+import kr.ac.sungkyul.MDS.vo.MallVo;
 
 @Service
 public class BoardService {
@@ -218,7 +217,5 @@ public class BoardService {
 
 	      return GetBoardList;
 	   }
-
-
 
 }
