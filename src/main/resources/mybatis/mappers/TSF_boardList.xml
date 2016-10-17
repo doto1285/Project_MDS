@@ -27,7 +27,7 @@
    	   select * from boardlist where
    	   boardlist_state = 1 and 
   	    mall_no =  #{mall_no }
-		order by boardlist_orderno asc
+		order by board_orderno asc
       ]]>
 	</select>
 
