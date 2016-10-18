@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.ac.sungkyul.MDS.service.BoardService;
 import kr.ac.sungkyul.MDS.service.MemberService;
-import kr.ac.sungkyul.MDS.service.SPF_ListSrvice;
+import kr.ac.sungkyul.MDS.service.SPF_ListService;
 import kr.ac.sungkyul.MDS.service.SPF_MainService;
 import kr.ac.sungkyul.MDS.service.SPF_MallService;
 import kr.ac.sungkyul.MDS.service.SPF_MallimgService;
@@ -44,7 +44,7 @@ public class SPF_ListController {
 	SPF_MallService SPF_mallService;
 
 	@Autowired
-	SPF_ListSrvice SPF_listService;
+	SPF_ListService SPF_listService;
 
 	@Autowired
 	SPF_MallimgService SPF_mallimgService;

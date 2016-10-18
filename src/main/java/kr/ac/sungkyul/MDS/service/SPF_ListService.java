@@ -11,7 +11,7 @@ import kr.ac.sungkyul.MDS.vo.CategoryProductListVo;
 import kr.ac.sungkyul.MDS.vo.ProductListVo;
 
 @Service
-public class SPF_ListSrvice {
+public class SPF_ListService {
 
 	@Autowired
 	ProductDao productDao;

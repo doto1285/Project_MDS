@@ -1,16 +1,22 @@
 package kr.ac.sungkyul.MDS.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
+
 import kr.ac.sungkyul.MDS.vo.CategoryListVo;
 import kr.ac.sungkyul.MDS.vo.CategoryProductListVo;
 import kr.ac.sungkyul.MDS.vo.MallVo;
 import kr.ac.sungkyul.MDS.vo.ProductListVo;
+import kr.ac.sungkyul.MDS.vo.ProductOptionVo;
 import kr.ac.sungkyul.MDS.vo.ProductVo;
+import kr.ac.sungkyul.MDS.vo.ProductimgVo;
 
 @Repository
 public class ProductDao {
@@ -22,6 +28,26 @@ public class ProductDao {
 		//추천 쇼핑몰 목록에 가져온 쇼핑몰 리스트를 랜덤으로 생성한다
 		ProductVo vo = sqlSession.selectOne("SPA_product.get_produnt_name", no);
 		return vo;
+	}
+	
+	/**
+	 * product_no을 통해 상품의 상세 정보를 얻어온다.
+	 * 만든이 : 이민우
+	 * @param product_no
+	 * @return
+	 */
+	public Map get_Product_detail(int product_no){
+		Map<String, Object> map = new HashMap<String, Object>();
+		ProductVo productVo = sqlSession.selectOne("get_product_detail_product", product_no);
+		ProductimgVo productimgflag1 = sqlSession.selectOne("get_product_detail_productimg_flag1", product_no);
+		ProductimgVo productimgflag2 = sqlSession.selectOne("get_product_detail_productimg_flag2", product_no);
+		List<ProductOptionVo> productOptionList = sqlSession.selectList("get_product_detail_productoption", product_no);
+		map.put("productVo", productVo);
+		map.put("productimgflag1", productimgflag1);
+		map.put("productimgflag2", productimgflag2);
+		map.put("productOptionList", productOptionList);
+		
+		return map;
 	}
 	
 	/**

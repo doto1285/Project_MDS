@@ -27,8 +27,8 @@
 	<div class="container">
 		<div class="col-lg-6">
 			<div class="thumbnail">
-				<img src="/Project_MDS/assets/image/SPF_productDetailSample2.jpg"
-					alt="상품 상세 이미지" id="productDetailSample1">
+				<img src="${map.productimgflag1.productimg_image }"
+					alt="상품 이미지" id="productDetailSample1">
 			</div>
 		</div>
 
@@ -37,40 +37,36 @@
 				<h4>&nbsp;상품명
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					데일리 보카시</h4>
+					${map.productVo.product_name }</h4>
 				<br>
 				<h4>&nbsp;상품가격
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16,900원</h4>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${map.productVo.product_price }</h4>
 				<br>
 				<h4>&nbsp;제조사
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					모두의 쇼핑몰</h4>
+					${map.productVo.product_maker }</h4>
 				<br>
 				<h4>&nbsp;제조일자
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2016-04-26</h4>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${map.productVo.product_makedate }</h4>
 				<br>
 				<h4>
 					&nbsp;색상 <select class="form-control" id="form-control1"
 						style="float: right">
-						<option>화이트</option>
-						<option>그레이</option>
-						<option>블랙</option>
-						<option>레드</option>
-						<option>블루</option>
+						<c:forEach items="${map.productOptionList }" var="productOptionList">
+						<option>${productOptionList.productoption_color }</option>
+						</c:forEach>
 					</select>
 				</h4>
 				<br>
 				<h4>
 					&nbsp;사이즈 <select class="form-control" id="form-control1"
 						style="float: right">
-						<option>size XS(85)</option>
-						<option>size S(90)</option>
-						<option>size M(95)</option>
-						<option>size L(100)</option>
-						<option>size XL(105)</option>
+						<c:forEach items="${map.productOptionList }" var="productOptionList">
+						<option>${productOptionList.productoption_size }</option>
+						</c:forEach>
 					</select>
 				</h4>
 				<br>
@@ -101,36 +97,12 @@
 			</div>
 		</div>
 	</div>
-	<br>
 	<div class="container">
 		<div class="col-lg-12" id="productExplanImage">
-			<img src="/Project_MDS/assets/image/SPF_productExplanSample5.jpg"
+			<img src="${map.productimgflag2.productimg_image }"
 				alt="상품 설명 이미지" class="img-rounded">
 		</div>
-		<div class="col-lg-12" id="productExplanImage">
-			<img src="/Project_MDS/assets/image/SPF_productExplanSample2.jpg"
-				alt="상품 설명 이미지" class="img-rounded">
-		</div>
-		<div class="col-lg-12" id="productExplanImage">
-			<img src="/Project_MDS/assets/image/SPF_productExplanSample3.jpg"
-				alt="상품 설명 이미지" class="img-rounded">
-		</div>
-		<div class="col-lg-12" id="productExplanImage">
-			<img src="/Project_MDS/assets/image/SPF_productExplanSample4.jpg"
-				alt="상품 설명 이미지" class="img-rounded">
-		</div>
-		<div class="col-lg-12" id="productExplanImage">
-			<img src="/Project_MDS/assets/image/SPF_productExplanSample1.jpg"
-				alt="상품 설명 이미지" class="img-rounded">
-		</div>
-		<div class="col-lg-12" id="productExplanImage">
-			<img src="/Project_MDS/assets/image/SPF_productExplanSample6.jpg"
-				alt="상품 설명 이미지" class="img-rounded">
-		</div>
-		<div class="col-lg-12" id="productExplanImage">
-			<img src="/Project_MDS/assets/image/SPF_productExplanSample8.png"
-				alt="상품 설명 이미지" class="img-rounded">
-		</div>
+
 	</div>
 	<c:import url='/WEB-INF/views/SPF/include/footer.jsp' />
 </body>

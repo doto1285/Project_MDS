@@ -2,24 +2,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="SPF_product">
 
-	<select id="get_product_detail_product" parameterType="kr.ac.sungkyul.MDS.vo.ProductVo"
+	<select id="get_product_detail_product" parameterType="java.lang.Integer"
 		resultType="kr.ac.sungkyul.MDS.vo.ProductVo">
 	<![CDATA[
-		
+		select * from product where product_no=#{product_no}
 		]]>
 	</select>
 	
-	<select id="get_product_detail_productimg" parameterType="kr.ac.sungkyul.MDS.vo.ProductimgVo"
-		resultType="kr.ac.sungkyul.MDS.vo.ProductVo">
+	<select id="get_product_detail_productimg_flag1" parameterType="java.lang.Integer"
+		resultType="kr.ac.sungkyul.MDS.vo.ProductimgVo">
 	<![CDATA[
-		
+		select * from productimg where product_no=#{product_no} and productimg_flag = 1
 		]]>
 	</select>
 	
-	<select id="get_product_detail_productoption" parameterType="kr.ac.sungkyul.MDS.vo.ProductOptionVo"
-		resultType="kr.ac.sungkyul.MDS.vo.ProductVo">
+	<select id="get_product_detail_productimg_flag2" parameterType="java.lang.Integer"
+		resultType="kr.ac.sungkyul.MDS.vo.ProductimgVo">
 	<![CDATA[
-		
+		select * from productimg where product_no=#{product_no} and productimg_flag = 2
+		]]>
+	</select>
+	
+	<select id="get_product_detail_productoption" parameterType="java.lang.Integer"
+		resultType="kr.ac.sungkyul.MDS.vo.ProductOptionVo">
+	<![CDATA[
+		select * from productoption where product_no=#{product_no}
 		]]>
 	</select>
 	
