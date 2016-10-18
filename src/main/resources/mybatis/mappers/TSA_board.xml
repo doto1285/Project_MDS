@@ -2,77 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="TSA_board">
 
-
-	<!--게시물 총 개수 얻기 -->
-	<select id="totalCount" parameterType="java.lang.Integer"
-		resultType="java.lang.Integer">
-		<![CDATA[
-      select count(*) from board  where board_state = 1 and boardlist_no = #{boardlist_no }
-				]]>
-	</select>
-
-	<select id="GetBoardContentsList" parameterType="map"
-		resultType="kr.ac.sungkyul.MDS.vo.BoardVo">
-		<!-- 해당 게시판에 작성되어 있는 게시글 목록 가져오기 -->
-		<![CDATA[		
-		 SELECT * FROM ( SELECT A.*, ROWNUM AS RNUM FROM 
-      (
-		
-		select 
-		board_no, board_title, board_content, board_hits, board_group, board_orderno, board_depth, 
-		board_date, board_state, boardlist_no, member_no, 
-
-		(select member_name from member where board.member_no = member.member_no) as name
-
-		from board
-
- 	   where board_state = 1 and boardlist_no = #{boardlist_no }
- 	   order by board_group desc,
- 	   board_orderno asc) A )
- 	   
- 	    where #{page_start }<= RNUM AND RNUM <= #{page_end }
- 	   
-		]]>
-	</select>
-
-
-	<select id="GetBoardContent" parameterType="java.lang.Integer"
-		resultType="kr.ac.sungkyul.MDS.vo.BoardVo">
-		<!-- 해당 쇼핑몰의 생성되어있는 게시판 목록 가져오기 -->
-		<![CDATA[			
-	
-	 select * from board
-	 
-	  where board_state = 1 
-	  and board_no = #{board_no}
-	
-		]]>
-	</select>
-
-
-
-
-
-	<insert id="NewWrite" parameterType="kr.ac.sungkyul.MDS.vo.BoardVo">
-		<!-- 새 글 등록하기 -->
-		<![CDATA[		
-insert into board values
- (board_seq.nextval,
- 	#{board_title},
- 	#{board_password},
-    #{board_content},
-    0,
-    board_groupno_seq.nextval,
-    1,
-    1,
-    sysdate,
-    1,
-    #{boardlist_no},
-    #{member_no}
-    )
-		]]>
-	</insert>
-
 	<update id="ReplyWrite_orderno_update" parameterType="kr.ac.sungkyul.MDS.vo.BoardVo">
 	<![CDATA[	
 	update board set 
@@ -118,27 +47,19 @@ insert into board values
 		]]>
 	</select>
 
-	<select id="GetShopManage" parameterType="map"
-		resultType="kr.ac.sungkyul.MDS.vo.MallVo">
+	<select id="GetShopManage" resultType="kr.ac.sungkyul.MDS.vo.MallVo">
 		<!-- 해당 쇼핑몰의 생성되어있는 게시판 목록 가져오기 -->
 		<![CDATA[			
-	
- 		select 
- 		mall_no, mall_name, mall_creationdate, mall_ceoname, member_no
- 		from 
- 		mall 
- 		full OUTER JOIN 
- 		member 
- 		on 
- 		mall.member_no = MEMBER.MEMBER_NO where member_state = 1
- 	
+		
+		select mall_no, mall_name, mall_creationdate, mall_ceoname, member_id id
+         from 
+         mall 
+         full OUTER JOIN 
+         member 
+         on 
+         mall.member_no = MEMBER.MEMBER_NO where member_state = 1 and mall_no is not null
+ 		
+ 		
 		]]>
 	</select>
-
 </mapper>
-
-<!-- select * from board -->
-
-
-
-
