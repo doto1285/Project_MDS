@@ -29,54 +29,150 @@
 	<c:import url='/WEB-INF/views/SPA/include/navigation.jsp' />
 	<div class="section" id="contents">
 		<h3>상품추가</h3>
-		<form class="board-form" method="post" enctype="multipart/form-data"
-			action="product">
-			<div class="form-group" id="inputFormGroup">
-				<label for="inputEmail3" class="col-lg-2 control-label"
-					id="inputText">상품명</label> <input name="product_name" type="text"
-					class="form-control" id="inputBox" value="">
+		<form class="board-form" method="post" action="mallmodify">
+			<div class="form-inline" id="inputFormGroup">
+				<label id="catelabel">카테고리 : </label><select class="form-control" id="form-cata1nd">
+					<option data-categroupno='-1'>1차 카테고리</option>
+					<c:forEach items="${categorylist}" var="categoryList">
+						<c:if test='${categoryList.categorylist_depth == 1}'>
+							<option data-categroupno='${categoryList.categorylist_group}'>${categoryList.categorylist_name }</option>
+						</c:if>
+					</c:forEach>
+				</select> <select class="form-control" id="form-cata2nd">
+					<option value="-1">2차 카테고리</option>
+					<c:forEach items="${categorylist2nd}" var="categorylist2nd">
+						<c:if test='${categorylist2nd.categorylist_depth == 2}'>
+							<option data-categroupno2='${categorylist2nd.categorylist_group}'>${categorylist2nd.categorylist_name }</option>
+						</c:if>
+					</c:forEach>
+				</select>
 			</div>
-			<div class="form-group" id="inputFormGroup">
-				<label for="inputEmail3" class="col-lg-2 control-label"
-					id="inputText">상품가격</label> <input name="product_price" type="text"
-					class="form-control" id="inputBox" value="">
-			</div>
-			<div class="form-group" id="inputFormGroup">
-				<label for="inputEmail3" class="col-lg-2 control-label"
-					id="inputText">제조사</label> <input name="product_maker" type="text"
-					class="form-control" id="inputBox" value="">
-			</div>
-			<div class="form-group" id="inputFormGroup">
-				<label for="inputEmail3" class="col-lg-2 control-label"
-					id="inputText">제조일자</label> <input name="product_makedate"
-					type="text" class="form-control" id="inputBox" value="">
-			</div>
-			<div class="form-group" id="inputFormGroup">
+			<div class="col-lg-12">
+				<label for="inputEmail3" class="col-lg-5 control-label"
+					id="inputhead">상품 상세정보 </label> <label for="inputEmail3"
+					class="col-lg-6 control-label" id="inputhead">상품 옵션</label>
+				<div class="col-lg-5">
+					<div class="thumbnail">
+						<div class="form-group" id="inputFormGroup">
+							<label for="inputEmail3" class="col-lg-4 control-label"
+								id="inputText">상품명 : </label> <input name="mall_name"
+								type="text" class="form-control" id="inputBox" value="123">
+						</div>
 
-				<img src="/Project_MDS/assets/image/SPA_header_logo.png"
-					alt="썸네일이미지" id="productsomeimg" class="img-thumbnail"> <input
-					class="btn btn-info" id="productsomeimg" name="productsomeimg"
-					type="file" value="첨부하기"> <br>
-			</div>
-			<div class="form-group" id="inputFormGroup">
-				<img src="/Project_MDS/assets/image/SPA_header_logo.png"
-					alt="상품 메인이미지" id="productmainimg" class="img-thumbnail"> <input
-					class="btn btn-info" id="productmainimg" name="productmainimg"
-					type="file" value="첨부하기">
+						<div class="form-group" id="inputFormGroup">
+							<label for="inputEmail3" class="col-lg-4 control-label"
+								id="inputText">상품가격 : </label> <input name="mall_name"
+								type="text" class="form-control" id="inputBox" value="123">
+						</div>
 
+						<div class="form-group" id="inputFormGroup">
+							<label for="inputEmail3" class="col-lg-4 control-label"
+								id="inputText">제조자 : </label> <input name="mall_name"
+								type="text" class="form-control" id="inputBox" value="123">
+						</div>
+
+						<div class="form-group" id="inputFormGroup">
+							<label for="inputEmail3" class="col-lg-4 control-label"
+								id="inputText">제조일자 : </label> <input name="mall_name"
+								type="text" class="form-control" id="inputBox" value="123">
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-5">
+					<div class="thumbnail">
+						<div class="form-group" id="inputFormGroup">
+							<label for="inputEmail3" class="col-lg-4 control-label"
+								id="inputText">색상 : </label> <input name="mall_name" type="text"
+								class="form-control" id="inputBox" value="123">
+						</div>
+
+						<div class="form-group" id="inputFormGroup">
+							<label for="inputEmail3" class="col-lg-4 control-label"
+								id="inputText">사이즈 : </label> <input name="mall_name"
+								type="text" class="form-control" id="inputBox" value="123">
+						</div>
+
+						<div class="form-group" id="inputFormGroup">
+							<label for="inputEmail3" class="col-lg-4 control-label"
+								id="inputText">재고 : </label> <input name="mall_name" type="text"
+								class="form-control" id="inputBox" value="123">
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="form-group" id="inputFormGroup">
-				<img src="/Project_MDS/assets/image/SPA_header_logo.png"
-					alt="상품 상세이미지" id="productdetailimg" class="img-thumbnail"> <input
-					class="btn btn-info" id="productdetailimg" name="productdetailimg"
-					type="file" value="첨부하기">
+			<div class="col-lg-12">
+				<label for="inputEmail3" class="col-lg-5 control-label"
+					id="inputhead">썸네일이미지 </label> <label for="inputEmail3"
+					class="col-lg-6 control-label" id="inputhead">상품 메인이미지 </label>
+				<div class="col-lg-4">
+					<div class="thumbnail">
+						<img src="/Project_MDS/assets/image/SPF_productDetailSample2.jpg"
+							alt="상품 썸네일이미지"> <input class="btn btn-info" id="file"
+							name="file" type="file" value="첨부하기">
+					</div>
+				</div>
+
+				<div class="col-lg-2">
+					<div class="thumbnail" id="productmainimg">
+						<img src="/Project_MDS/assets/image/SPF_productDetailSample2.jpg"
+							alt="상품 메인이미지"> <input class="btn btn-info" id="file"
+							name="file" type="file" value="첨부하기">
+					</div>
+				</div>
 			</div>
-			<div class="form-group" id="inputButton">
-			 <input
-					class="btn btn-info" type="submit" value="추가하기">
+			<div class="col-lg-12">
+				<br> <label for="inputEmail3" class="col-lg-12 control-label"
+					id="inputhead">상품 상세이미지 </label>
+				<div class="col-lg-12">
+					<div class="thumbnail">
+						<img src="/Project_MDS/assets/image/SPF_productExplanSample8.png"
+							alt="상품 상세이미지" class="img-rounded"> <input
+							class="btn btn-info" id="file" name="file" type="file"
+							value="첨부하기">
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-12">
+				<div class="form-group" id="inputFormGroup">
+					<input type="hidden" name="wkkrnsl" value="aa"> <input
+						class="btn btn-success" id="btnOk" type="submit" value="추가하기">
+					<input class="btn btn-warning" id="btnCancle" type="submit"
+						value="돌아가기">
+				</div>
 			</div>
 		</form>
 	</div>
+
 	<c:import url='/WEB-INF/views/SPA/include/footer.jsp' />
 </body>
 </html>
+<script>
+	var categroupNo = "";
+$("#form-cata1nd").on("change", function() {
+	categroupNo = $(this).parents("option").data("categroupno");
+	if(categroupNo==-1) {
+		return;
+	}
+	categroupNo = 9;
+	console.log("1차 카테고리 클릭시: " + categroupNo); //로그에 찍히는 부분
+
+	$.ajax({
+		url : "productcategorySelect",
+		type : "POST",
+		data : {
+			"categroupNo" : categroupNo,
+		},
+		dataType : "text",
+
+		success : function(url) {
+			//ajax가 성공했을때, 컨트롤러에서 리턴받는 url로 페이지를 최신화 시킨다.
+			location.href = url;
+
+		},
+		error : function(jqXHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+});
+</script>

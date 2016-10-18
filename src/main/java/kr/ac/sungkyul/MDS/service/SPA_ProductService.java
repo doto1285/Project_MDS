@@ -1,13 +1,14 @@
 package kr.ac.sungkyul.MDS.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.ac.sungkyul.MDS.dao.CategoryListDao;
 import kr.ac.sungkyul.MDS.dao.MallDao;
 import kr.ac.sungkyul.MDS.dao.ProductDao;
+import kr.ac.sungkyul.MDS.vo.CategoryListVo;
 import kr.ac.sungkyul.MDS.vo.MallVo;
 import kr.ac.sungkyul.MDS.vo.ProductListVo;
 
@@ -17,7 +18,8 @@ public class SPA_ProductService {
 	ProductDao productDao;
 	@Autowired
 	MallDao mallDao;
-
+	@Autowired
+	private CategoryListDao categoryListDao;
 	
 	/**
 	 * 상품리스트를 가져온다
@@ -35,8 +37,13 @@ public class SPA_ProductService {
 		return productlist;
 	}
 
+	/**
+	 * 상품번호에 맞는 상품을 삭제한다.
+	 * @param productNo
+	 */
 	public void deleteProduct(int productNo) {
 		productDao.deleteProduct(productNo);
 	}
+	
 
 }
