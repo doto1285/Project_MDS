@@ -59,10 +59,8 @@
 								action="/Project_MDS/main/board/reply/${boardlist_no}">
 								<input type="hidden" name="a" value="write"> <br> <input
 									type="hidden" name="member_no" value="${authUser.member_no }">
-									 <input
-									type="text" name="boardlist_no" value="${GetBoardContent.boardlist_no}">
 									
-							
+								 <input type="text" name="boardlist_no" value="${GetBoardContent.boardlist_no}">
 								<input type="text" name="board_group" value="${GetBoardContent.board_group }"><br>
 								<input type="text" name="board_orderno" value="${GetBoardContent.board_orderno }"><br>
 								<input type="text" name="board_depth" value="${GetBoardContent.board_depth }"><br>

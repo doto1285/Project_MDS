@@ -64,7 +64,7 @@
 			
 								<table class="tbl-ex">
 									<tr>
-										<th colspan="2">글쓰기</th>
+										<th colspan="2">글쓰기 ${boardlist_no }</th>
 									</tr>
 									<tr>
 										<td class=>제목</td>
