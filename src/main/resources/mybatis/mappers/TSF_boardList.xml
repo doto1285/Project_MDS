@@ -56,7 +56,7 @@
 
 		<![CDATA[	
 		select * from boardlist
-		where mall_no = (select mall_no from mall where mall_state = 1 and mall_name = #{userid })
+		where mall_no = (select mall_no from mall where mall_state = 1 and mall_domain = #{userid })
 		and boardlist_no = #{boardlist_no}
 		]]>
 	</select>

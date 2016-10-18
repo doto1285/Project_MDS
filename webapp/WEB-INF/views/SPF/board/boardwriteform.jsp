@@ -17,6 +17,12 @@
 <link href="/Project_MDS/assets/css/SPF_main.css" rel="stylesheet"
 	type="text/css">
 <!-- /공통 -->
+
+
+<link href="/Project_MDS/assets/css/TSF_board.css" rel="stylesheet"
+	type="text/css">
+	
+	
 <title>모두의 쇼핑몰</title>
 </head>
 <body>
@@ -28,6 +34,47 @@
 		<div class="container">
 			<!-- 본문 시작 -->
 			<!-- 링크 : http://localhost:8088/Project_MDS/{domain}/write/{boardlist_no} -->
+			
+				<div id="container">
+					<div id="content">
+						<div id="board">
+							<form class="board-form" method="post"
+							
+								action="write?boardlist_no=${boardlist_no}">
+								<input type="hidden" name="a" value="write"> <br> <input
+									type="hidden" name="member_no" value="${authUser.member_no }">
+									 <input
+									type="hidden" name="boardlist_no" value="${boardlist_no}">
+			
+								<table class="tbl-ex">
+									<tr>
+										<th colspan="2">글쓰기</th>
+									</tr>
+									<tr>
+										<td class=>제목</td>
+										<td><input type="text" name="board_title" value=""></td>
+									</tr>
+									<tr>
+										<td class=>내용</td>
+										<td><textarea id="content" name="board_content"></textarea></td>
+									</tr>
+
+									<tr>
+										<td class=>비밀번호</td>
+										<td><textarea id="text" name="board_password"></textarea></td>
+									</tr>
+
+								</table>
+
+								<div class="bottom">
+									<a href="javascript:history.back(-1);">취소</a> <input type="submit"
+										value="등록">
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
 			<!-- 본문 끝 -->
 		</div>
 	</div>

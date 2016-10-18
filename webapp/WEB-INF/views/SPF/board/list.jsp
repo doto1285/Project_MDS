@@ -27,7 +27,7 @@
 	<div class="section">
 		<div class="container">
 			<!-- 링크 : http://localhost:8088/Project_MDS/{domain}/boardlist/{boardlist_no} -->
-<!-- 본문 시작-------------------------------------------- -->
+			<!-- 본문 시작-------------------------------------------- -->
 
 			<div class="col-md-9" id="margin50px">
 				<center>
@@ -44,9 +44,9 @@
 				<table class="tbl-ex">
 					<table class="table table-striped table-hover ">
 						<tr>
-							<th>번호</th>
-							<th>제목</th>
-							<th>글쓴이</th>
+							<th>번호 ${authUser.member_distinction}</th>
+							<th>제목 ${GetBoard.boardlist_write_accessright }</th>
+							<th>글쓴이${GetBoard.boardlist_read_accessright }</th>
 							<th>조회수</th>
 							<th>작성일</th>
 						</tr>
@@ -59,13 +59,36 @@
 								<tr>
 									<!--글번호-->
 									<td>${GetBoardContentsList.board_no}</td>
+									<!-- -------------------- -->
+
 									<!--제목-->
-									<td><a href="view?no=${GetBoardContentsList.board_no}">
-											<c:forEach var="i" begin="2"
-												end="${GetBoardContentsList.board_depth}" step="1">
+
+
+									<!-- -------------------- -->
+									<c:choose>
+										<c:when
+											test='${authUser.member_distinction >= GetBoard.boardlist_read_accessright && SPFauthUser.member_no != null}'>
+											<!-- 해당 게시판에 권한이 있는 사용자만 글 보기 링크를 제공한다  -->
+											<td><a
+												href="view?board_no=${GetBoardContentsList.board_no}&boardlist_no=${GetBoardContentsList.boardlist_no}">
+
+													<c:forEach var="i" begin="2"
+														end="${GetBoardContentsList.board_depth}" step="1">
 											 ↳ 
 											</c:forEach> ${GetBoardContentsList.board_title}
-									</a></td>
+											</a></td>
+
+
+										</c:when>
+										<c:otherwise>
+											<!-- 권한 없는 사용자일경우, 팝업 메세지를 띄운다 (script restrict)  -->
+											<td class="restrict"><c:forEach var="i" begin="2"
+													end="${GetBoardContentsList.board_depth}" step="1">
+											 ↳ 
+											</c:forEach> ${GetBoardContentsList.board_title}</td>
+										</c:otherwise>
+									</c:choose>
+									<!-- -------------------- -->
 									<!--글쓴이  -->
 									<td>${GetBoardContentsList.name}</td>
 									<!--조회수  -->
@@ -99,7 +122,7 @@
 
 							<c:if test="${map.prevPage >= 0 }">
 								<li><a
-									href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${map.prevPage }">◀</a></li>
+									href="/Project_MDS/main/board?boardlist_no=${GetBoard.boardlist_no }?p=${map.prevPage }">◀</a></li>
 							</c:if>
 
 							<c:forEach begin='${map.firstPage }' end='${map.lastPage }'
@@ -113,14 +136,14 @@
 									</c:when>
 									<c:otherwise>
 										<li><a
-											href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${i }">${i }</a></li>
+											href="/Project_MDS/main/board?boardlist_no=${GetBoard.boardlist_no }?p=${i }">${i }</a></li>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
 
 							<c:if test='${map.nextPage > 0 }'>
 								<li><a
-									href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${map.nextPage }">▶</a></li>
+									href="/Project_MDS/main/board?boardlist_no=${GetBoard.boardlist_no }?p=${map.nextPage }">▶</a></li>
 							</c:if>
 						</ul>
 					</div>
@@ -131,17 +154,18 @@
 
 				<c:choose>
 					<c:when
-						test='${authUser.member_distinction >= GetBoard.boardlist_write_accessright }'>
+						test='${authUser.member_distinction >= GetBoard.boardlist_write_accessright  && SPFauthUser.member_no != null }'>
 						<!-- 해당 게시판에 권한이 있는 사용자만 글쓰기 버튼 보여준다  -->
 
 						<div class="text-right">
-							<a href="writeform/${boardlist_no }" class="btn btn-success">글쓰기</a>
+							<a href="writeform?boardlist_no=${GetBoard.boardlist_no }"
+								class="btn btn-success">글쓰기</a>
 						</div>
 
 
 					</c:when>
 					<c:otherwise>
-						<!-- 개인, 기업회원일 경우 글쓰기 버튼을 표시하지 않음  -->
+						<!-- 권한이 없을 경우 표시하지 않음  -->
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -154,3 +178,13 @@
 	<c:import url='/WEB-INF/views/SPF/include/footer.jsp' />
 </body>
 </html>
+
+
+<script>
+	// 권한 없을때 이벤트 발생
+	$(".restrict").on("click", function() {
+
+		alert("권한이 없습니다");
+
+	});
+</script>

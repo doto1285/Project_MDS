@@ -75,7 +75,6 @@ public class SPF_MainController {
 		// 헤더의 게시판 리스트 뿌려줌
 		List<BoardListVo> boardList = boardService.SPF_GetBoardList(mallVo);
 		model.addAttribute("boardList", boardList);
-		
 		// 메인의 대문이미지 뿌려줌
 		MallimgVo mallimgVoGate = SPF_mallimgService.get_selectMallimg_gate(mallVo);
 		model.addAttribute("mallimgVoGate", mallimgVoGate);
@@ -86,12 +85,16 @@ public class SPF_MainController {
 		// 로그인 세션 체크
 		if (memberService.isUserCheck(session) == false) {
 			// 로그인 안한 회원일 경우 실행되는 코드
+			
 			return "SPF/main/index";
 		}
 
 		// 로그인 세션을 memberVo에 넣음
 		MemberVo memberVo = (MemberVo) session.getAttribute("authUser");
+		System.out.println("현재 로그인한 사용자: " + memberVo);
+		
 		model.addAttribute("memberVo", memberVo);
+		
 		// 현재 도메인과 로그인 정보(mallVo, memberVo)를 joinmallVo에 넣음(SPF가입여부 체크용)
 		JoinMallVo joinmallVo = new JoinMallVo();
 		joinmallVo.setMember_no(String.valueOf(memberVo.getMember_no()));
@@ -101,12 +104,23 @@ public class SPF_MainController {
 		if (memberService.SPFWhatUser(joinmallVo) == false) {
 			// 로그인 세션이 있는 회원이 현재 쇼핑몰에 가입되지 않은 경우 실행되는 코드
 			joinmallVo.setMember_no(null);
+			
+			session.setAttribute("SPFauthUserSession", joinmallVo);
+			JoinMallVo SPFauthUser = (JoinMallVo) session.getAttribute("SPFauthUserSession");
+			model.addAttribute("SPFauthUser", SPFauthUser);
+
+			System.out.println("1111: " + joinmallVo);
+			System.out.println("1111: " + SPFauthUser);
+			return "SPF/main/index";
 		}
 
 		// 현재 쇼핑몰에 가입된 경우 실행되는 코드
-		//session.setAttribute("SPFauthUserSession", joinmallVo);
-		//JoinMallVo SPFauthUser = (JoinMallVo) session.getAttribute("SPFauthUserSession");
-		model.addAttribute("SPFauthUser", joinmallVo);
+		session.setAttribute("SPFauthUserSession", joinmallVo);
+		JoinMallVo SPFauthUser = (JoinMallVo) session.getAttribute("SPFauthUserSession");
+		model.addAttribute("SPFauthUser", SPFauthUser);
+		
+		System.out.println("2222: " + joinmallVo);
+		System.out.println("2222: " + SPFauthUser);
 
 		return "SPF/main/index";
 	}

@@ -78,7 +78,10 @@ public class TSF_BoardController {
 	}
 
 	@RequestMapping(value = "main/board/write/{boardlist_no}", method = RequestMethod.POST)
-	public String write(@PathVariable int boardlist_no, @ModelAttribute BoardVo boardVo, HttpSession session) {
+	public String write(
+			@PathVariable int boardlist_no,
+			@ModelAttribute BoardVo boardVo,
+			HttpSession session) {
 		System.out.println("write 등록버튼 클릭");
 		System.out.println("모델 객체 테스트" + boardVo);
 		
@@ -97,7 +100,10 @@ public class TSF_BoardController {
 	
 	
 	@RequestMapping(value = "main/board/reply/{board_no}", method = RequestMethod.POST)
-	public String reply(@PathVariable int board_no, @ModelAttribute BoardVo boardVo, HttpSession session) {
+	public String reply(
+			@PathVariable int board_no,
+			@ModelAttribute BoardVo boardVo, 
+			HttpSession session) {
 		System.out.println("답글 모델 객체 테스트" + boardVo);
 		
 		// 답글 등록하기
