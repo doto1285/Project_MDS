@@ -70,13 +70,21 @@ public class TSA_BoardController {
 	}
 	
 	
+	
+	
+	
 	@RequestMapping("/main/board/shopmanage")
 	public String GetShopManage(Model model){
 		List<MallVo> GetShopManage = TSA_boardService.GetShopManage(); // 서비스(객체).메소드/필드
 		model.addAttribute("GetShopManage", GetShopManage);
-		
+		System.out.println(GetShopManage);
 		return "TSA/board/shopmanage";
 	}
+	
+	
+	
+	
+	
 	
 	@RequestMapping("main/board/view")
 	public String view(HttpSession session, @RequestParam(value = "no") int board_no ) {

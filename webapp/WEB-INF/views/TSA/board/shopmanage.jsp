@@ -76,7 +76,7 @@
 					<td>${GetShopManage.mall_no}</td>
 					<td>${GetShopManage.mall_name}</td>
 					<td>${GetShopManage.mall_creationdate}</td>
-					<td>${GetShopManage.ID}</td>
+					<td>${GetShopManage.id}</td>
 					<td>${GetShopManage.mall_ceoname}</td>
 				</tr>
 			</c:forEach>

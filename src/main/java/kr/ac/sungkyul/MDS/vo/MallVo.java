@@ -7,7 +7,7 @@ public class MallVo {
 	private String mall_domain;
 	private String mall_type;
 	private int mall_style=0;
-	private int mall_creationdate;
+	private String mall_creationdate;
 	private String mall_licensee;
 	private String mall_companyname;
 	private String mall_ceoname;
@@ -21,6 +21,7 @@ public class MallVo {
 	private String mall_faxNo;
 	private int mall_state;
 	private int member_no;
+	private String id;
 
 	public int getMall_no() {
 		return mall_no;
@@ -62,11 +63,11 @@ public class MallVo {
 		this.mall_style = mall_style;
 	}
 
-	public int getMall_creationdate() {
+	public String getMall_creationdate() {
 		return mall_creationdate;
 	}
 
-	public void setMall_creationdate(int mall_creationdate) {
+	public void setMall_creationdate(String mall_creationdate) {
 		this.mall_creationdate = mall_creationdate;
 	}
 
@@ -174,7 +175,14 @@ public class MallVo {
 		this.member_no = member_no;
 	}
 	
-	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	@Override
 	public String toString() {
 		return "MallVo [mall_no=" + mall_no + ", mall_name=" + mall_name + ", mall_domain=" + mall_domain
@@ -183,7 +191,7 @@ public class MallVo {
 				+ mall_ceoname + ", mall_address=" + mall_address + ", mall_phone=" + mall_phone + ", mall_email="
 				+ mall_email + ", mall_account=" + mall_account + ", mall_onlinemaketNo=" + mall_onlinemaketNo
 				+ ", mall_dataofficer=" + mall_dataofficer + ", mall_customerNo=" + mall_customerNo + ", mall_faxNo="
-				+ mall_faxNo + ", mall_state=" + mall_state + ", member_no=" + member_no + "]";
+				+ mall_faxNo + ", mall_state=" + mall_state + ", member_no=" + member_no + ", id=" + id + "]";
 	}
 
 }

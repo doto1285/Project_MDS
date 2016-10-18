@@ -26,8 +26,8 @@
 				<!-- <li id="menu3"><a href="/Project_MDS/TSA/main/board/2">고객센터</a></li>
 				 -->
 				 
-				<li class="dropdown open">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true" id="menu4">고객센터
+				<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="menu4">고객센터
 				<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li id="menu4"><a href="/Project_MDS/TSA/main/board/2">QNA</a></li>
