@@ -17,16 +17,7 @@ public class SPF_ProductService {
 	@Autowired
 	private ProductDao productDao;
 	
-	/**
-	 * product_no을 통해 상품의 상세 정보를 얻어온다.
-	 * 만든이 : 이민우
-	 * @param product_no
-	 * @return
-	 */
-	public Map get_Product_detail(int product_no){
-		
-		return productDao.get_Product_detail(product_no);
-	}
+	
 	
 	public List<ProductListVo> get_Product_Content(MallVo mallVo){
 		return productDao.get_Product_Content(mallVo);

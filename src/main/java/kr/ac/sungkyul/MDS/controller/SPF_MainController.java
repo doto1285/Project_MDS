@@ -75,6 +75,7 @@ public class SPF_MainController {
 		// 헤더의 게시판 리스트 뿌려줌
 		List<BoardListVo> boardList = boardService.SPF_GetBoardList(mallVo);
 		model.addAttribute("boardList", boardList);
+		
 		// 메인의 대문이미지 뿌려줌
 		MallimgVo mallimgVoGate = SPF_mallimgService.get_selectMallimg_gate(mallVo);
 		model.addAttribute("mallimgVoGate", mallimgVoGate);
@@ -85,7 +86,6 @@ public class SPF_MainController {
 		// 로그인 세션 체크
 		if (memberService.isUserCheck(session) == false) {
 			// 로그인 안한 회원일 경우 실행되는 코드
-			
 			return "SPF/main/index";
 		}
 
@@ -101,17 +101,12 @@ public class SPF_MainController {
 		if (memberService.SPFWhatUser(joinmallVo) == false) {
 			// 로그인 세션이 있는 회원이 현재 쇼핑몰에 가입되지 않은 경우 실행되는 코드
 			joinmallVo.setMember_no(null);
-			session.setAttribute("SPFauthUserSession", joinmallVo);
-			JoinMallVo SPFauthUser = (JoinMallVo) session.getAttribute("SPFauthUserSession");
-			model.addAttribute("SPFauthUser", SPFauthUser);
-
-			return "SPF/main/index";
 		}
 
 		// 현재 쇼핑몰에 가입된 경우 실행되는 코드
-		session.setAttribute("SPFauthUserSession", joinmallVo);
-		JoinMallVo SPFauthUser = (JoinMallVo) session.getAttribute("SPFauthUserSession");
-		model.addAttribute("SPFauthUser", SPFauthUser);
+		//session.setAttribute("SPFauthUserSession", joinmallVo);
+		//JoinMallVo SPFauthUser = (JoinMallVo) session.getAttribute("SPFauthUserSession");
+		model.addAttribute("SPFauthUser", joinmallVo);
 
 		return "SPF/main/index";
 	}

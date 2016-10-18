@@ -9,10 +9,17 @@
 		]]>
 	</select>
 	
-	<select id="get_product_detail_productimg" parameterType="java.lang.Integer"
+	<select id="get_product_detail_productimg_flag1" parameterType="java.lang.Integer"
 		resultType="kr.ac.sungkyul.MDS.vo.ProductimgVo">
 	<![CDATA[
-		select * from productimg where product_no=#{product_no}
+		select * from productimg where product_no=#{product_no} and productimg_flag = 1
+		]]>
+	</select>
+	
+	<select id="get_product_detail_productimg_flag2" parameterType="java.lang.Integer"
+		resultType="kr.ac.sungkyul.MDS.vo.ProductimgVo">
+	<![CDATA[
+		select * from productimg where product_no=#{product_no} and productimg_flag = 2
 		]]>
 	</select>
 	
