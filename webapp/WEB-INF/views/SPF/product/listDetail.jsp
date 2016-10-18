@@ -27,8 +27,8 @@
 	<div class="container">
 		<div class="col-lg-6">
 			<div class="thumbnail">
-				<img src="${map.productimgflag1.productimg_image }"
-					alt="상품 이미지" id="productDetailSample1">
+				<img src="${map.productimgflag1.productimg_image }" alt="상품 이미지"
+					id="productDetailSample1">
 			</div>
 		</div>
 
@@ -41,7 +41,8 @@
 				<br>
 				<h4>&nbsp;상품가격
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${map.productVo.product_price }</h4>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					${map.productVo.product_price }</h4>
 				<br>
 				<h4>&nbsp;제조사
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -50,22 +51,32 @@
 				<br>
 				<h4>&nbsp;제조일자
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${map.productVo.product_makedate }</h4>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					${map.productVo.product_makedate }</h4>
 				<br>
+				<from>
 				<h4>
 					&nbsp;색상 <select class="form-control" id="form-control1"
 						style="float: right">
-						<c:forEach items="${map.productOptionList }" var="productOptionList">
-						<option>${productOptionList.productoption_color }</option>
+						<option value="0">-
+							[필수] 색상을 선택해주세요. -</option>
+						<option value="0">-----------------------</option>
+						<c:forEach items="${map.productOptionList }"
+							var="productOptionList">
+							<option id="colorValue"
+								value="${productOptionList.productoption_color }">${productOptionList.productoption_color }</option>
 						</c:forEach>
 					</select>
 				</h4>
 				<br>
 				<h4>
-					&nbsp;사이즈 <select class="form-control" id="form-control1"
+					&nbsp;사이즈 <select class="form-control" id="form-control2"
 						style="float: right">
-						<c:forEach items="${map.productOptionList }" var="productOptionList">
-						<option>${productOptionList.productoption_size }</option>
+						<option >- [필수] 사이즈를 선택해주세요. -</option>
+						<option>------------------------</option>
+						<c:forEach items="${map.productOptionList }"
+							var="productOptionList">
+							<option value="${productOptionList.productoption_size }">${productOptionList.productoption_size }</option>
 						</c:forEach>
 					</select>
 				</h4>
@@ -80,30 +91,46 @@
 							class="form-control" id="exampleInputName2" placeholder="1">
 					</div>
 				</form>
-				<br> <label id="productPriceText1">&nbsp; 총 상품금액(수량) :
-					<label id="productPriceText2">0 </label> <label
-					id="productPriceText3">(0개) </label>
+				<br>
+				<label id="productPriceText1">&nbsp; 총 상품금액(수량) : <label
+					id="productPriceText2">0 </label> <label id="productPriceText3">(0개)
+				</label>
 				</label> <br>
-
 				<div class="btn-group btn-group-justified" role="group"
 					aria-label="...">
 					<div class="btn-group btn-group-lg" role="group">
-						<button type="button" class="btn btn-default">장바구니</button>
+						<button type="submit" class="btn btn-default">장바구니</button>
 					</div>
+
 					<div class="btn-group btn-group-lg" role="group">
-						<button type="button" class="btn btn-primary">주문하기</button>
+						<button type="submit" class="btn btn-primary">주문하기</button>
 					</div>
 				</div>
+				</from>
 			</div>
 		</div>
 	</div>
 	<div class="container">
 		<div class="col-lg-12" id="productExplanImage">
-			<img src="${map.productimgflag2.productimg_image }"
-				alt="상품 설명 이미지" class="img-rounded">
+			<img src="${map.productimgflag2.productimg_image }" alt="상품 설명 이미지"
+				class="img-rounded">
 		</div>
 
 	</div>
 	<c:import url='/WEB-INF/views/SPF/include/footer.jsp' />
 </body>
+
+<script>
+	$('#form-control2').attr('disabled', 'true');
+       $("#form-control1").change(function (){
+    	   if ($(this).val() == 0) {
+    		   $('#form-control2').attr('disabled', 'true');
+    		}
+    	   else {
+    		   $('#form-control2').removeAttr('disabled');
+    	   }
+    	   console.log( $(this).val() );
+       });
+
+</script>
 </html>
