@@ -1,6 +1,8 @@
 package kr.ac.sungkyul.MDS.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -75,6 +77,13 @@ public class SPF_MainController {
 		// 헤더의 게시판 리스트 뿌려줌
 		List<BoardListVo> boardList = boardService.SPF_GetBoardList(mallVo);
 		model.addAttribute("boardList", boardList);
+		
+
+		Map<String, Object> makeModel = makeModel(mallVo);
+		System.out.println(makeModel.toString());
+		model.addAttribute("makeModel", makeModel);
+		
+		
 		// 메인의 대문이미지 뿌려줌
 		MallimgVo mallimgVoGate = SPF_mallimgService.get_selectMallimg_gate(mallVo);
 		model.addAttribute("mallimgVoGate", mallimgVoGate);
@@ -123,6 +132,34 @@ public class SPF_MainController {
 		System.out.println("2222: " + SPFauthUser);
 
 		return "SPF/main/index";
+	}
+	
+
+	private Map<String, Object> makeModel(MallVo mallVo) {
+		// TODO Auto-generated method stub
+		
+
+		// 쇼핑몰 footer 뿌려줌
+		mallVo = SPF_mainService.get_Footer(mallVo.getMall_no());
+		// 카테고리 메뉴 뿌려줌
+		List<CategoryListVo> categoryList = SPF_mainService.get_CategoryList(mallVo);
+		// 헤더의 로고이미지 뿌려줌
+		MallimgVo mallimgVoLogo = SPF_mallimgService.get_selectMallimg_logo(mallVo);
+		// 헤더의 게시판 리스트 뿌려줌
+		List<BoardListVo> boardList = boardService.SPF_GetBoardList(mallVo);
+		
+		
+		Map<String, Object> makeModel = new HashMap<String, Object>();
+
+		// 5. map에 객체 담기
+		makeModel.put("mallVo", mallVo);
+		makeModel.put("categoryList1st", categoryList);
+		makeModel.put("categoryList2nd", categoryList);
+		makeModel.put("mallimgVoLogo", mallimgVoLogo);
+		makeModel.put("boardList", boardList);
+
+		System.out.println(boardList.toString());
+		return makeModel;
 	}
 
 }

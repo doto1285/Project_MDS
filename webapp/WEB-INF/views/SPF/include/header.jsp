@@ -14,7 +14,8 @@
 			<div class="col-lg-4">
 				<ul class="nav nav-pills">
 					<!-- class="active" -->
-					<c:forEach items="${boardList }" var="GetBoardList">
+					
+					<c:forEach items="${makeModel.boardList }" var="GetBoardList">
 					<li role="presentation"><a
 					href="boardlist?boardlist_no=${GetBoardList.boardlist_no } "
 					class="list-group-item"> ${GetBoardList.boardlist_name }</a></li>

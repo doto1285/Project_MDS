@@ -1,6 +1,8 @@
 package kr.ac.sungkyul.MDS.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -50,23 +52,37 @@ public class SPF_BoardController {
 			// 없는 도메인일 경우 실행되는 코드
 			return "404 error";
 		}
-		
-		
-		
 
-		// 쇼핑몰 footer 뿌려줌
-		mallVo = SPF_mainService.get_Footer(mallVo.getMall_no());
-		model.addAttribute("mallVo", mallVo);
-		// 카테고리 메뉴 뿌려줌
-		List<CategoryListVo> categoryList = SPF_mainService.get_CategoryList(mallVo);
-		model.addAttribute("categoryList1st", categoryList);
-		model.addAttribute("categoryList2nd", categoryList);
-		// 헤더의 로고이미지 뿌려줌
-		MallimgVo mallimgVoLogo = SPF_mallimgService.get_selectMallimg_logo(mallVo);
-		model.addAttribute("mallimgVoLogo", mallimgVoLogo);
-		// 헤더의 게시판 리스트 뿌려줌
-		List<BoardListVo> boardList = boardService.SPF_GetBoardList(mallVo);
-		model.addAttribute("boardList", boardList);
+		Map<String, Object> makeModel = makeModel(mallVo);
+		System.out.println(makeModel.toString());
+		model.addAttribute("makeModel", makeModel);
+		
+		
+		
+		
+		
+//	      Iterator<String> iterator = makeModel.keySet().iterator();
+//	      while (iterator.hasNext()) {
+//	          String key = (String) iterator.next();
+//	          System.out.print("key="+key);
+//	          System.out.println(" value="+makeModel.get(key));
+//	          
+//	          model.addAttribute("mallVo", key);
+//	      }
+
+//		// 쇼핑몰 footer 뿌려줌
+//		mallVo = SPF_mainService.get_Footer(mallVo.getMall_no());
+//		model.addAttribute("mallVo", mallVo);
+//		// 카테고리 메뉴 뿌려줌
+//		List<CategoryListVo> categoryList = SPF_mainService.get_CategoryList(mallVo);
+//		model.addAttribute("categoryList1st", categoryList);
+//		model.addAttribute("categoryList2nd", categoryList);
+//		// 헤더의 로고이미지 뿌려줌
+//		MallimgVo mallimgVoLogo = SPF_mallimgService.get_selectMallimg_logo(mallVo);
+//		model.addAttribute("mallimgVoLogo", mallimgVoLogo);
+//		// 헤더의 게시판 리스트 뿌려줌
+//		List<BoardListVo> boardList = boardService.SPF_GetBoardList(mallVo);
+//		model.addAttribute("boardList", boardList);
 
 		
 		// 해당 게시판 정보 가져오기
@@ -143,6 +159,41 @@ public class SPF_BoardController {
 		boardService.ReplyWrite(boardVo);
 
 		return "redirect:/{domain}/boardlist?boardlist_no=" + boardVo.getBoardlist_no();
+	}
+
+	
+	
+	
+
+	private Map<String, Object> makeModel(MallVo mallVo) {
+		// TODO Auto-generated method stub
+		
+
+		// 쇼핑몰 footer 뿌려줌
+		mallVo = SPF_mainService.get_Footer(mallVo.getMall_no());
+//		model.addAttribute("mallVo", mallVo);
+		// 카테고리 메뉴 뿌려줌
+		List<CategoryListVo> categoryList = SPF_mainService.get_CategoryList(mallVo);
+//		model.addAttribute("categoryList1st", categoryList);
+//		model.addAttribute("categoryList2nd", categoryList);
+		// 헤더의 로고이미지 뿌려줌
+		MallimgVo mallimgVoLogo = SPF_mallimgService.get_selectMallimg_logo(mallVo);
+//		model.addAttribute("mallimgVoLogo", mallimgVoLogo);
+		// 헤더의 게시판 리스트 뿌려줌
+		List<BoardListVo> boardList = boardService.SPF_GetBoardList(mallVo);
+//		model.addAttribute("boardList", boardList);
+		
+		Map<String, Object> makeModel = new HashMap<String, Object>();
+
+		// 5. map에 객체 담기
+		makeModel.put("mallVo", mallVo);
+		makeModel.put("categoryList1st", categoryList);
+		makeModel.put("categoryList2nd", categoryList);
+		makeModel.put("mallimgVoLogo", mallimgVoLogo);
+		makeModel.put("boardList", boardList);
+
+		System.out.println(boardList.toString());
+		return makeModel;
 	}
 
 }
