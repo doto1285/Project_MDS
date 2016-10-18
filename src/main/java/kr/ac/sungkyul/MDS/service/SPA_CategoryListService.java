@@ -22,6 +22,13 @@ public class SPA_CategoryListService {
 		return categoryListDao.getCategoryList(domain);
 	}
 	
+	public List<CategoryListVo> getCategoryList(int groupNo) {
+		// TODO Auto-generated method stub
+		// 해당 쇼핑몰의 카테고리 리스트를 불러온다 sky
+
+		return categoryListDao.getCategoryList(groupNo);
+	}
+	
 	public void ModifyName(CategoryListVo vo) {
 		// TODO Auto-generated method stub
 		// 카테고리 이름을 수정한다 sky

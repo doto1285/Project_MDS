@@ -48,7 +48,7 @@
 	<div class="section" id="contents">
 		<h3>카테고리 관리</h3>
 		<!-- --------------------------------------------- -->
-		<div class="col-md-4" id="margin50px">
+		<div class="col-lg-5" id="margin50px">
 
 			<table border="1" style="font-size: 20px">
 				<tr>
@@ -102,74 +102,73 @@
 
 
 		</div>
-	</div>
-
-	<div class="col-md-4" id="margin50px">
 
 
-		<table border="1" style="font-size: 20px">
-			<tr>
-				<td colspan="2" width="700px"><center>2차 카테고리</center></td>
-			</tr>
+		<div class="col-lg-4" id="margin50px">
 
-			<%
-				count_order = 1;
-			%>
-			<!-- 2차 카테고리 반복 -->
-			<c:forEach items="${categoryList}" var="categoryList">
-				<c:if
-					test='${categoryList.categorylist_depth ==2  && group_no == categoryList.categorylist_group  }'>
-					<c:set var="cateno2" value="${categoryList.categorylist_no }" />
-					<c:set var="cateName2" value=" ${categoryList.categorylist_name}" />
-					<%
-						count_order += 1;
-					%>
-					<tr data-cateno='${categoryList.categorylist_no}'
-						data-catename='${categoryList.categorylist_name}'>
-						<td><label class="cateP"><a
-								href="#">${categoryList.categorylist_name }</a></label></td>
-						<td><input type="button"
-							class="btn_Up btn btn-primary btn-sm" value="위"> <input
-							type="button" class="btn_Down btn btn-primary btn-sm" value="아래">
-							<input type="button" class="btn_catePMod btn btn-warning btn-sm"
-							data-toggle="modal" data-target="#modal_cateP" value="수정">
 
-							<input type="button" class="btn_Delete btn btn-danger btn-sm"
-							value="삭제"></td>
-					</tr>
-				</c:if>
-			</c:forEach>
-			<!-- / 2차 카테고리 반복 -->
+			<table border="1" style="font-size: 20px">
+				<tr>
+					<td colspan="2" width="700px"><center>2차 카테고리</center></td>
+				</tr>
 
-			<c:choose>
-				<c:when test='${group_no != 0}'>
+				<%
+					count_order = 1;
+				%>
+				<!-- 2차 카테고리 반복 -->
+				<c:forEach items="${categoryList}" var="categoryList">
+					<c:if
+						test='${categoryList.categorylist_depth ==2  && group_no == categoryList.categorylist_group  }'>
+						<c:set var="cateno2" value="${categoryList.categorylist_no }" />
+						<c:set var="cateName2" value=" ${categoryList.categorylist_name}" />
+						<%
+							count_order += 1;
+						%>
+						<tr data-cateno='${categoryList.categorylist_no}'
+							data-catename='${categoryList.categorylist_name}'>
+							<td><label class="cateP"><a href="#">${categoryList.categorylist_name }</a></label></td>
+							<td><input type="button"
+								class="btn_Up btn btn-primary btn-sm" value="위"> <input
+								type="button" class="btn_Down btn btn-primary btn-sm" value="아래">
+								<input type="button" class="btn_catePMod btn btn-warning btn-sm"
+								data-toggle="modal" data-target="#modal_cateP" value="수정">
 
-					<!--  신규 카테고리 생성 -->
-					<tr>
-						<td colspan="2" width="600px" style="border: 4px solid red">
+								<input type="button" class="btn_Delete btn btn-danger btn-sm"
+								value="삭제"></td>
+						</tr>
+					</c:if>
+				</c:forEach>
+				<!-- / 2차 카테고리 반복 -->
 
-							<form id="join-form2" name="modifyForm2" method="GET"
-								action="category/insertCategoryV2">
-								<input type="hidden" name="count_order" value=<%=count_order%>>
-								<input type="hidden" name="group_no" value='${group_no }'>
+				<c:choose>
+					<c:when test='${group_no != 0}'>
 
-								<input id="newCategorie" name="newCategorie" type="text"
-									placeholder="새 카테고리 생성" width="800px" value=""> <input
-									type="submit" class=" btn btn-info btn-sm" value="삽입">
-							</form>
-					</tr>
-					<!--  // 신규 카테고리 생성 끝-->
-				</c:when>
+						<!--  신규 카테고리 생성 -->
+						<tr>
+							<td colspan="2" width="600px" style="border: 4px solid red">
 
-				<c:otherwise>
-					<tr>
-						<td><p>← 1차 카테고리를 선택하세요</p></td>
-					</tr>
+								<form id="join-form2" name="modifyForm2" method="GET"
+									action="category/insertCategoryV2">
+									<input type="hidden" name="count_order" value=<%=count_order%>>
+									<input type="hidden" name="group_no" value='${group_no }'>
 
-				</c:otherwise>
-			</c:choose>
-		</table>
+									<input id="newCategorie" name="newCategorie" type="text"
+										placeholder="새 카테고리 생성" width="800px" value=""> <input
+										type="submit" class=" btn btn-info btn-sm" value="삽입">
+								</form>
+						</tr>
+						<!--  // 신규 카테고리 생성 끝-->
+					</c:when>
 
+					<c:otherwise>
+						<tr>
+							<td><p>← 1차 카테고리를 선택하세요</p></td>
+						</tr>
+
+					</c:otherwise>
+				</c:choose>
+			</table>
+		</div>
 	</div>
 
 	<!-- --------------------------------------------- -->
@@ -194,8 +193,8 @@
 			<div class="modal-body">
 				<form>
 					<div class="form-group">
-						<label for="recipient-name" class="control-label">변경할 카테고리 이름</label>
-						<input type="text" class="form-control" id="recipient_name">
+						<label for="recipient-name" class="control-label">변경할 카테고리
+							이름</label> <input type="text" class="form-control" id="recipient_name">
 					</div>
 				</form>
 			</div>
@@ -204,7 +203,7 @@
 			<div class="modal-footer">
 				<div class="form-group" id="modalbtn">
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-					<button type="button" class="btn_catePModalSave"
+					<button type="button" class="btn_catePModalSave btn btn-default"
 						data-dismiss="modal">수정하기</button>
 				</div>
 			</div>

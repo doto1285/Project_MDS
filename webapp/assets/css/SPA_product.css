@@ -45,3 +45,45 @@
 #productdetailimg {
 	width: 500px;
 }
+
+#catelabel {
+	font-size: 15px;
+	margin-right: 10px;
+}
+
+#inputBox {
+	width: 210px;
+}
+#inputText {
+	margin-top :4px;
+	font-size: 18px;
+}
+
+#inputhead {
+	margin-top : 5px;
+	margin-bottom : 15px;
+	font-size: 15px;
+	font-weight: 800;
+	font-family: "고딕", sans-serif;
+}
+
+#inputFormGroup{
+	margin-bottom: 17px;
+}
+
+#productmainimg {
+	margin-left: 90px;	
+	
+}
+
+#file {
+	margin-top: 10px;
+}
+
+#btnOk {
+	margin-left: 10px;
+}
+
+#btnCancle {
+	margin-left: 15px;
+}
