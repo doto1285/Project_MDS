@@ -1,17 +1,22 @@
 package kr.ac.sungkyul.MDS.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.sungkyul.MDS.dao.ProductDao;
 import kr.ac.sungkyul.MDS.service.SPF_ListDetailService;
 import kr.ac.sungkyul.MDS.service.SPF_ProductService;
+import kr.ac.sungkyul.MDS.vo.ProductOptionVo;
 import kr.ac.sungkyul.MDS.vo.ProductVo;
 
 @Controller
@@ -31,22 +36,14 @@ public class SPF_ListDetailController {
 		return "SPF/product/listDetail";
 	}
 
-	@RequestMapping("{mall_domain}/order")
-	public String order(@PathVariable String mall_domain, Model model) {
-
-		return "SPF/order/order";
+	@ResponseBody
+	@RequestMapping(value = "{mall_domain}/productOption", method = RequestMethod.POST)
+	public List<ProductOptionVo> productOption(@PathVariable String mall_domain, Model model, 
+			@RequestBody ProductOptionVo productOptionVo) {
+		List<ProductOptionVo> sizeList = SPF_listDetailService.get_Product_Option_SizeList(productOptionVo);
+		
+		return sizeList;
 	}
-
-	@RequestMapping("{mall_domain}/shoppingbasket")
-	public String shoppingBasket(@PathVariable String mall_domain, Model model) {
-
-		return "SPF/subMenu/shoppingBasket";
-	}
-
-	@RequestMapping("{mall_domain}/orderdelivery")
-	public String orderDelivery(@PathVariable String mall_domain, Model model) {
-
-		return "SPF/subMenu/orderDelivery";
-	}
+	
 	
 }

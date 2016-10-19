@@ -58,8 +58,7 @@
 				<h4>
 					&nbsp;색상 <select class="form-control" id="form-control1"
 						style="float: right">
-						<option value="0">-
-							[필수] 색상을 선택해주세요. -</option>
+						<option value="0">- [필수] 색상을 선택해주세요. -</option>
 						<option value="0">-----------------------</option>
 						<c:forEach items="${map.productOptionList }"
 							var="productOptionList">
@@ -72,7 +71,7 @@
 				<h4>
 					&nbsp;사이즈 <select class="form-control" id="form-control2"
 						style="float: right">
-						<option >- [필수] 사이즈를 선택해주세요. -</option>
+						<option>- [필수] 사이즈를 선택해주세요. -</option>
 						<option>------------------------</option>
 						<c:forEach items="${map.productOptionList }"
 							var="productOptionList">
@@ -122,15 +121,42 @@
 
 <script>
 	$('#form-control2').attr('disabled', 'true');
-       $("#form-control1").change(function (){
-    	   if ($(this).val() == 0) {
-    		   $('#form-control2').attr('disabled', 'true');
-    		}
-    	   else {
-    		   $('#form-control2').removeAttr('disabled');
-    	   }
-    	   console.log( $(this).val() );
-       });
+	$("#form-control1").on(
+			"change",
+			function() {
+				if ($(this).val() == 0) {
+					$('#form-control2').attr('disabled', 'true');
+				} else {
+					$('#form-control2').removeAttr('disabled');
+				}
+				var product_no = ${map.productVo.product_no};
+				var productoption_color = $(this).val();
+				
+				var productOptionVo = {
+					"product_no" : product_no,
+					"productoption_color" : productoption_color
+				}
+				console.log(productOptionVo);
 
+				$.ajax({
+					url : "productOption",
+					type : "POST",
+					data : JSON.stringify(productOptionVo),
+					contentType : "application/json",
+					success : function(sizeList) {
+						console.log(sizeList[0]);
+						 $.each(sizeList, function(index, val) {
+				               
+				                  console.log(sizeList);
+				               
+
+					},
+					error : function(request, status, error) {
+						alert("code:" + request.status + "\n" + "message:"
+								+ request.responseText + "\n" + "error:"
+								+ error);
+					}
+				});
+			});
 </script>
 </html>
