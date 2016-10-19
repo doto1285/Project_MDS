@@ -129,7 +129,7 @@
 					</div>
 
 					<div class="col-lg-12 form-inline" id="modalacc">
-						<label class="form-control">쓰기 권환 :</label> <SELECT
+						<label >쓰기 권환 :&nbsp; </label> <SELECT
 							name="write_accessright_modify" class="form-control">
 							<OPTION value="9">관리자</OPTION>
 							<OPTION value="1">회원</OPTION>
@@ -138,7 +138,7 @@
 						</SELECT>
 					</div>
 					<div class="col-lg-12 form-inline">
-						<label class="form-control">읽기 권환 :</label> <SELECT
+						<label > 읽기 권환 :&nbsp; </label> <SELECT
 							name="read_accessright_modify" class="form-control">
 							<OPTION value="9">관리자</OPTION>
 							<OPTION value="1">회원</OPTION>

@@ -26,5 +26,14 @@
 		 where product_no = #{product_no }
 		]]>
 	</delete>
+	
+	<select id="get_produntoption" parameterType="java.lang.Integer"
+		resultType="kr.ac.sungkyul.MDS.vo.ProductOptionVo">
+		<!-- product_no을 이용해 맞는 상품이름 가져오기 -->
+		select *
+		from productoption
+		where productoption_no = #{productoption_no }
+
+	</select>
 
 </mapper>

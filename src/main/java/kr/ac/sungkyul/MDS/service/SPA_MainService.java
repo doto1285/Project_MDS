@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.sun.javafx.geom.Area;
+
 import kr.ac.sungkyul.MDS.dao.CategoryListDao;
 import kr.ac.sungkyul.MDS.dao.JoinMallDao;
 import kr.ac.sungkyul.MDS.dao.MallDao;
@@ -27,6 +29,7 @@ import kr.ac.sungkyul.MDS.vo.MallimgVo;
 import kr.ac.sungkyul.MDS.vo.MemberVo;
 import kr.ac.sungkyul.MDS.vo.OrderinfoVo;
 import kr.ac.sungkyul.MDS.vo.ProductListVo;
+import kr.ac.sungkyul.MDS.vo.ProductOptionVo;
 
 @Service
 public class SPA_MainService {
@@ -106,10 +109,14 @@ public class SPA_MainService {
 		MallVo mallVo = mallDao.domainCheck(domain);
 		// 쇼핑몰 번호로 주문에 테이블 참조해서 값을 알아냄
 		List<OrderinfoVo> orderlist = orderinfoDao.get_Orderinfo_List(mallVo.getMall_no());
+		ProductOptionVo produntoption = new ProductOptionVo();
 		// 상품번호를 통하여 상품이름을 알아낸 후 orderlist address에 넣어줌
 		for (int i = 0; i < orderlist.size(); i++) {
-			orderlist.get(i).setOrderinfo_address(
-					(productDao.get_Product_name(orderlist.get(i).getProduct_no()).getProduct_name()));
+			produntoption = productDao.getProductOption(orderlist.get(i).getProductoption_no());
+			String temp = null;
+			temp = (productDao.get_Product_name(orderlist.get(i).getProduct_no()).getProduct_name());
+			temp = temp + "("+produntoption.getProductoption_color() +"/"+produntoption.getProductoption_size()+")";
+			orderlist.get(i).setOrderinfo_address(temp);	
 		}
 
 		map.put("orderlist", orderlist);

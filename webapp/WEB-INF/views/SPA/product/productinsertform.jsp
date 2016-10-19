@@ -31,20 +31,17 @@
 		<h3>상품추가</h3>
 		<form class="board-form" method="post" action="mallmodify">
 			<div class="form-inline" id="inputFormGroup">
-				<label id="catelabel">카테고리 : </label><select class="form-control" id="form-cata1nd">
-					<option data-categroupno='-1'>1차 카테고리</option>
+				<label id="catelabel">카테고리 : </label><select class="form-control"
+					id="form-cata1nd">
+					<option value="0">1차 카테고리</option>
 					<c:forEach items="${categorylist}" var="categoryList">
 						<c:if test='${categoryList.categorylist_depth == 1}'>
-							<option data-categroupno='${categoryList.categorylist_group}'>${categoryList.categorylist_name }</option>
+							<option>${categoryList.categorylist_name }</option>
 						</c:if>
 					</c:forEach>
 				</select> <select class="form-control" id="form-cata2nd">
-					<option value="-1">2차 카테고리</option>
-					<c:forEach items="${categorylist2nd}" var="categorylist2nd">
-						<c:if test='${categorylist2nd.categorylist_depth == 2}'>
-							<option data-categroupno2='${categorylist2nd.categorylist_group}'>${categorylist2nd.categorylist_name }</option>
-						</c:if>
-					</c:forEach>
+					<option value="0">2차 카테고리</option>
+					<option id="sizeSelect"></option>
 				</select>
 			</div>
 			<div class="col-lg-12">
@@ -148,31 +145,34 @@
 </body>
 </html>
 <script>
-	var categroupNo = "";
-$("#form-cata1nd").on("change", function() {
-	categroupNo = $(this).parents("option").data("categroupno");
-	if(categroupNo==-1) {
-		return;
-	}
-	categroupNo = 9;
-	console.log("1차 카테고리 클릭시: " + categroupNo); //로그에 찍히는 부분
+var categroupNo = "";
+	$('#form-cata2nd').attr('disabled', 'true');
+	$("#form-cata1nd").on("change", function() {
+		categroupNo = $(this).parents("option").data("categroupno");
+        if ($(this).val() == 0) {
+            $('#form-cata2nd').attr('disabled', 'true');
+         } else {
+            $('#form-cata2nd').removeAttr('disabled');
+         }
+		categroupNo = 9;
+		console.log("1차 카테고리 클릭시: " + categroupNo); //로그에 찍히는 부분
 
-	$.ajax({
-		url : "productcategorySelect",
-		type : "POST",
-		data : {
-			"categroupNo" : categroupNo,
-		},
-		dataType : "text",
+		$.ajax({
+			url : "productcategorySelect",
+			type : "POST",
+			data : {
+				"categroupNo" : categroupNo,
+			},
+			dataType : "text",
 
-		success : function(url) {
-			//ajax가 성공했을때, 컨트롤러에서 리턴받는 url로 페이지를 최신화 시킨다.
-			location.href = url;
+			success : function(url) {
+				//ajax가 성공했을때, 컨트롤러에서 리턴받는 url로 페이지를 최신화 시킨다.
+				location.href = url;
 
-		},
-		error : function(jqXHR, status, error) {
-			console.error(status + " : " + error);
-		}
+			},
+			error : function(jqXHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
 	});
-});
 </script>

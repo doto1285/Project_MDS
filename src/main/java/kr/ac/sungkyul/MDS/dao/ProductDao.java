@@ -127,5 +127,14 @@ public class ProductDao {
 	public int getProductNo(String productName) {
 		return sqlSession.selectOne("SPA_product.get_produnt_no", productName);
 	}
+	
+	/**
+	 * 상품옵션번호에 맞는 상품옵션을 가져온다.
+	 * @param produntOptionNo
+	 * @return
+	 */
+	public ProductOptionVo getProductOption(int produntOptionNo) {
+		return sqlSession.selectOne("SPA_product.get_produntoption", produntOptionNo);
+	}
 
 }
