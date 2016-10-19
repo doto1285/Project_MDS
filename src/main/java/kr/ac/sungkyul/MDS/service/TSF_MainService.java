@@ -43,4 +43,12 @@ public class TSF_MainService {
 
 	}
 
+	public List<MallVo> search_mall(String keyword) {
+		// TODO Auto-generated method stub
+		//검색어로 검색한 쇼핑몰 목록 가져오기
+		
+		
+		return mallDao.search_mall(keyword);
+	}
+
 }
