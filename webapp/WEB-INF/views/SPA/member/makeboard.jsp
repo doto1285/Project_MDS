@@ -134,6 +134,7 @@
 							<OPTION value="9">관리자</OPTION>
 							<OPTION value="1">회원</OPTION>
 							<OPTION value="0">비회원</OPTION>
+							
 						</SELECT>
 					</div>
 					<div class="col-lg-12 form-inline">

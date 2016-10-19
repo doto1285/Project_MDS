@@ -51,65 +51,25 @@
 			<div class="col-md-6" id="margin50px">
 				<div class="thumbnail">
 
-
-
-					<c:choose>
-						<c:when test='${empty authUser }'>
-							<!-- 비회원일경우 표시되는 화면  -->
-							<p class="lead">아직 모두의 쇼핑몰 회원이 아니시군요?</p>
-							<p>쇼핑몰을 만드시거나 이용하시려면</p>
-							<p>모두의 쇼핑몰 로그인이 필요합니다.</p>
-							<br>
-							
-							<a class="btn btn-success" a href="/Project_MDS/main/loginfrom"> 로그인</a>
-							<a class="btn btn-success" a href="/Project_MDS/main/joinform_choose"> 회원가입</a>
-							
-
-						</c:when>
-
-						<c:when test='${authUser.member_distinction == 0}'>
-							<!-- 개인 회원일경우 표시되는 화면  -->
-
-							<p class="lead">내가 가입한 쇼핑몰</p>
+						
+							<p class="lead">검색된 쇼핑몰</p>
 							<br>
 							<p>============================</p>
-							<c:forEach items="${auth_MallList }" var="auth_MallList">
+							<c:forEach items="${Search_mall }" var="Search_mall">
 
 								<br>
-								<a href="http://localhost:8088/Project_MDS/${auth_MallList.mall_domain }/main">${auth_MallList.mall_name }</a>
+								<a href="http://localhost:8088/Project_MDS/${Search_mall.mall_domain }/main">${Search_mall.mall_name }</a>
 								<br>
+								
 							</c:forEach>
-
-						</c:when>
-
-
-						<c:when test='${authUser.member_distinction == 1 }'>
-							<!-- 기업 회원일경우 표시되는 화면  -->
-
-							<p class="lead">내가 개설한 쇼핑몰</p>
-							<br>
-							<p>============================</p>
-							<c:forEach items="${auth_MallList }" var="auth_MallList">
-
-								<br>
-								<a href="http://localhost:8088/Project_MDS/SPA/${auth_MallList.mall_domain }/main">${auth_MallList.mall_name }</a>
-								<br>
-							</c:forEach>
-
-						</c:when>
-
-
-						<c:when test='${authUser.member_distinction == 9 }'>
-							<!-- admin일경우 표시되는 화면  -->
-							<p class="lead">admin 로그인</p>
-
-						</c:when>
-					</c:choose>
+							
+				<c:if test="${empty Search_mall}">
+				검색된 쇼핑몰이 없습니다!!!
+				</c:if>
 
 				</div>
 			</div>
-
-
+			<!-- 본문 끝-------------------------------------------- -->
 			<div class="col-md-3" id="margin50px">
 				<div class="well">
 					<div class="row">
@@ -125,7 +85,6 @@
 			</div>
 
 
-			<!-- 본문 끝-------------------------------------------- -->
 		</div>
 	</div>
 	<!-- /.container -->

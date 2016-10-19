@@ -22,19 +22,25 @@
 <div class="container">
 	<!-- Brand and toggle get grouped for better mobile display -->
 
-
-
     
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
+        <li class="active"><a href="http://localhost:8088/Project_MDS/main">홈 <span class="sr-only">(current)</span></a></li>
+        
+        <li><a href="/Project_MDS/main/choose_mall?mall_type=남성의류">남성의류</a></li>
+        <li><a href="/Project_MDS/main/choose_mall?mall_type=여성의류">여성의류</a></li>
+        <li><a href="/Project_MDS/main/choose_mall?mall_type=아동의류">아동의류</a></li>
+        <li><a href="/Project_MDS/main/choose_mall?mall_type=빅사이즈">빅사이즈</a></li>
+        
         <li class="dropdown">
     
         </li>
       </ul>
-      <form class="navbar-form navbar-left" id = "padding-left_350px" role="search" >
+      
+      <form class="navbar-form navbar-left" style = "padding-left_150px" role="search"   method="post"
+				action="/Project_MDS/main/search_mall">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+        
+          <input type="text" name = "keyword" class="form-control" placeholder="Search">
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>

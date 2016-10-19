@@ -38,13 +38,13 @@ public class MallDao {
 	}
 
 	public List<MallVo> get_Random_Mall_List() {
-		//추천 쇼핑몰 목록에 가져온 쇼핑몰 리스트를 랜덤으로 생성한다
+		// 추천 쇼핑몰 목록에 가져온 쇼핑몰 리스트를 랜덤으로 생성한다
 		List<MallVo> listvo = sqlSession.selectList("TSF_mall.get_Random_Mall_List");
 		return listvo;
 	}
 
 	public MallVo get_select_Mall(String mallName) {
-		//쇼핑몰 이름으로 쇼핑몰 정보를 가져온다
+		// 쇼핑몰 이름으로 쇼핑몰 정보를 가져온다
 		MallVo mallVo = (MallVo) sqlSession.selectOne("TSF_mall.get_select_Mall", mallName);
 		return mallVo;
 	}
@@ -59,8 +59,8 @@ public class MallDao {
 	}
 
 	/**
-	 * SPF 도메인 이름으로 mallVo 가져옴
-	 * 만든이 : 이민우
+	 * SPF 도메인 이름으로 mallVo 가져옴 만든이 : 이민우
+	 * 
 	 * @param domain
 	 * @return
 	 */
@@ -70,8 +70,8 @@ public class MallDao {
 	}
 
 	/**
-	 * SPF 쇼핑몰 넘버로 유효 도메인인지 체크
-	 * 만든이 : 이민우
+	 * SPF 쇼핑몰 넘버로 유효 도메인인지 체크 만든이 : 이민우
+	 * 
 	 * @param domain
 	 * @return
 	 */
@@ -81,8 +81,8 @@ public class MallDao {
 	}
 
 	/**
-	 * SPF 쇼핑몰 넘버 기준 푸터 정보 가져오기
-	 * 만든이 : 이민우
+	 * SPF 쇼핑몰 넘버 기준 푸터 정보 가져오기 만든이 : 이민우
+	 * 
 	 * @param mall_no
 	 * @return
 	 */
@@ -96,16 +96,29 @@ public class MallDao {
 		// 쇼핑몰 생성하기
 		sqlSession.insert("TSF_mall.insert_mall", mallVo);
 		System.out.println("생성될 쇼핑몰 " + mallVo);
-		
+
 		return mallVo.getMall_no();
 	}
 
 	public void insert_joinmall(MallVo mallVo) {
 		// TODO Auto-generated method stub
-		//가입한 쇼핑몰 추가하기 (쇼핑몰 가입하기)
+		// 가입한 쇼핑몰 추가하기 (쇼핑몰 가입하기)
 		sqlSession.insert("TSF_mall.insert_joinmall", mallVo);
 	}
-	
-	
+
+	public List<MallVo> search_mall(String keyword) {
+		// TODO Auto-generated method stub
+		// 검색어로 검색한 쇼핑몰 목록 가져오기
+
+		return sqlSession.selectList("TSF_mall.search_mall", "%"+keyword+"%");
+
+	}
+
+	public List<MallVo> choose_mall(String mall_type) {
+		// TODO Auto-generated method stub
+		//탭에서 선택한 쇼핑몰 목록 가져오기
+		
+		return sqlSession.selectList("TSF_mall.choose_mall", mall_type);
+	}
 
 }
