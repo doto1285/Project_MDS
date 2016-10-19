@@ -59,7 +59,7 @@ public class SPF_ListDetailController {
 
 		// 현재 접속한 SPF 쇼핑몰 도메인을 매개로 mall_domain, mall_no을 mallVo에 넣음
 		MallVo mallVo = SPF_mallService.domainCheck(mall_domain);
-
+		model.addAttribute("mall_domain", mall_domain);
 		// 도메인 체크
 		if ((SPF_mallService.isDomainCheck(mallVo.getMall_no())) == false) {
 			// 없는 도메인일 경우 실행되는 코드

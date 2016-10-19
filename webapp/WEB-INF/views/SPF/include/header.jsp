@@ -25,14 +25,14 @@
 			<c:choose>
 				<c:when test='${empty mallimgVoLogo }'>
 					<div class="col-lg-3">
-						<a href="http://localhost:8088/Project_MDS/12maket/main"> <img
+						<a href="http://localhost:8088/Project_MDS/${mall_domain }/main"> <img
 							id="logo" src="/Project_MDS/assets/image/logo.png"
 							class="img-responsive" alt="Responsive image"></a>
 					</div>
 				</c:when>
 				<c:otherwise>
 					<div class="col-lg-3">
-						<a href="http://localhost:8088/Project_MDS/12maket/main"> <img
+						<a href="http://localhost:8088/Project_MDS/${mall_domain }/main"> <img
 							id="logo" src="${mallimgVoLogo.mallimg_image }"
 							class="img-responsive" alt="Responsive image"></a>
 					</div>
