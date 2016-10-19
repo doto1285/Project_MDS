@@ -28,13 +28,18 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
         <li><a href="#">Link</a></li>
+        
+        
         <li class="dropdown">
     
         </li>
       </ul>
-      <form class="navbar-form navbar-left" id = "padding-left_350px" role="search" >
+      
+      <form class="navbar-form navbar-left" id = "padding-left_350px" role="search"   method="post"
+				action="/Project_MDS/main/search_mall">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+        
+          <input type="text" name = "keyword" class="form-control" placeholder="Search">
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>

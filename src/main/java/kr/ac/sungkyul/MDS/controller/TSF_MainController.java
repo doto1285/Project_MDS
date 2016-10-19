@@ -60,5 +60,27 @@ public class TSF_MainController {
 		
 		return "redirect:/main";
 	}
+	
+	@RequestMapping("main/search_mall")
+	public String search_mall(@ModelAttribute MallVo mallVo, Model model,
+			String keyword
+			) {
+		// 검색어로쇼핑몰 검색하기
+
+		// 랜덤 쇼핑몰 목록 가져오기
+		List<MallVo> Random_MallList = TSF_MainService.GetRandomMallList();
+		model.addAttribute("Random_MallList", Random_MallList);
+
+		//검색어로 검색한 쇼핑몰 목록 가져오기
+		System.out.println("검색어: " + keyword);
+		List<MallVo> Search_mall = TSF_MainService.search_mall(keyword.trim());
+		
+		
+		model.addAttribute("Search_mall", Search_mall);
+		
+		
+		
+		return "TSF/main/search_mall";
+	}
 
 }

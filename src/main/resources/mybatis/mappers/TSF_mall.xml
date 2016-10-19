@@ -58,6 +58,17 @@
 
 	</select>
 
+	<select id="search_mall" parameterType="String" resultType="kr.ac.sungkyul.MDS.vo.MallVo">
+		<!-- 검색어로 쇼핑목 목록 가져오기 -->
+		<![CDATA[	
+      		select mall_name, mall_domain, mall_state 
+			from mall where
+       		mall_state = 1 and 
+ 		    mall_name like #{keyword}
+		]]>
+
+	</select>
+
 
 	<update id="mallupdate" parameterType="kr.ac.sungkyul.MDS.vo.MallVo">
 		<!-- 쇼핑몰 정보 수정 -->
