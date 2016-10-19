@@ -114,4 +114,11 @@ public class MallDao {
 
 	}
 
+	public List<MallVo> choose_mall(String mall_type) {
+		// TODO Auto-generated method stub
+		//탭에서 선택한 쇼핑몰 목록 가져오기
+		
+		return sqlSession.selectList("TSF_mall.choose_mall", mall_type);
+	}
+
 }

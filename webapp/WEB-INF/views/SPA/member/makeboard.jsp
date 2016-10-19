@@ -132,7 +132,9 @@
 							<OPTION value="9">관리자</OPTION>
 							<OPTION value="1">회원</OPTION>
 							<OPTION value="0">비회원</OPTION>
-						</SELECT> <SELECT name="read_accessright">
+						</SELECT> 
+						
+						<SELECT name="read_accessright">
 							<OPTION value="-1" selected>=읽기권한=</OPTION>
 							<OPTION value="9">관리자</OPTION>
 							<OPTION value="1">회원</OPTION>
