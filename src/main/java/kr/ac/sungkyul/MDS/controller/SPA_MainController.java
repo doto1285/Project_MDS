@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -261,20 +262,16 @@ public class SPA_MainController {
 	@ResponseBody // ajax일때 return을 form의 위치를 찾는게 아니라 값을 넘겨준다
 	@RequestMapping(value = "{domain}/productcategorySelect", method = RequestMethod.POST)
 	// 상품삭제
-	public String productcategorySelect(@PathVariable String domain, HttpSession session, Model model, int categroupNo) {
-		//쇼핑몰 관리자 세션확인
-		if (!SPA_mainservice.isUserCheck(domain, session)) {
-			return "javascript:window.location.reload(false)";
-		}
+	public List<CategoryListVo> productcategorySelect(@PathVariable String domain, HttpSession session, Model model,@RequestBody CategoryListVo categoryListVo) {
+		int categroupNo = categoryListVo.getCategorylist_group(); 
 		System.out.println("선택한 1차 카테고리 그룹 넘버" + categroupNo);
 
 		//List<CategoryListVo> categorylist = SPA_categoryListService.getCategoryList(domain);
 		//model.addAttribute("categorylist", categorylist);
-		List<CategoryListVo> categorylist2nd = SPA_categoryListService.getCategoryList(categroupNo);
-		System.out.println(categorylist2nd);
-		model.addAttribute("categorylist2nd", categorylist2nd);
+		List<CategoryListVo> sizeList = SPA_categoryListService.getCategoryList2nd(domain, categroupNo);
+		System.out.println(sizeList);
 
-		return "javascript:window.location.reload(true)";
+		return sizeList;
 	}
 	
 	@RequestMapping(value = "{domain}/productmodifyform", method = RequestMethod.GET)

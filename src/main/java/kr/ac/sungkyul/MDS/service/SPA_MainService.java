@@ -144,7 +144,7 @@ public class SPA_MainService {
 	}
 
 	/**
-	 * 로고 이미지 삽입
+	 * 쇼핑몰 이미지 삽입
 	 * 
 	 * @param domain
 	 * @param file
