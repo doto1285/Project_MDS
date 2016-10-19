@@ -241,7 +241,6 @@
 		msgchangeName = $(this).parents("tr").data("catename");
 
 		$("#recipient_name").val(msgchangeName);
-
 		console.log("수정버튼 클릭시: " + msgchangecateNo + msgchangeName); //로그에 찍히는 부분
 
 	});
@@ -249,6 +248,11 @@
 	//모달창 저장 btn_catePModalSave
 	$(".btn_catePModalSave").on("click", function() {
 		msgchangeName = $("#recipient_name").val();
+		
+		if(msgchangeName == ""){
+			alert("이름을 설정해주세요.");
+			return;
+		}
 
 		console.log("변경할 번호 : " + msgchangecateNo);
 		console.log("변경 후 이름: " + msgchangeName);

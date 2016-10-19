@@ -31,10 +31,6 @@
 	left: 455px;
 }
 
-#select {
-	height: 31px;
-}
-
 #td {
 	padding-left: 5px;
 	padding-right: 5px;
@@ -45,4 +41,12 @@
 #butd {
 	padding-left: 5px;
 	padding-right: 5px;
+}
+
+#modalacc {
+	margin-top: 25px;
+}
+
+#select{
+	margin-bottom: 5px;
 }

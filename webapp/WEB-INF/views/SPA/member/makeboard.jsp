@@ -75,21 +75,23 @@
 							<input type="hidden" name="count_order" value=<%=count_order%>>
 
 
-
-							<input id="newCategorie" name="newBoardList" type="text"
-								placeholder="새 게시판 생성 (10자)" width="800px" value=""> <SELECT
-								name="write_accessright" id="select">
-								<OPTION value="-1" selected>=쓰기권한=</OPTION>
-								<OPTION value="9">관리자</OPTION>
-								<OPTION value="1">회원</OPTION>
-								<OPTION value="0">비회원</OPTION>
-							</SELECT> <SELECT name="read_accessright" id="select">
-								<OPTION value="-1" selected>=읽기권한=</OPTION>
-								<OPTION value="9">관리자</OPTION>
-								<OPTION value="1">회원</OPTION>
-								<OPTION value="0">비회원</OPTION>
-							</SELECT> <input type="submit" class="btn_catePMod btn btn-info btn-sm"
-								value="삽입">
+							<div class="form-inline">
+								<input id="newCategorie" name="newBoardList" type="text"
+									placeholder="새 게시판 생성 (10자)" width="800px" value=""> <SELECT
+									name="write_accessright" class="form-control" id="select">
+									<OPTION value="-1" selected>=쓰기권한=</OPTION>
+									<OPTION value="9">관리자</OPTION>
+									<OPTION value="1">회원</OPTION>
+									<OPTION value="0">비회원</OPTION>
+								</SELECT> <SELECT name="read_accessright" class="form-control"
+									id="select">
+									<OPTION value="-1" selected>=읽기권한=</OPTION>
+									<OPTION value="9">관리자</OPTION>
+									<OPTION value="1">회원</OPTION>
+									<OPTION value="0">비회원</OPTION>
+								</SELECT> <input type="submit" class="btn_catePMod btn btn-info btn-sm"
+									value="삽입">
+							</div>
 						</form>
 				</tr>
 				<!--  // 신규 카테고리 생성 끝-->
@@ -120,20 +122,23 @@
 				<h4 class="modal-title" id="exampleModalLabel">게시판 수정</h4>
 			</div>
 			<div class="modal-body">
-				<form>
+				<form name="formmodal">
 					<div class="form-group">
 						<label for="recipient-name" class="control-label">변경할 게시판
 							이름:</label> <input type="text" class="form-control" id="recipient_name">
 					</div>
 
-					<div>
-						<SELECT name="write_accessright">
-							<OPTION value="-1" selected>=쓰기권한=</OPTION>
+					<div class="col-lg-12 form-inline" id="modalacc">
+						<label class="form-control">쓰기 권환 :</label> <SELECT
+							name="write_accessright_modify" class="form-control">
 							<OPTION value="9">관리자</OPTION>
 							<OPTION value="1">회원</OPTION>
 							<OPTION value="0">비회원</OPTION>
-						</SELECT> <SELECT name="read_accessright">
-							<OPTION value="-1" selected>=읽기권한=</OPTION>
+						</SELECT>
+					</div>
+					<div class="col-lg-12 form-inline">
+						<label class="form-control">읽기 권환 :</label> <SELECT
+							name="read_accessright_modify" class="form-control">
 							<OPTION value="9">관리자</OPTION>
 							<OPTION value="1">회원</OPTION>
 							<OPTION value="0">비회원</OPTION>
@@ -145,7 +150,7 @@
 			<div class="modal-footer">
 				<div class="form-group" id="modalbtn">
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-					<button type="button" class="btn_catePModalSave"
+					<button type="button" class="btn_catePModalSave btn btn-default"
 						data-dismiss="modal">수정하기</button>
 				</div>
 			</div>
@@ -181,6 +186,7 @@
 			.on(
 					"click",
 					function() {
+						var formmodal = document.formmodal;
 						boardlistno = $(this).parents("tr").data("boardlistno");
 						boardlistname = $(this).parents("tr").data(
 								"boardlistname");
@@ -190,6 +196,21 @@
 								"readaccessright");
 
 						$("#recipient_name").val(boardlistname);
+						if (writeaccessright == 9) {
+							formmodal.write_accessright_modify.selectedIndex = 0;
+						} else if (writeaccessright == 1) {
+							formmodal.write_accessright_modify.selectedIndex = 1;
+						} else if (writeaccessright == 0) {
+							formmodal.write_accessright_modify.selectedIndex = 2;
+						}
+
+						if (readaccessright == 9) {
+							formmodal.read_accessright_modify.selectedIndex = 0;
+						} else if (readaccessright == 1) {
+							formmodal.read_accessright_modify.selectedIndex = 1;
+						} else if (readaccessright == 0) {
+							formmodal.read_accessright_modify.selectedIndex = 2;
+						}
 
 						console.log("수정버튼 클릭시: " + boardlistno + boardlistname
 								+ writeaccessright + "" + readaccessright); //로그에 찍히는 부분
@@ -200,9 +221,17 @@
 	$(".btn_catePModalSave").on(
 			"click",
 			function() {
+				var formmodal = document.formmodal;
 				boardlistname = $("#recipient_name").val();
+				writeaccessright = formmodal.write_accessright_modify.value;
+				readaccessright = formmodal.read_accessright_modify.value;
 				console.log("변경할 번호 : " + boardlistno + boardlistname
 						+ writeaccessright + readaccessright);
+
+				if ((writeaccessright == -1) || (readaccessright == -1)) {
+					alert("권한을 설정해주세요.");
+					return;
+				}
 
 				//값 넘기기 ( 변경할 번호: boardlistno, 변경할 내용:boardlistname, 쓰기권한:writeaccessright.  읽기권한:readaccessright)
 				$.ajax({
