@@ -62,11 +62,13 @@
 								<br>
 								
 							</c:forEach>
+							
+				<c:if test="${empty Search_mall}">
+				검색된 쇼핑몰이 없습니다!!!
+				</c:if>
 
 				</div>
 			</div>
-
-
 			<!-- 본문 끝-------------------------------------------- -->
 			<div class="col-md-3" id="margin50px">
 				<div class="well">
