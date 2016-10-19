@@ -32,11 +32,11 @@
 		<form class="board-form" method="post" action="mallmodify">
 			<div class="form-inline" id="inputFormGroup">
 				<label id="catelabel">카테고리 : </label><select class="form-control"
-					id="form-cata1nd">
-					<option value="0">1차 카테고리</option>
+					 id="form-cata1nd">
+					<option value="-1">1차 카테고리</option>
 					<c:forEach items="${categorylist}" var="categoryList">
 						<c:if test='${categoryList.categorylist_depth == 1}'>
-							<option>${categoryList.categorylist_name }</option>
+							<option value="${categoryList.categorylist_group }">${categoryList.categorylist_name }</option>
 						</c:if>
 					</c:forEach>
 				</select> <select class="form-control" id="form-cata2nd">
@@ -133,9 +133,8 @@
 			<div class="col-lg-12">
 				<div class="form-group" id="inputFormGroup">
 					<input type="hidden" name="wkkrnsl" value="aa"> <input
-						class="btn btn-success" id="btnOk" type="submit" value="추가하기">
-					<input class="btn btn-warning" id="btnCancle" type="submit"
-						value="돌아가기">
+						class="btn btn-info" id="btnOk" type="submit" value="추가하기">
+					<a href="product" class="btn btn-warning" id="btnCancle"> 돌아가기 </a>
 				</div>
 			</div>
 		</form>
@@ -145,30 +144,40 @@
 </body>
 </html>
 <script>
-var categroupNo = "";
+ 
 	$('#form-cata2nd').attr('disabled', 'true');
 	$("#form-cata1nd").on("change", function() {
-		categroupNo = $(this).parents("option").data("categroupno");
-        if ($(this).val() == 0) {
+		var tdString = "";  
+		var categorylist_group = $(this).val();
+        if (categorylist_group == -1) {
             $('#form-cata2nd').attr('disabled', 'true');
          } else {
             $('#form-cata2nd').removeAttr('disabled');
          }
-		categroupNo = 9;
-		console.log("1차 카테고리 클릭시: " + categroupNo); //로그에 찍히는 부분
-
+		console.log("1차 카테고리 클릭시: " + categorylist_group); //로그에 찍히는 부분
+		var categoryListVo = {
+				"categorylist_group" : categorylist_group
+		}
 		$.ajax({
 			url : "productcategorySelect",
 			type : "POST",
-			data : {
-				"categroupNo" : categroupNo,
-			},
-			dataType : "text",
+			data : JSON.stringify(categoryListVo),
+			contentType : "application/json",
 
-			success : function(url) {
-				//ajax가 성공했을때, 컨트롤러에서 리턴받는 url로 페이지를 최신화 시킨다.
-				location.href = url;
-
+			success : function(sizeList) {
+                  console.log(sizeList);
+                  if(sizeList == "") {
+                      tdString += "<option value='-1'>";
+                      tdString += "카테고리가 없습니다.";
+                      tdString += "</option>";
+                  	  $('#form-cata2nd').attr('disabled', 'true');
+                  }
+                   $.each(sizeList, function(index ,categoryListVo) {
+                      tdString += "<option value='categoryListVo.categorylist_group'>";
+                      tdString += categoryListVo.categorylist_name;
+                      tdString += "</option>";
+                   });
+                   $('#form-cata2nd').html(tdString);
 			},
 			error : function(jqXHR, status, error) {
 				console.error(status + " : " + error);
