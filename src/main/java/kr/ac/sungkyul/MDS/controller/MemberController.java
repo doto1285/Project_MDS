@@ -90,14 +90,7 @@ public class MemberController {
 		return "member/loginform";
 	}
 
-	@RequestMapping("/main/loginfromadmin")
-	public String admin_login() {
-		// 관리자 로그인
-		System.out.println("관리자 로그인 화면");
-
-		return "member/admin_loginform";
-	}
-
+	
 	@RequestMapping(value = "/main/login", method = RequestMethod.POST)
 	public String login(
 			// 개인, 기업회원 로그인
