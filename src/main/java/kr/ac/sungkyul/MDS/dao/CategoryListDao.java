@@ -23,6 +23,14 @@ public class CategoryListDao {
 		List<CategoryListVo> listvo = sqlSession.selectList("SPA_categorylist.getCategoryList", domain);
 		return listvo;
 	}
+	
+	public List<CategoryListVo> getCategoryList(int groupNo) {
+		// TODO Auto-generated method stub
+		// 해당 쇼핑몰의 카테고리 리스트를 불러온다 sky
+
+		List<CategoryListVo> listvo = sqlSession.selectList("SPA_categorylist.getCategoryList_groupNo", groupNo);
+		return listvo;
+	}
 
 	public void ModifyName(CategoryListVo vo) {
 		// TODO Auto-generated method stub

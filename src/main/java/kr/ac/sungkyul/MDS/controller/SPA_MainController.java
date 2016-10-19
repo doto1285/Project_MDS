@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.ac.sungkyul.MDS.service.MemberService;
+import kr.ac.sungkyul.MDS.service.SPA_CategoryListService;
 import kr.ac.sungkyul.MDS.service.SPA_MainService;
 import kr.ac.sungkyul.MDS.service.SPA_ProductService;
+import kr.ac.sungkyul.MDS.vo.CategoryListVo;
 import kr.ac.sungkyul.MDS.vo.MallVo;
 import kr.ac.sungkyul.MDS.vo.MemberVo;
 import kr.ac.sungkyul.MDS.vo.ProductListVo;
@@ -30,6 +32,9 @@ public class SPA_MainController {
 
 	@Autowired
 	SPA_MainService SPA_mainservice;
+	
+	@Autowired
+	SPA_CategoryListService SPA_categoryListService;
 
 	@Autowired
 	SPA_ProductService SPA_productService;
@@ -240,14 +245,38 @@ public class SPA_MainController {
 	}
 
 	@RequestMapping(value = "{domain}/productinsertform", method = RequestMethod.GET)
-	public String productInsert(@PathVariable String domain, HttpSession session) {
+	public String productInsert(@PathVariable String domain, HttpSession session, Model model) {
 		//쇼핑몰 관리자 세션확인
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
 			return "redirect:/main/loginfrom";
 		}
+		
+
+		List<CategoryListVo> categorylist = SPA_categoryListService.getCategoryList(domain);
+		model.addAttribute("categorylist", categorylist);
+		
 		return "SPA/product/productinsertform";
 	}
+	
+	@ResponseBody // ajax일때 return을 form의 위치를 찾는게 아니라 값을 넘겨준다
+	@RequestMapping(value = "{domain}/productcategorySelect", method = RequestMethod.POST)
+	// 상품삭제
+	public String productcategorySelect(@PathVariable String domain, HttpSession session, Model model, int categroupNo) {
+		//쇼핑몰 관리자 세션확인
+		if (!SPA_mainservice.isUserCheck(domain, session)) {
+			return "javascript:window.location.reload(false)";
+		}
+		System.out.println("선택한 1차 카테고리 그룹 넘버" + categroupNo);
 
+		//List<CategoryListVo> categorylist = SPA_categoryListService.getCategoryList(domain);
+		//model.addAttribute("categorylist", categorylist);
+		List<CategoryListVo> categorylist2nd = SPA_categoryListService.getCategoryList(categroupNo);
+		System.out.println(categorylist2nd);
+		model.addAttribute("categorylist2nd", categorylist2nd);
+
+		return "javascript:window.location.reload(true)";
+	}
+	
 	@RequestMapping(value = "{domain}/productmodifyform", method = RequestMethod.GET)
 	public String productModifyForm(@PathVariable String domain, HttpSession session, Model model) {
 		//쇼핑몰 관리자 세션확인
