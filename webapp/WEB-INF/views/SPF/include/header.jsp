@@ -17,15 +17,10 @@
 					
 					<c:forEach items="${boardList }" var="GetBoardList">
 					<li role="presentation"><a
-					href="boardlist?boardlist_no=${GetBoardList.boardlist_no } "
-					class="list-group-item"> ${GetBoardList.boardlist_name }</a></li>
+					href="boardlist?boardlist_no=${GetBoardList.boardlist_no } "> ${GetBoardList.boardlist_name }</a></li>
 					</c:forEach>
 				</ul>
 			</div>
-
-
-					
-
 
 			<c:choose>
 				<c:when test='${empty mallimgVoLogo }'>
@@ -75,6 +70,7 @@
 						<ul class="nav nav-pills">
 							<!-- class="active" -->
 							<li role="presentation"><a href="join">쇼핑몰 회원가입</a></li>
+							<li role="presentation"><a href="logout">로그아웃</a></li>
 							<div class="row">
 								<div class="col-lg-12">
 									<form class="form-inline">

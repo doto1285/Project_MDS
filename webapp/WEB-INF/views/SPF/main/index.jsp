@@ -52,16 +52,19 @@
 					<div class="row"></div>
 				</c:if>
 				<div class="col-lg-3" id="productDiv">
-					<div class="thumbnail">
-						<img src="${productListVo.productimg_image }" alt="상품이미지"
-							id="productImage">
-						<div class="caption" id="productContents">
-							<h4>${productListVo.product_name }</h4>
-							<h5>
-								<strong>${productListVo.product_price }</strong><strong>원</strong>
-							</h5>
+					<a
+						href="/Project_MDS/${mall_domain }/listdetail?product_no=${productListVo.product_no }">
+						<div class="thumbnail">
+							<img src="${productListVo.productimg_image }" alt="상품이미지"
+								id="productImage">
+							<div class="caption" id="productContents">
+								<h4>${productListVo.product_name }</h4>
+								<h5>
+									<strong>${productListVo.product_price }</strong><strong>원</strong>
+								</h5>
+							</div>
 						</div>
-					</div>
+					</a>
 				</div>
 			</c:forEach>
 

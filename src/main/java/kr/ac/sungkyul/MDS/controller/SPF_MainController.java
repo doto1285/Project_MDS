@@ -78,9 +78,7 @@ public class SPF_MainController {
 		List<BoardListVo> boardList = boardService.SPF_GetBoardList(mallVo);
 		model.addAttribute("boardList", boardList);
 
-/*		Map<String, Object> makeModel = makeModel(mallVo);
-		System.out.println(makeModel.toString());
-		model.addAttribute("makeModel", makeModel);*/
+
 		
 		
 		// 메인의 대문이미지 뿌려줌
@@ -117,8 +115,7 @@ public class SPF_MainController {
 			JoinMallVo SPFauthUser = (JoinMallVo) session.getAttribute("SPFauthUserSession");
 			model.addAttribute("SPFauthUser", SPFauthUser);
 
-			System.out.println("1111: " + joinmallVo);
-			System.out.println("1111: " + SPFauthUser);
+			
 			return "SPF/main/index";
 		}
 
@@ -127,8 +124,7 @@ public class SPF_MainController {
 		JoinMallVo SPFauthUser = (JoinMallVo) session.getAttribute("SPFauthUserSession");
 		model.addAttribute("SPFauthUser", SPFauthUser);
 		
-		System.out.println("2222: " + joinmallVo);
-		System.out.println("2222: " + SPFauthUser);
+		
 
 		return "SPF/main/index";
 	}
@@ -137,6 +133,10 @@ public class SPF_MainController {
 	private Map<String, Object> makeModel(MallVo mallVo) {
 		// TODO Auto-generated method stub
 		
+		/*  사용하는 방법
+		Map<String, Object> makeModel = makeModel(mallVo);
+		System.out.println(makeModel.toString());
+		model.addAttribute("makeModel", makeModel); */
 
 		// 쇼핑몰 footer 뿌려줌
 		mallVo = SPF_mainService.get_Footer(mallVo.getMall_no());

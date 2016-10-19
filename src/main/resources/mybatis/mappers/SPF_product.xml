@@ -29,9 +29,9 @@
 	
 	<select id="get_product_detail_productoption" parameterType="java.lang.Integer"
 		resultType="kr.ac.sungkyul.MDS.vo.ProductOptionVo">
-		<!-- 상품 상세 정보(3개 테이블 조회) 중 상품 옵션에 대한 정보를 가져옴 -->
+		<!-- 상품 상세 정보(3개 테이블 조회) 중 상품 옵션의 색상에 대한 정보를 가져옴 -->
 	<![CDATA[
-		select * from productoption where product_no=#{product_no}
+		select DISTINCT productoption_color, product_no from productoption where product_no=#{product_no}
 		]]>
 	</select>
 	
