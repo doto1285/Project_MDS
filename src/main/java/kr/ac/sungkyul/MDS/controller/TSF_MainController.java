@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.ac.sungkyul.MDS.service.BoardService;
 import kr.ac.sungkyul.MDS.service.TSF_MainService;
@@ -75,10 +76,27 @@ public class TSF_MainController {
 		System.out.println("검색어: " + keyword);
 		List<MallVo> Search_mall = TSF_MainService.search_mall(keyword.trim());
 		
-		
 		model.addAttribute("Search_mall", Search_mall);
 		
+		return "TSF/main/search_mall";
+	}
+	
+	@RequestMapping("main/choose_mall")
+	public String choose_mall(@ModelAttribute MallVo mallVo, Model model,
+			@RequestParam(value = "mall_type", required = false, defaultValue = "0") String mall_type
+			) {
+		// 검색어로쇼핑몰 검색하기
+		System.out.println("선택된 탭: "+ mall_type);
 		
+		// 랜덤 쇼핑몰 목록 가져오기
+		List<MallVo> Random_MallList = TSF_MainService.GetRandomMallList();
+		model.addAttribute("Random_MallList", Random_MallList);
+		
+		
+		//탭에서 선택한 쇼핑몰 목록 가져오기
+		List<MallVo> Search_mall = TSF_MainService.choose_mall(mall_type);
+		
+		model.addAttribute("Search_mall", Search_mall);
 		
 		return "TSF/main/search_mall";
 	}

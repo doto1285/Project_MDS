@@ -70,7 +70,17 @@
 					</tr>
 					<tr>
 						<td id="td-size">쇼핑몰 종류</td>
-						<td><input id="textbox" name="mall_type" type="text" value=""></td>
+						<td>
+												<SELECT name="mall_type">
+							<OPTION value="-1" selected>=쇼핑몰 종류=</OPTION>
+							<OPTION value="남성의류">남성의류</OPTION>
+							<OPTION value="여성의류">여성의류</OPTION>
+							<OPTION value="아동의류">아동의류</OPTION>
+							<OPTION value="빅사이즈">빅사이즈</OPTION>
+						</SELECT> 
+						</td>
+						
+						
 					</tr>
 					<tr>
 						<td id="td-size">사업자 등록번호</td>

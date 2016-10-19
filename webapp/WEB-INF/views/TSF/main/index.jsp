@@ -59,6 +59,11 @@
 							<p class="lead">아직 모두의 쇼핑몰 회원이 아니시군요?</p>
 							<p>쇼핑몰을 만드시거나 이용하시려면</p>
 							<p>모두의 쇼핑몰 로그인이 필요합니다.</p>
+							<br>
+							
+							<a class="btn btn-success" a href="/Project_MDS/main/loginfrom"> 로그인</a>
+							<a class="btn btn-success" a href="/Project_MDS/main/joinform_choose"> 회원가입</a>
+							
 
 						</c:when>
 
