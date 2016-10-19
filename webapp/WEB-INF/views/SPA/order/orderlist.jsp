@@ -44,7 +44,7 @@
 
 				<tr class="active">
 					<td>주문 번호</td>
-					<td>상품명</td>
+					<td>상품명(옵션)</td>
 					<td>수량</td>
 					<td>총 가격</td>
 					<td>상태</td>

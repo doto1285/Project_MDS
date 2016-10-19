@@ -24,26 +24,8 @@
 		<c:import url='/WEB-INF/views/TSA/include/header_tap.jsp' />
 	</div>
 <!--      ---------------------------------------------             -->
-	<!--   <div class="section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12"></div>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-			</div>
-		</div>
-		-->
-<!--      ---------------------------------------------             -->
 	<div class="jumbotron" id="maincol">
 			<!-- 본문 시작-------------------------------------------- -->
-
 			<div id="content">
 				<div id="board" class="board-form" id="margin50px">
 					<table class="tbl-ex" id="margin50px">
