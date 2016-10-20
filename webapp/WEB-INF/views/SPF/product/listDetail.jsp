@@ -84,7 +84,7 @@
 				
 				<br>
 				<label id="productPriceText1">&nbsp; 총 상품금액(수량) : <label
-					id="productPriceText2"> </label> <label id="productPriceText3">
+					id="productPriceText2"> </label> <label id="productPriceText3" >
 				</label>
 				</label>
 				<div class="btn-group btn-group-justified" role="group"
@@ -113,11 +113,13 @@
 </body>
 
 <script>
-	var tdBoolean = "true";
-	var totalCount = 1;
+	var insertBoolean = "true";
+	var totalCount = 0;
 	var totalPrice = 0;
-	var count = -1;
+	var count = 1;
 	var price = 0;
+	var loginCheck = "${SPFauthUser.member_no }";
+	var buyInfoArray = [];
 	
 	$('#form-control2').attr('disabled', 'true');
 	
@@ -141,7 +143,6 @@
 					data : JSON.stringify(productOptionVo),
 					contentType : "application/json",
 					success : function(sizeList) {
-						console.log(sizeList);
 						 $.each(sizeList, function(index ,productOptionVo) {
 							 tdString += "<option value='" + productOptionVo.productoption_no +"'>";
 							 tdString += productOptionVo.productoption_size;
@@ -171,23 +172,21 @@
 	
 		$("#optionResult .form-inline").each(function(i) {
 			if(sizeValue == $(this).data("size")){
-				tdBoolean = "false";
+				insertBoolean = "false";
 				alert("이미 선택되어 있는 옵션입니다.");
 				return;
 			}
 			
 		});
 		
+		totalCount += count;
 		price= ${map.productVo.product_price};
-		totalPrice = (totalCount * parseInt(price));
-		
-		count = ++count;
+		totalPrice = (totalCount * price);
 		$("#productPriceText2").html(totalPrice+"원");
-		$("#productPriceText3").html("(" + totalCount + ")개"); 
-		//count = $("#exampleInputName2").val();
-		totalCount += parseInt(count);
+		$("#productPriceText3").html("(" + totalCount + ")개");
 		
-		if(tdBoolean == "true"){
+	
+		if(insertBoolean == "true"){
 		optionResultString += "<div class='form-inline' data-color='"+ colorValue +"' data-size='" + sizeValue + "'>";
 		optionResultString += "<div class='form-group'>";
 		optionResultString += "<label id='optionText' >";
@@ -196,42 +195,78 @@
 		optionResultString += ", ";
 		optionResultString += sizeText;
 		optionResultString += "</label> &nbsp;&nbsp;&nbsp;&nbsp;"; 
-		optionResultString += "<input type='text' class='form-control' id='exampleInputName2' value='1'>";
+		optionResultString += "<input type='text' class='form-control' value='1' style='width:50px; text-align: center; margin: 10px'>";
 		optionResultString += "&nbsp;";
-		optionResultString += "<input type='button' value='X' id='deleteButton'>";
+		optionResultString += "<input type='button' value='X' class='deleteButton'>";
 		optionResultString += "</div>";
 		optionResultString += "</div>";
-		optionResultString += "<br id='deletebr'>";
 		$('#optionResult').append(optionResultString);
 		}
-		tdBoolean = "true";
-
+		insertBoolean = "true";	 
 		
-		
-		
-		$(".form-inline #deleteButton").on("click", function(){
-			$("#deleteButton").parents(".form-inline").remove();
-			$("#deletebr").remove();
-		});
-
-	});
-
-	$("exampleInputName2").on("keyup", function(){
-		/* console.log($(this).val()); */
 	});
 	
-	var buyInfo = new Object();
-	var buyInfoArray = [];
-	$("#basket").on("click", function(){
-		$("#optionResult .form-inline").each(function(i) {
+	
+	$("#optionResult").on("keyup",".form-control", function(){
+		totalCount = 0;
+		$("#optionResult .form-control").each(function(i) {
+			totalCount += parseInt($(this).val()); 
 			
+		});
+		$("#productPriceText3").html("(" + totalCount + ")개");
+		totalPrice = (totalCount * price);
+		$("#productPriceText2").html(totalPrice+"원");
+	});
+	
+	$("#optionResult").on("click",".deleteButton", function(){
+		$(this).parents(".form-inline").remove();
+		totalCount = totalCount - $(this).prevAll(".form-control").val();
+		$("#productPriceText3").html("(" + totalCount + ")개");
+		totalPrice = (totalCount * price);
+		$("#productPriceText2").html(totalPrice+"원");
+	});
+
+	
+	$("#basket").on("click", function(){
+		var a = $(".form-inline:empty");
+		console.log(a);
+		$(".form-inline:empty")
+		if(loginCheck == ""){
+			alert("로그인 후 장바구니를 이용해주세요.");
+		}
+
+		/* else if($(".form-inline:empty")){
+			alert("원하시는 상품의 옵션을 선택해주세요.");
+		} */
+		else {
+		$("#optionResult .form-inline").each(function(i) {
+			var buyInfo = new Object();
+			buyInfo.productoption_stock = $(this).find(".form-control").val();
+			buyInfo.orderinfo_price = $(this).find(".form-control").val() * ${map.productVo.product_price};
+			buyInfo.product_no = ${map.productVo.product_no};
 			buyInfo.productoption_no = $(this).data("size");
-			buyInfo.productoption_stock = totalCount-1;
-			buyInfoArray[i] = buyInfo;
-			console.log(i);
-			});
-		var finalJsonData = JSON.stringify(buyInfoArray);
-		console.log(finalJsonData);
+			buyInfo.member_no = loginCheck;
+			buyInfoArray.push(buyInfo);
+		});
+		
+		console.log(JSON.stringify(buyInfoArray));
+		
+		  $.ajax({
+			url : "shoppingbasketinsert",
+			type : "POST",
+			data : JSON.stringify(buyInfoArray),
+			contentType : "application/json",
+			success : function() {
+				alert("동작성공"); 
+			},
+			error : function(request, status, error) {
+				alert("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n" + "error:"
+						+ error);
+			}
+		});  
+		 
+		}
 	});
 	
 	  

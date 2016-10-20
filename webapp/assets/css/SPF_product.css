@@ -64,7 +64,7 @@ hr {
 }
 
 /* exampleInputName2 */
-#exampleInputName2 {
+.exampleInputName2 {
 	width: 50px;
 	text-align: center;
 }

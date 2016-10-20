@@ -1,5 +1,6 @@
 package kr.ac.sungkyul.MDS.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,30 +13,26 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.ac.sungkyul.MDS.dao.ProductDao;
 import kr.ac.sungkyul.MDS.service.BoardService;
 import kr.ac.sungkyul.MDS.service.MemberService;
 import kr.ac.sungkyul.MDS.service.SPF_ListDetailService;
 import kr.ac.sungkyul.MDS.service.SPF_MainService;
 import kr.ac.sungkyul.MDS.service.SPF_MallService;
 import kr.ac.sungkyul.MDS.service.SPF_MallimgService;
-import kr.ac.sungkyul.MDS.service.SPF_ProductService;
+import kr.ac.sungkyul.MDS.service.SPF_ShoppingBasketService;
 import kr.ac.sungkyul.MDS.vo.BoardListVo;
 import kr.ac.sungkyul.MDS.vo.CategoryListVo;
 import kr.ac.sungkyul.MDS.vo.JoinMallVo;
 import kr.ac.sungkyul.MDS.vo.MallVo;
 import kr.ac.sungkyul.MDS.vo.MallimgVo;
 import kr.ac.sungkyul.MDS.vo.MemberVo;
-import kr.ac.sungkyul.MDS.vo.ProductListVo;
-import kr.ac.sungkyul.MDS.vo.ProductOptionVo;
 import kr.ac.sungkyul.MDS.vo.ProductVo;
+import net.sf.json.JSONArray;
 
 @Controller
-public class SPF_ListDetailController {
-
+public class SPF_ShoppingBasketController {
+	
 	@Autowired
 	SPF_ListDetailService SPF_listDetailService;
 
@@ -53,9 +50,12 @@ public class SPF_ListDetailController {
 
 	@Autowired
 	BoardService boardService;
+	
+	@Autowired
+	SPF_ShoppingBasketService SPF_shoppingBasketService;
 
-	@RequestMapping("{mall_domain}/listdetail")
-	public String listDetail(@PathVariable String mall_domain, Model model, ProductVo productVo, HttpSession session) {
+	@RequestMapping("{mall_domain}/shoppingbasket")
+	public String shoppingBasket(@PathVariable String mall_domain, Model model, HttpSession session ) {
 
 		// 현재 접속한 SPF 쇼핑몰 도메인을 매개로 mall_domain, mall_no을 mallVo에 넣음
 		MallVo mallVo = SPF_mallService.domainCheck(mall_domain);
@@ -80,12 +80,7 @@ public class SPF_ListDetailController {
 		List<BoardListVo> boardList = boardService.SPF_GetBoardList(mallVo);
 		model.addAttribute("boardList", boardList);
 		
-		//실제 컨트롤러 동작 내용
-		int product_no = productVo.getProduct_no();
-		Map<String, Object> map = new HashMap<String, Object>();
-		map = SPF_listDetailService.get_Product_detail(product_no);
-		model.addAttribute("map", map);
-
+		
 		// 로그인 세션 체크
 		if (memberService.isUserCheck(session) == false) {
 			// 로그인 안한 회원일 경우 실행되는 코드
@@ -119,12 +114,26 @@ public class SPF_ListDetailController {
 		return "SPF/product/listDetail";
 	}
 
-	@ResponseBody
-	@RequestMapping(value = "{mall_domain}/productOption", method = RequestMethod.POST)
-	public List<ProductOptionVo> productOption(@PathVariable String mall_domain, Model model,
-			@RequestBody ProductOptionVo productOptionVo) {
-		List<ProductOptionVo> sizeList = SPF_listDetailService.get_Product_Option_SizeList(productOptionVo);
-		return sizeList;
+	@RequestMapping("{mall_domain}/shoppingbasketinsert")
+	public String shoppingBasketInsert(@PathVariable String mall_domain, Model model, HttpSession session, @RequestBody String paramData ) {
+		//SPF_shoppingBasketService
+		
+		List<Map<String,Object>> resultMap = new ArrayList<Map<String,Object>>();
+		resultMap = JSONArray.fromObject(paramData);
+	
+		for(Map<String, Object>map : resultMap){
+			map.get("productoption_stock");
+			map.get("orderinfo_price");
+			map.get("product_no");
+			map.get("productoption_no");
+			map.get("member_no");
+			System.out.println("수량: " + map.get("productoption_stock") + "  " +
+					"주문가격: " + map.get("orderinfo_price") + "  " +
+					"상품번호: " + map.get("product_no") + "  " +
+					"상품옵션번호: " + map.get("productoption_no") + "  " +
+					"회원번호: " + map.get("member_no"));
+		}
+		
+		return "SPF/product/listDetail";
 	}
-
 }
