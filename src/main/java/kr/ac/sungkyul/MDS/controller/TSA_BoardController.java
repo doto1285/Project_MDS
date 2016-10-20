@@ -114,7 +114,7 @@ public class TSA_BoardController {
 		// 새 글 등록하기
 		BoardService.NewWrite(boardVo);
 
-		return "redirect:TSA/main/board/" + boardlist_no;
+		return "redirect:/TSA/main/board/" + boardlist_no;
 	}
 	
 	@RequestMapping("main/board/replyform/{boardlist_no}")
@@ -132,7 +132,7 @@ public class TSA_BoardController {
 		// 답글 등록하기
 		BoardService.ReplyWrite(boardVo);
 		
-		return "redirect:TSA/main/board/" + boardVo.getBoardlist_no();
+		return "redirect:/TSA/main/board/" + boardVo.getBoardlist_no();
 	}
 
 

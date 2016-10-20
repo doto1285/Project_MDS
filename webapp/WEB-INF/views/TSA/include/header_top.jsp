@@ -18,8 +18,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" id="logo"
-				href="http://localhost:8088/Project_MDS/TSA/main/slrkdurlfdkfdktjanjgkrpdy">
+			<a class="navbar-brand" id="logo">
 				<img src="/Project_MDS/assets/image/logo.png" id="img01">
 			</a>
 

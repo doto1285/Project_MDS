@@ -12,7 +12,9 @@
 <script src="/Project_MDS/assets/dist/js/bootstrap.min.js"></script>
 <link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
-<link href="/Project_MDS/assets//css/TSA_main.css" rel="stylesheet"
+<link href="/Project_MDS/assets/css/TSA_main.css" rel="stylesheet"
+	type="text/css">
+<link href="/Project_MDS/assets/css/TSA_board.css" rel="stylesheet"
 	type="text/css">
 <!-- /공통 -->
 <title>모두의 쇼핑몰</title>
@@ -57,9 +59,6 @@
 
 		</div>
 
-	</div>
-		
-	</div>
 <!--      ---------------------------------------------             -->
 </body>
 </html>
