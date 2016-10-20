@@ -356,6 +356,7 @@
 
 			},
 			error : function(jqXHR, status, error) {
+				console.log("error: " + error);
 				alert("최하위 카테고리입니다");
 			}
 		});

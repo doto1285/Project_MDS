@@ -6,7 +6,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<!-- 공통 -->
+<script type="text/javascript"
+	src="/Project_MDS/assets/js/jquery/jquery-3.1.1.js"></script>
 
+<link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css">
+<script src="/Project_MDS/assets/dist/js/bootstrap.min.js"></script>
+<link href="/Project_MDS/assets/css/SPA_main.css" rel="stylesheet"
+	type="text/css">
+<!-- /공통 -->
 
 
 <link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
@@ -69,12 +78,19 @@
 						</tr>
 
 					</table>
-					<div class="bottom">
+					<div class="bottom" data-board_no='${GetBoardContent.board_no}'>
 						<a href="replyform/${GetBoardContent.board_no }">답글</a> <a
-							href="javascript:history.back(-1);">목록</a> <a
-							href="modify?no=${GetBoardContent.board_no }">글수정</a> <a
-							href="delete?no=${GetBoardContent.board_no }">삭제</a>
+							href="javascript:history.back(-1);">목록</a> <a data-toggle="modal"
+							data-target="#check_pw" class="btn_modify">글수정</a> <a
+							data-toggle="modal" data-target="#check_pw" class="btn_delete">삭제</a>
+
+
+
+
+						<!-- 	<a href="delete?no=${GetBoardContent.board_no }">삭제</a>  -->
 					</div>
+
+
 				</div>
 			</div>
 
@@ -112,3 +128,109 @@
 </html>
 
 
+<!-- 모달창 그리기 -->
+<div class="modal fade" id="check_pw" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="exampleModalLabel">비밀번호 확인</h4>
+			</div>
+			<div class="modal-body">
+				<form name="formmodal">
+					<div class="form-group">
+						<label for="recipient-name" class="control-label">비밀번호:</label> <input
+							type="text" class="form-control" id="pw">
+					</div>
+
+				</form>
+			</div>
+
+			<div class="modal-footer">
+				<div class="form-group" id="modalbtn">
+					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+					<button type="button" class="btn_check btn btn-default"
+						data-dismiss="modal">확인</button>
+				</div>
+			</div>
+
+			<input type="text" id='check_motion' value="">
+
+		</div>
+	</div>
+</div>
+<!-- 모달창 그리기 끝 -->
+
+
+<script>
+	//글 수정시 비밀번호 입력
+	$(".btn_modify").on("click", function() {
+		var formmodal = document.formmodal;
+		board_no = $(this).parents("div").data("board_no");
+		$('#check_motion').val("modify");
+
+		console.log("상태: " + check_motion); //로그에 찍히는 부분
+		console.log("버튼 클릭시: " + board_no); //로그에 찍히는 부분
+	});
+</script>
+
+
+<script>
+	//글 삭제시 비밀번호 입력
+	$(".btn_delete").on("click", function() {
+		var formmodal = document.formmodal;
+		board_no = $(this).parents("div").data("board_no");
+		
+		$('#check_motion').val("delete");
+
+
+		console.log("수정버튼 클릭시: " + board_no); //로그에 찍히는 부분
+	});
+</script>
+
+<!--  modify?no=${GetBoardContent.board_no }  -->
+<script>
+<!-- 비밀번호 입력 시 -->
+	$(".btn_check").on("click", function() {
+
+		var pw = $("#pw").val();
+		var check_motion = $("#check_motion").val();
+
+		if (check_motion == 'modify') {
+			console.log("글 수정");
+			/////////////////
+				$.ajax({
+				url : "modifyform?board_no="+board_no,
+				type : "POST",
+				data : {
+					"pw" : pw
+				},
+				dataType : "text",
+
+				success : function(url) {
+					//ajax가 성공했을때, 컨트롤러에서 리턴받는 url로 페이지를 최신화 시킨다.
+					if (url) {
+						location.href = url;
+					} else {
+						alert("비밀번호가 틀렸습니다");
+					}
+
+				},
+				error : function(jqXHR, status, error) {
+					consloe.log("error: " + error);
+				}
+			});
+			///////////////////
+		}
+		if ('delete' == check_motion) {
+			//글 삭제 
+			console.log("글 삭제");
+
+		}
+
+	});
+</script>
