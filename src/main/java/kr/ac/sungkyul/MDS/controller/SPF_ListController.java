@@ -62,7 +62,7 @@ public class SPF_ListController {
 	 */
 	@RequestMapping(value = "{mall_domain}/list", method = RequestMethod.GET)
 	public String list(@PathVariable String mall_domain, Model model, CategoryListVo categoryListVo,
-			CategoryProductListVo categoryProductListVoPaging) {
+			CategoryProductListVo categoryProductListVoPaging, HttpSession session) {
 		// 현재 접속한 SPF 쇼핑몰 도메인을 매개로 mall_domain, mall_no을 mallVo에 넣음
 		MallVo mallVo = SPF_mallService.domainCheck(mall_domain);
 		model.addAttribute("mall_domain", mall_domain);
@@ -142,7 +142,36 @@ public class SPF_ListController {
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("total", total);
 
+		// 로그인 세션 체크
+		if (memberService.isUserCheck(session) == false) {
+			// 로그인 안한 회원일 경우 실행되는 코드
+
+			return "SPF/product/list";
+		}
+
+		// 로그인 세션을 memberVo에 넣음
+		MemberVo memberVo = (MemberVo) session.getAttribute("authUser");
+		System.out.println("현재 로그인한 사용자: " + memberVo);
+
+		model.addAttribute("memberVo", memberVo);
+
+		// 현재 도메인과 로그인 정보(mallVo, memberVo)를 joinmallVo에 넣음(SPF가입여부 체크용)
+		JoinMallVo joinmallVo = new JoinMallVo();
+		joinmallVo.setMember_no(String.valueOf(memberVo.getMember_no()));
+		joinmallVo.setMall_no(String.valueOf(mallVo.getMall_no()));
+
+		// 로그인 세션이 있는 회원이 현재 개인 쇼핑몰 회원인지 체크
+		if (memberService.SPFWhatUser(joinmallVo) == false) {
+			// 로그인 세션이 있는 회원이 현재 쇼핑몰에 가입되지 않은 경우 실행되는 코드
+			joinmallVo.setMember_no(null);
+			return "SPF/product/list";
+		}
+
+		// 현재 쇼핑몰에 가입된 경우 실행되는 코드
+		session.setAttribute("SPFauthUserSession", joinmallVo);
+		JoinMallVo SPFauthUser = (JoinMallVo) session.getAttribute("SPFauthUserSession");
+		model.addAttribute("SPFauthUser", SPFauthUser);
+
 		return "SPF/product/list";
 	}
-
 }

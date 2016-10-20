@@ -7,13 +7,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.ac.sungkyul.MDS.dao.CategoryListDao;
-import kr.ac.sungkyul.MDS.vo.CategoryListVo;;
+import kr.ac.sungkyul.MDS.dao.MallDao;
+import kr.ac.sungkyul.MDS.vo.CategoryListVo;
+import kr.ac.sungkyul.MDS.vo.MallVo;;
 
 @Service
 public class SPA_CategoryListService {
 
 	@Autowired
 	private CategoryListDao categoryListDao;
+	
+	@Autowired
+	private MallDao mallDao;
 
 	public List<CategoryListVo> getCategoryList(String domain) {
 		// TODO Auto-generated method stub
@@ -22,11 +27,13 @@ public class SPA_CategoryListService {
 		return categoryListDao.getCategoryList(domain);
 	}
 	
-	public List<CategoryListVo> getCategoryList(int groupNo) {
-		// TODO Auto-generated method stub
-		// 해당 쇼핑몰의 카테고리 리스트를 불러온다 sky
-
-		return categoryListDao.getCategoryList(groupNo);
+	public List<CategoryListVo> getCategoryList2nd(String domain, int groupNo) {
+		//쇼핑몰과 그룹번호에 맞는 2차 카테고리를 가져온다
+		MallVo mallVo = mallDao.domainCheck(domain);
+		CategoryListVo vo = new CategoryListVo();
+		vo.setMall_no(mallVo.getMall_no());
+		vo.setCategorylist_group(groupNo);
+		return categoryListDao.getCategoryList2nd(vo);
 	}
 	
 	public void ModifyName(CategoryListVo vo) {

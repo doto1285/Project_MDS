@@ -15,29 +15,24 @@
 				<ul class="nav nav-pills">
 					<!-- class="active" -->
 					
-					<c:forEach items="${makeModel.boardList }" var="GetBoardList">
+					<c:forEach items="${boardList }" var="GetBoardList">
 					<li role="presentation"><a
-					href="boardlist?boardlist_no=${GetBoardList.boardlist_no } "
-					class="list-group-item"> ${GetBoardList.boardlist_name }</a></li>
+					href="boardlist?boardlist_no=${GetBoardList.boardlist_no } "> ${GetBoardList.boardlist_name }</a></li>
 					</c:forEach>
 				</ul>
 			</div>
 
-
-					
-
-
 			<c:choose>
 				<c:when test='${empty mallimgVoLogo }'>
 					<div class="col-lg-3">
-						<a href="http://localhost:8088/Project_MDS/12maket/main"> <img
+						<a href="http://localhost:8088/Project_MDS/${mall_domain }/main"> <img
 							id="logo" src="/Project_MDS/assets/image/logo.png"
 							class="img-responsive" alt="Responsive image"></a>
 					</div>
 				</c:when>
 				<c:otherwise>
 					<div class="col-lg-3">
-						<a href="http://localhost:8088/Project_MDS/12maket/main"> <img
+						<a href="http://localhost:8088/Project_MDS/${mall_domain }/main"> <img
 							id="logo" src="${mallimgVoLogo.mallimg_image }"
 							class="img-responsive" alt="Responsive image"></a>
 					</div>
@@ -75,6 +70,7 @@
 						<ul class="nav nav-pills">
 							<!-- class="active" -->
 							<li role="presentation"><a href="join">쇼핑몰 회원가입</a></li>
+							<li role="presentation"><a href="logout">로그아웃</a></li>
 							<div class="row">
 								<div class="col-lg-12">
 									<form class="form-inline">

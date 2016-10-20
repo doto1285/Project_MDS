@@ -57,7 +57,7 @@ public class SPF_MainController {
 	public String index(@PathVariable String mall_domain, Model model, HttpSession session) {
 		// 현재 접속한 SPF 쇼핑몰 도메인을 매개로 mall_domain, mall_no을 mallVo에 넣음
 		MallVo mallVo = SPF_mallService.domainCheck(mall_domain);
-
+		model.addAttribute("mall_domain", mall_domain);
 		// 도메인 체크
 		if ((SPF_mallService.isDomainCheck(mallVo.getMall_no())) == false) {
 			// 없는 도메인일 경우 실행되는 코드
@@ -77,11 +77,8 @@ public class SPF_MainController {
 		// 헤더의 게시판 리스트 뿌려줌
 		List<BoardListVo> boardList = boardService.SPF_GetBoardList(mallVo);
 		model.addAttribute("boardList", boardList);
-		
 
-		Map<String, Object> makeModel = makeModel(mallVo);
-		System.out.println(makeModel.toString());
-		model.addAttribute("makeModel", makeModel);
+
 		
 		
 		// 메인의 대문이미지 뿌려줌
@@ -118,8 +115,7 @@ public class SPF_MainController {
 			JoinMallVo SPFauthUser = (JoinMallVo) session.getAttribute("SPFauthUserSession");
 			model.addAttribute("SPFauthUser", SPFauthUser);
 
-			System.out.println("1111: " + joinmallVo);
-			System.out.println("1111: " + SPFauthUser);
+			
 			return "SPF/main/index";
 		}
 
@@ -128,8 +124,7 @@ public class SPF_MainController {
 		JoinMallVo SPFauthUser = (JoinMallVo) session.getAttribute("SPFauthUserSession");
 		model.addAttribute("SPFauthUser", SPFauthUser);
 		
-		System.out.println("2222: " + joinmallVo);
-		System.out.println("2222: " + SPFauthUser);
+		
 
 		return "SPF/main/index";
 	}
@@ -138,6 +133,10 @@ public class SPF_MainController {
 	private Map<String, Object> makeModel(MallVo mallVo) {
 		// TODO Auto-generated method stub
 		
+		/*  사용하는 방법
+		Map<String, Object> makeModel = makeModel(mallVo);
+		System.out.println(makeModel.toString());
+		model.addAttribute("makeModel", makeModel); */
 
 		// 쇼핑몰 footer 뿌려줌
 		mallVo = SPF_mainService.get_Footer(mallVo.getMall_no());
@@ -157,8 +156,7 @@ public class SPF_MainController {
 		makeModel.put("categoryList2nd", categoryList);
 		makeModel.put("mallimgVoLogo", mallimgVoLogo);
 		makeModel.put("boardList", boardList);
-
-		System.out.println(boardList.toString());
+		
 		return makeModel;
 	}
 

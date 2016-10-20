@@ -13,8 +13,8 @@
 <script src="/Project_MDS/assets/dist/js/bootstrap.min.js"></script>
 <link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
-<link href="/Project_MDS/assets/css/TSA_main.css" rel="stylesheet"
-	type="text/css">
+<link href="/Project_MDS/assets/css/TSA_main.css" rel="stylesheet" type="text/css">
+<link href="/Project_MDS/assets/css/TSA_board.css" rel="stylesheet" type="text/css">
 <!-- /공통 -->
 <title>모두의 쇼핑몰</title>
 </head>
@@ -25,31 +25,13 @@
 		<c:import url='/WEB-INF/views/TSA/include/header_tap.jsp' />
 	</div>
 <!--      ---------------------------------------------             -->
-	<!--   <div class="section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12"></div>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-			</div>
-		</div>
-		-->
-<!--      ---------------------------------------------             -->
 	<div class="jumbotron" id="maincol">
 	<!-- 본문 시작-------------------------------------------- -->
-
 				<div id="container">
 					<div id="content">
 						<div id="board">
 							<form class="board-form" method="post"
-								action="/Project_MDS/main/board/reply/${boardlist_no}">
+								action="/Project_MDS/TSA/main/board/reply/${boardlist_no}">
 								<input type="hidden" name="a" value="write"> <br> <input
 									type="hidden" name="member_no" value="${authUser.member_no }">
 									 <input

@@ -14,11 +14,11 @@
 		]]>
 	</select>
 	
-		<select id="getCategoryList_groupNo" parameterType="java.lang.Integer" resultType="categorylistVo">
+		<select id="getCategoryList2nd" parameterType="categorylistVo" resultType="categorylistVo">
 		<!-- 인풋으로 오는 group_no이 일치하는 모든 카테고리를 가져온다-->
 		<![CDATA[	
 	 	 select * from categorylist
-	 	 where categorylist_group = #{categorylist_group }
+	 	 where categorylist_group = #{categorylist_group } and mall_no = #{mall_no} and categorylist_depth = 2 and categorylist_state = 1
 		]]>
 	</select>
 

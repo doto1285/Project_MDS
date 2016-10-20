@@ -81,11 +81,20 @@ hr {
 
 /* form-control1 */
 #form-control1 {
-	width: 150px;
+	width: 270px;
 	font-size: 14px;
 	position: relative;
 	top: 0px;
-	right: 200px;
+	right: 70px;
+}
+
+/* form-control2 */
+#form-control2 {
+	width: 270px;
+	font-size: 14px;
+	position: relative;
+	top: 0px;
+	right: 70px;
 }
 
 /* hr1 */
