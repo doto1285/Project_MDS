@@ -15,13 +15,20 @@
 	rel="stylesheet" type="text/css">
 <link href="/Project_MDS/assets//css/TSA_main.css" rel="stylesheet"
 	type="text/css">
-<link href="/Project_MDS/assets/css/TSF_board.css" rel="stylesheet"
+<link href="/Project_MDS/assets/css/TSA_board.css" rel="stylesheet"
 	type="text/css">
-<!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-
 <!-- Custom CSS -->
 <link href="css/shop-item.css" rel="stylesheet">
+<!-- 
+<link rel="stylesheet" type="text/css" href="<c:url value='/CLEditor1_4_5/jquery.cleditor.css'/> " />
+<script type="text/javascript" src="<c:url value='/CLEditor1_4_5/jquery.min.js'/> "></script>
+<script type="text/javascript" src="<c:url value='/CLEditor1_4_5/jquery.cleditor.min.js'/> "></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+    $("#content").cleditor(); 
+  });
+</script> 
+-->
 <!-- /공통 -->
 <title>모두의 쇼핑몰</title>
 
@@ -46,7 +53,7 @@
 		<!-- 본문 시작-------------------------------------------- -->
 		<div id="board">
 			<form class="board-form" method="post"
-				action="/Project_MDS/main/board/write/${boardlist_no}">
+				action="/Project_MDS/TSA/main/board/write/${boardlist_no}">
 				<input type="hidden" name="a" value="write"> <br> <input
 					type="hidden" name="member_no" value="${authUser.member_no }">
 				<input type="hidden" name="boardlist_no" value="${boardlist_no}">

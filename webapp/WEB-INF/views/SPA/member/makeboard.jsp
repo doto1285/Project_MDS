@@ -57,6 +57,7 @@
 						<td id="butd"><input type="button"
 							class="btn_Up btn btn-primary btn-sm" value="위"> <input
 							type="button" class="btn_Down btn btn-primary btn-sm" value="아래">
+						
 							<input type="button" class="btn_catePMod btn btn-warning btn-sm"
 							data-toggle="modal" data-target="#modal_cateP" value="수정">
 

@@ -2,13 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="TSF_board">
 
-
-	<!--게시물 총 개수 얻기  -->
-	<select id="totalCount"  parameterType="java.lang.Integer" resultType="java.lang.Integer">
+<!-- 자신의 그룹에 있는 댓글 개수 확인
+   select count(*) from board where board_state = 1 and board_group = 37;
+ -->
+ 
+ 	<select id="totalCount" parameterType="java.lang.Integer"
+		resultType="java.lang.Integer">
+		<!--게시물 총 개수 얻기 -->
 		<![CDATA[
-      select count(*) from board  where board_state = 1 and boardlist_no = #{boardlist_no }
-				]]>
+     		 select count(*) from board  where board_state = 1 and boardlist_no = #{boardlist_no }
+		]]>
 	</select>
+
 
 	<select id="GetBoardContentsList" parameterType="map"
 		resultType="kr.ac.sungkyul.MDS.vo.BoardVo">
@@ -33,54 +38,49 @@
  	   
 		]]>
 	</select>
-
+	
 
 	<select id="GetBoardContent" parameterType="java.lang.Integer"
 		resultType="kr.ac.sungkyul.MDS.vo.BoardVo">
 		<!-- 해당 쇼핑몰의 생성되어있는 게시판 목록 가져오기 -->
 		<![CDATA[			
-	
-	 select * from board
+	 		select * from board
 	 
-	  where board_state = 1 
-	  and board_no = #{board_no}
-	
+			where board_state = 1 
+	  		and board_no = #{board_no}
 		]]>
 	</select>
-
-
-
 
 
 	<insert id="NewWrite" parameterType="kr.ac.sungkyul.MDS.vo.BoardVo">
 		<!-- 새 글 등록하기 -->
 		<![CDATA[		
-insert into board values
- (board_seq.nextval,
- 	#{board_title},
- 	#{board_password},
-    #{board_content},
-    0,
-    board_groupno_seq.nextval,
-    1,
-    1,
-    sysdate,
-    1,
-    #{boardlist_no},
-    #{member_no}
-    )
+			insert into board values
+ 			(board_seq.nextval,
+ 			#{board_title},
+ 			#{board_password},
+  			#{board_content},
+  			0,
+   			board_groupno_seq.nextval,
+  			1,
+   			1,
+   			sysdate,
+  		  	1,
+   		 	#{boardlist_no},
+  		 	 #{member_no}
+   			 )
 		]]>
 	</insert>
 
 	<update id="ReplyWrite_orderno_update" parameterType="kr.ac.sungkyul.MDS.vo.BoardVo">
 	<![CDATA[	
-	update board set 
-	board_orderno= board_orderno+1
+		update board set 
+		board_orderno= board_orderno+1
 
-	 where 
- 	board_group = #{board_group} 
- 	and board_orderno > #{board_orderno}
- 	and board_state = 1
+		 where 
+ 		board_group = #{board_group} 
+ 		and board_orderno > #{board_orderno}
+ 		and board_state = 1
 	]]>
 	</update>
 
@@ -88,23 +88,64 @@ insert into board values
 	<insert id="ReplyWrite" parameterType="kr.ac.sungkyul.MDS.vo.BoardVo">
 		<!-- 답글 등록하기 -->
 		<![CDATA[		
-insert into board values
- (board_seq.nextval,
- 	#{board_title},
- 	#{board_password},
-    #{board_content},
-    0,
-    #{board_group},
-    #{board_orderno}+1,
-    #{board_depth}+1,
-    sysdate,
-    1,
-    #{boardlist_no},
-    #{member_no}
-    )
+			insert into board values
+ 			(board_seq.nextval,
+ 			#{board_title},
+ 			#{board_password},
+   			#{board_content},
+   			0,
+    		#{board_group},
+   			#{board_orderno}+1,
+   			#{board_depth}+1,
+    		sysdate,
+    		1,
+   			#{boardlist_no},
+   			#{member_no}
+   	 		)	
 		]]>
-		
-		
 	</insert>
+
+
+	<update id="BoardModify" parameterType="kr.ac.sungkyul.MDS.vo.BoardVo">
+		<!-- 게시글 수정하기 -->
+		<![CDATA[		
+		update board set 
+		board_title = #{board_title },
+		board_password = #{board_password },
+		board_content = #{board_content }
+		
+		where 
+ 		board_no = #{board_no} 
+   	 			
+		]]>
+	</update>
+
+
+	<update id="delete" parameterType="kr.ac.sungkyul.MDS.vo.BoardVo">
+		<!-- 게시글 삭제하기 (state = 0으로 변경) -->
+		<![CDATA[		
+		update board set 
+		board_state = 0
+		
+		where 
+ 		board_no = #{board_no} 
+   	 			
+		]]>
+	</update>
+
+	<select id="checkPw" parameterType="kr.ac.sungkyul.MDS.vo.BoardVo" resultType="kr.ac.sungkyul.MDS.vo.BoardVo">
+		<!-- 비밀번호 확인-->
+		<![CDATA[		
+		select * from board
+		
+		where 
+ 		board_state = 1 and 
+ 		board_no = #{board_no } and
+ 		board_password = #{board_password }
+   	 			
+		]]>
+	</select>
+
+
 
 </mapper>

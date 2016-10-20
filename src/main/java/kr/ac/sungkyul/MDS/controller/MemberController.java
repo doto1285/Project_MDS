@@ -329,4 +329,16 @@ public class MemberController {
 		return "redirect:/" + mall_domain + "/main";
 	}
 
+	@RequestMapping(value = "/TSA/main/logout", method = RequestMethod.GET)
+	// 로그아웃
+	public String TSAlogout(HttpSession session) {
+		System.out.println("로그아웃");
+		session.removeAttribute("authUser");
+		session.invalidate();
+		return "redirect:/TSA/admin/main";
+	}
+
+	
+	
+	
 }

@@ -42,14 +42,12 @@ public class BoardDao {
 	}
 
 	public void NewWrite(BoardVo boardVo) {
-		// TODO Auto-generated method stub
 		// 새 글 등록하기
 		sqlSession.insert("TSF_board.NewWrite", boardVo);
 
 	}
 
 	public BoardVo GetBoardContent(int board_no) {
-		// TODO Auto-generated method stub
 
 		BoardVo boardVo = sqlSession.selectOne("TSF_board.GetBoardContent", board_no);
 
@@ -58,13 +56,11 @@ public class BoardDao {
 	}
 
 	public void ReplyWrite_orderno_update(BoardVo boardVo) {
-		// TODO Auto-generated method stub
 		// 답글 달기 order_no 증가
 		sqlSession.update("TSF_board.ReplyWrite_orderno_update", boardVo);
 	}
 
 	public void ReplyWrite(BoardVo boardVo) {
-		// TODO Auto-generated method stub
 		// 답글 달기
 		sqlSession.insert("TSF_board.ReplyWrite", boardVo);
 	}
@@ -72,6 +68,32 @@ public class BoardDao {
 	public int getTotalCount(int boardlist_no) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("TSF_board.totalCount", boardlist_no);
+	}
+
+	public void BoardModify(BoardVo boardVo) {
+		//게시글 수정
+		sqlSession.update("TSF_board.BoardModify", boardVo);
+		
+	}
+
+	public void delete(BoardVo boardVo) {
+		//게시글 삭제하기 (state = 0으로 변경)
+		sqlSession.update("TSF_board.delete", boardVo);
+	}
+
+	public boolean checkPw(BoardVo boardVo) {
+		
+		BoardVo vo = sqlSession.selectOne("TSF_board.checkPw", boardVo);
+		System.out.println("비밀번호 확인" + vo);
+		
+		if(vo != null){
+			return true;
+		}
+		else{
+			return false;
+		}
+		
+		
 	}
 
 	

@@ -29,32 +29,18 @@ public class BoardService {
 	private BoardDao boardDao;
 
 	public List<BoardListVo> GetBoardList(String userid) {
-		// TODO Auto-generated method stub
 		List<BoardListVo> GetBoardList = boardListDao.GetBoardList(userid);
 
 		return GetBoardList;
 	}
 
 	public BoardListVo GetBoard(String userid, int boardlist_no) {
-		// TODO Auto-generated method stub
 		// 게시판 정보 가져오기
 		BoardListVo GetBoard = boardListDao.GetBoard(userid, boardlist_no);
 		return GetBoard;
 	}
 
-	// public List<BoardVo> GetBoardContentsList(int boardlist_no, int page, int
-	// pagesize) {
-	// // TODO Auto-generated method stub
-	// // 해당 게시판의 게시글들을 가져온다.
-	//
-	//// List<BoardVo> GetBoardContentsList =
-	// boardDao.GetBoardContentsList(boardlist_no, page, pagesize);
-	//
-	// return GetBoardContentsList;
-	// }
-
 	public void NewWrite(BoardVo boardVo) {
-		// TODO Auto-generated method stub
 		// 새 글 등록하기
 		boardDao.NewWrite(boardVo);
 	}
@@ -68,7 +54,6 @@ public class BoardService {
 
 	@Transactional
 	public void ReplyWrite(BoardVo boardVo) {
-		// TODO Auto-generated method stub
 		// 답글 등록하기
 		boardDao.ReplyWrite_orderno_update(boardVo);
 		boardDao.ReplyWrite(boardVo);
@@ -123,47 +108,58 @@ public class BoardService {
 		return map;
 	}
 
+	
+
+	public void BoardModify(BoardVo boardVo) {
+		//게시글 수정하기
+
+		boardDao.BoardModify(boardVo);
+	}
+	
+	public void delete(BoardVo boardVo) {
+		//게시글 삭제하기 (state = 0으로 변경)
+		
+		boardDao.delete(boardVo);
+	}
+	
+
+	public boolean checkPw(BoardVo boardVo) {
+
+		
+		
+		return boardDao.checkPw(boardVo);
+	}
+
+	
+	/////////////////////// 게시판 부분
+	
+
 	public List<BoardListVo> getBoardListInfo(String domain) {
-		// TODO Auto-generated method stub
 		//해당 도메인에 개설된 게시판 정보를 가져온다
-		
-		
 		return boardListDao.getBoardListInfo(domain);
 	}
 
 	public void insertBoardList(BoardListVo vo) {
-		// TODO Auto-generated method stub
 		//새 게시판을 삽입한다.
 		boardListDao.insertBoardList(vo);
-		
 	}
 
 	public void boardListModify(BoardListVo vo) {
-		// TODO Auto-generated method stub
 		//게시판 정보를 수정한다.
 		boardListDao.boardListModify(vo);
-		
 	}
 
 	public BoardListVo boardListUp(int boardlistno) {
-		// TODO Auto-generated method stub
 		// 게시판 순서를 위로 올린다
-
 		BoardListVo vo  = boardListDao.getMyVo(boardlistno); // 순서를 위로 올릴 게시판(자기자신) 정보를 가져온다
-	
 		BoardListVo vo2  = boardListDao.getBelowOrderNo(vo);//자신보다 orderNo가 1낮은 게시판 정보를 가져온다
 		
 		
-//		System.out.println("자기꺼 " + vo );
-//		System.out.println("위에꺼 " + vo2 );
 		int temp = vo.getBoard_orderno();
 		
 		vo.setBoard_orderno(vo2.getBoard_orderno());
 		vo2.setBoard_orderno(temp);
 
-//		System.out.println("자기꺼 " + vo );
-//		System.out.println("위에꺼 " + vo2 );
-		
 		boardListDao.updateOrderno(vo);		//변경된 orderno를 데이터베이스에 저장한다
 		boardListDao.updateOrderno(vo2);	//변경된 orderno를 데이터베이스에 저장한다
 		
@@ -171,23 +167,15 @@ public class BoardService {
 	}
 	
 	public BoardListVo boardListDown(int boardlistno) {
-		// TODO Auto-generated method stub
 		// 게시판 순서를 위로 올린다
 		
 		BoardListVo vo  = boardListDao.getMyVo(boardlistno); // 순서를 위로 올릴 게시판(자기자신) 정보를 가져온다
-		
 		BoardListVo vo2  = boardListDao.getAboveOrderNo(vo);//자신보다 orderNo가 1높은 게시판 정보를 가져온다
 		
-		
-//		System.out.println("자기꺼 " + vo );
-//		System.out.println("위에꺼 " + vo2 );
 		int temp = vo.getBoard_orderno();
 		
 		vo.setBoard_orderno(vo2.getBoard_orderno());
 		vo2.setBoard_orderno(temp);
-		
-//		System.out.println("자기꺼 " + vo );
-//		System.out.println("위에꺼 " + vo2 );
 		
 		boardListDao.updateOrderno(vo);		//변경된 orderno를 데이터베이스에 저장한다
 		boardListDao.updateOrderno(vo2);	//변경된 orderno를 데이터베이스에 저장한다
@@ -196,13 +184,10 @@ public class BoardService {
 	}
 
 	public void boardlistdelete(int boardlistno) {
-		// TODO Auto-generated method stub
 		//게시판 삭제
 		BoardListVo vo  = boardListDao.getMyVo(boardlistno); // 삭제할 게시판 자기 자신의 정보를 가져온다
 		boardListDao.boardlistdelete(boardlistno);	//변경된 orderno를 데이터베이스에 저장한다 (state = 0 으로 수정한다)
 		boardListDao.DeleteCategory_OrderNoDown(vo);	//자신보다 orderNo가 큰 게시판들의 orderNo를 1씩 감소시킨다
-		
-		
 	}
 	
 	/**
@@ -217,5 +202,7 @@ public class BoardService {
 
 	      return GetBoardList;
 	   }
+
+
 
 }
