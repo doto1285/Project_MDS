@@ -94,7 +94,7 @@ public class TSF_BoardController {
 	}
 	
 	
-	
+	@ResponseBody
 	@RequestMapping("main/board/checkpw")
 	//비밀번호 확인
 	public String checkpw(
@@ -105,10 +105,22 @@ public class TSF_BoardController {
 		
 		System.out.println("글번호, 비번: " + board_no + "  " + pw);
 		
-//		boardVo.setBoard_no(board_no);
-//		BoardService.BoardModify(boardVo);
+		boardVo.setBoard_no(board_no);
+		boardVo.setBoard_password(pw);
 		
-		return "main/board/modifyform?no=" + board_no;
+		System.out.println("비번확인 " + boardVo);
+		
+		boolean boo = BoardService.checkPw(boardVo);
+		System.out.println("컨트롤러 값 확인 : " + boo);
+		
+		
+		if(boo){
+			return "true";
+		}
+		else{
+			return "f";
+		}
+		
 	}
 	
 	
@@ -123,6 +135,7 @@ public class TSF_BoardController {
 		
 		return "redirect:/main/board/view?no=" + board_no;
 	}
+	
 	
 	@RequestMapping("main/board/modifyform")
 	public String modifyform(Model model,
@@ -140,6 +153,11 @@ public class TSF_BoardController {
 
 		return "TSF/board/modifyform";
 	}
+	
+	
+	
+	
+	
 
 	@RequestMapping("main/board/delete")
 	public String delete(Model model, @RequestParam(value = "no") int board_no) {

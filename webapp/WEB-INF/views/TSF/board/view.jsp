@@ -184,9 +184,8 @@
 	$(".btn_delete").on("click", function() {
 		var formmodal = document.formmodal;
 		board_no = $(this).parents("div").data("board_no");
-		
-		$('#check_motion').val("delete");
 
+		$('#check_motion').val("delete");
 
 		console.log("수정버튼 클릭시: " + board_no); //로그에 찍히는 부분
 	});
@@ -195,42 +194,49 @@
 <!--  modify?no=${GetBoardContent.board_no }  -->
 <script>
 <!-- 비밀번호 입력 시 -->
-	$(".btn_check").on("click", function() {
+	$(".btn_check")
+			.on(
+					"click",
+					function() {
 
-		var pw = $("#pw").val();
-		var check_motion = $("#check_motion").val();
+						var pw = $("#pw").val();
+						var check_motion = $("#check_motion").val();
 
-		if (check_motion == 'modify') {
-			console.log("글 수정");
-			/////////////////
-				$.ajax({
-				url : "modifyform?board_no="+board_no,
-				type : "POST",
-				data : {
-					"pw" : pw
-				},
-				dataType : "text",
+						if (check_motion == 'modify') {
+							console.log("글 수정");
+							/////////////////
+							$
+									.ajax({
+										url : "checkpw",
+										type : "POST",
+										data : {
+											"board_no" : board_no,
+											"pw" : pw
+										},
+										dataType : "text",
 
-				success : function(url) {
-					//ajax가 성공했을때, 컨트롤러에서 리턴받는 url로 페이지를 최신화 시킨다.
-					if (url) {
-						location.href = url;
-					} else {
-						alert("비밀번호가 틀렸습니다");
-					}
+										success : function(boo) {
+											//ajax가 성공했을때, 컨트롤러에서 리턴받는 url로 페이지를 최신화 시킨다.
 
-				},
-				error : function(jqXHR, status, error) {
-					consloe.log("error: " + error);
-				}
-			});
-			///////////////////
-		}
-		if ('delete' == check_motion) {
-			//글 삭제 
-			console.log("글 삭제");
+											if (boo == 'true') {
+												location.href = "http://localhost:8088/Project_MDS/main/board/modifyform?board_no="
+														+ board_no;
+											} else {
+												alert("비밀번호가 틀렸습니다");
+											}
 
-		}
+										},
+										error : function(jqXHR, status, error) {
+											consloe.log("error: " + error);
+										}
+									});
+							///////////////////
+						}
+						if ('delete' == check_motion) {
+							//글 삭제 
+							console.log("글 삭제");
 
-	});
+						}
+
+					});
 </script>

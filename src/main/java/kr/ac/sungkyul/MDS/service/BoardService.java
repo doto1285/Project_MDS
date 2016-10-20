@@ -122,7 +122,14 @@ public class BoardService {
 		boardDao.delete(boardVo);
 	}
 	
-	
+
+	public boolean checkPw(BoardVo boardVo) {
+
+		
+		
+		return boardDao.checkPw(boardVo);
+	}
+
 	
 	/////////////////////// 게시판 부분
 	

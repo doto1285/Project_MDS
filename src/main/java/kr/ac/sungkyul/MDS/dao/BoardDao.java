@@ -81,6 +81,21 @@ public class BoardDao {
 		sqlSession.update("TSF_board.delete", boardVo);
 	}
 
+	public boolean checkPw(BoardVo boardVo) {
+		
+		BoardVo vo = sqlSession.selectOne("TSF_board.checkPw", boardVo);
+		System.out.println("비밀번호 확인" + vo);
+		
+		if(vo != null){
+			return true;
+		}
+		else{
+			return false;
+		}
+		
+		
+	}
+
 	
 
 }
