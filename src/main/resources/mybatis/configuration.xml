@@ -28,6 +28,8 @@
 		<mapper resource="mybatis/mappers/SPA_mallimg.xml" />
 		<mapper resource="mybatis/mappers/SPF_mallimg.xml" />
 		<mapper resource="mybatis/mappers/TSA_board.xml" />
+		<mapper resource="mybatis/mappers/SPF_basket.xml" />
+		
 	</mappers>
 
 </configuration>

@@ -228,16 +228,11 @@
 
 	
 	$("#basket").on("click", function(){
-		var a = $(".form-inline:empty");
-		console.log(a);
-		$(".form-inline:empty")
+
 		if(loginCheck == ""){
 			alert("로그인 후 장바구니를 이용해주세요.");
 		}
 
-		/* else if($(".form-inline:empty")){
-			alert("원하시는 상품의 옵션을 선택해주세요.");
-		} */
 		else {
 		$("#optionResult .form-inline").each(function(i) {
 			var buyInfo = new Object();
@@ -251,13 +246,19 @@
 		
 		console.log(JSON.stringify(buyInfoArray));
 		
+
+		if(buyInfoArray.length == 0){
+			alert("원하시는 상품의 옵션을 선택해주세요.");
+		}
+		else{
 		  $.ajax({
 			url : "shoppingbasketinsert",
 			type : "POST",
 			data : JSON.stringify(buyInfoArray),
 			contentType : "application/json",
-			success : function() {
-				alert("동작성공"); 
+			success : function(url) {
+				alert("선택한 상품이 장바구니로 이동되었습니다."); 
+				location.href = url;
 			},
 			error : function(request, status, error) {
 				alert("code:" + request.status + "\n" + "message:"
@@ -265,8 +266,9 @@
 						+ error);
 			}
 		});  
-		 
 		}
+		}
+		
 	});
 	
 	  

@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.sungkyul.MDS.service.BoardService;
 import kr.ac.sungkyul.MDS.service.MemberService;
@@ -32,7 +33,7 @@ import net.sf.json.JSONArray;
 
 @Controller
 public class SPF_ShoppingBasketController {
-	
+
 	@Autowired
 	SPF_ListDetailService SPF_listDetailService;
 
@@ -50,12 +51,12 @@ public class SPF_ShoppingBasketController {
 
 	@Autowired
 	BoardService boardService;
-	
+
 	@Autowired
 	SPF_ShoppingBasketService SPF_shoppingBasketService;
 
 	@RequestMapping("{mall_domain}/shoppingbasket")
-	public String shoppingBasket(@PathVariable String mall_domain, Model model, HttpSession session ) {
+	public String shoppingBasket(@PathVariable String mall_domain, Model model, HttpSession session) {
 
 		// 현재 접속한 SPF 쇼핑몰 도메인을 매개로 mall_domain, mall_no을 mallVo에 넣음
 		MallVo mallVo = SPF_mallService.domainCheck(mall_domain);
@@ -79,12 +80,11 @@ public class SPF_ShoppingBasketController {
 		// 헤더의 게시판 리스트 뿌려줌
 		List<BoardListVo> boardList = boardService.SPF_GetBoardList(mallVo);
 		model.addAttribute("boardList", boardList);
-		
-		
+
 		// 로그인 세션 체크
 		if (memberService.isUserCheck(session) == false) {
 			// 로그인 안한 회원일 경우 실행되는 코드
-			return "SPF/product/listDetail";
+			return "SPF/subMenu/shoppingBasket";
 		}
 
 		// 로그인 세션을 memberVo에 넣음
@@ -102,7 +102,7 @@ public class SPF_ShoppingBasketController {
 		if (memberService.SPFWhatUser(joinmallVo) == false) {
 			// 로그인 세션이 있는 회원이 현재 쇼핑몰에 가입되지 않은 경우 실행되는 코드
 			joinmallVo.setMember_no(null);
-			return "SPF/product/listDetail";
+			return "SPF/subMenu/shoppingBasket";
 		}
 
 		// 현재 쇼핑몰에 가입된 경우 실행되는 코드
@@ -111,29 +111,26 @@ public class SPF_ShoppingBasketController {
 		model.addAttribute("SPFauthUser", SPFauthUser);
 		System.out.println(SPFauthUser);
 
-		return "SPF/product/listDetail";
+		return "SPF/subMenu/shoppingBasket";
 	}
 
+	@ResponseBody
 	@RequestMapping("{mall_domain}/shoppingbasketinsert")
-	public String shoppingBasketInsert(@PathVariable String mall_domain, Model model, HttpSession session, @RequestBody String paramData ) {
-		//SPF_shoppingBasketService
-		
-		List<Map<String,Object>> resultMap = new ArrayList<Map<String,Object>>();
-		resultMap = JSONArray.fromObject(paramData);
-	
-		for(Map<String, Object>map : resultMap){
-			map.get("productoption_stock");
-			map.get("orderinfo_price");
-			map.get("product_no");
-			map.get("productoption_no");
-			map.get("member_no");
-			System.out.println("수량: " + map.get("productoption_stock") + "  " +
-					"주문가격: " + map.get("orderinfo_price") + "  " +
-					"상품번호: " + map.get("product_no") + "  " +
-					"상품옵션번호: " + map.get("productoption_no") + "  " +
-					"회원번호: " + map.get("member_no"));
+	public String shoppingBasketInsert(@PathVariable String mall_domain, Model model, HttpSession session,
+			@RequestBody String paramData) {
+		// 현재 접속한 SPF 쇼핑몰 도메인을 매개로 mall_domain, mall_no을 mallVo에 넣음
+		MallVo mallVo = SPF_mallService.domainCheck(mall_domain);
+		model.addAttribute("mall_domain", mall_domain);
+		// 도메인 체크
+		if ((SPF_mallService.isDomainCheck(mallVo.getMall_no())) == false) {
+			// 없는 도메인일 경우 실행되는 코드
+			return "404 error";
 		}
-		
-		return "SPF/product/listDetail";
+
+		List<Map<String, Object>> resultMap = new ArrayList<Map<String, Object>>();
+		resultMap = JSONArray.fromObject(paramData);
+		SPF_shoppingBasketService.insertBasket(resultMap, mallVo.getMall_no());
+
+		return "http://localhost:8088/Project_MDS/" + mall_domain + "/shoppingbasket";
 	}
 }

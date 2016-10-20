@@ -52,7 +52,7 @@
 				<td><img
 					src="/Project_MDS/assets/image/SPF_orderProductSample1.png"
 					alt="상품 이미지" class="img-thumbnail" id="orderProductImage"></td>
-				<td id="tableContents">엠보단가라</td>
+				<td id="tableContents">엠보단가라<br>(빨강, 대박사이즈)</td>
 				<td id="tableContents">13500원</td>
 				<td id="tableContents">2개</td>
 				<td id="tableContents">29500원</td>
