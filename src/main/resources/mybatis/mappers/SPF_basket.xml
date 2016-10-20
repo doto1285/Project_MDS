@@ -9,11 +9,18 @@
 		]]>
 	</insert>
 
-	<select id="get_product_detail_product" parameterType="java.lang.Integer"
-		resultType="kr.ac.sungkyul.MDS.vo.ProductVo">
+	<select id="selectbasket" parameterType="kr.ac.sungkyul.MDS.vo.MallVo"
+		resultType="kr.ac.sungkyul.MDS.vo.BasketListVo">
 		<!-- 상품 상세 정보(3개 테이블 조회) 중 상품에 대한 정보를 가져옴 -->
 	<![CDATA[
-		select * from product where product_no=#{product_no}
+		select p.*, productimg.productimg_image from 
+		(select b.*, product_name, product_price, (b.basket_count * product_price) total from 
+		(select basket.*,productoption_color,productoption_size 
+		from basket left join productoption 
+		on basket.productoption_no = productoption.productoption_no 
+		where basket.member_no=#{member_no } and basket.mall_no=#{mall_no }) b 
+		left join product on b.product_no = product.product_no where product.product_state = 1) p 
+		left join productimg on p.product_no = productimg.product_no where productimg_flag = 0
 		]]>
 	</select>
 

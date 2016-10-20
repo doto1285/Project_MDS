@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import kr.ac.sungkyul.MDS.dao.BasketDao;
 import kr.ac.sungkyul.MDS.dao.ProductDao;
+import kr.ac.sungkyul.MDS.vo.BasketListVo;
 import kr.ac.sungkyul.MDS.vo.BasketVo;
 import kr.ac.sungkyul.MDS.vo.MallVo;
 import kr.ac.sungkyul.MDS.vo.ProductListVo;
@@ -20,7 +21,6 @@ public class SPF_ShoppingBasketService {
 	private BasketDao basketDao;
 
 	public void insertBasket(List<Map<String, Object>> resultMap, int mall_no) {
-
 		List<BasketVo> basketList = new ArrayList<BasketVo>();
 		for (Map<String, Object> map : resultMap) {
 			BasketVo basketVo = new BasketVo();
@@ -46,5 +46,9 @@ public class SPF_ShoppingBasketService {
 	 * map.get("product_no") + "  " + "상품옵션번호: " + map.get("productoption_no") +
 	 * "  " + "회원번호: " + map.get("member_no"));
 	 */
+	
+	public List<BasketListVo> selectBasket(MallVo mallVo){
+		return basketDao.selectBasket(mallVo);
+	}
 
 }

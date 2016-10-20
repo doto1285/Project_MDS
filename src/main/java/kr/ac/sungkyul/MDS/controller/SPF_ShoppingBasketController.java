@@ -22,6 +22,7 @@ import kr.ac.sungkyul.MDS.service.SPF_MainService;
 import kr.ac.sungkyul.MDS.service.SPF_MallService;
 import kr.ac.sungkyul.MDS.service.SPF_MallimgService;
 import kr.ac.sungkyul.MDS.service.SPF_ShoppingBasketService;
+import kr.ac.sungkyul.MDS.vo.BasketListVo;
 import kr.ac.sungkyul.MDS.vo.BoardListVo;
 import kr.ac.sungkyul.MDS.vo.CategoryListVo;
 import kr.ac.sungkyul.MDS.vo.JoinMallVo;
@@ -84,14 +85,18 @@ public class SPF_ShoppingBasketController {
 		// 로그인 세션 체크
 		if (memberService.isUserCheck(session) == false) {
 			// 로그인 안한 회원일 경우 실행되는 코드
-			return "SPF/subMenu/shoppingBasket";
+			return "404 error";
 		}
 
 		// 로그인 세션을 memberVo에 넣음
 		MemberVo memberVo = (MemberVo) session.getAttribute("authUser");
-		System.out.println("현재 로그인한 사용자: " + memberVo);
-
 		model.addAttribute("memberVo", memberVo);
+		
+		//mallVo에 쇼핑몰번호, 회원번호를 가지고 DB에서 알맞은 쇼핑몰 리스트를 불러옴
+		mallVo.setMember_no(memberVo.getMember_no());
+		List<BasketListVo> basketList = SPF_shoppingBasketService.selectBasket(mallVo);
+		model.addAttribute("basketList", basketList);
+		
 
 		// 현재 도메인과 로그인 정보(mallVo, memberVo)를 joinmallVo에 넣음(SPF가입여부 체크용)
 		JoinMallVo joinmallVo = new JoinMallVo();
