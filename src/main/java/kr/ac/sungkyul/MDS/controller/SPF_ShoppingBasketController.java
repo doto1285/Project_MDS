@@ -143,6 +143,7 @@ public class SPF_ShoppingBasketController {
 	@RequestMapping("{mall_domain}/shoppingbasketdelete")
 	public String shoppingBasketDnsert(@PathVariable String mall_domain, Model model, HttpSession session,
 			@RequestBody String paramData) {
+		System.out.println(paramData);
 		// 현재 접속한 SPF 쇼핑몰 도메인을 매개로 mall_domain, mall_no을 mallVo에 넣음
 		MallVo mallVo = SPF_mallService.domainCheck(mall_domain);
 		model.addAttribute("mall_domain", mall_domain);
@@ -151,10 +152,13 @@ public class SPF_ShoppingBasketController {
 			// 없는 도메인일 경우 실행되는 코드
 			return "404 error";
 		}
-
-		List<Map<String, Object>> resultMap = new ArrayList<Map<String, Object>>();
-		resultMap = JSONArray.fromObject(paramData);
-		SPF_shoppingBasketService.insertBasket(resultMap, mallVo.getMall_no());
+		
+		/*List<Map<String, Object>> resultMap = new ArrayList<Map<String, Object>>();
+		resultMap = JSONArray.fromObject(paramData);*/
+		/*List<BasketListVo> resultMap = new ArrayList<BasketListVo>();
+		resultMap = paramData;*/
+		//System.out.println("컨트롤러 리절트맵: " + paramData);
+		//SPF_shoppingBasketService.deleteBasket(resultMap);
 
 		return "http://localhost:8088/Project_MDS/" + mall_domain + "/shoppingbasket";
 	}
