@@ -39,10 +39,12 @@ public class ProductDao {
 	public Map get_Product_detail(int product_no){
 		Map<String, Object> map = new HashMap<String, Object>();
 		ProductVo productVo = sqlSession.selectOne("SPF_product.get_product_detail_product", product_no);
+		ProductimgVo productimgflag0 = sqlSession.selectOne("SPF_product.get_product_detail_productimg_flag0", product_no);
 		ProductimgVo productimgflag1 = sqlSession.selectOne("SPF_product.get_product_detail_productimg_flag1", product_no);
 		ProductimgVo productimgflag2 = sqlSession.selectOne("SPF_product.get_product_detail_productimg_flag2", product_no);
 		List<ProductOptionVo> productOptionList = sqlSession.selectList("SPF_product.get_product_detail_productoption", product_no);
 		map.put("productVo", productVo);
+		map.put("productimgflag0", productimgflag0);
 		map.put("productimgflag1", productimgflag1);
 		map.put("productimgflag2", productimgflag2);
 		map.put("productOptionList", productOptionList);

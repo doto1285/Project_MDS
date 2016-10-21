@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="SPF_basket">
+<mapper namespace="SPF_order">
 
-	<insert id="insertbasket" parameterType="kr.ac.sungkyul.MDS.vo.BasketVo">
-	<!-- 장바구니 상품을 삽입함 -->
-		<![CDATA[
-			insert into basket values 
-			(basket_seq.nextval, #{basket_count}, #{product_no}, #{productoprion_no}, #{member_no}, #{mall_no})
-		]]>
-	</insert>
-
-	<select id="selectbasket" parameterType="kr.ac.sungkyul.MDS.vo.MallVo"
+	<select id="selectorder" parameterType="kr.ac.sungkyul.MDS.vo.BasketListVo"
 		resultType="kr.ac.sungkyul.MDS.vo.BasketListVo">
-		<!-- 장바구니 리스트를 가져옴 -->
+		<!-- 주문 리스트를 가져옴 -->
 	<![CDATA[
 		select p.*, productimg.productimg_image from 
 		(select b.*, product_name, product_price, (b.basket_count * product_price) total from 

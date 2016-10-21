@@ -119,7 +119,6 @@
 	var count = 1;
 	var price = 0;
 	var loginCheck = "${SPFauthUser.member_no }";
-	var buyInfoArray = [];
 	
 	$('#form-control2').attr('disabled', 'true');
 	
@@ -187,7 +186,7 @@
 		
 	
 		if(insertBoolean == "true"){
-		optionResultString += "<div class='form-inline' data-color='"+ colorValue +"' data-size='" + sizeValue + "'>";
+		optionResultString += "<div class='form-inline' data-color='"+ colorValue +"' data-size='" + sizeValue + "' data-sizetext='" + sizeText + "'>";
 		optionResultString += "<div class='form-group'>";
 		optionResultString += "<label id='optionText' >";
 		optionResultString += "&nbsp;&nbsp;&nbsp;&nbsp;";
@@ -228,7 +227,7 @@
 
 	
 	$("#basket").on("click", function(){
-
+		var buyInfoArray = [];
 		if(loginCheck == ""){
 			alert("로그인 후 장바구니를 이용해주세요.");
 		}
@@ -258,6 +257,55 @@
 			contentType : "application/json",
 			success : function(url) {
 				alert("선택한 상품이 장바구니로 이동되었습니다."); 
+				location.href = url;
+			},
+			error : function(request, status, error) {
+				alert("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n" + "error:"
+						+ error);
+			}
+		});  
+		}
+		}
+	});
+	
+	
+	$("#order").on("click", function(){
+		var buyInfoArray = [];
+		if(loginCheck == ""){
+			alert("로그인 후 주문하기를 이용해주세요.");
+		}
+
+		else {
+		$("#optionResult .form-inline").each(function(i) {
+			var buyInfo = new Object();
+			buyInfo.productoption_stock = $(this).find(".form-control").val();
+			buyInfo.product_name = "${map.productVo.product_name}";
+			buyInfo.product_price = ${map.productVo.product_price};
+			buyInfo.orderinfo_price = $(this).find(".form-control").val() * ${map.productVo.product_price};
+			buyInfo.productoption_color = $(this).data("color");
+			buyInfo.productoption_size = $(this).data("sizetext");
+			buyInfo.productimg_image = "${map.productimgflag0.productimg_image}";
+			buyInfo.product_no = ${map.productVo.product_no};
+			buyInfo.productoption_no = $(this).data("size");
+			buyInfo.member_no = loginCheck;
+			buyInfoArray.push(buyInfo);
+		});
+		
+		console.log(JSON.stringify(buyInfoArray));
+		
+
+		if(buyInfoArray.length == 0){
+			alert("원하시는 상품의 옵션을 선택해주세요.");
+		}
+		else{
+		  $.ajax({
+			url : "orderinsert",
+			type : "POST",
+			data : JSON.stringify(buyInfoArray),
+			contentType : "application/json",
+			success : function(url) {
+				console.log("동작성공");
 				location.href = url;
 			},
 			error : function(request, status, error) {

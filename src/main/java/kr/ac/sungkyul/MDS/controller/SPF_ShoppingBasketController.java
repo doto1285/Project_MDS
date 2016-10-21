@@ -81,7 +81,7 @@ public class SPF_ShoppingBasketController {
 		// 헤더의 게시판 리스트 뿌려줌
 		List<BoardListVo> boardList = boardService.SPF_GetBoardList(mallVo);
 		model.addAttribute("boardList", boardList);
-
+		
 		// 로그인 세션 체크
 		if (memberService.isUserCheck(session) == false) {
 			// 로그인 안한 회원일 경우 실행되는 코드

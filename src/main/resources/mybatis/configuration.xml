@@ -29,6 +29,7 @@
 		<mapper resource="mybatis/mappers/SPF_mallimg.xml" />
 		<mapper resource="mybatis/mappers/TSA_board.xml" />
 		<mapper resource="mybatis/mappers/SPF_basket.xml" />
+		<mapper resource="mybatis/mappers/SPF_order.xml" />
 		
 	</mappers>
 

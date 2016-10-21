@@ -26,5 +26,5 @@ public class BasketDao {
 	public List<BasketListVo> selectBasket(MallVo mallVo){
 		return sqlSession.selectList("SPF_basket.selectbasket", mallVo);
 	}
-	
+
 }
