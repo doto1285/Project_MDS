@@ -6,7 +6,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<!-- 공통 -->
+<script type="text/javascript"
+	src="/Project_MDS/assets/js/jquery/jquery-3.1.1.js"></script>
 
+<link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css">
+<script src="/Project_MDS/assets/dist/js/bootstrap.min.js"></script>
+<link href="/Project_MDS/assets/css/SPA_main.css" rel="stylesheet"
+	type="text/css">
+<!-- /공통 -->
 
 
 <link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
@@ -59,16 +68,15 @@
 								action="/Project_MDS/main/board/write/${boardlist_no}">
 								<input type="hidden" name="a" value="write"> <br> <input
 									type="hidden" name="member_no" value="${authUser.member_no }">
-									 <input
-									type="hidden" name="boardlist_no" value="${boardlist_no}">
-			
+								<input type="hidden" name="boardlist_no" value="${boardlist_no}">
+
 								<table class="tbl-ex">
 									<tr>
 										<th colspan="2">글쓰기 ${boardlist_no }</th>
 									</tr>
 									<tr>
 										<td class=>제목</td>
-										<td><input type="text" name="board_title" value=""></td>
+										<td><input type="text" id = "board_title" name="board_title" value=""></td>
 									</tr>
 									<tr>
 										<td class=>내용</td>
@@ -77,14 +85,14 @@
 
 									<tr>
 										<td class=>비밀번호</td>
-										<td><textarea id="text" name="board_password"></textarea></td>
+										<td><textarea id="board_password" name="board_password"></textarea></td>
 									</tr>
 
 								</table>
 
 								<div class="bottom">
-									<a href="javascript:history.back(-1);">취소</a> <input type="submit"
-										value="등록">
+									<a href="javascript:history.back(-1);">취소</a> <input
+										type="submit" value="등록">
 								</div>
 							</form>
 						</div>
@@ -127,5 +135,42 @@
 </body>
 
 </html>
+
+
+<script>
+//제목, 내용, 비밀번호가 없을때 글 등록이 되지 않는다.
+	$(function() {
+
+		$(".board-form").submit(
+				function() {
+					 
+					//제목 체크
+					if ($("#board_title").val() == "") {
+					
+						alert("제목을 입력하세요");
+						
+						$("#board_password").focus();
+						return false;
+					}
+					//내용 체크
+					if ($("#content").val() == "") {
+					
+						alert("내용 입력하세요");
+						
+						$("#board_password").focus();
+						return false;
+					}
+					//비밀번호 체크
+					if ($("#board_password").val() == "") {
+					
+						alert("비밀번호 입력하세요");
+						
+						$("#board_password").focus();
+						return false;
+					}
+
+				});
+	});
+</script>
 
 

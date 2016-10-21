@@ -149,7 +149,6 @@ public class BoardService {
 	public void addHit(int board_no) {
 		//게시글을 클릭하면 조회수가 1씩 증가한다.
 		boardDao.addHit(board_no);
-		
 	}
 
 	/////////////////////// 게시판 부분
