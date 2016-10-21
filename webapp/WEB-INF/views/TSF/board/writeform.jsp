@@ -143,7 +143,6 @@
 
 		$(".board-form").submit(
 				function() {
-					 
 					//제목 체크
 					if ($("#board_title").val() == "") {
 					
@@ -168,7 +167,6 @@
 						$("#board_password").focus();
 						return false;
 					}
-
 				});
 	});
 </script>
