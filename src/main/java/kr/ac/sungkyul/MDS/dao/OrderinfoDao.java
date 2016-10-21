@@ -23,6 +23,6 @@ public class OrderinfoDao {
 	
 	public void updateOrderState(OrderinfoVo vo) {
 		sqlSession.update("SPA_orderinfo.updateOrderState", vo);
-		
 	}
+
 }

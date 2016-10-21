@@ -119,18 +119,38 @@ public class BoardService {
 	public void delete(BoardVo boardVo) {
 		//게시글 삭제하기 (state = 0으로 변경)
 		
+		BoardVo vo2 = boardDao.checkReply(boardVo);
+		
+		if (vo2 == null) {
+			boardVo.setBoard_state(0);
+		} else {
+			if ( boardVo.getBoard_depth() >= vo2.getBoard_depth()) {
+				// 댓글에 댓글이 달려있지 않을경우, 게시글 삭제 (state = 2으로 변경)
+				boardVo.setBoard_state(0);
+			} else {
+				boardVo.setBoard_state(2);
+			}
+		}
+		
+		System.out.println(boardVo.getBoard_state());
+		
 		boardDao.delete(boardVo);
 	}
 	
 
 	public boolean checkPw(BoardVo boardVo) {
-
-		
-		
+		//입력한 비밀번호가 맞는지 확인
 		return boardDao.checkPw(boardVo);
 	}
 
+
 	
+
+	public void addHit(int board_no) {
+		//게시글을 클릭하면 조회수가 1씩 증가한다.
+		boardDao.addHit(board_no);
+	}
+
 	/////////////////////// 게시판 부분
 	
 
@@ -202,6 +222,7 @@ public class BoardService {
 
 	      return GetBoardList;
 	   }
+
 
 
 

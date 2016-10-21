@@ -9,6 +9,7 @@ public class BasketVo {
 	private int member_no;
 	private int mall_no;
 	
+	
 	public int getBasket_no() {
 		return basket_no;
 	}

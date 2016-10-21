@@ -161,7 +161,7 @@ public class SPA_MainService {
 		long fileSize = file.getSize();
 
 		// 4. saveName
-		String saveName = orgName + domain;
+		String saveName = orgName + domain + flag;
 
 		// 5. path 경로 정하기
 		String path = "C:\\Users\\Jungminki\\Desktop\\skubit\\java\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Project_MDS\\assets\\image";

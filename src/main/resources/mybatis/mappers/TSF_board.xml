@@ -2,11 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="TSF_board">
 
-<!-- 자신의 그룹에 있는 댓글 개수 확인
-   select count(*) from board where board_state = 1 and board_group = 37;
- -->
- 
- 	<select id="totalCount" parameterType="java.lang.Integer"
+	<!-- 자신의 그룹에 있는 댓글 개수 확인 select count(*) from board where board_state = 
+		1 and board_group = 37; -->
+
+	<select id="totalCount" parameterType="java.lang.Integer"
 		resultType="java.lang.Integer">
 		<!--게시물 총 개수 얻기 -->
 		<![CDATA[
@@ -23,14 +22,14 @@
       (
 		
 		select 
-		board_no, board_title, board_content, board_hits, board_group, board_orderno, board_depth, 
+		board_no, board_title, board_content, board_hit, board_group, board_orderno, board_depth, 
 		board_date, board_state, boardlist_no, member_no, 
 
 		(select member_name from member where board.member_no = member.member_no) as name
 
 		from board
 
- 	   where board_state = 1 and boardlist_no = #{boardlist_no }
+ 	   where board_state >= 1 and boardlist_no = #{boardlist_no }
  	   order by board_group desc,
  	   board_orderno asc) A )
  	   
@@ -39,6 +38,17 @@
 		]]>
 	</select>
 	
+	
+	<update id="addHit" parameterType="java.lang.Integer">
+	<![CDATA[	
+		update board set 
+		board_hit = board_hit+1
+
+		 where 
+ 		board_no = #{board_no }
+	]]>
+	</update>
+
 
 	<select id="GetBoardContent" parameterType="java.lang.Integer"
 		resultType="kr.ac.sungkyul.MDS.vo.BoardVo">
@@ -46,7 +56,7 @@
 		<![CDATA[			
 	 		select * from board
 	 
-			where board_state = 1 
+			where board_state >= 1 
 	  		and board_no = #{board_no}
 		]]>
 	</select>
@@ -71,7 +81,8 @@
    			 )
 		]]>
 	</insert>
-
+	
+	
 	<update id="ReplyWrite_orderno_update" parameterType="kr.ac.sungkyul.MDS.vo.BoardVo">
 	<![CDATA[	
 		update board set 
@@ -112,29 +123,19 @@
 		update board set 
 		board_title = #{board_title },
 		board_password = #{board_password },
-		board_content = #{board_content }
+		board_content = #{board_content },
+		board_state=1
 		
 		where 
- 		board_no = #{board_no} 
+ 		board_no = #{board_no } 
    	 			
 		]]>
 	</update>
 
 
-	<update id="delete" parameterType="kr.ac.sungkyul.MDS.vo.BoardVo">
-		<!-- 게시글 삭제하기 (state = 0으로 변경) -->
-		<![CDATA[		
-		update board set 
-		board_state = 0
-		
-		where 
- 		board_no = #{board_no} 
-   	 			
-		]]>
-	</update>
-
-	<select id="checkPw" parameterType="kr.ac.sungkyul.MDS.vo.BoardVo" resultType="kr.ac.sungkyul.MDS.vo.BoardVo">
-		<!-- 비밀번호 확인-->
+	<select id="checkPw" parameterType="kr.ac.sungkyul.MDS.vo.BoardVo"
+		resultType="kr.ac.sungkyul.MDS.vo.BoardVo">
+		<!-- 비밀번호 확인 -->
 		<![CDATA[		
 		select * from board
 		
@@ -146,6 +147,45 @@
 		]]>
 	</select>
 
+
+
+	<select id="checkReply" parameterType="kr.ac.sungkyul.MDS.vo.BoardVo"
+		resultType="kr.ac.sungkyul.MDS.vo.BoardVo">
+		<!-- 게시글에 댓글이 있는지 확인 -->
+		<![CDATA[		
+		
+       select * from board where board_state = 1 and board_group = #{board_group } and board_orderno = #{board_orderno }+1
+   	 			
+		]]>
+	</select>
+
+
+
+	<update id="delete" parameterType="kr.ac.sungkyul.MDS.vo.BoardVo">
+		<!-- 게시글 삭제하기 (state = 0으로 변경) -->
+		<![CDATA[		
+		update board set 
+		board_state = #{board_state }
+		
+		where 
+ 		board_no = #{board_no} 
+   	 			
+		]]>
+	</update>
+
+
+
+	<update id="deleteV2" parameterType="kr.ac.sungkyul.MDS.vo.BoardVo">
+		<!-- 댓글이 있는 게시글 삭제하기 (state = 2으로 변경) -->
+		<![CDATA[		
+		update board set 
+		board_state = 2
+		
+		where 
+ 		board_no = #{board_no} 
+   	 			
+		]]>
+	</update>
 
 
 </mapper>

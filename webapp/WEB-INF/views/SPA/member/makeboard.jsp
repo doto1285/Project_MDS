@@ -57,7 +57,7 @@
 						<td id="butd"><input type="button"
 							class="btn_Up btn btn-primary btn-sm" value="위"> <input
 							type="button" class="btn_Down btn btn-primary btn-sm" value="아래">
-						
+
 							<input type="button" class="btn_catePMod btn btn-warning btn-sm"
 							data-toggle="modal" data-target="#modal_cateP" value="수정">
 
@@ -73,25 +73,43 @@
 
 						<form id="join-form" name="modifyForm" method="GET"
 							action="insertBoardList">
-							<input type="hidden" name="count_order" value=<%=count_order%>>
+							<input type="hidden" id="count_order" name="count_order"
+								value=<%=count_order%>>
+
 
 
 							<div class="form-inline">
-								<input id="newCategorie" name="newBoardList" type="text"
-									placeholder="새 게시판 생성 (10자)" width="800px" value=""> <SELECT
-									name="write_accessright" class="form-control" id="select">
-									<OPTION value="-1" selected>=쓰기권한=</OPTION>
-									<OPTION value="9">관리자</OPTION>
-									<OPTION value="1">회원</OPTION>
-									<OPTION value="0">비회원</OPTION>
-								</SELECT> <SELECT name="read_accessright" class="form-control"
-									id="select">
-									<OPTION value="-1" selected>=읽기권한=</OPTION>
-									<OPTION value="9">관리자</OPTION>
-									<OPTION value="1">회원</OPTION>
-									<OPTION value="0">비회원</OPTION>
-								</SELECT> <input type="submit" class="btn_catePMod btn btn-info btn-sm"
-									value="삽입">
+
+								<c:choose>
+									<c:when test=' <%=count_order%> > 3'>
+
+										<input id="newCategorie" name="newBoardList" type="text"
+											placeholder="새 게시판 생성 (10자)" width="800px" value="">
+
+										<SELECT name="write_accessright" class="form-control"
+											id="select">
+											<OPTION value="-1" selected>=쓰기권한=</OPTION>
+											<OPTION value="9">관리자</OPTION>
+											<OPTION value="1">회원</OPTION>
+											<OPTION value="0">비회원</OPTION>
+										</SELECT>
+										<SELECT name="read_accessright" class="form-control"
+											id="select">
+											<OPTION value="-1" selected>=읽기권한=</OPTION>
+											<OPTION value="9">관리자</OPTION>
+											<OPTION value="1">회원</OPTION>
+											<OPTION value="0">비회원</OPTION>
+										</SELECT>
+										<input type="submit" class="btn_catePMod btn btn-info btn-sm"
+											value="삽입">
+
+									</c:when>
+									<c:otherwise>
+										<center><p>게시판은 최대 3개까지만 등록 가능합니다.</p></center>
+									</c:otherwise>
+								</c:choose>
+
+
 							</div>
 						</form>
 				</tr>
@@ -130,16 +148,16 @@
 					</div>
 
 					<div class="col-lg-12 form-inline" id="modalacc">
-						<label >쓰기 권환 :&nbsp; </label> <SELECT
+						<label>쓰기 권환 :&nbsp; </label> <SELECT
 							name="write_accessright_modify" class="form-control">
 							<OPTION value="9">관리자</OPTION>
 							<OPTION value="1">회원</OPTION>
 							<OPTION value="0">비회원</OPTION>
-							
+
 						</SELECT>
 					</div>
 					<div class="col-lg-12 form-inline">
-						<label > 읽기 권환 :&nbsp; </label> <SELECT
+						<label> 읽기 권환 :&nbsp; </label> <SELECT
 							name="read_accessright_modify" class="form-control">
 							<OPTION value="9">관리자</OPTION>
 							<OPTION value="1">회원</OPTION>
@@ -338,5 +356,7 @@
 		});
 	});
 </script>
+
+
 
 

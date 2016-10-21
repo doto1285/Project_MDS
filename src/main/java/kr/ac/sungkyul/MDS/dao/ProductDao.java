@@ -39,10 +39,12 @@ public class ProductDao {
 	public Map get_Product_detail(int product_no){
 		Map<String, Object> map = new HashMap<String, Object>();
 		ProductVo productVo = sqlSession.selectOne("SPF_product.get_product_detail_product", product_no);
+		ProductimgVo productimgflag0 = sqlSession.selectOne("SPF_product.get_product_detail_productimg_flag0", product_no);
 		ProductimgVo productimgflag1 = sqlSession.selectOne("SPF_product.get_product_detail_productimg_flag1", product_no);
 		ProductimgVo productimgflag2 = sqlSession.selectOne("SPF_product.get_product_detail_productimg_flag2", product_no);
 		List<ProductOptionVo> productOptionList = sqlSession.selectList("SPF_product.get_product_detail_productoption", product_no);
 		map.put("productVo", productVo);
+		map.put("productimgflag0", productimgflag0);
 		map.put("productimgflag1", productimgflag1);
 		map.put("productimgflag2", productimgflag2);
 		map.put("productOptionList", productOptionList);
@@ -147,5 +149,66 @@ public class ProductDao {
 	public ProductOptionVo getProductOption(int produntOptionNo) {
 		return sqlSession.selectOne("SPA_product.get_produntoption", produntOptionNo);
 	}
-
+	
+	/**
+	 * 상품을 추가한다.
+	 * @param ProductVo
+	 * @return
+	 */
+	public int insertProduct(ProductVo productVo) {
+		sqlSession.insert("SPA_product.insertProduct", productVo);
+		return productVo.getProduct_no();
+	}
+	
+	/**
+	 * 상품을 수정한다.
+	 * @param ProductVo
+	 * @return
+	 */
+	public void modifyProduct(ProductVo productVo) {
+		sqlSession.update("SPA_product.updateProduct", productVo);
+	}
+	
+	/**
+	 * 상품옵션을 추가한다.
+	 * @param productOptionVo
+	 */
+	public void insertProductOption(ProductOptionVo productOptionVo) {
+		sqlSession.insert("SPA_product.insertProductOption", productOptionVo);
+	}
+	
+	/**
+	 * 상품옵션을 추가한다.
+	 * @param productOptionVo
+	 */
+	public void modifyProductOption(ProductOptionVo productOptionVo) {
+		sqlSession.update("SPA_product.updateProductOption", productOptionVo);
+	}
+	
+	/**
+	 * 상품을 추가하기전 이름이 같은 것이 있는지 중복검사
+	 * @param product_name
+	 * @return
+	 */
+	public ProductVo getProductDistinct(String product_name) {
+		return sqlSession.selectOne("SPA_product.getProductDistinct", product_name);
+	}
+	
+	/**
+	 * 상품번호를 이용하여 상품정보를 가져온다.
+	 * @param product_no
+	 * @return
+	 */
+	public ProductVo getProduct(int product_no) {
+		return sqlSession.selectOne("SPA_product.get_produnt", product_no);
+	}
+	
+	/**
+	 * 상품번호를 이용하여 모든 상품옵션을 가져온다.
+	 * @param product_no
+	 * @return
+	 */
+	public List<ProductOptionVo> getProductOptionList(int product_no) {
+		return sqlSession.selectList("SPA_product.get_produntoptionlist", product_no);
+	}
 }

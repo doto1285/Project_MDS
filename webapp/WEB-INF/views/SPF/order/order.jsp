@@ -26,7 +26,7 @@
 	<div class="container">
 		<br>
 		<h3 id="boardTitle">상품주문</h3>
-		<label id="description">상품의 옵션 및 수량 변경은 상품상세 또는 장바구니에서 가능합니다.</label>
+		<label id="description">상품의 옵션 및 수량 변경은 상품상세에서 가능합니다.</label>
 		<table class="table" id="orderTable">
 			<colgroup>
 				<col width="10%" />
@@ -47,38 +47,24 @@
 				<td>배송비</td>
 				<td>합계</td>
 			</tr>
-			<tr>
-				<td><div class="form-group">
-						<div class="checkbox">
-							<label> <input type="checkbox" id="tableContents">
-							</label>
-						</div>
-					</div></td>
-				<td><img
-					src="/Project_MDS/assets/image/SPF_orderProductSample1.png"
-					alt="상품 이미지" class="img-thumbnail" id="orderProductImage"></td>
-				<td id="tableContents">엠보단가라</td>
-				<td id="tableContents">13500원</td>
-				<td id="tableContents">2개</td>
-				<td id="tableContents">2500원</td>
-				<td id="tableContents">29500원</td>
-			</tr>
-			<tr>
-				<td><div class="form-group">
-						<div class="checkbox">
-							<label> <input type="checkbox" id="tableContents">
-							</label>
-						</div>
-					</div></td>
-				<td><img
-					src="/Project_MDS/assets/image/SPF_orderProductSample1.png"
-					alt="상품 이미지" class="img-thumbnail" id="orderProductImage"></td>
-				<td id="tableContents">엠보단가라</td>
-				<td id="tableContents">13500원</td>
-				<td id="tableContents">2개</td>
-				<td id="tableContents">2500원</td>
-				<td id="tableContents">29500원</td>
-			</tr>
+			<c:forEach items="${orderList }" var="orderList">
+				<tr>
+					<td><div class="form-group">
+							<div class="checkbox">
+								<label> <input type="checkbox" id="tableContents">
+								</label>
+							</div>
+						</div></td>
+					<td><img
+						src="${orderList.productimg_image }"
+						alt="상품 이미지" class="img-thumbnail" id="orderProductImage"></td>
+					<td id="tableContents">${orderList.product_name }<br>(${orderList.productoption_color }, ${orderList.productoption_size })</td>
+					<td id="tableContents">${orderList.product_price }</td>
+					<td id="tableContents">${orderList.basket_count }개</td>
+					<td id="tableContents">2500원</td>
+					<td id="tableContents">${orderList.total }원</td>
+				</tr>
+			</c:forEach>
 		</table>
 		<button type="button" class="btn btn-default">선택상품삭제</button>
 		<nav>
