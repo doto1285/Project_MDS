@@ -140,7 +140,7 @@ public class SPA_ProductService {
 		String saveName = orgName + productNo + flag;
 
 		// 5. path 경로 정하기
-		String path = "C:\\Users\\Jungminki\\Desktop\\skubit\\java\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Project_MDS\\assets\\image";
+		String path = "D:\\class\\java\\workspaec\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Project_MDS\\assets\\image";
 
 		// 6. imageurl 경로
 		String imageurl = "/Project_MDS/assets/image/" + saveName;
