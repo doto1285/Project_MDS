@@ -37,11 +37,12 @@
 			<tr class="active">
 				<td><label id="tdFirst">선택</label></td>
 				<td><label id="tdFirst">이미지</label></td>
-				<td><string>상품명 <br>[상품상세]</string></td>
+				<td><string>상품명 <br>(상품상세)</string></td>
 				<td><label id="tdFirst">판매가</label></td>
 				<td><label id="tdFirst">수량</label></td>
 				<td><label id="tdFirst">합계</label></td>
 			</tr>
+			<c:forEach items="${basketList }" var="basketList">
 			<tr>
 				<td><div class="form-group">
 						<div class="checkbox">
@@ -50,28 +51,14 @@
 						</div>
 					</div></td>
 				<td><img
-					src="/Project_MDS/assets/image/SPF_orderProductSample1.png"
+					src="${basketList.productimg_image }"
 					alt="상품 이미지" class="img-thumbnail" id="orderProductImage"></td>
-				<td id="tableContents">엠보단가라</td>
-				<td id="tableContents">13500원</td>
-				<td id="tableContents">2개</td>
-				<td id="tableContents">29500원</td>
+				<td id="tableContents">${basketList.product_name }<br>(${basketList.productoption_color }, ${basketList.productoption_size })</td>
+				<td id="tableContents">${basketList.product_price }원</td>
+				<td id="tableContents">${basketList.basket_count }개</td>
+				<td id="tableContents">${basketList.total }원</td>
 			</tr>
-			<tr>
-				<td><div class="form-group">
-						<div class="checkbox">
-							<label> <input type="checkbox" id="tableContents">
-							</label>
-						</div>
-					</div></td>
-				<td><img
-					src="/Project_MDS/assets/image/SPF_orderProductSample1.png"
-					alt="상품 이미지" class="img-thumbnail" id="orderProductImage"></td>
-				<td id="tableContents">엠보단가라</td>
-				<td id="tableContents">13500원</td>
-				<td id="tableContents">2개</td>
-				<td id="tableContents">29500원</td>
-			</tr>
+			</c:forEach>
 		</table>
 		<div style="text-align: center;">
 			<label style="font-size: 14px;">장바구니가 비어있습니다.</label> <br>
