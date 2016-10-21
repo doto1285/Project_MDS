@@ -25,6 +25,8 @@
 	<br>
 	<div class="container">
 		<h3 id="boardTitle">장바구니</h3>
+		<c:choose>
+		<c:when test="${not empty basketList}">
 		<table class="table" id="orderTable">
 			<colgroup>
 				<col width="10%" />
@@ -42,11 +44,12 @@
 				<td><label id="tdFirst">수량</label></td>
 				<td><label id="tdFirst">합계</label></td>
 			</tr>
+			
 			<c:forEach items="${basketList }" var="basketList">
 			<tr>
 				<td><div class="form-group">
 						<div class="checkbox">
-							<label> <input type="checkbox" id="tableContents">
+							<label> <input type="checkbox" class="tr_check" id="tableContents" value="${basketList }">
 							</label>
 						</div>
 					</div></td>
@@ -60,11 +63,17 @@
 			</tr>
 			</c:forEach>
 		</table>
-		<div style="text-align: center;">
-			<label style="font-size: 14px;">장바구니가 비어있습니다.</label> <br>
-		</div>
-		<button type="button" class="btn btn-default">선택상품삭제</button>
-		<button type="button" class="btn btn-default" id="orderButton">주문</button>
+		</c:when>
+		<c:otherwise>
+		<br> <br> <br> <br> <br> <br>
+			<div style="text-align: center;">
+				<label style="font-size: 14px;">장바구니가 비어있습니다.</label> <br>
+			</div>
+		</c:otherwise>
+		
+		</c:choose>
+		<button type="button" class="btn btn-default" id="deleteButton">선택상품삭제</button>
+		<button type="button" class="btn btn-default" id="orderButton">선택상품주문</button>
 		<nav>
 		<ul class="pagination" id="paging">
 			<li><a href="#" aria-label="Previous"> <span
@@ -82,4 +91,65 @@
 	</div>
 	<c:import url='/WEB-INF/views/SPF/include/footer.jsp' />
 </body>
+<script>
+var basketno = [];
+$("#orderButton").click(function() {
+	$(".tr_check:checked").each(function(idx, row) {
+	/* var record = $(row).parents("tr");
+	console.log(record[0].innerText); */
+	var a = $(this).val();
+	basketno[idx] = a;
+	});
+	console.log(basketno);
+	jQuery.ajaxSettings.traditional = true;
+	
+	$.ajax({
+		url : "shoppingbasketdelete",
+		type : "POST",
+		data : JSON.stringify(buyInfoArray),
+		contentType : "application/json",
+		success : function(url) {
+			console.log("동작성공");
+			location.href = url;
+		},
+		error : function(request, status, error) {
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n" + "error:"
+					+ error);
+		}
+	});  
+	
+	});
+	
+$("#orderButton").click(function() {
+	$(".tr_check:checked").each(function(idx, row) {
+	/* var record = $(row).parents("tr");
+	console.log(record[0].innerText); */
+	var a = $(this).val();
+	basketno[idx] = a;
+	});
+	console.log(basketno);
+	jQuery.ajaxSettings.traditional = true;
+	
+	$.ajax({
+		url : "orderinsert",
+		type : "POST",
+		data : JSON.stringify(buyInfoArray),
+		contentType : "application/json",
+		success : function(url) {
+			console.log("동작성공");
+			location.href = url;
+		},
+		error : function(request, status, error) {
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n" + "error:"
+					+ error);
+		}
+	});  
+	
+	});
+	
+	
+
+</script>
 </html>

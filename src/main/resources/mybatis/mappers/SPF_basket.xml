@@ -25,6 +25,13 @@
 		]]>
 	</select>
 
+<delete id="deletebasket" parameterType="kr.ac.sungkyul.MDS.vo.BasketVo">
+		<![CDATA[	
+		DELETE FROM basket WHERE basket_no = #{basket_no };
+		]]>
+	</delete>
+
+
 
 
 

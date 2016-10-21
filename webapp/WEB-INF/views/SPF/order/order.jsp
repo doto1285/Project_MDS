@@ -62,7 +62,7 @@
 					<td id="tableContents">${orderList.product_price }</td>
 					<td id="tableContents">${orderList.basket_count }개</td>
 					<td id="tableContents">2500원</td>
-					<td id="tableContents">${orderList.total }원</td>
+					<td id="tableContents">${orderList.total + 2500}원</td>
 				</tr>
 			</c:forEach>
 		</table>

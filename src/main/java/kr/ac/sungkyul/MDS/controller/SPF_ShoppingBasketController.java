@@ -92,7 +92,7 @@ public class SPF_ShoppingBasketController {
 		MemberVo memberVo = (MemberVo) session.getAttribute("authUser");
 		model.addAttribute("memberVo", memberVo);
 		
-		//mallVo에 쇼핑몰번호, 회원번호를 가지고 DB에서 알맞은 쇼핑몰 리스트를 불러옴
+		//mallVo에 쇼핑몰번호, 회원번호를 가지고 DB에서 알맞은 장바구니 리스트를 불러옴
 		mallVo.setMember_no(memberVo.getMember_no());
 		List<BasketListVo> basketList = SPF_shoppingBasketService.selectBasket(mallVo);
 		model.addAttribute("basketList", basketList);
@@ -138,4 +138,25 @@ public class SPF_ShoppingBasketController {
 
 		return "http://localhost:8088/Project_MDS/" + mall_domain + "/shoppingbasket";
 	}
+	
+	@ResponseBody
+	@RequestMapping("{mall_domain}/shoppingbasketdelete")
+	public String shoppingBasketDnsert(@PathVariable String mall_domain, Model model, HttpSession session,
+			@RequestBody String paramData) {
+		// 현재 접속한 SPF 쇼핑몰 도메인을 매개로 mall_domain, mall_no을 mallVo에 넣음
+		MallVo mallVo = SPF_mallService.domainCheck(mall_domain);
+		model.addAttribute("mall_domain", mall_domain);
+		// 도메인 체크
+		if ((SPF_mallService.isDomainCheck(mallVo.getMall_no())) == false) {
+			// 없는 도메인일 경우 실행되는 코드
+			return "404 error";
+		}
+
+		List<Map<String, Object>> resultMap = new ArrayList<Map<String, Object>>();
+		resultMap = JSONArray.fromObject(paramData);
+		SPF_shoppingBasketService.insertBasket(resultMap, mallVo.getMall_no());
+
+		return "http://localhost:8088/Project_MDS/" + mall_domain + "/shoppingbasket";
+	}
+	
 }
