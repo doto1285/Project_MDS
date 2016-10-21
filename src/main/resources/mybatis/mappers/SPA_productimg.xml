@@ -12,5 +12,16 @@
 			)
 		]]>
 	</insert>
-
+	
+	<select id="getproductimg" parameterType="kr.ac.sungkyul.MDS.vo.ProductimgVo"
+		resultType="kr.ac.sungkyul.MDS.vo.ProductimgVo">
+			 select productimg_no, productimg_image
+	 		 from productimg
+	 		 where product_no = #{product_no } and productimg_flag = #{productimg_flag }
+	
+	</select>
+	
+	<delete id="deleteproductimg" parameterType="kr.ac.sungkyul.MDS.vo.ProductimgVo">
+		delete Productimg where productimg_no =  #{productimg_no }
+	</delete>
 </mapper>

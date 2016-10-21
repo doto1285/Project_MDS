@@ -140,7 +140,8 @@
 			</div>
 
 			<div class="form-group" id="inputFormGroup">
-				<input type="hidden" id="product_no" name="productno" value="">
+				<input type="hidden" id="product_no" name="productno" value="${productVo.product_no}">
+				<input type="hidden" id="productoption_no" name="productoption_no" value="${productOptionlist.productoption_no}">
 			</div>
 
 		</form>
@@ -247,21 +248,6 @@
 		var productoption_stock = $("#productoption_stock").val();
 		if (productoption_stock == "") {
 			alert("재고를 입력해주세요.");
-			return;
-		}
-		var file1 = $("#file1").val();
-		if (file1 == "") {
-			alert("상품 썸네일을 설정하세요.");
-			return;
-		}
-		var file2 = $("#file2").val();
-		if (file2 == "") {
-			alert("상품 메인이미지를 설정하세요.");
-			return;
-		}
-		var file3 = $("#file3").val();
-		if (file3 == "") {
-			alert("상품 상세이미지를 설정하세요.");
 			return;
 		}
 

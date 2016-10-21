@@ -176,6 +176,14 @@ public class ProductDao {
 	}
 	
 	/**
+	 * 상품옵션을 추가한다.
+	 * @param productOptionVo
+	 */
+	public void modifyProductOption(ProductOptionVo productOptionVo) {
+		sqlSession.update("SPA_product.updateProductOption", productOptionVo);
+	}
+	
+	/**
 	 * 상품을 추가하기전 이름이 같은 것이 있는지 중복검사
 	 * @param product_name
 	 * @return
@@ -201,14 +209,4 @@ public class ProductDao {
 	public List<ProductOptionVo> getProductOptionList(int product_no) {
 		return sqlSession.selectList("SPA_product.get_produntoptionlist", product_no);
 	}
-	
-	/**
-	 * 상품이미지를 가져온다.
-	 * @param productimgVo
-	 * @return
-	 */
-	public ProductimgVo getproductimg(ProductimgVo productimgVo) {
-		return sqlSession.selectOne("SPA_product.getproductimg", productimgVo);
-	}
-
 }
