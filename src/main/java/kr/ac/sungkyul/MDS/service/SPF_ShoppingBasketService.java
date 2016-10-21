@@ -50,5 +50,20 @@ public class SPF_ShoppingBasketService {
 	public List<BasketListVo> selectBasket(MallVo mallVo){
 		return basketDao.selectBasket(mallVo);
 	}
+	
+	public void deleteBasket(List<Map<String, Object>> resultMap){
+		List<BasketListVo> basketList = new ArrayList<BasketListVo>();
+		for (Map<String, Object> map : resultMap) {
+			BasketListVo basketListVo = new BasketListVo();
+			basketListVo.setBasket_no(Integer.parseInt(String.valueOf(map.get("basket_no"))));
+			basketListVo.setBasket_count(Integer.parseInt(String.valueOf(map.get("productoption_stock"))));
+			basketListVo.setMember_no( Integer.parseInt(String.valueOf(map.get("member_no"))));
+			basketListVo.setProduct_no( Integer.parseInt(String.valueOf(map.get("product_no"))));
+			basketListVo.setProductoprion_no( Integer.parseInt(String.valueOf(map.get("productoption_no"))));
+			basketListVo.setMall_no( Integer.parseInt(String.valueOf(map.get("mall_no"))));;
+			basketList.add(basketListVo);
+		}
+		basketDao.deleteBasket(basketList);
+	}
 
 }

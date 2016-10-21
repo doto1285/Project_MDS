@@ -45,21 +45,21 @@
 				<td><label id="tdFirst">합계</label></td>
 			</tr>
 			
-			<c:forEach items="${basketList }" var="basketList">
-			<tr>
+			<c:forEach items="${basketList }" var="basketVO">
+			<tr id="basketContent">
 				<td><div class="form-group">
 						<div class="checkbox">
-							<label> <input type="checkbox" class="tr_check" id="tableContents" value="${basketList }">
+							<label> <input type="checkbox" class="tr_check" id="tableContents" value="${basketVO }">
 							</label>
 						</div>
 					</div></td>
 				<td><img
-					src="${basketList.productimg_image }"
+					src="${basketVO.productimg_image }"
 					alt="상품 이미지" class="img-thumbnail" id="orderProductImage"></td>
-				<td id="tableContents">${basketList.product_name }<br>(${basketList.productoption_color }, ${basketList.productoption_size })</td>
-				<td id="tableContents">${basketList.product_price }원</td>
-				<td id="tableContents">${basketList.basket_count }개</td>
-				<td id="tableContents">${basketList.total }원</td>
+				<td id="tableContents">${basketVO.product_name }<br>(${basketVO.productoption_color }, ${basketVO.productoption_size })</td>
+				<td id="tableContents">${basketVO.product_price }원</td>
+				<td id="tableContents">${basketVO.basket_count }개</td>
+				<td id="tableContents">${basketVO.total }원</td>
 			</tr>
 			</c:forEach>
 		</table>
@@ -92,45 +92,44 @@
 	<c:import url='/WEB-INF/views/SPF/include/footer.jsp' />
 </body>
 <script>
-var basketno = [];
-$("#orderButton").click(function() {
-	$(".tr_check:checked").each(function(idx, row) {
+var basketArray = new Array();
+$("#deleteButton").click(function() {
+	$("#basketContent .tr_check:checked" ).each( function(idx, row) {
 	/* var record = $(row).parents("tr");
 	console.log(record[0].innerText); */
-	var a = $(this).val();
-	basketno[idx] = a;
+	var basketInfo = new Object();
+	basketInfo = $(this).val();
+	basketArray.push(basketInfo);
 	});
-	console.log(basketno);
+	var c = JSON.stringify(basketArray);
+	console.log("제이슨스트링!" + c);
 	jQuery.ajaxSettings.traditional = true;
-	
-	$.ajax({
+	 $.ajax({
 		url : "shoppingbasketdelete",
 		type : "POST",
-		data : JSON.stringify(buyInfoArray),
+		data : JSON.stringify(basketArray),
 		contentType : "application/json",
 		success : function(url) {
 			console.log("동작성공");
-			location.href = url;
+			//location.href = url;
 		},
 		error : function(request, status, error) {
 			alert("code:" + request.status + "\n" + "message:"
 					+ request.responseText + "\n" + "error:"
 					+ error);
 		}
-	});  
-	
+	});   
 	});
 	
-$("#orderButton").click(function() {
+/* $("#orderButton").click(function() {
 	$(".tr_check:checked").each(function(idx, row) {
 	/* var record = $(row).parents("tr");
-	console.log(record[0].innerText); */
+	console.log(record[0].innerText); 
 	var a = $(this).val();
 	basketno[idx] = a;
 	});
 	console.log(basketno);
 	jQuery.ajaxSettings.traditional = true;
-	
 	$.ajax({
 		url : "orderinsert",
 		type : "POST",
@@ -146,8 +145,7 @@ $("#orderButton").click(function() {
 					+ error);
 		}
 	});  
-	
-	});
+	}); */
 	
 	
 

@@ -66,7 +66,7 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<button type="button" class="btn btn-default">선택상품삭제</button>
+		<button type="button" class="btn btn-default" id="deleteButton">선택상품삭제</button>
 		<nav>
 		<ul class="pagination" id="paging">
 			<li><a href="#" aria-label="Previous"> <span
@@ -207,4 +207,33 @@
 	</div>
 	<c:import url='/WEB-INF/views/SPF/include/footer.jsp' />
 </body>
+<script>
+var orderno = [];
+$("#deleteButton").click(function() {
+	$(".tr_check:checked").each(function(idx, row) {
+	/* var record = $(row).parents("tr");
+	console.log(record[0].innerText); */
+	var a = $(this).val();
+	orderno[idx] = a;
+	});
+	var b = JSON.stringify(orderno);
+	console.log(b);
+	jQuery.ajaxSettings.traditional = true;
+	/* $.ajax({
+		url : "shoppingbasketdelete",
+		type : "POST",
+		data : JSON.stringify(basketno),
+		contentType : "application/json",
+		success : function(url) {
+			console.log("동작성공");
+			location.href = url;
+		},
+		error : function(request, status, error) {
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n" + "error:"
+					+ error);
+		}
+	});   */
+	});
+</script>
 </html>
