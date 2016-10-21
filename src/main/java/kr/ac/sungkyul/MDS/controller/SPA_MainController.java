@@ -338,8 +338,8 @@ public class SPA_MainController {
 	@RequestMapping(value = "{domain}/productmodify", method = RequestMethod.POST)
 	public void productModify(@PathVariable String domain, HttpSession session, Model model,
 			@RequestBody ProductVo productVo) {
-
-		SPA_productService.insertProduct(productVo);
+		System.out.println(productVo);
+		SPA_productService.modifyProduct(productVo);
 
 	}
 
@@ -353,11 +353,19 @@ public class SPA_MainController {
 		}
 
 		productOptionVo.setProduct_no(Integer.parseInt(productno));
-		SPA_productService.insertProductOption(productOptionVo);
-		SPA_productService.insertProductImg(Integer.parseInt(productno), file1, 0);
-		SPA_productService.insertProductImg(Integer.parseInt(productno), file2, 1);
-		SPA_productService.insertProductImg(Integer.parseInt(productno), file3, 2);
-
+		SPA_productService.modifyProductOption(productOptionVo);
+		if (!file1.isEmpty()) {
+			SPA_productService.deleteProductImg(Integer.parseInt(productno), 0);
+			SPA_productService.insertProductImg(Integer.parseInt(productno), file1, 0);
+		}
+		if (!file2.isEmpty()) {
+			SPA_productService.deleteProductImg(Integer.parseInt(productno), 1);
+			SPA_productService.insertProductImg(Integer.parseInt(productno), file2, 1);
+		}
+		if (!file3.isEmpty()) {
+			SPA_productService.deleteProductImg(Integer.parseInt(productno), 2);
+			SPA_productService.insertProductImg(Integer.parseInt(productno), file3, 2);
+		}
 		return "redirect:/SPA/" + domain + "/product";
 	}
 

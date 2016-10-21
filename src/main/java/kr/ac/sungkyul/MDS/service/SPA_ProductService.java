@@ -13,7 +13,6 @@ import kr.ac.sungkyul.MDS.dao.MallDao;
 import kr.ac.sungkyul.MDS.dao.ProductDao;
 import kr.ac.sungkyul.MDS.dao.ProductImgDao;
 import kr.ac.sungkyul.MDS.vo.MallVo;
-import kr.ac.sungkyul.MDS.vo.MallimgVo;
 import kr.ac.sungkyul.MDS.vo.ProductListVo;
 import kr.ac.sungkyul.MDS.vo.ProductOptionVo;
 import kr.ac.sungkyul.MDS.vo.ProductVo;
@@ -84,8 +83,9 @@ public class SPA_ProductService {
 	 * 상품정보를 수정한다.
 	 * @param productVo
 	 */
-	public int modifyProduct(ProductVo productVo) {
-		return productDao.insertProduct(productVo);
+	public void modifyProduct(ProductVo productVo) {
+		productVo.setProduct_content("a");
+		productDao.modifyProduct(productVo);
 	}
 	
 	/**
@@ -111,6 +111,14 @@ public class SPA_ProductService {
 	 */
 	public void insertProductOption(ProductOptionVo productOptionVo) {
 		productDao.insertProductOption(productOptionVo);
+	}
+	
+	/**
+	 * 상품옵션을 수정한다.
+	 * @param ProductOptionVo
+	 */
+	public void modifyProductOption(ProductOptionVo productOptionVo) {
+		productDao.modifyProductOption(productOptionVo);
 	}
 	
 	/**
@@ -161,9 +169,22 @@ public class SPA_ProductService {
 		vo.setProduct_no(product_no);
 		vo.setProductimg_flag(flag);
 
-		vo = productDao.getproductimg(vo);
+		vo = productImgDao.getproductimg(vo);
 
 		return vo.getProductimg_image();
+	}
+	
+	public void deleteProductImg(int product_no, int flag) {
+
+		ProductimgVo vo = new ProductimgVo();
+		vo.setProduct_no(product_no);
+		vo.setProductimg_flag(flag);
+		
+		vo = productImgDao.getproductimg(vo);
+		if (vo == null) {
+			return;
+		}
+		productImgDao.deleteProductimg(vo);
 	}
 
 }
