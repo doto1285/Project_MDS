@@ -141,6 +141,7 @@ public class SPF_BoardController {
 			@RequestParam(value = "boardlist_no", required = false) int boardlist_no, Model model) {
 		MallVo mallVo = SPF_mallService.domainCheck(domain);
 		model.addAttribute("mall_domain", domain);
+		System.out.println("도메인 체크" + domain);
 		// 도메인 체크
 		if ((SPF_mallService.isDomainCheck(mallVo.getMall_no())) == false) {
 			// 없는 도메인일 경우 실행되는 코드
@@ -173,6 +174,8 @@ public class SPF_BoardController {
 		if (memberService.isUserCheck(session) == false) {
 			// 로그인 안한 회원일 경우 실행되는 코드
 
+			
+			
 			return "SPF/board/boardview";
 		}
 
@@ -208,7 +211,7 @@ public class SPF_BoardController {
 
 	@RequestMapping("/{domain}/writeform")
 	public String write(HttpSession session, @PathVariable String domain,
-			@RequestParam(value = "boardlist_no", required = false) int boardlist_no, Model model) {
+			@RequestParam(value = "board_no", required = false) int board_no, Model model) {
 		MallVo mallVo = SPF_mallService.domainCheck(domain);
 		model.addAttribute("mall_domain", domain);
 		// 도메인 체크
@@ -232,7 +235,7 @@ public class SPF_BoardController {
 		model.addAttribute("boardList", boardList);
 
 		// 글쓰기 버튼 클릭시, 글 작성 폼으로 연결
-		session.setAttribute("boardlist_no", boardlist_no);
+		session.setAttribute("board_no", board_no);
 
 		// 로그인 세션 체크
 		if (memberService.isUserCheck(session) == false) {
@@ -388,5 +391,46 @@ public class SPF_BoardController {
 		System.out.println(boardList.toString());
 		return makeModel;
 	}
+	
+	
+	
+	@RequestMapping("{domain}/board/modifyform")
+	public String modifyform(
+			Model model, 
+			@PathVariable String domain,
+			@RequestParam(value = "board_no") int board_no,
+			@ModelAttribute BoardVo boardVo,
+			String pw
+			) {
+		
+		MallVo mallVo = SPF_mallService.domainCheck(domain);
+		model.addAttribute("mall_domain", domain);
+		
+		
+		// 게시글 수정 화면
+		System.out.println("게시글번호, 비번 : "+board_no + "  " + pw);
+		
+		BoardVo GetBoardContent = boardService.GetBoardContent(board_no);	// 선택한 게시글 내용 가져오기
+		model.addAttribute("GetBoardContent", GetBoardContent);
+
+		return "SPF/board/modifyform";
+	}
+	
+
+	@RequestMapping("{domain}/board/modify")
+	public String modify(Model model, 
+			@PathVariable String domain,
+			@RequestParam(value = "board_no") int board_no,
+			@RequestParam(value = "boardlist_no") int boardlist_no,
+			@ModelAttribute BoardVo boardVo) {
+		//게시글 수정
+		boardVo.setBoard_no(board_no);
+		boardService.BoardModify(boardVo);
+	
+		
+				
+		return "redirect:/" + domain + "/view?board_no=" + board_no +"&boardlist_no="+ boardlist_no;
+	}
+	
 
 }

@@ -110,6 +110,9 @@
 					</div>
 				</c:when>
 				<c:otherwise>
+				
+				
+				
 					<div class="col-lg-2"></div>
 					<div class="col-lg-3">
 						<ul class="nav nav-pills">
