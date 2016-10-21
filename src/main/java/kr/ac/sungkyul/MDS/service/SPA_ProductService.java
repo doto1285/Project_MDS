@@ -9,13 +9,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.ac.sungkyul.MDS.dao.CategoryListDao;
 import kr.ac.sungkyul.MDS.dao.MallDao;
 import kr.ac.sungkyul.MDS.dao.ProductDao;
-import kr.ac.sungkyul.MDS.vo.CategoryListVo;
+import kr.ac.sungkyul.MDS.dao.ProductImgDao;
 import kr.ac.sungkyul.MDS.vo.MallVo;
 import kr.ac.sungkyul.MDS.vo.MallimgVo;
 import kr.ac.sungkyul.MDS.vo.ProductListVo;
+import kr.ac.sungkyul.MDS.vo.ProductOptionVo;
+import kr.ac.sungkyul.MDS.vo.ProductVo;
+import kr.ac.sungkyul.MDS.vo.ProductimgVo;
 
 @Service
 public class SPA_ProductService {
@@ -24,7 +26,8 @@ public class SPA_ProductService {
 	@Autowired
 	MallDao mallDao;
 	@Autowired
-	private CategoryListDao categoryListDao;
+	ProductImgDao productImgDao;
+
 	
 	/**
 	 * 상품리스트를 가져온다
@@ -41,7 +44,25 @@ public class SPA_ProductService {
 
 		return productlist;
 	}
-
+	
+	/**
+	 * 상품번호를 이용하여 상품정보를 가져온다.
+	 * @param product_no
+	 * @return
+	 */
+	public ProductVo getProduct(int product_no) {
+		return productDao.getProduct(product_no);
+	}
+	
+	/**
+	 * 상품번호를 이용하여 모든 상품옵션을 가져온다.
+	 * @param product_no
+	 * @return
+	 */
+	public List<ProductOptionVo> getProductOptionList(int product_no) {
+		return productDao.getProductOptionList(product_no);
+	}
+	
 	/**
 	 * 상품번호에 맞는 상품을 삭제한다.
 	 * @param productNo
@@ -51,15 +72,55 @@ public class SPA_ProductService {
 	}
 	
 	/**
+	 * 상품정보를 추가한다.
+	 * @param productVo
+	 */
+	public int insertProduct(ProductVo productVo) {
+		productVo.setProduct_content("a");
+		return productDao.insertProduct(productVo);
+	}
+	
+	/**
+	 * 상품정보를 수정한다.
+	 * @param productVo
+	 */
+	public int modifyProduct(ProductVo productVo) {
+		return productDao.insertProduct(productVo);
+	}
+	
+	/**
+	 * 상품을 추가하기전 이름이 같은 것이 있는지 중복검사
+	 * @param product_name
+	 * @return
+	 */
+	public boolean isProductDistinct(String domain, String product_name) {
+		List<ProductListVo> list = getProductInfo(domain);
+		for(int i=0; i<list.size(); i++) {
+			System.out.println("1"+list.get(i).getProduct_name());
+			System.out.println("2"+product_name);
+			if(list.get(i).getProduct_name().equals(product_name)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * 상품옵션을 추가한다.
+	 * @param ProductOptionVo
+	 */
+	public void insertProductOption(ProductOptionVo productOptionVo) {
+		productDao.insertProductOption(productOptionVo);
+	}
+	
+	/**
 	 * 상품 이미지 삽입
 	 * 
 	 * @param domain
 	 * @param file
 	 * @throws IOException
 	 */
-	public void insertMallImg(String domain, MultipartFile file, int flag) throws IOException {
-		// 도메인을 이용하여 쇼핑몰 번호, 이름을 알아냄
-		MallVo mallVo = mallDao.domainCheck(domain);
+	public void insertProductImg(int productNo, MultipartFile file, int flag) throws IOException {
 
 		// 2. orgName
 		String orgName = file.getOriginalFilename();
@@ -68,7 +129,7 @@ public class SPA_ProductService {
 		long fileSize = file.getSize();
 
 		// 4. saveName
-		String saveName = orgName + domain;
+		String saveName = orgName + productNo + flag;
 
 		// 5. path 경로 정하기
 		String path = "C:\\Users\\Jungminki\\Desktop\\skubit\\java\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Project_MDS\\assets\\image";
@@ -77,22 +138,32 @@ public class SPA_ProductService {
 		String imageurl = "/Project_MDS/assets/image/" + saveName;
 
 		// 7. 첨부파일 객체에 담기
-		MallimgVo mallimgVo = new MallimgVo();
+		ProductimgVo productimgVo = new ProductimgVo();
 
-		mallimgVo.setMall_no(mallVo.getMall_no());
-		mallimgVo.setMallimg_flag(flag);
-		mallimgVo.setMallimg_path(path);
-		mallimgVo.setMallimg_filename(orgName);
-		mallimgVo.setMallimg_savename(saveName);
-		mallimgVo.setMallimg_fileSize(fileSize);
-		mallimgVo.setMallimg_image(imageurl);
+		productimgVo.setProduct_no(productNo);
+		productimgVo.setProductimg_flag(flag);
+		productimgVo.setProductimg_path(path);
+		productimgVo.setProductimg_filename(orgName);
+		productimgVo.setProductimg_savename(saveName);
+		productimgVo.setProductimg_fileSize(fileSize);
+		productimgVo.setProductimg_image(imageurl);
 
 		// 8. 첨부파일 삽입
-		//mallImgDao.insertMallimg(mallimgVo);
+		productImgDao.insertProductimg(productimgVo);
 
 		// 9. 파일 복사 및 이동
 		File target = new File(path, saveName);
 		FileCopyUtils.copy(file.getBytes(), target);
+	}
+	
+	public String getProductImg(int product_no, int flag) {
+		ProductimgVo vo = new ProductimgVo();
+		vo.setProduct_no(product_no);
+		vo.setProductimg_flag(flag);
+
+		vo = productDao.getproductimg(vo);
+
+		return vo.getProductimg_image();
 	}
 
 }

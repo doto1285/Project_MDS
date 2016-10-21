@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SPA_productimg">
+	<!--첨부파일 삽입 -->
+	<insert id="insertproductimg" parameterType="kr.ac.sungkyul.MDS.vo.ProductimgVo">
+		<![CDATA[
+			insert into productimg(
+				productimg_no, productimg_filename, productimg_savename, product_no, productimg_path, productimg_fileSize, productimg_image, productimg_flag
+			)
+			values (
+				producting_seq.nextVal, #{productimg_filename}, #{productimg_savename}, #{product_no}, #{productimg_path}, #{productimg_fileSize}, #{productimg_image}, #{productimg_flag}
+			)
+		]]>
+	</insert>
+
+</mapper>
