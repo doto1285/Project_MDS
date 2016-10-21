@@ -29,14 +29,18 @@ public class BoardDao {
 		map.put("page_start", (page - 1) * pagesize + 1);
 		map.put("page_end", page * pagesize);
 		map.put("boardlist_no", boardlist_no);
+
 		System.out.println("맵 출력 " + map);
 		List<BoardVo> listvo = sqlSession.selectList("TSF_board.GetBoardContentsList", map);
 
-		//
-		// for (BoardVo vo : listvo) {
-		// System.out.println("게시글 " + vo);
-		// }
-		//
+		for (BoardVo vo : listvo) {
+			// System.out.println("게시글 " + vo);
+			if (vo.getBoard_state() == 2) {
+				vo.setBoard_title("<삭제된 게시글 입니다>");
+				vo.setBoard_content("<삭제된 게시글입니다>");
+			}
+		}
+
 		return listvo;
 
 	}
@@ -50,6 +54,11 @@ public class BoardDao {
 	public BoardVo GetBoardContent(int board_no) {
 
 		BoardVo boardVo = sqlSession.selectOne("TSF_board.GetBoardContent", board_no);
+
+		if (boardVo.getBoard_state() == 2) {
+			boardVo.setBoard_title("<삭제된 게시글 입니다>");
+			boardVo.setBoard_content("<삭제된 게시글입니다>");
+		}
 
 		System.out.println("출력될 게시글" + boardVo);
 		return boardVo;
@@ -71,31 +80,39 @@ public class BoardDao {
 	}
 
 	public void BoardModify(BoardVo boardVo) {
-		//게시글 수정
+		// 게시글 수정
 		sqlSession.update("TSF_board.BoardModify", boardVo);
-		
+
 	}
 
-	public void delete(BoardVo boardVo) {
-		//게시글 삭제하기 (state = 0으로 변경)
-		sqlSession.update("TSF_board.delete", boardVo);
-	}
-
-	public boolean checkPw(BoardVo boardVo) {
-		
-		BoardVo vo = sqlSession.selectOne("TSF_board.checkPw", boardVo);
-		System.out.println("비밀번호 확인" + vo);
-		
-		if(vo != null){
-			return true;
-		}
-		else{
-			return false;
-		}
-		
-		
+	public BoardVo checkReply(BoardVo boardVo) {
+		// 게시글글의 댓글이 있는지 확인
+		return sqlSession.selectOne("TSF_board.checkReply", boardVo);
 	}
 
 	
+	public void delete(BoardVo boardVo) {
+		// 게시글 삭제하기 (state = 0으로 변경)
+			sqlSession.update("TSF_board.delete", boardVo);
+	}
+
+	public boolean checkPw(BoardVo boardVo) {
+
+		BoardVo vo = sqlSession.selectOne("TSF_board.checkPw", boardVo);
+		System.out.println("비밀번호 확인" + vo);
+
+		if (vo != null) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+	public void addHit(int board_no) {
+		// 게시글을 클릭하면 조회수가 1씩 증가한다.
+		sqlSession.update("TSF_board.addHit", board_no);
+
+	}
 
 }

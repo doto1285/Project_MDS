@@ -10,13 +10,30 @@
 		where product_no = #{product_no }
 
 	</select>
+	
+	<select id="get_produnt" parameterType="java.lang.Integer"
+		resultType="kr.ac.sungkyul.MDS.vo.ProductVo">
+		<!-- product_no을 이용해 맞는 상품 가져오기 -->
+		select product_no, product_name, product_price, product_content, product_maker, to_char(product_makedate,'YYYYMMDD') as product_makedate, categorylist_no
+		from product
+		where product_no = #{product_no }
 
-	<select id="get_produnt_no" parameterType="String"
-		resultType="java.lang.Integer">
+	</select>
+	
+	<select id="getProductDistinct" parameterType="String"
+		resultType="kr.ac.sungkyul.MDS.vo.ProductVo">
+		<!-- product_no을 이용해 맞는 상품이름 가져오기 -->
+		select product_name
+		from product
+		where product_name = #{product_name }
+
+	</select>
+
+	<select id="get_produnt_no" parameterType="String" resultType="java.lang.Integer">
 		<!-- product_name을 이용해 맞는 product_no 가져오기 -->
 		select product_no
 		from product
-		where product_name = #{product_name }
+		where product_name = #{product_name } and product_state = 1
 	</select>
 
 	<delete id="deleteproduct" parameterType="java.lang.Integer">
@@ -26,14 +43,89 @@
 		 where product_no = #{product_no }
 		]]>
 	</delete>
-	
+
 	<select id="get_produntoption" parameterType="java.lang.Integer"
 		resultType="kr.ac.sungkyul.MDS.vo.ProductOptionVo">
-		<!-- product_no을 이용해 맞는 상품이름 가져오기 -->
+		<!-- 상품옵션번호에 맞는 상풉옵션 가져오기 -->
 		select *
 		from productoption
-		where productoption_no = #{productoption_no }
+		where productoption_no = #{productoption_no}
 
 	</select>
+	
+	<select id="get_produntoptionlist" parameterType="java.lang.Integer"
+		resultType="kr.ac.sungkyul.MDS.vo.ProductOptionVo">
+		<!-- 상품번호에 맞는 모든 상풉옵션 가져오기 -->
+		select *
+		from productoption
+		where product_no = #{product_no}
+
+	</select>
+
+	<insert id="insertProduct" parameterType="kr.ac.sungkyul.MDS.vo.ProductVo">
+		<selectKey resultType="java.lang.Integer" keyProperty="product_no"
+			order="BEFORE">
+				<![CDATA[
+					SELECT product_seq.nextval as no FROM DUAL
+				]]>
+		</selectKey>
+			<![CDATA[
+				insert into product(
+					product_no, product_name, product_price, product_content, product_maker, product_makedate, product_state, categorylist_no
+				)
+				values
+				(
+					#{product_no},
+					#{product_name},
+					#{product_price},
+					#{product_content},
+					#{product_maker},
+					to_date(#{product_makedate},'yyyy-mm-dd'),
+					1,
+					#{categorylist_no}
+				)
+			]]>
+	</insert>
+	
+		<insert id="insertProductOption" parameterType="kr.ac.sungkyul.MDS.vo.ProductOptionVo">
+			<![CDATA[
+				insert into productoption(
+					productoption_no, productoption_color, productoption_size, productoption_stock, product_no
+				)
+				values
+				(
+					productoption_seq.nextval,
+					#{productoption_color},
+					#{productoption_size},
+					#{productoption_stock},
+					#{product_no}
+				)
+			]]>
+	</insert>
+	
+	<update id="updateProduct" parameterType="kr.ac.sungkyul.MDS.vo.ProductVo">
+		<!-- 쇼핑몰 정보 수정 -->
+		<![CDATA[	
+			update product
+				 set product_name = #{product_name},
+				 product_price = #{product_price},
+				 product_content = #{product_content},
+				 product_maker = #{product_maker},
+				 product_makedate = to_date(#{product_makedate},'yyyy-mm-dd'),
+				 categorylist_no = #{categorylist_no}
+				 where product_no = #{product_no}
+		]]>
+	</update>
+	
+		<update id="updateProductOption" parameterType="kr.ac.sungkyul.MDS.vo.ProductOptionVo">
+		<!-- 쇼핑몰 정보 수정 -->
+		<![CDATA[	
+			update productoption
+				 set productoption_color = #{productoption_color},
+				 productoption_size = #{productoption_size},
+				 productoption_stock = #{productoption_stock}
+				 where productoption_no = #{productoption_no}
+		]]>
+	</update>
 
 </mapper>

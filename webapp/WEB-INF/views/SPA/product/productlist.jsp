@@ -56,7 +56,7 @@
 						src="${vo.productimg_image }"
 						alt="상품 이미지" class="img-thumbnail" id="productTableImage"></td>
 						<td id="tableContents">${vo.product_price }원</td>
-						<td><a href="?product_no=${vo.product_no}" class="btn btn-warning btn-sm">수정</a></td>
+						<td><a href="productmodifyform?product_no=${vo.product_no}" class="btn btn-warning btn-sm">수정</a></td>
 						<td><input type="button"
 							class="btn_Delete btn btn-danger btn-sm" value="삭제"></td>
 

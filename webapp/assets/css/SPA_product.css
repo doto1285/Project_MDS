@@ -54,26 +54,26 @@
 #inputBox {
 	width: 210px;
 }
+
 #inputText {
-	margin-top :4px;
+	margin-top: 4px;
 	font-size: 18px;
 }
 
 #inputhead {
-	margin-top : 5px;
-	margin-bottom : 15px;
+	margin-top: 5px;
+	margin-bottom: 15px;
 	font-size: 15px;
 	font-weight: 800;
 	font-family: "고딕", sans-serif;
 }
 
-#inputFormGroup{
+#inputFormGroup {
 	margin-bottom: 17px;
 }
 
 #productmainimg {
-	margin-left: 90px;	
-	
+	margin-left: 90px;
 }
 
 #file {
@@ -86,4 +86,41 @@
 
 #btnCancle {
 	margin-left: 15px;
+}
+
+#product_name {
+	width: 210px;
+}
+
+#product_price {
+	width: 210px;
+}
+
+#product_maker {
+	width: 210px;
+}
+
+#product_makedate {
+	width: 210px;
+}
+
+#productoption_color {
+	width: 210px;
+}
+
+#productoption_size {
+	width: 210px;
+}
+
+#productoption_stock {
+	width: 210px;
+}
+#file1{
+	margin-top: 10px;
+}
+#file2{
+	margin-top: 10px;
+}
+#file3{
+	margin-top: 10px;
 }

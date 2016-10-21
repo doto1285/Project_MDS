@@ -28,19 +28,10 @@ public class TSF_BoardController {
 	public String notice(Model model, HttpSession session, @PathVariable String userid, @PathVariable int boardlist_no,
 			@RequestParam(value = "p", required = true, defaultValue = "1") int page,
 			@RequestParam(value = "kwd", required = false, defaultValue = "") String keyword) {
-		/*
-		 * // 게시판 System.out.println("게시판 번호" + boardlist_no);
-		 * 
-		 * // 일반, 기업, 관리자 권한을 사용하기 위해 로그인된 세션에서 유저의 정보를 가져온다 MemberVo memberVo;
-		 * memberVo = (MemberVo) session.getAttribute("authUser"); //
-		 * System.out.println("list session test " + memberVo);
-		 * session.setAttribute("authUser", memberVo);
-		 */
+
 		// 게시판 정보 가져오기
 		BoardListVo GetBoard = BoardService.GetBoard(userid, boardlist_no);
 		session.setAttribute("GetBoard", GetBoard);
-
-		int pagesize = 5;
 
 		// 해당 게시판에 게시글 가져오기
 		Map<String, Object> map = BoardService.GetBoardContentsList(boardlist_no, page, keyword);
@@ -49,14 +40,16 @@ public class TSF_BoardController {
 	}
 
 	@RequestMapping("main/board/view")
-	public String view(HttpSession session, @RequestParam(value = "no") int board_no) {
+	public String view(Model model,HttpSession session, @RequestParam(value = "no") int board_no) {
 		// list에서 글 제목 선택시 view로 연결
 
 		// 선택한 게시글 내용 가져오기
 		BoardVo GetBoardContent = BoardService.GetBoardContent(board_no);
 		session.setAttribute("GetBoardContent", GetBoardContent);
-
-		System.out.println("main/board/view");
+		
+		//게시글을 클릭하면 조회수가 1씩 증가한다.
+		BoardService.addHit(board_no);
+		
 		return "TSF/board/view";
 	}
 
@@ -120,16 +113,14 @@ public class TSF_BoardController {
 		else{
 			return "f";
 		}
-		
 	}
-	
-	
 	
 	
 	@RequestMapping("main/board/modify")
 	public String modify(Model model, 
-			int board_no,
+			@RequestParam(value = "no") int board_no,
 			@ModelAttribute BoardVo boardVo) {
+		//게시글 수정
 		boardVo.setBoard_no(board_no);
 		BoardService.BoardModify(boardVo);
 		
@@ -142,33 +133,25 @@ public class TSF_BoardController {
 			@RequestParam(value = "board_no") int board_no,
 			String pw
 			) {
-		// list에서 글 제목 선택시 view로 연결
-
+		// 게시글 수정 화면
 		System.out.println("게시글번호, 비번 : "+board_no + "  " + pw);
 		
-		// 게시글 수정하기
-		// 선택한 게시글 내용 가져오기
-		BoardVo GetBoardContent = BoardService.GetBoardContent(board_no);
+		BoardVo GetBoardContent = BoardService.GetBoardContent(board_no);	// 선택한 게시글 내용 가져오기
 		model.addAttribute("GetBoardContent", GetBoardContent);
 
 		return "TSF/board/modifyform";
 	}
 	
-	
-	
-	
-	
-
 	@RequestMapping("main/board/delete")
-	public String delete(Model model, @RequestParam(value = "no") int board_no) {
+	public String delete(Model model, @RequestParam(value = "board_no") int board_no) {
 
 		// 선택한 게시글 내용 가져오기
 		BoardVo boardVo = BoardService.GetBoardContent(board_no);
+		System.out.println("삭제할 게시글: " + boardVo);
+		
 
 		// 게시글 삭제하기 (state = 0으로 변경)
-		// BoardService.delete(boardVo);
-		
-		System.out.println("삭제할 게시글: " + boardVo);
+		 BoardService.delete(boardVo);
 
 		return "redirect:/main/board/" + boardVo.getBoardlist_no();
 	}
