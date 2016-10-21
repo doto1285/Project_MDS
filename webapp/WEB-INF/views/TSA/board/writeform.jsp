@@ -19,16 +19,6 @@
 	type="text/css">
 <!-- Custom CSS -->
 <link href="css/shop-item.css" rel="stylesheet">
-<!-- 
-<link rel="stylesheet" type="text/css" href="<c:url value='/CLEditor1_4_5/jquery.cleditor.css'/> " />
-<script type="text/javascript" src="<c:url value='/CLEditor1_4_5/jquery.min.js'/> "></script>
-<script type="text/javascript" src="<c:url value='/CLEditor1_4_5/jquery.cleditor.min.js'/> "></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-    $("#content").cleditor(); 
-  });
-</script> 
--->
 <!-- /공통 -->
 <title>모두의 쇼핑몰</title>
 
@@ -64,7 +54,7 @@ $(document).ready(function(){
 					</tr>
 					<tr>
 						<td class=>제목</td>
-						<td><input type="text" name="board_title" value=""></td>
+						<td><input type="text" id="title" name="board_title" value=""></td>
 					</tr>
 					<tr>
 						<td class=>내용</td>
@@ -73,7 +63,7 @@ $(document).ready(function(){
 
 					<tr>
 						<td class=>비밀번호</td>
-						<td><textarea id="text" name="board_password"></textarea></td>
+						<td><textarea id="pw" name="board_password"></textarea></td>
 					</tr>
 
 				</table>
