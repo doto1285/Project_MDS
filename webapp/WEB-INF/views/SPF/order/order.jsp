@@ -191,6 +191,11 @@ var orderArray = new Array();
 var total = 2500;
 $("#deleteButton").click(function() {
 	$(".tr_check:checked" ).parents("#basketContent").remove();
+	var total = 2500;
+	$(".baskettr").each(function(idx, row){
+		total += parseInt($(this).find("#tableContents12").val());
+		$("#total").text(total);
+	});
 	});
 	
 $(".baskettr").each(function(idx, row){
@@ -215,7 +220,6 @@ $("#payButton").click(function() {
 			contentType : "application/json",
 			success : function(url) {
 				console.log("동작완료");
-				//location.href = url;
 			},
 			error : function(request, status, error) {
 				alert("code:" + request.status + "\n" + "message:"
@@ -249,7 +253,7 @@ $("#payButton").click(function() {
 		contentType : "application/json",
 		success : function(url) {
 			alert("성공적으로 결제되었습니다.");
-			//location.href = url;
+			location.href = url;
 		},
 		error : function(request, status, error) {
 			alert("code:" + request.status + "\n" + "message:"

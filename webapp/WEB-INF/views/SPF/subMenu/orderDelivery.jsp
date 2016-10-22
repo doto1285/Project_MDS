@@ -45,7 +45,7 @@
 				<td><label id="tdFirst">수량</label></td>
 				<td><label id="tdFirst">상품구매금액</label></td>
 				<td><label id="tdFirst">주문처리상태</label>
-				<td><label id="tdFirst">주문취소/환불요청</label></td>
+				<td><label id="tdFirst">주문취소</label></td>
 			</tr>
 			<tr>
 				<td id="tableContents">2016년 9월 5일 <br> [0000000000]
@@ -60,20 +60,6 @@
 				<td id="tableContents">29,500원</td>
 				<td id="tableContents">배송 준비중</td>
 				<td><button type="button" class="btn btn-default" id="orderDeliveryButton">주문취소</button></td>
-			</tr>
-			<tr>
-				<td id="tableContents">2016년 9월 5일 <br> [0000000000]
-				</td>
-				<td><img
-					src="/Project_MDS/assets/image/SPF_orderProductSample1.png"
-					alt="상품 이미지" class="img-thumbnail" id="orderProductImage"></td>
-				<td id="tableContents">엠보단가라 <br> [색상:블루, <br>
-					사이즈:FREE]
-				</td>
-				<td id="tableContents">2개</td>
-				<td id="tableContents">29,500원</td>
-				<td id="tableContents">배송완료</td>
-				<td><button type="button" class="btn btn-default" id="orderDeliveryButton">환불요청</button></td>
 			</tr>
 		</table>
 		<div style="text-align: center;">
