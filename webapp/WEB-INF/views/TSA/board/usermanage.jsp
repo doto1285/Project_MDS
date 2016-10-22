@@ -68,7 +68,7 @@
 				<c:forEach items="${GetUserManageList }" var="GetUserManageList">
 				<tr>
 					<td>${GetUserManageList.member_no}</td>
-					<td><a href="view?no=${GetUserManageList.member_no}">${GetUserManageList.member_id}</a></td>
+		<td><!--<a href="view?no=${GetUserManageList.member_no}">-->${GetUserManageList.member_id}<!--</a>--></td>
 					<td>${GetUserManageList.member_name}</td>
 					<td>${GetUserManageList.member_joindate}</td>
 					<td>${GetUserManageList.member_distinction}</td>
@@ -89,7 +89,7 @@
 
 					<c:if test="${map.prevPage >= 0 }">
 						<li><a
-							href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${map.prevPage }">◀</a></li>
+							href="/Project_MDS/TSA/main/board/usermanage?p=${map.prevPage }">◀</a></li>
 					</c:if>
 
 					<c:forEach begin='${map.firstPage }' end='${map.lastPage }'
@@ -103,14 +103,14 @@
 							</c:when>
 							<c:otherwise>
 								<li><a
-									href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${i }">${i }</a></li>
+									href="/Project_MDS/TSA/main/board/usermanage?p=${i }">${i }</a></li>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
 
 					<c:if test='${map.nextPage > 0 }'>
 						<li><a
-							href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${map.nextPage }">▶</a></li>
+							href="/Project_MDS/TSA/main/board/usermanage?p=${map.nextPage }">▶</a></li>
 					</c:if>
 				</ul>
 			</div>

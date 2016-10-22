@@ -251,7 +251,7 @@
 									//ajax가 성공했을때, 컨트롤러에서 리턴받는 url로 페이지를 최신화 시킨다.
 
 									if (boo == 'true') {
-										location.href = "http://localhost:8088/Project_MDS/main/board/delete?board_no="+ board_no;
+										location.href = "http://localhost:8088/Project_MDS/TSA/main/board/delete?board_no="+ board_no;
 									} else {
 										alert("비밀번호가 틀렸습니다");
 									}

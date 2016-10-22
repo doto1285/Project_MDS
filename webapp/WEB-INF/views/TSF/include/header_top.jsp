@@ -37,7 +37,7 @@
 			
 			<c:choose>
 					<c:when test='${empty authUser }'>
-						<li><a href="/Project_MDS/main/loginfrom"  id = "padding-left_600px">로그인</a></li>
+						<li><a href="/Project_MDS/TSA/admin/main"  id = "padding-left_600px">로그인</a></li>
 						<li><a href="/Project_MDS/main/joinform_choose">회원가입</a></li>
 					</c:when>
 					<c:otherwise>
