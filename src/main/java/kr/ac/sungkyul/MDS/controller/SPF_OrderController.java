@@ -132,5 +132,26 @@ public class SPF_OrderController {
 
 		return "http://localhost:8088/Project_MDS/" + mall_domain + "/order";
 	}
+	
+	@ResponseBody
+	@RequestMapping("{mall_domain}/orderinsertofbasket")
+	public String orderInsertOfBasket(@PathVariable String mall_domain, Model model, HttpSession session,
+			@RequestBody String paramData) {
+		// 현재 접속한 SPF 쇼핑몰 도메인을 매개로 mall_domain, mall_no을 mallVo에 넣음
+		MallVo mallVo = SPF_mallService.domainCheck(mall_domain);
+		model.addAttribute("mall_domain", mall_domain);
+		// 도메인 체크
+		if ((SPF_mallService.isDomainCheck(mallVo.getMall_no())) == false) {
+			// 없는 도메인일 경우 실행되는 코드
+			return "404 error";
+		}
+
+		List<Map<String, Object>> resultMap = new ArrayList<Map<String, Object>>();
+		resultMap = JSONArray.fromObject(paramData);
+		orderList = SPF_orderService.insertOrderOfBasket(resultMap, mallVo.getMall_no());
+		System.out.println("orderList 저장할 때 : " + orderList);
+
+		return "http://localhost:8088/Project_MDS/" + mall_domain + "/order";
+	}
 
 }

@@ -5,7 +5,7 @@ public class BasketVo {
 	private int basket_no;
 	private int basket_count;
 	private int product_no;
-	private int productoprion_no;
+	private int productoption_no;
 	private int member_no;
 	private int mall_no;
 	
@@ -28,11 +28,11 @@ public class BasketVo {
 	public void setProduct_no(int product_no) {
 		this.product_no = product_no;
 	}
-	public int getProductoprion_no() {
-		return productoprion_no;
+	public int getProductoption_no() {
+		return productoption_no;
 	}
-	public void setProductoprion_no(int productoprion_no) {
-		this.productoprion_no = productoprion_no;
+	public void setProductoption_no(int productoption_no) {
+		this.productoption_no = productoption_no;
 	}
 	public int getMember_no() {
 		return member_no;
@@ -49,7 +49,7 @@ public class BasketVo {
 	@Override
 	public String toString() {
 		return "BasketVo [basket_no=" + basket_no + ", basket_count=" + basket_count + ", product_no=" + product_no
-				+ ", productoprion_no=" + productoprion_no + ", member_no=" + member_no + ", mall_no=" + mall_no + "]";
+				+ ", productoprion_no=" + productoption_no + ", member_no=" + member_no + ", mall_no=" + mall_no + "]";
 	}
 	
 	

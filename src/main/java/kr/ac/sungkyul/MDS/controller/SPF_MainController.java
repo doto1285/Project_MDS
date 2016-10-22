@@ -97,7 +97,6 @@ public class SPF_MainController {
 
 		// 로그인 세션을 memberVo에 넣음
 		MemberVo memberVo = (MemberVo) session.getAttribute("authUser");
-		System.out.println("현재 로그인한 사용자: " + memberVo);
 		
 		model.addAttribute("memberVo", memberVo);
 		
