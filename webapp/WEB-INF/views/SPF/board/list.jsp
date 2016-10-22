@@ -47,7 +47,7 @@
 							<th>번호 ${authUser.member_distinction}</th>
 							<th>제목 ${GetBoard.boardlist_write_accessright }</th>
 							<th>글쓴이${GetBoard.boardlist_read_accessright }</th>
-							<th>조회수</th>
+							<th>조회수${authUser.member_no }</th>
 							<th>작성일</th>
 						</tr>
 

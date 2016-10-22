@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.ac.sungkyul.MDS.vo.BasketListVo;
 import kr.ac.sungkyul.MDS.vo.OrderinfoVo;
 
 
@@ -23,6 +24,21 @@ public class OrderinfoDao {
 	
 	public void updateOrderState(OrderinfoVo vo) {
 		sqlSession.update("SPA_orderinfo.updateOrderState", vo);
+	}
+	
+	public void orderInfoInsert(List<OrderinfoVo> orderList) {
+		for(int i=0; i<orderList.size(); i++){
+			OrderinfoVo orderinfoVo = orderList.get(i);
+			System.out.println("orderinfoVo : " + orderinfoVo);
+			sqlSession.insert("SPF_orderInfo.insertorderinfo", orderList);
+		}
+	}
+	
+	public void basketDelete(List<BasketListVo> basketList) {
+		for(int i=0; i<basketList.size(); i++){
+			BasketListVo basketListVoo = basketList.get(i);
+			sqlSession.delete("SPF_orderInfo.deletebasket", basketList);
+		}
 	}
 
 }

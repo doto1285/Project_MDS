@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="SPF_order">
+<mapper namespace="SPF_orderInfo">
+
+<insert id="insertorderinfo" parameterType="kr.ac.sungkyul.MDS.vo.OrderinfoVo">
+	<!-- 주문 배송중인 상품을 삽입함 -->
+		<![CDATA[
+			insert into orderinfo values 
+			(orderinfo_seq.nextval, #{orderinfo_count}, #{orderinfo_price}, #{orderinfo_address}, 
+			sysdate, 2, #{product_no}, #{member_no}, #{productoption_no}, #{mall_no})
+		]]>
+	</insert>
 
 	<select id="selectorder" parameterType="kr.ac.sungkyul.MDS.vo.BasketListVo"
 		resultType="kr.ac.sungkyul.MDS.vo.BasketListVo">
@@ -17,7 +26,12 @@
 		]]>
 	</select>
 
-
+<delete id="deletebasket" parameterType="kr.ac.sungkyul.MDS.vo.BasketListVo">
+		<!-- 장바구니에 있던 상품이 주문결제되면 장바구니의 상품을 삭제한다 -->
+		<![CDATA[	
+		delete from basket where basket_no = #{basket_no }
+		]]>
+	</delete>
 
 
 </mapper>

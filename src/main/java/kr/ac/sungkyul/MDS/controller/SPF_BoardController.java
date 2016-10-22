@@ -49,91 +49,96 @@ public class SPF_BoardController {
 			@RequestParam(value = "boardlist_no", required = false) int boardlist_no,
 			@RequestParam(value = "p", required = true, defaultValue = "1") int page,
 			@RequestParam(value = "kwd", required = false, defaultValue = "") String keyword, Model model) {
-		// 현재 접속한 SPF 쇼핑몰 도메인을 매개로 mall_domain, mall_no을 mallVo에 넣음
-		MallVo mallVo = SPF_mallService.domainCheck(domain);
-		model.addAttribute("mall_domain", domain);
-		// 도메인 체크
+
+		/////////////////////////////////////
+		// 도멘인으로 mall_no 가져옴
+		MallVo mallVo = SPF_mallService.domainCheck(domain); 
+		
+		// <a> 태그에 링크 이용 시 PathVariable에 들어가는 {domain} 설정
+		model.addAttribute("mall_domain", domain); 
+		
+		// 화면에서 mall_no 체크시
+		model.addAttribute("mall_no", mallVo.getMall_no()); 
+
+		// 정상 개설된 쇼핑몰에 접속했는지 확인
 		if ((SPF_mallService.isDomainCheck(mallVo.getMall_no())) == false) {
-			// 없는 도메인일 경우 실행되는 코드
+			// 없거나, 삭제된 쇼핑몰 접속시 페이지를 찾을 수 없습니다. 화면
 			return "404 error";
 		}
 
-		/*
-		 * Map<String, Object> makeModel = makeModel(mallVo);
-		 * System.out.println(makeModel.toString());
-		 * model.addAttribute("makeModel", makeModel);
-		 */
-
-		// Iterator<String> iterator = makeModel.keySet().iterator();
-		// while (iterator.hasNext()) {
-		// String key = (String) iterator.next();
-		// System.out.print("key="+key);
-		// System.out.println(" value="+makeModel.get(key));
-		//
-		// model.addAttribute("mallVo", key);
-		// }
-
-		// 쇼핑몰 footer 뿌려줌
-		mallVo = SPF_mainService.get_Footer(mallVo.getMall_no());
+		// footer
+		mallVo = SPF_mainService.get_Footer(mallVo.getMall_no()); 
 		model.addAttribute("mallVo", mallVo);
-		// 카테고리 메뉴 뿌려줌
-		List<CategoryListVo> categoryList = SPF_mainService.get_CategoryList(mallVo);
-		model.addAttribute("categoryList1st", categoryList);
-		model.addAttribute("categoryList2nd", categoryList);
-		// 헤더의 로고이미지 뿌려줌
-		MallimgVo mallimgVoLogo = SPF_mallimgService.get_selectMallimg_logo(mallVo);
-		model.addAttribute("mallimgVoLogo", mallimgVoLogo);
-		// 헤더의 게시판 리스트 뿌려줌
-		List<BoardListVo> boardList = boardService.SPF_GetBoardList(mallVo);
-		model.addAttribute("boardList", boardList);
+		
+		// 카테고리 메뉴
+		List<CategoryListVo> categoryList = SPF_mainService.get_CategoryList(mallVo); 
+		model.addAttribute("categoryList1st", categoryList); 
+		model.addAttribute("categoryList2nd", categoryList); 
 
-		// 해당 게시판 정보 가져오기
-		// System.out.println("테스트1: " + domain +""+boardlist_no);
-		BoardListVo GetBoard = boardService.GetBoard(domain, boardlist_no);
+		// 로고이미지
+		MallimgVo mallimgVoLogo = SPF_mallimgService.get_selectMallimg_logo(mallVo); 
+		model.addAttribute("mallimgVoLogo", mallimgVoLogo); 
+		
+		// 게시판 리스트
+		List<BoardListVo> boardList = boardService.SPF_GetBoardList(mallVo); 
+		model.addAttribute("boardList", boardList); 
 
-		model.addAttribute("GetBoard", GetBoard);
-		// System.out.println("해당 게시판 정보: " + GetBoard);
-
-		// 해당 게시판에 게시글 가져오기
-		Map<String, Object> map = boardService.GetBoardContentsList(boardlist_no, page, keyword);
-		model.addAttribute("map", map);
-
-		// 로그인 세션 체크
+		// 비회원인지 확인
 		if (memberService.isUserCheck(session) == false) {
-			// 로그인 안한 회원일 경우 실행되는 코드
-
+			// 비 회원일경우 아래코드 실행하고 컨트롤러 빠져나옴
 			return "SPF/board/list";
 		}
-
-		// 로그인 세션을 memberVo에 넣음
+		
+		// 통합회원일 때 아래 코드 실행
 		MemberVo memberVo = (MemberVo) session.getAttribute("authUser");
-		System.out.println("현재 로그인한 사용자: " + memberVo);
-
 		model.addAttribute("memberVo", memberVo);
 
-		// 현재 도메인과 로그인 정보(mallVo, memberVo)를 joinmallVo에 넣음(SPF가입여부 체크용)
+		// 통합회원이 SPF회원인지 확인을 위한 사전작업
 		JoinMallVo joinmallVo = new JoinMallVo();
 		joinmallVo.setMember_no(String.valueOf(memberVo.getMember_no()));
 		joinmallVo.setMall_no(String.valueOf(mallVo.getMall_no()));
 
-		// 로그인 세션이 있는 회원이 현재 개인 쇼핑몰 회원인지 체크
+		// 통합회원이 SPF회원인지 확인
 		if (memberService.SPFWhatUser(joinmallVo) == false) {
-			// 로그인 세션이 있는 회원이 현재 쇼핑몰에 가입되지 않은 경우 실행되는 코드
-			joinmallVo.setMember_no(null);
-
-			session.setAttribute("SPFauthUserSession", joinmallVo);
-			JoinMallVo SPFauthUser = (JoinMallVo) session.getAttribute("SPFauthUserSession");
-			model.addAttribute("SPFauthUser", SPFauthUser);
-
+			// SPF회원이 아닐경우 아래 코드 실행
 			return "SPF/board/list";
 		}
 		// 현재 쇼핑몰에 가입된 경우 실행되는 코드
-		session.setAttribute("SPFauthUserSession", joinmallVo);
-		JoinMallVo SPFauthUser = (JoinMallVo) session.getAttribute("SPFauthUserSession");
-		model.addAttribute("SPFauthUser", SPFauthUser);
+		model.addAttribute("SPFauthUser", joinmallVo);
+		//////////////////////////////////////////
 
-		return "SPF/board/list";
-	}
+		
+		
+		
+			// 해당 게시판 정보 가져오기
+			// System.out.println("테스트1: " + domain +""+boardlist_no);
+			BoardListVo GetBoard = boardService.GetBoard(domain, boardlist_no);
+
+			model.addAttribute("GetBoard", GetBoard);
+			// System.out.println("해당 게시판 정보: " + GetBoard);
+
+			// 해당 게시판에 게시글 가져오기
+			Map<String, Object> map = boardService.GetBoardContentsList(boardlist_no, page, keyword);
+			model.addAttribute("map", map);
+
+			return "SPF/board/list";
+		}
+
+	/*
+	 * Map<String, Object> makeModel = makeModel(mallVo);
+	 * System.out.println(makeModel.toString()); model.addAttribute("makeModel",
+	 * makeModel);
+	 */
+
+	// Iterator<String> iterator = makeModel.keySet().iterator();
+	// while (iterator.hasNext()) {
+	// String key = (String) iterator.next();
+	// System.out.print("key="+key);
+	// System.out.println(" value="+makeModel.get(key));
+	//
+	// model.addAttribute("mallVo", key);
+	// }
+
 
 	@RequestMapping("/{domain}/view")
 	public String view(HttpSession session, @PathVariable String domain,
@@ -388,5 +393,4 @@ public class SPF_BoardController {
 		System.out.println(boardList.toString());
 		return makeModel;
 	}
-
 }

@@ -23,8 +23,19 @@ public class BasketDao {
 		}
 	}
 	
-	public List<BasketListVo> selectBasket(MallVo mallVo){
-		return sqlSession.selectList("SPF_basket.selectbasket", mallVo);
+	public List<BasketListVo> selectBasket(BasketListVo basketListVo){
+		return sqlSession.selectList("SPF_basket.selectbasket", basketListVo);
+	}
+	
+	public List<BasketListVo> basketPaging(BasketListVo basketListVo){
+		return sqlSession.selectList("SPF_basket.basketpaging", basketListVo);
+	}
+	
+	public void deleteBasket(List<BasketListVo> basketList) {
+		for(int i=0; i<basketList.size(); i++){
+			BasketListVo basketListVo = basketList.get(i);
+			sqlSession.delete("SPF_basket.deletebasket", basketListVo);
+		}
 	}
 
 }

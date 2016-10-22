@@ -10,7 +10,7 @@
 		]]>
 	</insert>
 
-	<select id="selectbasket" parameterType="kr.ac.sungkyul.MDS.vo.MallVo"
+	<select id="selectbasket" parameterType="kr.ac.sungkyul.MDS.vo.BasketListVo"
 		resultType="kr.ac.sungkyul.MDS.vo.BasketListVo">
 		<!-- 장바구니 리스트를 가져옴 -->
 	<![CDATA[
@@ -22,12 +22,31 @@
 		where basket.member_no=#{member_no } and basket.mall_no=#{mall_no }) b 
 		left join product on b.product_no = product.product_no where product.product_state = 1) p 
 		left join productimg on p.product_no = productimg.product_no where productimg_flag = 0
+		order by p.basket_no desc
+		]]>
+	</select>
+	
+	<select id="basketpaging" parameterType="kr.ac.sungkyul.MDS.vo.BasketListVo"
+		resultType="kr.ac.sungkyul.MDS.vo.BasketListVo">
+		<!-- 장바구니 리스트 페이징 -->
+		<![CDATA[	
+			select * from (select a.*, rownum as rnum from 
+			(select p.*, productimg.productimg_image from 
+			(select b.*, product_name, product_price, (b.basket_count * product_price) total from 
+			(select basket.*,productoption_color,productoption_size 
+			from basket left join productoption 
+			on basket.productoption_no = productoption.productoption_no 
+			where basket.member_no=#{member_no } and basket.mall_no=#{mall_no }) b 
+			left join product on b.product_no = product.product_no where product.product_state = 1) p 
+			left join productimg on p.product_no = productimg.product_no where productimg_flag = 0
+			order by p.basket_no desc) a)
+			where (#{pageNo}-1)*4+1<=rnum and rnum<=#{pageNo}*4 
 		]]>
 	</select>
 
-<delete id="deletebasket" parameterType="kr.ac.sungkyul.MDS.vo.BasketVo">
+<delete id="deletebasket" parameterType="kr.ac.sungkyul.MDS.vo.BasketListVo">
 		<![CDATA[	
-		DELETE FROM basket WHERE basket_no = #{basket_no };
+		delete from basket where basket_no = #{basket_no }
 		]]>
 	</delete>
 

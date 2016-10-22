@@ -88,9 +88,11 @@ public class TSF_BoardController {
 	
 	
 	@ResponseBody
-	@RequestMapping("main/board/checkpw")
+	@RequestMapping("{main}/board/checkpw")
+	
 	//비밀번호 확인
 	public String checkpw(
+			@PathVariable String main,
 			Model model, 
 			int board_no,
 			String pw,
@@ -113,6 +115,7 @@ public class TSF_BoardController {
 		else{
 			return "f";
 		}
+		
 	}
 	
 	
@@ -131,6 +134,7 @@ public class TSF_BoardController {
 	@RequestMapping("main/board/modifyform")
 	public String modifyform(Model model,
 			@RequestParam(value = "board_no") int board_no,
+			@RequestParam(value = "boardlist_no") int boardlist_no,
 			String pw
 			) {
 		// 게시글 수정 화면

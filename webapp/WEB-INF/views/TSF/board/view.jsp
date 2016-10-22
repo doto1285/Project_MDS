@@ -64,7 +64,7 @@
 				<div id="board" class="board-form" id="margin50px">
 					<table class="tbl-ex" id="margin50px">
 						<tr>
-							<th colspan="2">글보기 </th>
+							<th colspan="2">글보기</th>
 						</tr>
 						<tr>
 							<td>제목</td>
@@ -78,24 +78,19 @@
 						</tr>
 
 					</table>
-				
-					
-					
+
+
+
 					<div class="bottom" data-board_no='${GetBoardContent.board_no}'>
-						 <a href="${GetBoardContent.boardlist_no }">목록</a> 
+						<a href="${GetBoardContent.boardlist_no }">목록</a>
 						<c:if test='${not empty authUser }'>
-						 <a href="replyform/${GetBoardContent.board_no }">답글</a>
-						 <a data-toggle="modal" data-target="#check_pw" class="btn_modify">글수정</a>
-						 <a data-toggle="modal" data-target="#check_pw" class="btn_delete">삭제</a>
+							<a href="replyform/${GetBoardContent.board_no }">답글</a>
+							<a data-toggle="modal" data-target="#check_pw" class="btn_modify">글수정</a>
+							<a data-toggle="modal" data-target="#check_pw" class="btn_delete">삭제</a>
 						</c:if>
-			
 
 
-
-						<!-- 	
 					</div>
-
-
 				</div>
 			</div>
 
@@ -223,7 +218,8 @@
 											//ajax가 성공했을때, 컨트롤러에서 리턴받는 url로 페이지를 최신화 시킨다.
 
 											if (boo == 'true') {
-												location.href = "http://localhost:8088/Project_MDS/main/board/modifyform?board_no="+ board_no;
+												location.href = "http://localhost:8088/Project_MDS/main/board/modifyform?board_no="
+														+ board_no;
 											} else {
 												alert("비밀번호가 틀렸습니다");
 											}
@@ -238,29 +234,31 @@
 						if ('delete' == check_motion) {
 							//글 삭제 
 							console.log("글 삭제");
-							$.ajax({
-								url : "checkpw",
-								type : "POST",
-								data : {
-									"board_no" : board_no,
-									"pw" : pw
-								},
-								dataType : "text",
+							$
+									.ajax({
+										url : "checkpw",
+										type : "POST",
+										data : {
+											"board_no" : board_no,
+											"pw" : pw
+										},
+										dataType : "text",
 
-								success : function(boo) {
-									//ajax가 성공했을때, 컨트롤러에서 리턴받는 url로 페이지를 최신화 시킨다.
+										success : function(boo) {
+											//ajax가 성공했을때, 컨트롤러에서 리턴받는 url로 페이지를 최신화 시킨다.
 
-									if (boo == 'true') {
-										location.href = "http://localhost:8088/Project_MDS/TSA/main/board/delete?board_no="+ board_no;
-									} else {
-										alert("비밀번호가 틀렸습니다");
-									}
+											if (boo == 'true') {
+												location.href = "http://localhost:8088/Project_MDS/main/board/delete?board_no="
+														+ board_no;
+											} else {
+												alert("비밀번호가 틀렸습니다");
+											}
 
-								},
-								error : function(jqXHR, status, error) {
-									consloe.log("error: " + error);
-								}
-							});
+										},
+										error : function(jqXHR, status, error) {
+											consloe.log("error: " + error);
+										}
+									});
 						}
 
 					});

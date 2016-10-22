@@ -4,7 +4,7 @@ public class BasketListVo {
 	private int basket_no;
 	private int basket_count;
 	private int product_no;
-	private int productoprion_no;
+	private int productoption_no;
 	private int member_no;
 	private int mall_no;
 	private String productoption_color;
@@ -13,6 +13,8 @@ public class BasketListVo {
 	private int product_price;
 	private String productimg_image;
 	private int total;
+	private Integer pageNo;
+	private String address;
 	
 	public int getBasket_no() {
 		return basket_no;
@@ -32,11 +34,11 @@ public class BasketListVo {
 	public void setProduct_no(int product_no) {
 		this.product_no = product_no;
 	}
-	public int getProductoprion_no() {
-		return productoprion_no;
+	public int getProductoption_no() {
+		return productoption_no;
 	}
-	public void setProductoprion_no(int productoprion_no) {
-		this.productoprion_no = productoprion_no;
+	public void setProductoption_no(int productoption_no) {
+		this.productoption_no = productoption_no;
 	}
 	public int getMember_no() {
 		return member_no;
@@ -86,12 +88,24 @@ public class BasketListVo {
 	public void setTotal(int total) {
 		this.total = total;
 	}
+	public Integer getPageNo() {
+		return pageNo;
+	}
+	public void setPageNo(Integer pageNo) {
+		this.pageNo = pageNo;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	@Override
 	public String toString() {
 		return "BasketListVo [basket_no=" + basket_no + ", basket_count=" + basket_count + ", product_no=" + product_no
-				+ ", productoprion_no=" + productoprion_no + ", member_no=" + member_no + ", mall_no=" + mall_no
+				+ ", productoption_no=" + productoption_no + ", member_no=" + member_no + ", mall_no=" + mall_no
 				+ ", productoption_color=" + productoption_color + ", productoption_size=" + productoption_size
 				+ ", product_name=" + product_name + ", product_price=" + product_price + ", productimg_image="
-				+ productimg_image + ", total=" + total + "]";
+				+ productimg_image + ", total=" + total + ", pageNo=" + pageNo + ", address=" + address + "]";
 	}
 }
