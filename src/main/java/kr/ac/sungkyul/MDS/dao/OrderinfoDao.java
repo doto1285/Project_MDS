@@ -30,14 +30,14 @@ public class OrderinfoDao {
 		for(int i=0; i<orderList.size(); i++){
 			OrderinfoVo orderinfoVo = orderList.get(i);
 			System.out.println("orderinfoVo : " + orderinfoVo);
-			sqlSession.insert("SPF_orderInfo.insertorderinfo", orderList);
+			sqlSession.insert("SPF_orderinfo.insertorderinfo", orderinfoVo);
 		}
 	}
 	
 	public void basketDelete(List<BasketListVo> basketList) {
 		for(int i=0; i<basketList.size(); i++){
-			BasketListVo basketListVoo = basketList.get(i);
-			sqlSession.delete("SPF_orderInfo.deletebasket", basketList);
+			BasketListVo basketListVo = basketList.get(i);
+			sqlSession.delete("SPF_orderinfo.deletebasket", basketListVo);
 		}
 	}
 

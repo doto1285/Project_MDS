@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="SPF_orderInfo">
+<mapper namespace="SPF_orderinfo">
 
 <insert id="insertorderinfo" parameterType="kr.ac.sungkyul.MDS.vo.OrderinfoVo">
 	<!-- 주문 배송중인 상품을 삽입함 -->

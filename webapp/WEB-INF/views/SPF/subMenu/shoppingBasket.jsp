@@ -75,6 +75,8 @@
 			</tr>
 			</c:forEach>
 		</table>
+		<button type="button" class="btn btn-default" id="deleteButton">선택상품삭제</button>
+		<button type="button" class="btn btn-default" id="orderButton">선택상품주문</button>
 		</c:when>
 		<c:otherwise>
 		<br> <br> <br> <br> <br> <br>
@@ -84,8 +86,7 @@
 		</c:otherwise>
 		
 		</c:choose>
-		<button type="button" class="btn btn-default" id="deleteButton">선택상품삭제</button>
-		<button type="button" class="btn btn-default" id="orderButton">선택상품주문</button>
+		
 		<div class="pager">
 				<!-- class="pagination" id="paging" -->
 				<ul>

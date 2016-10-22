@@ -6,7 +6,7 @@
 	<!-- 장바구니 상품을 삽입함 -->
 		<![CDATA[
 			insert into basket values 
-			(basket_seq.nextval, #{basket_count}, #{product_no}, #{productoprion_no}, #{member_no}, #{mall_no})
+			(basket_seq.nextval, #{basket_count}, #{product_no}, #{productoption_no}, #{member_no}, #{mall_no})
 		]]>
 	</insert>
 

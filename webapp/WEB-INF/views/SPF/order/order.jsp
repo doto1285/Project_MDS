@@ -199,7 +199,7 @@ $(".baskettr").each(function(idx, row){
 });
 	
 $("#payButton").click(function() {
-	  /* if(!($(this).find("#tableContents1").val() == 0)){
+	   if(!($(this).find("#tableContents1").val() == 0)){
 		 var basketNoArray = new Array();
 		 $(".baskettr").each(function(idx, row) {
 		 var orderInfo = new Object();
@@ -223,7 +223,7 @@ $("#payButton").click(function() {
 						+ error);
 			}
 		});  
-	 }  */ 
+	 }  
 	var address = $("#basicAddress").val() + " " +  $("#remainderAddress").val();
 	$(".baskettr").each(function(idx, row) {
 		var orderInfo = new Object();
