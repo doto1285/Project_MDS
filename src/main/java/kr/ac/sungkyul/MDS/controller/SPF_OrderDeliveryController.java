@@ -28,6 +28,7 @@ import kr.ac.sungkyul.MDS.vo.JoinMallVo;
 import kr.ac.sungkyul.MDS.vo.MallVo;
 import kr.ac.sungkyul.MDS.vo.MallimgVo;
 import kr.ac.sungkyul.MDS.vo.MemberVo;
+import kr.ac.sungkyul.MDS.vo.OrderinfoVo;
 import net.sf.json.JSONArray;
 
 @Controller
@@ -55,7 +56,8 @@ public class SPF_OrderDeliveryController {
 	SPF_OrderDeliveryService SPF_orderDeliveryService;
 
 	@RequestMapping("{mall_domain}/orderdelivery")
-	public String orderDelivery(@PathVariable String mall_domain, Model model, HttpSession session) {
+	public String orderDelivery(@PathVariable String mall_domain, Model model, HttpSession session,
+			OrderinfoVo orderinfoVo) {
 
 		// 현재 접속한 SPF 쇼핑몰 도메인을 매개로 mall_domain, mall_no을 mallVo에 넣음
 		MallVo mallVo = SPF_mallService.domainCheck(mall_domain);
@@ -91,24 +93,25 @@ public class SPF_OrderDeliveryController {
 		model.addAttribute("memberVo", memberVo);
 
 		// 페이징
-		/*basketListVo.setMember_no(memberVo.getMember_no());
-		basketListVo.setMall_no(mallVo.getMall_no());
-		List<BasketListVo> basketList = SPF_shoppingBasketService.selectBasket(basketListVo);
-		if (basketListVo.getPageNo() == null) {
-			basketListVo.setPageNo(1);
+		orderinfoVo.setMember_no(memberVo.getMember_no());
+		orderinfoVo.setMall_no(mallVo.getMall_no());
+		List<OrderinfoVo> orderlist = SPF_orderDeliveryService.orderInfoSelect(orderinfoVo);
+		if (orderinfoVo.getPageNo() == null) {
+			orderinfoVo.setPageNo(1);
 		}
-		int currentPage = basketListVo.getPageNo();
+		int currentPage = orderinfoVo.getPageNo();
 		int pageLength = 4;
 		int beginPage;
 
-		List<BasketListVo> listSplit = SPF_shoppingBasketService.basketPaging(basketListVo);
-		model.addAttribute("basketListSplit", listSplit);
+		List<OrderinfoVo> listSplit = SPF_orderDeliveryService.orderInfoPaging(orderinfoVo);
+		System.out.println("주문배송조회 : " + listSplit);
+		model.addAttribute("orderInfoSplit", listSplit);
 
-		int currentBlock = (int) Math.ceil((double) basketListVo.getPageNo() / 5);
+		int currentBlock = (int) Math.ceil((double) orderinfoVo.getPageNo() / 5);
 
 		beginPage = (currentBlock - 1) * 5 + 1;
 
-		int total = (int) Math.ceil((double) basketList.size() / pageLength);
+		int total = (int) Math.ceil((double) orderlist.size() / pageLength);
 		int endPage = currentBlock * 5;
 		if (endPage > total) {
 			endPage = total;
@@ -117,7 +120,7 @@ public class SPF_OrderDeliveryController {
 		model.addAttribute("beginPage", beginPage);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("endPage", endPage);
-		model.addAttribute("total", total);*/
+		model.addAttribute("total", total);
 
 		// 현재 도메인과 로그인 정보(mallVo, memberVo)를 joinmallVo에 넣음(SPF가입여부 체크용)
 		JoinMallVo joinmallVo = new JoinMallVo();
@@ -128,7 +131,7 @@ public class SPF_OrderDeliveryController {
 		if (memberService.SPFWhatUser(joinmallVo) == false) {
 			// 로그인 세션이 있는 회원이 현재 쇼핑몰에 가입되지 않은 경우 실행되는 코드
 			joinmallVo.setMember_no(null);
-			return "SPF/subMenu/shoppingBasket";
+			return "404 error";
 		}
 
 		// 현재 쇼핑몰에 가입된 경우 실행되는 코드
@@ -179,5 +182,25 @@ public class SPF_OrderDeliveryController {
 
 		return "http://localhost:8088/Project_MDS/" + mall_domain + "/orderdelivery";
 	}
+	
+	@ResponseBody
+	@RequestMapping("{mall_domain}/orderdeliverydelete")
+	public String orderDeliveryDelete(@PathVariable String mall_domain, Model model, HttpSession session,
+			@RequestBody int orderinfo_no) {
+		// 현재 접속한 SPF 쇼핑몰 도메인을 매개로 mall_domain, mall_no을 mallVo에 넣음
+		MallVo mallVo = SPF_mallService.domainCheck(mall_domain);
+		model.addAttribute("mall_domain", mall_domain);
+		// 도메인 체크
+		if ((SPF_mallService.isDomainCheck(mallVo.getMall_no())) == false) {
+			// 없는 도메인일 경우 실행되는 코드
+			return "404 error";
+		}
 
+		SPF_orderDeliveryService.orderDeliveryDelete(orderinfo_no);
+
+		return "http://localhost:8088/Project_MDS/" + mall_domain + "/orderdelivery";
+	}
+
+	
+	
 }

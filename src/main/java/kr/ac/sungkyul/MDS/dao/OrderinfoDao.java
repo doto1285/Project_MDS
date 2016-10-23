@@ -40,5 +40,18 @@ public class OrderinfoDao {
 			sqlSession.delete("SPF_orderinfo.deletebasket", basketListVo);
 		}
 	}
+	
+	public List<OrderinfoVo> orderInfoSelect(OrderinfoVo orderinfoVo){
+		return sqlSession.selectList("SPF_orderinfo.selectorderdelivery", orderinfoVo);
+	}
+	
+	public List<OrderinfoVo> orderInfoPaging(OrderinfoVo orderinfoVo){
+		return sqlSession.selectList("SPF_orderinfo.orderdeliverypaging", orderinfoVo);
+	}
+	
+	public void orderDeliveryDelete(int orderinfo_no){
+		sqlSession.delete("SPF_orderinfo.orderdeliverydelete", orderinfo_no);
+	}
+
 
 }

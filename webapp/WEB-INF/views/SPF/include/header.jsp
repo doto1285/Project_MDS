@@ -92,7 +92,7 @@
 							<!-- class="active" -->
 							<li role="presentation"><a href="logout">로그아웃</a></li>
 							<li role="presentation"><a href="http://localhost:8088/Project_MDS/${mall_domain }/shoppingbasket">장바구니</a></li>
-							<li role="presentation"><a href="login">주문배송조회</a></li>
+							<li role="presentation"><a href="http://localhost:8088/Project_MDS/${mall_domain }/orderdelivery">주문배송조회</a></li>
 							<li role="presentation"><a href="join">회원정보수정</a></li>
 							<div class="row">
 								<div class="col-lg-12">

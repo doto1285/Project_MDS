@@ -11,6 +11,12 @@ public class OrderinfoVo {
 	private int member_no;
 	private int productoption_no;
 	private int mall_no;
+	private String productoption_color;
+	private String productoption_size;
+	private String product_name;
+	private String productimg_image;
+	private Integer pageNo;
+	
 	public int getOrderinfo_no() {
 		return orderinfo_no;
 	}
@@ -71,15 +77,45 @@ public class OrderinfoVo {
 	public void setMall_no(int mall_no) {
 		this.mall_no = mall_no;
 	}
+	
+	public String getProductoption_color() {
+		return productoption_color;
+	}
+	public void setProductoption_color(String productoption_color) {
+		this.productoption_color = productoption_color;
+	}
+	public String getProductoption_size() {
+		return productoption_size;
+	}
+	public void setProductoption_size(String productoption_size) {
+		this.productoption_size = productoption_size;
+	}
+	public String getProduct_name() {
+		return product_name;
+	}
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
+	public String getProductimg_image() {
+		return productimg_image;
+	}
+	public void setProductimg_image(String productimg_image) {
+		this.productimg_image = productimg_image;
+	}
+	public Integer getPageNo() {
+		return pageNo;
+	}
+	public void setPageNo(Integer pageNo) {
+		this.pageNo = pageNo;
+	}
 	@Override
 	public String toString() {
 		return "OrderinfoVo [orderinfo_no=" + orderinfo_no + ", orderinfo_count=" + orderinfo_count
 				+ ", orderinfo_price=" + orderinfo_price + ", orderinfo_address=" + orderinfo_address
 				+ ", orderinfo_date=" + orderinfo_date + ", orderinfo_state=" + orderinfo_state + ", product_no="
 				+ product_no + ", member_no=" + member_no + ", productoption_no=" + productoption_no + ", mall_no="
-				+ mall_no + "]";
+				+ mall_no + ", productoption_color=" + productoption_color + ", productoption_size="
+				+ productoption_size + ", product_name=" + product_name + ", productimg_image=" + productimg_image
+				+ ", pageNo=" + pageNo + "]";
 	}
-
-	
-
 }
