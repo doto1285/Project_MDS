@@ -147,9 +147,11 @@
 	</div>
 
 	<c:import url='/WEB-INF/views/SPA/include/footer.jsp' />
+	
 </body>
 </html>
 <script>
+
 	$('#form-cata2nd').attr('disabled', 'true');
 	$("#form-cata1nd")
 			.on(
