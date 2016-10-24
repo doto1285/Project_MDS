@@ -98,14 +98,7 @@ public class TSF_BoardController {
 			String pw,
 			@ModelAttribute BoardVo boardVo) {
 		
-		System.out.println("글번호, 비번: " + board_no + "  " + pw);
-		
-		boardVo.setBoard_no(board_no);
-		boardVo.setBoard_password(pw);
-		
-		System.out.println("비번확인 " + boardVo);
-		
-		boolean boo = BoardService.checkPw(boardVo);
+		boolean boo = BoardService.checkPw(board_no, pw);
 		System.out.println("컨트롤러 값 확인 : " + boo);
 		
 		
@@ -115,7 +108,6 @@ public class TSF_BoardController {
 		else{
 			return "f";
 		}
-		
 	}
 	
 	

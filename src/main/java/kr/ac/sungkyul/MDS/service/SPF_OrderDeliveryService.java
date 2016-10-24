@@ -42,5 +42,18 @@ public class SPF_OrderDeliveryService {
 		}
 		orderinfoDao.basketDelete(basketList);
 	}
+	
+	public List<OrderinfoVo> orderInfoSelect(OrderinfoVo orderinfoVo){
+		return orderinfoDao.orderInfoSelect(orderinfoVo);
+	}
+	
+	public List<OrderinfoVo> orderInfoPaging(OrderinfoVo orderinfoVo){
+		return orderinfoDao.orderInfoPaging(orderinfoVo);
+	}
+	
+	public void orderDeliveryDelete(int orderinfo_no){
+		orderinfoDao.orderDeliveryDelete(orderinfo_no);
+	}
+	
 
 }

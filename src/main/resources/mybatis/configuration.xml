@@ -30,7 +30,7 @@
 		<mapper resource="mybatis/mappers/TSA_board.xml" />
 		<mapper resource="mybatis/mappers/SPF_basket.xml" />
 		<mapper resource="mybatis/mappers/SPA_productimg.xml" />
-		<mapper resource="mybatis/mappers/SPF_orderInfo.xml" />
+		<mapper resource="mybatis/mappers/SPF_orderinfo.xml" />
 		
 	</mappers>
 

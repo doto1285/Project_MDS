@@ -41,8 +41,8 @@
 						<li><a href="/Project_MDS/main/joinform_choose">회원가입</a></li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="#"  id = "padding-left_450px">${authUser.member_name }님 안녕하세요 ^^;</a></li>
-						<li><a href="#">회원정보수정</a></li>
+						<li><a  id = "padding-left_450px">${authUser.member_name }님 안녕하세요 ^^;</a></li>
+						<li><a href="main/modifyform">회원정보수정</a></li>
 						<li><a href="/Project_MDS/main/logout">로그아웃</a></li>
 					</c:otherwise>
 				</c:choose>

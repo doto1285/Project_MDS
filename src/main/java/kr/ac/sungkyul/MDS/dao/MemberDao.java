@@ -39,8 +39,13 @@ public class MemberDao {
 	public MemberVo get(int member_no) {
 		MemberVo vo = sqlSession.selectOne("TSF_member.selectOne", member_no);
 		return vo;
-
 	}
+	
+
+	public void modify(MemberVo memberVo) {
+		sqlSession.update("TSF_member.modify", memberVo);
+	}
+	
 
 	/**
 	 * 로그인 세션이 있는 회원이 현재 개인 쇼핑몰 회원인지 체크
@@ -77,5 +82,6 @@ public class MemberDao {
 		memberVo = sqlSession.selectOne("SPF_member.get_By_SPF_IdAndPassword", memberVo);
 		return memberVo;
 	}
+
 
 }

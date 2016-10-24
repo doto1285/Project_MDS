@@ -191,6 +191,11 @@ var orderArray = new Array();
 var total = 2500;
 $("#deleteButton").click(function() {
 	$(".tr_check:checked" ).parents("#basketContent").remove();
+	var total = 2500;
+	$(".baskettr").each(function(idx, row){
+		total += parseInt($(this).find("#tableContents12").val());
+		$("#total").text(total);
+	});
 	});
 	
 $(".baskettr").each(function(idx, row){
@@ -199,7 +204,7 @@ $(".baskettr").each(function(idx, row){
 });
 	
 $("#payButton").click(function() {
-	  /* if(!($(this).find("#tableContents1").val() == 0)){
+	   if(!($(this).find("#tableContents1").val() == 0)){
 		 var basketNoArray = new Array();
 		 $(".baskettr").each(function(idx, row) {
 		 var orderInfo = new Object();
@@ -215,7 +220,6 @@ $("#payButton").click(function() {
 			contentType : "application/json",
 			success : function(url) {
 				console.log("동작완료");
-				//location.href = url;
 			},
 			error : function(request, status, error) {
 				alert("code:" + request.status + "\n" + "message:"
@@ -223,7 +227,7 @@ $("#payButton").click(function() {
 						+ error);
 			}
 		});  
-	 }  */ 
+	 }  
 	var address = $("#basicAddress").val() + " " +  $("#remainderAddress").val();
 	$(".baskettr").each(function(idx, row) {
 		var orderInfo = new Object();
@@ -249,7 +253,7 @@ $("#payButton").click(function() {
 		contentType : "application/json",
 		success : function(url) {
 			alert("성공적으로 결제되었습니다.");
-			//location.href = url;
+			location.href = url;
 		},
 		error : function(request, status, error) {
 			alert("code:" + request.status + "\n" + "message:"

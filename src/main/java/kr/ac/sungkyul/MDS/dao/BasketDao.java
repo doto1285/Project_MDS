@@ -19,6 +19,7 @@ public class BasketDao {
 	public void insertBasket(List<BasketVo> basketList) {
 		for(int i=0; i<basketList.size(); i++){
 			BasketVo basketVo = basketList.get(i);
+			System.out.println(basketVo);
 			sqlSession.insert("SPF_basket.insertbasket", basketVo);
 		}
 	}
