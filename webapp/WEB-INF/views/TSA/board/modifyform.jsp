@@ -37,7 +37,7 @@
 		<div id="board">
 
 			<form class="board-form" method="post"
-				action="/Project_MDS/TSA/main/board/modify?board_no=${GetBoardContent.board_no}">
+				action="/Project_MDS/TSA/main/board/modify?no=${GetBoardContent.board_no}">
 				<input type="hidden" name="a" value="write"> <br> <input
 					type="text" name="member_no" value="${authUser.member_no }">
 				<input type="hidden" name="boardlist_no"
