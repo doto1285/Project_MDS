@@ -19,12 +19,17 @@ public class BasketDao {
 	public void insertBasket(List<BasketVo> basketList) {
 		for(int i=0; i<basketList.size(); i++){
 			BasketVo basketVo = basketList.get(i);
+			System.out.println(basketVo);
 			sqlSession.insert("SPF_basket.insertbasket", basketVo);
 		}
 	}
 	
-	public List<BasketListVo> selectBasket(MallVo mallVo){
-		return sqlSession.selectList("SPF_basket.selectbasket", mallVo);
+	public List<BasketListVo> selectBasket(BasketListVo basketListVo){
+		return sqlSession.selectList("SPF_basket.selectbasket", basketListVo);
+	}
+	
+	public List<BasketListVo> basketPaging(BasketListVo basketListVo){
+		return sqlSession.selectList("SPF_basket.basketpaging", basketListVo);
 	}
 	
 	public void deleteBasket(List<BasketListVo> basketList) {

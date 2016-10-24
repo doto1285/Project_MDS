@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.sungkyul.MDS.service.BoardService;
 import kr.ac.sungkyul.MDS.service.TSA_BoardService;
@@ -86,7 +87,7 @@ public class TSA_BoardController {
 	
 	
 	
-	@RequestMapping("main/board/view")
+	@RequestMapping("/main/board/view")
 	public String view(HttpSession session, @RequestParam(value = "no") int board_no ) {
 		// list에서 글 제목 선택시 view로 연결
 		
@@ -100,13 +101,13 @@ public class TSA_BoardController {
 		return "TSA/board/view";
 	}
 	
-	@RequestMapping("main/board/writeform/{boardlist_no}")
+	@RequestMapping("/main/board/writeform/{boardlist_no}")
 	public String writeform(HttpSession session, @PathVariable int boardlist_no) {
 		// list에서 글쓰기 버튼 클릭시 writeform으로 연결
 		return "TSA/board/writeform";
 	}
 
-	@RequestMapping(value = "main/board/write/{boardlist_no}", method = RequestMethod.POST)
+	@RequestMapping(value = "/main/board/write/{boardlist_no}", method = RequestMethod.POST)
 	public String write(@PathVariable int boardlist_no, @ModelAttribute BoardVo boardVo, HttpSession session) {
 		System.out.println("write 등록버튼 클릭");
 		System.out.println("모델 객체 테스트" + boardVo);
@@ -117,7 +118,7 @@ public class TSA_BoardController {
 		return "redirect:/TSA/main/board/" + boardlist_no;
 	}
 	
-	@RequestMapping("main/board/replyform/{boardlist_no}")
+	@RequestMapping("/main/board/replyform/{boardlist_no}")
 	public String replyform(HttpSession session, @PathVariable int boardlist_no) {
 		// view에서 답글버튼 클릭시
 		return "TSA/board/replyform";
@@ -125,7 +126,7 @@ public class TSA_BoardController {
 	}
 	
 	
-	@RequestMapping(value = "main/board/reply/{board_no}", method = RequestMethod.POST)
+	@RequestMapping(value = "/main/board/reply/{board_no}", method = RequestMethod.POST)
 	public String reply(@PathVariable int board_no, @ModelAttribute BoardVo boardVo, HttpSession session) {
 		System.out.println("답글 모델 객체 테스트" + boardVo);
 		
@@ -135,7 +136,76 @@ public class TSA_BoardController {
 		return "redirect:/TSA/main/board/" + boardVo.getBoardlist_no();
 	}
 
+	
+	@ResponseBody
+	@RequestMapping("/main/board/checkpw")
+	//비밀번호 확인
+	public String checkpw(
+			Model model, 
+			int board_no,
+			String pw,
+			@ModelAttribute BoardVo boardVo) {
+		
+		System.out.println("글번호, 비번: " + board_no + "  " + pw);
+		
+		boardVo.setBoard_no(board_no);
+		boardVo.setBoard_password(pw);
+		
+		System.out.println("비번확인 " + boardVo);
+		
+		boolean boo = BoardService.checkPw(boardVo);
+		System.out.println("컨트롤러 값 확인 : " + boo);
+		
+		
+		if(boo){
+			return "true";
+		}
+		else{
+			return "f";
+		}
+	}
+	
+	
+	@RequestMapping("/main/board/modify")
+	public String modify(Model model, 
+			@RequestParam(value = "no") int board_no,
+			@ModelAttribute BoardVo boardVo) {
+		//게시글 수정
+		boardVo.setBoard_no(board_no);
+		System.out.println(boardVo);
+		BoardService.BoardModify(boardVo);
+		
+		return "redirect:/TSA/main/board/view?no=" + board_no;
+	}
+	
+	
+	@RequestMapping("/main/board/modifyform")
+	public String modifyform(Model model,
+			@RequestParam(value = "board_no") int board_no,
+			String pw
+			) {
+		// 게시글 수정 화면
+		System.out.println("게시글번호, 비번 : "+board_no + "  " + pw);
+		
+		BoardVo GetBoardContent = BoardService.GetBoardContent(board_no);	// 선택한 게시글 내용 가져오기
+		model.addAttribute("GetBoardContent", GetBoardContent);
 
+		return "TSA/board/modifyform";
+	}
+	
+	@RequestMapping("/main/board/delete")
+	public String delete(Model model, @RequestParam(value = "board_no") int board_no) {
+
+		// 선택한 게시글 내용 가져오기
+		BoardVo boardVo = BoardService.GetBoardContent(board_no);
+		System.out.println("삭제할 게시글: " + boardVo);
+		
+
+		// 게시글 삭제하기 (state = 0으로 변경)
+		 BoardService.delete(boardVo);
+
+		return "redirect:/TSA/main/board/" + boardVo.getBoardlist_no();
+	}
 }
 	
 	

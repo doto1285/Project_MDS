@@ -279,7 +279,7 @@
 		else {
 		$("#optionResult .form-inline").each(function(i) {
 			var buyInfo = new Object();
-			buyInfo.productoption_stock = $(this).find(".form-control").val();
+			buyInfo.basket_count = $(this).find(".form-control").val();
 			buyInfo.product_name = "${map.productVo.product_name}";
 			buyInfo.product_price = ${map.productVo.product_price};
 			buyInfo.orderinfo_price = $(this).find(".form-control").val() * ${map.productVo.product_price};

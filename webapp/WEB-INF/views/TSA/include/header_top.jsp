@@ -24,8 +24,8 @@
 
 			<c:choose>
 				<c:when test='${empty authUser }'>
-					<a href="http://localhost:8088/Project_MDS/main/loginfromadmin"
-						class="navbar-brand" id="admin_login">관리자 로그인</a>
+					<a href="/Project_MDS/TSA/admin/main"
+						class="navbar-brand" id="admin_logout">로그인</a>
 				</c:when>
 				<c:otherwise>
 					<a href="#" span class="navbar-brand" id="user_hi">${authUser.member_name }님
