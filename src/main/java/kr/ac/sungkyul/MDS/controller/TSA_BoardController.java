@@ -96,9 +96,10 @@ public class TSA_BoardController {
 		BoardVo GetBoardContent = BoardService.GetBoardContent(board_no);
 		session.setAttribute("GetBoardContent", GetBoardContent);
 
-		
-		System.out.println("main/board/view");
-		return "TSA/board/view";
+		//게시글을 클릭하면 조회수가 1씩 증가한다.
+				BoardService.addHit(board_no);
+				
+				return "TSA/board/view";
 	}
 	
 	@RequestMapping("/main/board/writeform/{boardlist_no}")

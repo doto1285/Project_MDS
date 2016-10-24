@@ -54,44 +54,42 @@
 				type="submit" value="찾기">
 		</form>
 
-			<table class="table table-striped table-hover ">
-				<tr>
-					<th>번호</th>
-					<th>제목</th>
-					<th>글쓴이</th>
-					<th>조회수</th>
-					<th>작성일</th>
-				</tr>
+		<table class="table table-striped table-hover ">
+			<tr>
+				<th>번호</th>
+				<th>제목</th>
+				<th>글쓴이</th>
+				<th>조회수</th>
+				<th>작성일</th>
+			</tr>
 
 
-				<tbody>
+			<tbody>
 
-					<c:forEach items="${map.GetBoardContentsList}"
-						var="GetBoardContentsList">
-						<tr>
-							<!--글번호-->
-							<td>${GetBoardContentsList.board_no}</td>
-							<!--제목-->
-							<td><a href="view?no=${GetBoardContentsList.board_no}">
-									<c:forEach var="i" begin="2"
-										end="${GetBoardContentsList.board_depth}" step="1">
+				<c:forEach items="${map.GetBoardContentsList}"
+					var="GetBoardContentsList">
+					<tr>
+						<!--글번호-->
+						<td>${GetBoardContentsList.board_no}</td>
+						<!--제목-->
+						<td><a href="view?no=${GetBoardContentsList.board_no}"> <c:forEach
+									var="i" begin="2" end="${GetBoardContentsList.board_depth}"
+									step="1">
 											 ↳ 
 											</c:forEach> ${GetBoardContentsList.board_title}
-							</a></td>
-							<!--글쓴이  -->
-							<td>${GetBoardContentsList.name}</td>
-							<!--조회수  -->
-							<td>${GetBoardContentsList.board_hit}</td>
-							<!--작성일  -->
-							<td>${GetBoardContentsList.board_date}</td>
-						</tr>
-					</c:forEach>
+						</a></td>
+						<!--글쓴이  -->
+						<td>${GetBoardContentsList.name}</td>
+						<!--조회수  -->
+						<td>${GetBoardContentsList.board_hit}</td>
+						<!--작성일  -->
+						<td>${GetBoardContentsList.board_date}</td>
+					</tr>
+				</c:forEach>
 
 
-				</tbody>
-			</table>
+			</tbody>
 		</table>
-
 
 		<c:if test="${empty map.GetBoardContentsList}">
 			<div id="search">
@@ -101,15 +99,14 @@
 			</div>
 		</c:if>
 
-
-		<!-- begin:paging -->
-		<c:if test='${not empty map.list }'>
+		<c:if test='${not empty map.GetBoardContentsList }'>
+			<!-- begin:paging -->
 			<div class="pager">
 				<ul>
 
 					<c:if test="${map.prevPage >= 0 }">
 						<li><a
-							href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${map.prevPage }">◀</a></li>
+							href="/Project_MDS/TSA/main/board/${GetBoard.boardlist_no }?p=${map.prevPage }">◀</a></li>
 					</c:if>
 
 					<c:forEach begin='${map.firstPage }' end='${map.lastPage }'
@@ -122,15 +119,16 @@
 								<li>${i }</li>
 							</c:when>
 							<c:otherwise>
-								<li><a
-									href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${i }">${i }</a></li>
+								<li>
+								<a href="/Project_MDS/TSA/main/board/${GetBoard.boardlist_no }?p=${i }">${i }</a>
+								</li>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
 
 					<c:if test='${map.nextPage > 0 }'>
 						<li><a
-							href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${map.nextPage }">▶</a></li>
+							href="/Project_MDS/TSA/main/board/${GetBoard.boardlist_no }?p=${map.nextPage }">▶</a></li>
 					</c:if>
 				</ul>
 			</div>
@@ -154,3 +152,6 @@
 				<!-- 개인, 기업회원일 경우 글쓰기 버튼을 표시하지 않음  -->
 			</c:otherwise>
 		</c:choose>
+	</div>
+</body>
+</html>

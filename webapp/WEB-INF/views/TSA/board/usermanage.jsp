@@ -24,26 +24,7 @@
 		<c:import url='/WEB-INF/views/TSA/include/header_tap.jsp' />
 	</div>
 	<!--      ---------------------------------------------             -->
-	<!--   <div class="section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12"></div>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-			</div>
-		</div>
-		-->
-	<!--      ---------------------------------------------             -->
 	<div class="jumbotron" id="maincol">
-
-
 		<center>
 			<P id="center_p">회원관리</P>
 		</center>
@@ -52,7 +33,6 @@
 			<input type="text" id="kwd" name="kwd" value="${keyword }"> <input
 				type="submit" value="찾기">
 		</form>
-
 
 		<table class="table table-striped table-hover ">
 			<tr>
@@ -63,7 +43,6 @@
 				<th>구분</th>
 			</tr>
 
-			
 			<tbody>
 				<c:forEach items="${GetUserManageList }" var="GetUserManageList">
 				<tr>
@@ -74,14 +53,10 @@
 					<td>${GetUserManageList.member_distinction}</td>
 				</tr>
 			</c:forEach>
-
 				</tbody>
 		</table>
 
-	</div>
-
-
-
+			</div>
 		<div class="bottom" id="serv_bot">
 			<!-- begin:paging -->
 			<div class="pager">
@@ -113,7 +88,7 @@
 							href="/Project_MDS/TSA/main/board/usermanage?p=${map.nextPage }">▶</a></li>
 					</c:if>
 				</ul>
-			</div>
+	</div>
 	<!--      ---------------------------------------------             -->
 </body>
 </html>

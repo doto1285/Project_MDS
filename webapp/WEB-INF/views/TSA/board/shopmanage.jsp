@@ -2,13 +2,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <!-- 공통 -->
-<script type="text/javascript" src="/Project_MDS/assets/js/jquery/jquery-3.1.1.js"></script>
+<script type="text/javascript"
+	src="/Project_MDS/assets/js/jquery/jquery-3.1.1.js"></script>
 <script src="/Project_MDS/assets/dist/js/bootstrap.min.js"></script>
 <link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
@@ -23,25 +24,8 @@
 		<c:import url='/WEB-INF/views/TSA/include/header_top.jsp' />
 		<c:import url='/WEB-INF/views/TSA/include/header_tap.jsp' />
 	</div>
-<!--      ---------------------------------------------             -->
-	<!--   <div class="section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12"></div>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-			</div>
-		</div>
-		-->
-<!--      ---------------------------------------------             -->
-<div class="jumbotron" id="maincol">
+	<!--      ---------------------------------------------             -->
+	<div class="jumbotron" id="maincol">
 
 
 		<center>
@@ -72,55 +56,48 @@
 			</c:forEach>
 			<tbody>
 				<c:forEach items="${GetShopManage }" var="GetShopManage">
-				<tr>
-					<td>${GetShopManage.mall_no}</td>
-					<td>${GetShopManage.mall_name}</td>
-					<td>${GetShopManage.mall_creationdate}</td>
-					<td>${GetShopManage.id}</td>
-					<td>${GetShopManage.mall_ceoname}</td>
-				</tr>
-			</c:forEach>
+					<tr>
+						<td>${GetShopManage.mall_no}</td>
+						<td>${GetShopManage.mall_name}</td>
+						<td>${GetShopManage.mall_creationdate}</td>
+						<td>${GetShopManage.id}</td>
+						<td>${GetShopManage.mall_ceoname}</td>
+					</tr>
+				</c:forEach>
 
-				</tbody>
+			</tbody>
 		</table>
-
 	</div>
+	<div class="bottom" id="serv_bot">
+		<!-- begin:paging -->
+		<div class="pager">
+			<ul>
 
+				<c:if test="${map.prevPage >= 0 }">
+					<li><a href="/Project_MDS/TSA/main/board/shopmanage?p=${map.prevPage }">◀</a></li>
+				</c:if>
 
+				<c:forEach begin='${map.firstPage }' end='${map.lastPage }' step='1'
+					var='i'>
+					<c:choose>
+						<c:when test='${map.currentPage == i }'>
+							<li class="selected">${i }</li>
+						</c:when>
+						<c:when test='${i > map.pageCount }'>
+							<li>${i }</li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="/Project_MDS/TSA/main/board/shoprmanage?p=${i }">${i }</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
 
-		<div class="bottom" id="serv_bot">
-			<!-- begin:paging -->
-			<div class="pager">
-				<ul>
-
-					<c:if test="${map.prevPage >= 0 }">
-						<li><a
-							href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${map.prevPage }">◀</a></li>
-					</c:if>
-
-					<c:forEach begin='${map.firstPage }' end='${map.lastPage }'
-						step='1' var='i'>
-						<c:choose>
-							<c:when test='${map.currentPage == i }'>
-								<li class="selected">${i }</li>
-							</c:when>
-							<c:when test='${i > map.pageCount }'>
-								<li>${i }</li>
-							</c:when>
-							<c:otherwise>
-								<li><a
-									href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${i }">${i }</a></li>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-
-					<c:if test='${map.nextPage > 0 }'>
-						<li><a
-							href="/Project_MDS/main/board/${GetBoard.boardlist_no }?p=${map.nextPage }">▶</a></li>
-					</c:if>
-				</ul>
-			</div>
-	
-	<!--      ---------------------------------------------             -->
+				<c:if test='${map.nextPage > 0 }'>
+					<li><a
+						href="/Project_MDS/TSA/main/board/shopmanage?p=${map.nextPage }">▶</a></li>
+				</c:if>
+			</ul>
+		</div>
+		<!--      ---------------------------------------------             -->
 </body>
 </html>

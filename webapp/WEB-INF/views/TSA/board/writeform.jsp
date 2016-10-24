@@ -18,7 +18,6 @@
 <link href="/Project_MDS/assets/css/TSA_board.css" rel="stylesheet"
 	type="text/css">
 <!-- Custom CSS -->
-<link href="css/shop-item.css" rel="stylesheet">
 <!-- /공통 -->
 <title>모두의 쇼핑몰</title>
 
