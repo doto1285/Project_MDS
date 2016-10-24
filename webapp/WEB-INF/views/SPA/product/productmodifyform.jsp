@@ -108,8 +108,8 @@
 			</div>
 			<div class="col-lg-12">
 				<label for="inputEmail3" class="col-lg-5 control-label"
-					id="inputhead">썸네일이미지(예시) </label> <label for="inputEmail3"
-					class="col-lg-6 control-label" id="inputhead">상품 메인이미지(예시) </label>
+					id="inputhead">썸네일이미지 </label> <label for="inputEmail3"
+					class="col-lg-6 control-label" id="inputhead">상품 메인이미지 </label>
 				<div class="col-lg-4">
 					<div class="thumbnail">
 						<img src="${url1 }"
@@ -128,7 +128,7 @@
 			</div>
 			<div class="col-lg-12">
 				<br> <label for="inputEmail3" class="col-lg-12 control-label"
-					id="inputhead">상품 상세이미지(예시) </label>
+					id="inputhead">상품 상세이미지 </label>
 				<div class="col-lg-12">
 					<div class="thumbnail">
 						<img src="${url3 }"
