@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.ac.sungkyul.MDS.dao.MemberDao;
 import kr.ac.sungkyul.MDS.service.BoardService;
 import kr.ac.sungkyul.MDS.service.MemberService;
 import kr.ac.sungkyul.MDS.service.SPF_MainService;
@@ -127,6 +128,42 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/main";
 	}
+	
+	@RequestMapping(value = "/main/modifyform", method = RequestMethod.GET)
+	// 정보수정 화면
+	public String modify_personalform(HttpSession session) {
+		System.out.println("회원정보수정");
+		
+		MemberVo vo = (MemberVo) session.getAttribute("authUser");
+		
+		System.out.println("현재 로그인한 사용자" + vo);
+		
+		if(vo.getMember_distinction() == 1){
+			//일반회원일경우
+		return "member/modify_personal";
+		}
+		else{
+			//일반회원이 아닐경우 (=기업회원일 경우)
+		return "member/modify_company";
+		}
+		
+		
+		
+		
+	}
+	
+	@RequestMapping(value = "/main/modify_member", method = RequestMethod.POST)
+	// 정보수정 화면
+	public String modify_personal(HttpSession session, @ModelAttribute MemberVo memberVo) {
+		
+		System.out.println("수정할거" + memberVo);
+		memberService.modify(memberVo);
+		session.setAttribute("authUser", memberVo);
+		
+		return "redirect:/main";
+		
+	}
+	
 
 	/**
 	 * SPF 회원가입 화면 만든이 : 이민우

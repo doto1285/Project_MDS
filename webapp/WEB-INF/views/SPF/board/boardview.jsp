@@ -35,6 +35,9 @@
 			<!-- 본문 시작 -->
 			<!-- 링크 : http://localhost:8088/Project_MDS/{domain}/view/{boardlist_no} -->
 
+				유저 유형 ${authUser.member_distinction } <br>
+				쓰기권한 ${GetBoard.boardlist_write_accessright } <br>
+				읽기권한 ${GetBoard.boardlist_read_accessright } <br>
 			<div id="content">
 				<div id="board" class="board-form" id="margin50px">
 					<table class="tbl-ex" id="margin50px">
@@ -56,8 +59,8 @@
 					
 					<div class="bottom" data-board_no='${GetBoardContent.board_no}' data-mall_domain='${mall_domain}'>
 						<a href="boardlist?boardlist_no=${GetBoardContent.boardlist_no }">목록</a>
-						<c:if test='${not empty authUser }'>
-							<a href="replyform/${GetBoardContent.board_no }">답글</a>
+						<c:if test='${authUser.member_distinction >= GetBoard.boardlist_write_accessright }'>
+							<a href="replyform?board_no=${GetBoardContent.board_no }">답글</a>
 							<a data-toggle="modal" data-target="#check_pw" class="btn_modify">글수정</a>
 							<a data-toggle="modal" data-target="#check_pw" class="btn_delete">삭제</a>
 						</c:if>
@@ -139,10 +142,14 @@
 	$(".btn_delete").on("click", function() {
 		var formmodal = document.formmodal;
 		board_no = $(this).parents("div").data("board_no");
+		
+
+		mall_domain = $(this).parents("div").data("mall_domain");
+		$('#mall_domain').val(mall_domain);
 
 		$('#check_motion').val("delete");
 
-		console.log("수정버튼 클릭시: " + board_no); //로그에 찍히는 부분
+		console.log("삭제 클릭시: " + board_no); //로그에 찍히는 부분
 	});
 </script>
 
@@ -193,7 +200,7 @@
 							console.log("글 삭제");
 							$
 									.ajax({
-										url : "checkpw",
+										url : "board/checkpw",
 										type : "POST",
 										data : {
 											"board_no" : board_no,
@@ -203,9 +210,10 @@
 
 										success : function(boo) {
 											//ajax가 성공했을때, 컨트롤러에서 리턴받는 url로 페이지를 최신화 시킨다.
-
+											
+											
 											if (boo == 'true') {
-												location.href = "http://localhost:8088/Project_MDS/main/board/delete?board_no="
+												location.href = "http://localhost:8088/Project_MDS/"+mall_domain+"/board/delete?board_no="
 														+ board_no;
 											} else {
 												alert("비밀번호가 틀렸습니다");

@@ -120,4 +120,6 @@ public class MemberVo {
 				+ member_distinction + ", member_state=" + member_state + "]";
 	}
 
+	
+
 }

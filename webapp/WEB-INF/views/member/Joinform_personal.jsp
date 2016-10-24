@@ -48,9 +48,9 @@
 			</div>
 
 			<!-- 본문 시작-------------------------------------------- -->
-			개인회원 가입 <input type="text" value=0 name="member_distinction">
 			<form id="login-form" name="loginform" method="post"
 				action="/Project_MDS/main/Join">
+				개인회원 가입 <input type="text" value=1 name="member_distinction">
 				<table>
 					<tr>
 						<td id="td-size">아이디</td>
@@ -198,3 +198,6 @@
 </body>
 
 </html>
+
+
+

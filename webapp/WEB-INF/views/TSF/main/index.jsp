@@ -67,7 +67,7 @@
 
 						</c:when>
 
-						<c:when test='${authUser.member_distinction == 0}'>
+						<c:when test='${authUser.member_distinction == 1}'>
 							<!-- 개인 회원일경우 표시되는 화면  -->
 
 							<p class="lead">내가 가입한 쇼핑몰</p>
@@ -83,7 +83,7 @@
 						</c:when>
 
 
-						<c:when test='${authUser.member_distinction == 1 }'>
+						<c:when test='${authUser.member_distinction == 2 }'>
 							<!-- 기업 회원일경우 표시되는 화면  -->
 
 							<p class="lead">내가 개설한 쇼핑몰</p>

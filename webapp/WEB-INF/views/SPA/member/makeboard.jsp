@@ -89,14 +89,14 @@
 										<SELECT name="write_accessright" class="form-control"
 											id="select">
 											<OPTION value="-1" selected>=쓰기권한=</OPTION>
-											<OPTION value="9">관리자</OPTION>
+											<OPTION value="2">관리자</OPTION>
 											<OPTION value="1">회원</OPTION>
 											<OPTION value="0">비회원</OPTION>
 										</SELECT>
 										<SELECT name="read_accessright" class="form-control"
 											id="select">
 											<OPTION value="-1" selected>=읽기권한=</OPTION>
-											<OPTION value="9">관리자</OPTION>
+											<OPTION value="2">관리자</OPTION>
 											<OPTION value="1">회원</OPTION>
 											<OPTION value="0">비회원</OPTION>
 										</SELECT>
@@ -150,7 +150,7 @@
 					<div class="col-lg-12 form-inline" id="modalacc">
 						<label>쓰기 권환 :&nbsp; </label> <SELECT
 							name="write_accessright_modify" class="form-control">
-							<OPTION value="9">관리자</OPTION>
+							<OPTION value="2">관리자</OPTION>
 							<OPTION value="1">회원</OPTION>
 							<OPTION value="0">비회원</OPTION>
 
@@ -159,7 +159,7 @@
 					<div class="col-lg-12 form-inline">
 						<label> 읽기 권환 :&nbsp; </label> <SELECT
 							name="read_accessright_modify" class="form-control">
-							<OPTION value="9">관리자</OPTION>
+							<OPTION value="2">관리자</OPTION>
 							<OPTION value="1">회원</OPTION>
 							<OPTION value="0">비회원</OPTION>
 						</SELECT>

@@ -41,6 +41,10 @@
 					</center>
 				</form>
 
+				유저 유형 ${authUser.member_distinction } <br> 쓰기권한
+				${GetBoard.boardlist_write_accessright } <br> 읽기권한
+				${GetBoard.boardlist_read_accessright } <br>
+
 				<table class="tbl-ex">
 					<table class="table table-striped table-hover ">
 						<tr>
@@ -67,23 +71,24 @@
 									<!-- -------------------- -->
 									<c:choose>
 										<c:when
-											test='${authUser.member_distinction >= GetBoard.boardlist_read_accessright && SPFauthUser.member_no != null}'>
+											test='${authUser.member_distinction >= GetBoard.boardlist_read_accessright }'>
 											<!-- 해당 게시판에 권한이 있는 사용자만 글 보기 링크를 제공한다  -->
-											<td><a
-												href="view?board_no=${GetBoardContentsList.board_no}&boardlist_no=${GetBoardContentsList.boardlist_no}">
-
+											<td>
+											<a href="view?board_no=${GetBoardContentsList.board_no}&boardlist_no=${GetBoardContentsList.boardlist_no}">
 													<c:forEach var="i" begin="2"
 														end="${GetBoardContentsList.board_depth}" step="1">
 											 ↳ 
 											</c:forEach> ${GetBoardContentsList.board_title}
-											</a></td>
+											</a>
+											</td>
 
 
 										</c:when>
 										<c:otherwise>
 											<!-- 권한 없는 사용자일경우, 팝업 메세지를 띄운다 (script restrict)  -->
-											<td class="restrict"><c:forEach var="i" begin="2"
-													end="${GetBoardContentsList.board_depth}" step="1">
+											<td class="restrict" style="cursor: pointer"><c:forEach
+													var="i" begin="2" end="${GetBoardContentsList.board_depth}"
+													step="1">
 											 ↳ 
 											</c:forEach> ${GetBoardContentsList.board_title}</td>
 										</c:otherwise>
@@ -122,7 +127,7 @@
 
 							<c:if test="${map.prevPage >= 0 }">
 								<li><a
-									href="/Project_MDS/main/board?boardlist_no=${GetBoard.boardlist_no }?p=${map.prevPage }">◀</a></li>
+									href="boardlist?boardlist_no=${GetBoard.boardlist_no }&p=${map.prevPage }">◀</a></li>
 							</c:if>
 
 							<c:forEach begin='${map.firstPage }' end='${map.lastPage }'
@@ -136,14 +141,14 @@
 									</c:when>
 									<c:otherwise>
 										<li><a
-											href="/Project_MDS/main/board?boardlist_no=${GetBoard.boardlist_no }?p=${i }">${i }</a></li>
+											href="boardlist?boardlist_no=${GetBoard.boardlist_no }&p=${i }">${i }</a></li>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
 
 							<c:if test='${map.nextPage > 0 }'>
 								<li><a
-									href="/Project_MDS/main/board?boardlist_no=${GetBoard.boardlist_no }?p=${map.nextPage }">▶</a></li>
+									href="boardlist?boardlist_no=${GetBoard.boardlist_no }&p=${map.nextPage }">▶</a></li>
 							</c:if>
 						</ul>
 					</div>
@@ -154,7 +159,7 @@
 
 				<c:choose>
 					<c:when
-						test='${authUser.member_distinction >= GetBoard.boardlist_write_accessright  && SPFauthUser.member_no != null }'>
+						test='${authUser.member_distinction >= GetBoard.boardlist_write_accessright }'>
 						<!-- 해당 게시판에 권한이 있는 사용자만 글쓰기 버튼 보여준다  -->
 
 						<div class="text-right">
@@ -183,7 +188,6 @@
 <script>
 	// 권한 없을때 이벤트 발생
 	$(".restrict").on("click", function() {
-
 		alert("권한이 없습니다");
 
 	});

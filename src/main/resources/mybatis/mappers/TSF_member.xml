@@ -39,4 +39,41 @@
 		]]>
 	</select>
 
+
+	<update id="modify" parameterType="kr.ac.sungkyul.MDS.vo.MemberVo">
+
+
+		<choose>
+			<when test="member_distinction == 1">
+				<![CDATA[	
+				update member set
+		
+				member_password = #{member_password},
+				member_name	= #{member_name},
+				member_address = #{member_address},
+				member_email = #{member_email},
+				member_phone = #{member_phone}
+				
+				where member_no = #{member_no}
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[			
+				update member set
+		
+				member_password = #{member_password},
+				member_name	= #{member_name},
+				member_address = #{member_address},
+				member_email = #{member_email},
+				member_phone = #{member_phone},
+				member_licensee = #{member_licensee}
+  				
+				where member_no = #{member_no}
+				]]>
+			</otherwise>
+		</choose>
+
+
+	</update>
+
 </mapper>

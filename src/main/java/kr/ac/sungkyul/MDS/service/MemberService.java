@@ -31,6 +31,12 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+
+	public void modify(MemberVo memberVo) {
+		 memberDao.modify(memberVo);
+	}
+
 
 	/**
 	 * 로그인 세션 체크

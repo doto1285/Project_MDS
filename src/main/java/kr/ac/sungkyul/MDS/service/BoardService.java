@@ -112,7 +112,6 @@ public class BoardService {
 
 	public void BoardModify(BoardVo boardVo) {
 		//게시글 수정하기
-
 		boardDao.BoardModify(boardVo);
 	}
 	
@@ -138,12 +137,16 @@ public class BoardService {
 	}
 	
 
-	public boolean checkPw(BoardVo boardVo) {
+	public boolean checkPw(int board_no,  String pw) {
 		//입력한 비밀번호가 맞는지 확인
+
+		BoardVo boardVo = new BoardVo();
+		
+		boardVo.setBoard_no(board_no);
+		boardVo.setBoard_password(pw);
+		
 		return boardDao.checkPw(boardVo);
 	}
-
-
 	
 
 	public void addHit(int board_no) {
