@@ -16,7 +16,7 @@
 <link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
 <script src="/Project_MDS/assets/dist/js/bootstrap.min.js"></script>
-<link href="/Project_MDS/assets/css/SPA_main.css" rel="stylesheet"
+<link href="/Project_MDS/assets/css/SPF_main.css" rel="stylesheet"
 	type="text/css">
 <!-- /공통 -->
 
