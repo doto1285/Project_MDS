@@ -104,7 +104,6 @@
 	</insert>
 	
 	<update id="updateProduct" parameterType="kr.ac.sungkyul.MDS.vo.ProductVo">
-		<!-- 쇼핑몰 정보 수정 -->
 		<![CDATA[	
 			update product
 				 set product_name = #{product_name},
@@ -118,7 +117,6 @@
 	</update>
 	
 		<update id="updateProductOption" parameterType="kr.ac.sungkyul.MDS.vo.ProductOptionVo">
-		<!-- 쇼핑몰 정보 수정 -->
 		<![CDATA[	
 			update productoption
 				 set productoption_color = #{productoption_color},

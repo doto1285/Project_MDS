@@ -383,6 +383,51 @@ public class SPA_MainController {
 
 		return "javascript:window.location.reload(true)";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "{domain}/productoptionmodify", method = RequestMethod.POST)
+	public String productOptionModify(@PathVariable String domain, HttpSession session, String cateco, int cateno, String catesi, int catest, int cateno2) {
+		// 쇼핑몰 관리자 세션확인
+		if (!SPA_mainservice.isUserCheck(domain, session)) {
+			return "redirect:/main/loginfrom";
+		}
+
+		ProductOptionVo vo = new ProductOptionVo();
+		vo.setProductoption_no(cateno);
+		vo.setProduct_no(cateno2);
+		vo.setProductoption_color(cateco);
+		vo.setProductoption_size(catesi);
+		vo.setProductoption_stock(catest);
+
+
+		System.out.println("수정할 객체" + vo);
+
+		SPA_productService.modifyProductOption(vo);
+
+		return "javascript:window.location.reload(true)";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "{domain}/productoptioninsert", method = RequestMethod.POST)
+	public String productOptionInsert(@PathVariable String domain, HttpSession session, String cateco, String catesi, int catest, int cateno2) {
+		// 쇼핑몰 관리자 세션확인
+		if (!SPA_mainservice.isUserCheck(domain, session)) {
+			return "redirect:/main/loginfrom";
+		}
+
+		ProductOptionVo vo = new ProductOptionVo();
+		vo.setProduct_no(cateno2);
+		vo.setProductoption_color(cateco);
+		vo.setProductoption_size(catesi);
+		vo.setProductoption_stock(catest);
+
+
+		System.out.println("추가할 객체" + vo);
+
+		SPA_productService.insertProductOption(vo);
+
+		return "javascript:window.location.reload(true)";
+	}
 
 	/**
 	 * 주문목록 화면

@@ -86,7 +86,8 @@
 					<div class="thumbnail">
 						<table border="1" width="350px" style="font-size: 15px">
 							<c:forEach items="${productOptionlist}" var="productOptionlist">
-								<tr data-cateno='${productOptionlist.product_no}'
+								<tr data-cateno='${productOptionlist.productoption_no}'
+								data-cateno2='${productOptionlist.product_no}'
 								data-cateco='${productOptionlist.productoption_color}'
 								data-catesi='${productOptionlist.productoption_size}'
 								data-catest='${productOptionlist.productoption_stock}'>
@@ -235,8 +236,8 @@
 			<div class="modal-footer">
 				<div class="form-group" id="modalbtn">
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-					<button type="button" class="btn_catePModalSave btn btn-default"
-						data-dismiss="modal">수정하기</button>
+					<button type="button" class="btn_catePModalAdd btn btn-default"
+						data-dismiss="modal">추가하기</button>
 				</div>
 			</div>
 		</div>
@@ -245,17 +246,108 @@
 <!-- 모달창 그리기 끝 -->
 
 <script>
+var cateno = "";
+var cateno2 = "";
+var cateco = "";
+var catesi = "";
+var catest = "";
 $(".btn_catePMod").on("click", function() {
-	var cateno = $(this).parents("tr").data("cateno");
-	var cateco = $(this).parents("tr").data("cateco");
-	var catesi = $(this).parents("tr").data("catesi");
-	var catest = $(this).parents("tr").data("catest");
+	cateno = $(this).parents("tr").data("cateno");
+	cateno2 = $(this).parents("tr").data("cateno2");
+	cateco = $(this).parents("tr").data("cateco");
+	catesi = $(this).parents("tr").data("catesi");
+	catest = $(this).parents("tr").data("catest");
 	$("#recipient_color").val(cateco);
 	$("#recipient_size").val(catesi);
 	$("#recipient_stock").val(catest);
+});
+$(".btn_catePAod").on("click", function() {
+	cateno2 = $(this).parents("tr").data("cateno2");
+});
+//모달창 저장 btn_catePModalSave
+$(".btn_catePModalSave").on("click", function() {
+	cateco = $("#recipient_color").val();
+	catesi = $("#recipient_size").val();
+	catest = $("#recipient_stock").val();
 	
-	
+	if(cateco == ""){
+		alert("컬러를 설정해주세요.");
+		return;
+	}
+	if(catesi == ""){
+		alert("사이즈를 설정해주세요.");
+		return;
+	}
+	if(catest == ""){
+		alert("재고를 설정해주세요.");
+		return;
+	}
 
+	$.ajax({
+		url : "productoptionmodify",
+		type : "POST",
+		data : {
+			"cateno" : cateno,
+			"cateno2" : cateno2,
+			"cateco" : cateco,
+			"catesi" : catesi,
+			"catest" : catest
+		},
+		dataType : "text",
+
+		success : function(url) {
+			//ajax가 성공했을때, 컨트롤러에서 리턴받는 url로 페이지를 최신화 시킨다.
+			location.href = url;
+
+		},
+		error : function(jqXHR, status, error) {
+			console.error(status + " : " + error);
+		}
+
+	});
+	alert("수정 완료");
+});
+//모달창 추가 btn_catePModalAdd
+$(".btn_catePModalAdd").on("click", function() {
+	cateco = $("#add_color").val();
+	catesi = $("#add_size").val();
+	catest = $("#add_stock").val();
+	
+	if(cateco == ""){
+		alert("컬러를 설정해주세요.");
+		return;
+	}
+	if(catesi == ""){
+		alert("사이즈를 설정해주세요.");
+		return;
+	}
+	if(catest == ""){
+		alert("재고를 설정해주세요.");
+		return;
+	}
+
+	$.ajax({
+		url : "productoptioninsert",
+		type : "POST",
+		data : {
+			"cateno2" : cateno2,
+			"cateco" : cateco,
+			"catesi" : catesi,
+			"catest" : catest
+		},
+		dataType : "text",
+
+		success : function(url) {
+			//ajax가 성공했을때, 컨트롤러에서 리턴받는 url로 페이지를 최신화 시킨다.
+			location.href = url;
+
+		},
+		error : function(jqXHR, status, error) {
+			console.error(status + " : " + error);
+		}
+
+	});
+	alert("추가 완료");
 });
 
 	$('#form-cata2nd').attr('disabled', 'true');
