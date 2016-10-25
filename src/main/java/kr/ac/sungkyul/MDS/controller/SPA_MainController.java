@@ -322,7 +322,7 @@ public class SPA_MainController {
 		model.addAttribute("productVo", productVo);
 		
 		List<ProductOptionVo> productOptionlist = SPA_productService.getProductOptionList(product_no);
-		model.addAttribute("productOptionlist", productOptionlist.get(0));
+		model.addAttribute("productOptionlist", productOptionlist);
 		
 		String url1 = SPA_productService.getProductImg(product_no, 0);
 		String url2 = SPA_productService.getProductImg(product_no, 1);
