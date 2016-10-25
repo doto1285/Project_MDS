@@ -178,7 +178,7 @@ public class ProductDao {
 	}
 	
 	/**
-	 * 상품옵션을 추가한다.
+	 * 상품옵션을 수정한다.
 	 * @param productOptionVo
 	 */
 	public void modifyProductOption(ProductOptionVo productOptionVo) {

@@ -104,21 +104,19 @@
 	</insert>
 	
 	<update id="updateProduct" parameterType="kr.ac.sungkyul.MDS.vo.ProductVo">
-		<!-- 쇼핑몰 정보 수정 -->
 		<![CDATA[	
 			update product
 				 set product_name = #{product_name},
 				 product_price = #{product_price},
 				 product_content = #{product_content},
 				 product_maker = #{product_maker},
-				 product_makedate = to_date(#{product_makedate},'yyyy-mm-dd'),
+				 product_makedate = to_date(#{product_makedate},'YYYYMMDD'),
 				 categorylist_no = #{categorylist_no}
 				 where product_no = #{product_no}
 		]]>
 	</update>
 	
 		<update id="updateProductOption" parameterType="kr.ac.sungkyul.MDS.vo.ProductOptionVo">
-		<!-- 쇼핑몰 정보 수정 -->
 		<![CDATA[	
 			update productoption
 				 set productoption_color = #{productoption_color},
