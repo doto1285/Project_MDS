@@ -110,7 +110,7 @@
 				 product_price = #{product_price},
 				 product_content = #{product_content},
 				 product_maker = #{product_maker},
-				 product_makedate = to_date(#{product_makedate},'yyyy-mm-dd'),
+				 product_makedate = to_date(#{product_makedate},'YYYYMMDD'),
 				 categorylist_no = #{categorylist_no}
 				 where product_no = #{product_no}
 		]]>
