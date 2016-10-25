@@ -87,7 +87,6 @@
 						<table border="1" width="350px" style="font-size: 15px">
 							<c:forEach items="${productOptionlist}" var="productOptionlist">
 								<tr data-cateno='${productOptionlist.productoption_no}'
-								data-cateno2='${productOptionlist.product_no}'
 								data-cateco='${productOptionlist.productoption_color}'
 								data-catesi='${productOptionlist.productoption_size}'
 								data-catest='${productOptionlist.productoption_stock}'>
@@ -144,6 +143,7 @@
 
 		</form>
 		<div class="col-lg-12">
+			<input type="hidden" id = "productno" value="${productVo.product_no}">
 			<button class="btn btn-info btnok" name="btnOk" id="btnOk">저장하기</button>
 			<a href="product" class="btn btn-warning" id="btnCancle"> 돌아가기 </a>
 		</div>
@@ -253,7 +253,6 @@ var catesi = "";
 var catest = "";
 $(".btn_catePMod").on("click", function() {
 	cateno = $(this).parents("tr").data("cateno");
-	cateno2 = $(this).parents("tr").data("cateno2");
 	cateco = $(this).parents("tr").data("cateco");
 	catesi = $(this).parents("tr").data("catesi");
 	catest = $(this).parents("tr").data("catest");
@@ -261,11 +260,10 @@ $(".btn_catePMod").on("click", function() {
 	$("#recipient_size").val(catesi);
 	$("#recipient_stock").val(catest);
 });
-$(".btn_catePAod").on("click", function() {
-	cateno2 = $(this).parents("tr").data("cateno2");
-});
+
 //모달창 저장 btn_catePModalSave
 $(".btn_catePModalSave").on("click", function() {
+	cateno2 = $("#productno").val();
 	cateco = $("#recipient_color").val();
 	catesi = $("#recipient_size").val();
 	catest = $("#recipient_stock").val();
@@ -309,6 +307,7 @@ $(".btn_catePModalSave").on("click", function() {
 });
 //모달창 추가 btn_catePModalAdd
 $(".btn_catePModalAdd").on("click", function() {
+	cateno2 = $("#productno").val();
 	cateco = $("#add_color").val();
 	catesi = $("#add_size").val();
 	catest = $("#add_stock").val();
