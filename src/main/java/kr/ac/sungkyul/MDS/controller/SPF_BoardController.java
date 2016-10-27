@@ -82,7 +82,7 @@ public class SPF_BoardController {
 		// 정상 개설된 쇼핑몰에 접속했는지 확인
 		if ((SPF_mallService.isDomainCheck(mallVo.getMall_no())) == false) {
 			// 없거나, 삭제된 쇼핑몰 접속시 페이지를 찾을 수 없습니다. 화면
-			return "404 error";
+			return "redirect:/main/loginfrom";
 		}
 
 		// // footer
@@ -149,7 +149,7 @@ public class SPF_BoardController {
 		// 도메인 체크
 		if ((SPF_mallService.isDomainCheck(mallVo.getMall_no())) == false) {
 			// 없는 도메인일 경우 실행되는 코드
-			return "404 error";
+			return "redirect:/main/loginfrom";
 		}
 		///////////////////////////////////////////////////////
 		// 해당 쇼핑몰에 필요한 모델 객체들을 한번에 불러온다
@@ -217,7 +217,7 @@ public class SPF_BoardController {
 		// 도메인 체크
 		if ((SPF_mallService.isDomainCheck(mallVo.getMall_no())) == false) {
 			// 없는 도메인일 경우 실행되는 코드
-			return "404 error";
+			return "redirect:/main/loginfrom";
 		}
 		///////////////////////////////////////////////////////
 		// 해당 쇼핑몰에 필요한 모델 객체들을 한번에 불러온다
@@ -305,7 +305,7 @@ public class SPF_BoardController {
 		// 도메인 체크
 		if ((SPF_mallService.isDomainCheck(mallVo.getMall_no())) == false) {
 			// 없는 도메인일 경우 실행되는 코드
-			return "404 error";
+			return "redirect:/main/loginfrom";
 		}
 		///////////////////////////////////////////////////////
 		// 해당 쇼핑몰에 필요한 모델 객체들을 한번에 불러온다

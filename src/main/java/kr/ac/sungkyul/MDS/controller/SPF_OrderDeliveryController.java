@@ -65,7 +65,7 @@ public class SPF_OrderDeliveryController {
 		// 도메인 체크
 		if ((SPF_mallService.isDomainCheck(mallVo.getMall_no())) == false) {
 			// 없는 도메인일 경우 실행되는 코드
-			return "404 error";
+			return "redirect:/main/loginfrom";
 		}
 
 		// 쇼핑몰 footer 뿌려줌
@@ -85,7 +85,7 @@ public class SPF_OrderDeliveryController {
 		// 로그인 세션 체크
 		if (memberService.isUserCheck(session) == false) {
 			// 로그인 안한 회원일 경우 실행되는 코드
-			return "404 error";
+			return "redirect:/main/loginfrom";
 		}
 
 		// 로그인 세션을 memberVo에 넣음
@@ -146,7 +146,7 @@ public class SPF_OrderDeliveryController {
 		// 도메인 체크
 		if ((SPF_mallService.isDomainCheck(mallVo.getMall_no())) == false) {
 			// 없는 도메인일 경우 실행되는 코드
-			return "404 error";
+			return "redirect:/main/loginfrom";
 		}
 
 		List<Map<String, Object>> resultMap = new ArrayList<Map<String, Object>>();
@@ -166,7 +166,7 @@ public class SPF_OrderDeliveryController {
 		// 도메인 체크
 		if ((SPF_mallService.isDomainCheck(mallVo.getMall_no())) == false) {
 			// 없는 도메인일 경우 실행되는 코드
-			return "404 error";
+			return "redirect:/main/loginfrom";
 		}
 
 		List<Map<String, Object>> resultMap = new ArrayList<Map<String, Object>>();
@@ -186,7 +186,7 @@ public class SPF_OrderDeliveryController {
 		// 도메인 체크
 		if ((SPF_mallService.isDomainCheck(mallVo.getMall_no())) == false) {
 			// 없는 도메인일 경우 실행되는 코드
-			return "404 error";
+			return "redirect:/main/loginfrom";
 		}
 
 		SPF_orderDeliveryService.orderDeliveryDelete(orderinfo_no);
@@ -204,7 +204,7 @@ public class SPF_OrderDeliveryController {
 		// 도메인 체크
 		if ((SPF_mallService.isDomainCheck(mallVo.getMall_no())) == false) {
 			// 없는 도메인일 경우 실행되는 코드
-			return "404 error";
+			return "redirect:/main/loginfrom";
 		}
 
 		SPF_orderDeliveryService.orderDeliveryDelete(orderinfo_no);

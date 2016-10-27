@@ -70,7 +70,7 @@ public class SPF_ListController {
 		// 도메인 체크
 		if ((SPF_mallService.isDomainCheck(mallVo.getMall_no())) == false) {
 			// 없는 도메인일 경우 실행되는 코드
-			return "404 error";
+			return "redirect:/main/loginfrom";
 		}
 
 		// GET 방식으로 링크 이동 시 데이터 넘길 때 필요한 변수들
