@@ -16,11 +16,6 @@
 
 <title>모두의 쇼핑몰</title>
 
-<!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Custom CSS -->
-<link href="css/shop-item.css" rel="stylesheet">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -71,7 +66,7 @@
 				<td><label id="tdFirst">수량</label></td>
 				<td><label id="tdFirst">상품구매금액</label></td>
 				<td><label id="tdFirst">주문처리상태</label>
-				<td><label id="tdFirst">주문취소</label></td>
+				<td><label id="tdFirst">쇼핑몰이동</label></td>
 			</tr>
 			<c:forEach items="${orderInfoSplit }" var="orderInfoVO">
 			<tr class="contenttr">
@@ -103,9 +98,11 @@
 				<c:choose>
 					<c:when test="${orderInfoVO.orderinfo_state == 2 }">
 						<td>
+						<a href="/Project_MDS/${orderInfoVO.mall_domain }/orderdelivery">
 						<button type="button" class="btn btn-default" id="orderDeliveryButton" value="${orderInfoVO.orderinfo_no }">
-						주문취소
+						쇼핑몰이동
 						</button>
+						</a>
 						</td>
 					</c:when>
 					<c:when test="${orderInfoVO.orderinfo_state == 3 }">
@@ -179,34 +176,7 @@
 	</div>
 	<!-- /.container -->
 
-	<!-- jQuery -->
-	<script src="js/jquery.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="js/bootstrap.min.js"></script>
 
 </body>
-<script>
 
-$("#orderTable").on("click", "#orderDeliveryButton", function(){
-	$(this).parents(".contenttr").remove();
-	var orderinfo_no = $(this).val();
-	$.ajax({
-		url : "orderdeliverydelete",
-		type : "POST",
-		data : orderinfo_no,
-		contentType : "application/json",
-		success : function(url) {
-			alert("주문이 성공적으로 취소되었습니다.");
-			location.href = url;
-		},
-		error : function(request, status, error) {
-			alert("code:" + request.status + "\n" + "message:"
-					+ request.responseText + "\n" + "error:"
-					+ error);
-		}
-	});  
-});
-
-</script>
 </html>

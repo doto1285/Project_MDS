@@ -62,7 +62,7 @@
 		<!-- 주문배송조회 리스트 페이징 -->
 		<![CDATA[	
 			select * from (select a.*, rownum as rnum from 
-			(select p.*, mall.mall_name from
+			(select p.*, mall.mall_name, mall.mall_domain from
 			(select t.*, product.product_name from 
 			(select i.*, productoption.PRODUCTOPTION_color, productoption.PRODUCTOPTION_SIZE from 
 			(select o.*, productimg.PRODUCTIMG_IMAGE from 

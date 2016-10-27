@@ -127,13 +127,6 @@ public class SPF_OrderDeliveryController {
 		joinmallVo.setMember_no(String.valueOf(memberVo.getMember_no()));
 		joinmallVo.setMall_no(String.valueOf(mallVo.getMall_no()));
 
-		// 로그인 세션이 있는 회원이 현재 개인 쇼핑몰 회원인지 체크
-		if (memberService.SPFWhatUser(joinmallVo) == false) {
-			// 로그인 세션이 있는 회원이 현재 쇼핑몰에 가입되지 않은 경우 실행되는 코드
-			joinmallVo.setMember_no(null);
-			return "404 error";
-		}
-
 		// 현재 쇼핑몰에 가입된 경우 실행되는 코드
 		session.setAttribute("SPFauthUserSession", joinmallVo);
 		JoinMallVo SPFauthUser = (JoinMallVo) session.getAttribute("SPFauthUserSession");
@@ -201,6 +194,22 @@ public class SPF_OrderDeliveryController {
 		return "http://localhost:8088/Project_MDS/" + mall_domain + "/orderdelivery";
 	}
 
-	
+	@ResponseBody
+	@RequestMapping("main/tsforderdeliverydelete")
+	public String TSForderDeliveryDelete(@PathVariable String mall_domain, Model model, HttpSession session,
+			@RequestBody int orderinfo_no) {
+		// 현재 접속한 SPF 쇼핑몰 도메인을 매개로 mall_domain, mall_no을 mallVo에 넣음
+		MallVo mallVo = SPF_mallService.domainCheck(mall_domain);
+		model.addAttribute("mall_domain", mall_domain);
+		// 도메인 체크
+		if ((SPF_mallService.isDomainCheck(mallVo.getMall_no())) == false) {
+			// 없는 도메인일 경우 실행되는 코드
+			return "404 error";
+		}
+
+		SPF_orderDeliveryService.orderDeliveryDelete(orderinfo_no);
+
+		return "http://localhost:8088/Project_MDS/" + mall_domain + "/orderdelivery";
+	}
 	
 }
