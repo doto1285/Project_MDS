@@ -55,13 +55,13 @@
 				</tr>
 			</c:forEach>
 			<tbody>
-				<c:forEach items="${GetShopManage }" var="GetShopManage">
+				<c:forEach items="${GetShopManage.GetShopManageList }" var="GetShopManageList">
 					<tr>
-						<td>${GetShopManage.mall_no}</td>
-						<td>${GetShopManage.mall_name}</td>
-						<td>${GetShopManage.mall_creationdate}</td>
-						<td>${GetShopManage.id}</td>
-						<td>${GetShopManage.mall_ceoname}</td>
+						<td>${GetShopManageList.mall_no}</td>
+						<td>${GetShopManageList.mall_name}</td>
+						<td>${GetShopManageList.mall_creationdate}</td>
+						<td>${GetShopManageList.id}</td>
+						<td>${GetShopManageList.mall_ceoname}</td>
 					</tr>
 				</c:forEach>
 
@@ -73,17 +73,17 @@
 		<div class="pager">
 			<ul>
 
-				<c:if test="${map.prevPage >= 0 }">
-					<li><a href="/Project_MDS/TSA/main/board/shopmanage?p=${map.prevPage }">◀</a></li>
+				<c:if test="${GetShopManage.prevPage >= 0 }">
+					<li><a href="/Project_MDS/TSA/main/board/shopmanage?p=${GetShopManage.prevPage }">◀</a></li>
 				</c:if>
 
-				<c:forEach begin='${map.firstPage }' end='${map.lastPage }' step='1'
+				<c:forEach begin='${GetShopManage.firstPage }' end='${GetShopManage.lastPage }' step='1'
 					var='i'>
 					<c:choose>
-						<c:when test='${map.currentPage == i }'>
+						<c:when test='${GetShopManage.currentPage == i }'>
 							<li class="selected">${i }</li>
 						</c:when>
-						<c:when test='${i > map.pageCount }'>
+						<c:when test='${i > GetShopManage.pageCount }'>
 							<li>${i }</li>
 						</c:when>
 						<c:otherwise>
@@ -92,9 +92,9 @@
 					</c:choose>
 				</c:forEach>
 
-				<c:if test='${map.nextPage > 0 }'>
+				<c:if test='${GetShopManage.nextPage > 0 }'>
 					<li><a
-						href="/Project_MDS/TSA/main/board/shopmanage?p=${map.nextPage }">▶</a></li>
+						href="/Project_MDS/TSA/main/board/shopmanage?p=${GetShopManage.nextPage }">▶</a></li>
 				</c:if>
 			</ul>
 		</div>

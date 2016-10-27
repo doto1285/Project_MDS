@@ -14,6 +14,17 @@ public class MemberVo {
 	private String member_licensee ="";
 	private int member_distinction;
 	private int member_state;
+	private String rnum;
+ 
+
+	
+	public String getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(String rnum) {
+		this.rnum = rnum;
+	}
 
 	public int getMember_no() {
 		return member_no;
@@ -117,8 +128,9 @@ public class MemberVo {
 				+ ", member_name=" + member_name + ", member_email=" + member_email + ", member_birth=" + member_birth
 				+ ", member_phone=" + member_phone + ", member_address=" + member_address + ", member_joindate="
 				+ member_joindate + ", member_licensee=" + member_licensee + ", member_distinction="
-				+ member_distinction + ", member_state=" + member_state + "]";
+				+ member_distinction + ", member_state=" + member_state + ", rnum=" + rnum + "]";
 	}
+
 
 	
 

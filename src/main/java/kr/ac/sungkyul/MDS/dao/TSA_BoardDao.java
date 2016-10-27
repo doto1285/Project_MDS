@@ -19,33 +19,49 @@ public class TSA_BoardDao {
 	@Autowired
 	private SqlSession sqlSession;
 
-	
 
-	public List<MemberVo> GetUserManageList() {
-		// 회원리스트 불러오기.
-		return sqlSession.selectList("TSA_board.GetUserManage"); // xml namespace . xml id
+	public List<MemberVo> GetUserManageList( int page, int pagesize, String keyword) {
+
+	
+		Map<String, Object> map = new HashMap<>();
+		map.put("page_start", (page - 1) * pagesize + 1);
+		map.put("page_end", page * pagesize);
+
+		System.out.println("맵 출력 " + map);
+		List<MemberVo> listvo = sqlSession.selectList("TSA_board.GetUserManage", map);
+		
+		for (MemberVo vo : listvo) {
+			 System.out.println("회원 " + vo);
+		}
+		
+		return listvo;
+
+		}
+
+	
+	public List<MallVo> GetShopManageList( int page, int pagesize, String keyword) {
+		
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("page_start", (page - 1) * pagesize + 1);
+		map.put("page_end", page * pagesize);
+		
+		System.out.println("맵 출력 " + map);
+		List<MallVo> listvo = sqlSession.selectList("TSA_board.GetShopManage", map);
+		
+		for (MallVo vo : listvo) {
+			System.out.println("회원 " + vo);
+		}
+		
+		return listvo;
+		
 	}
 	
 
-	
-	
-	
-	
-	
-	
-	public List<MallVo> GetShopManage() {
-		// 회원리스트 불러오기.
-		List<MallVo> a = sqlSession.selectList("TSA_board.GetShopManage"); // xml namespace . xml id
-		System.out.println("MallVo : " + a);
-		return a;
+	public int getTotalCount() {
+		// TODO Auto-generated method stub
+		//전체 사용자 개수를 찾는다
+		
+		return sqlSession.selectOne("TSA_board.getTotalCount");
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-
 }

@@ -25,23 +25,6 @@
 		<c:import url='/WEB-INF/views/TSA/include/header_tap.jsp' />
 	</div>
 	<!--      ---------------------------------------------             -->
-	<!--   <div class="section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12"></div>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-				<p>dddd</p>
-			</div>
-		</div>
-		-->
-	<!--      ---------------------------------------------             -->
 	<div class="jumbotron" id="maincol">
 
 
@@ -49,7 +32,7 @@
 			<P id="center_p">${GetBoard.boardlist_name }</P>
 		</center>
 
-		<form id="search_form" action="Project_MDS/main/" method="get">
+		<form id="search_form" action="/Project_MDS/TSA/main/board/${GetBoard.boardlist_no }" method="get">
 			<input type="text" id="kwd" name="kwd" value="${keyword }"> <input
 				type="submit" value="찾기">
 		</form>
