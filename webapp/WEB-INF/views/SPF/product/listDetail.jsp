@@ -120,6 +120,12 @@
 	var price = 0;
 	var loginCheck = "${SPFauthUser.member_no }";
 	
+	$(function()
+			{
+			 $(document).on("keyup", "input:text[numberOnly]", function() {
+				 $(this).val( $(this).val().replace(/[^0-9]/gi,"") );
+				 });
+			});
 	$('#form-control2').attr('disabled', 'true');
 	
 	$("#form-control1").on( "change", function() {
@@ -194,7 +200,7 @@
 		optionResultString += ", ";
 		optionResultString += sizeText;
 		optionResultString += "</label> &nbsp;&nbsp;&nbsp;&nbsp;"; 
-		optionResultString += "<input type='text' class='form-control' value='1' style='width:50px; text-align: center; margin: 10px'>";
+		optionResultString += "<input type='text' class='form-control' numberonly='true' value='1' style='width:50px; text-align: center; margin: 10px'>";
 		optionResultString += "&nbsp;";
 		optionResultString += "<input type='button' value='X' class='deleteButton'>";
 		optionResultString += "</div>";

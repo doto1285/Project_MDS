@@ -38,9 +38,8 @@
 			on basket.productoption_no = productoption.productoption_no 
 			where basket.member_no=#{member_no } and basket.mall_no=#{mall_no }) b 
 			left join product on b.product_no = product.product_no where product.product_state = 1) p 
-			left join productimg on p.product_no = productimg.product_no where productimg_flag = 0
-			order by p.basket_no desc) a)
-			where (#{pageNo}-1)*4+1<=rnum and rnum<=#{pageNo}*4 
+			left join productimg on p.product_no = productimg.product_no where productimg_flag = 0) a)
+			where (#{pageNo}-1)*4+1<=rnum and rnum<=#{pageNo}*4 order by basket_no desc
 		]]>
 	</select>
 

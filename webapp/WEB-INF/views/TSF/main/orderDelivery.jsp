@@ -6,26 +6,49 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
-<!-- 공통 -->
 <script type="text/javascript"
 	src="/Project_MDS/assets/js/jquery/jquery-3.1.1.js"></script>
-
 <link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
 <script src="/Project_MDS/assets/dist/js/bootstrap.min.js"></script>
 <link href="/Project_MDS/assets/css/SPF_subMenu.css" rel="stylesheet"
 	type="text/css">
-<!-- /공통 -->
-<title>모두의 쇼핑몰</title>
-</head>
-<body>
-	<c:import url='/WEB-INF/views/SPF/include/header.jsp' />
-	<c:import url='/WEB-INF/views/SPF/include/category.jsp' />
-	<br>
 
+<title>모두의 쇼핑몰</title>
+
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="css/shop-item.css" rel="stylesheet">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+	<div>
+		<c:import url='/WEB-INF/views/TSF/include/header_top.jsp' />
+		<c:import url='/WEB-INF/views/TSF/include/header_tap.jsp' />
+	</div>
+
+
+	<!-- Page Content -->
 	<div class="container">
-		<h3 id="boardTitle">주문배송조회</h3>
+
+		<div class="row">
+
+			<div class="col-md-2" id="margin50px">
+				<c:import url='/WEB-INF/views/TSF/include/main_left.jsp' />
+			</div>
+
+			<!-- 본문 시작-------------------------------------------- -->
+			<h3 id="boardTitle">주문배송조회</h3>
 		<c:choose>
 		<c:when test="${not empty orderInfoSplit}">
 		<table class="table" id="orderTable">
@@ -133,34 +156,32 @@
 							<input type="hidden" name="pageNo" value="${endPage+1}"></li>
 					</c:if>
 				</ul>
-
 			</div>
+
+			<!-- 본문 끝-------------------------------------------- -->
+		</div>
 	</div>
+	<!-- /.container -->
 
-	<c:import url='/WEB-INF/views/SPF/include/footer.jsp' />
+
+	<div class="container">
+		<hr>
+		<!-- Footer -->
+		<footer>
+		<div class="row">
+			<c:import url='/WEB-INF/views/TSF/include/footer.jsp' />
+		</div>
+		</footer>
+
+	</div>
+	<!-- /.container -->
+
+	<!-- jQuery -->
+	<script src="js/jquery.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+
 </body>
-<script>
-
-$("#orderTable").on("click", "#orderDeliveryButton", function(){
-	$(this).parents(".contenttr").remove();
-	var orderinfo_no = $(this).val();
-	$.ajax({
-		url : "orderdeliverydelete",
-		type : "POST",
-		data : orderinfo_no,
-		contentType : "application/json",
-		success : function(url) {
-			alert("주문이 성공적으로 취소되었습니다.");
-			location.href = url;
-		},
-		error : function(request, status, error) {
-			alert("code:" + request.status + "\n" + "message:"
-					+ request.responseText + "\n" + "error:"
-					+ error);
-		}
-	});  
-});
-
-</script>
 
 </html>

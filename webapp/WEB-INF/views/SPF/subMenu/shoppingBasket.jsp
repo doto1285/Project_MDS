@@ -123,6 +123,10 @@
 <script>
 var basketArray = new Array();
 $("#deleteButton").click(function() {
+	if($('.tr_check:checked').length == 0){
+		alert("삭제할 상품을 선택해주세요.");
+	}
+	else{
 	$(".tr_check:checked" ).each( function(idx, row) {
 	/* var record = $(row).parents("tr");
 	console.log(record[0].innerText); */
@@ -141,6 +145,7 @@ $("#deleteButton").click(function() {
 		basketInfo.total = $(this).parents("#basketContent").find("#tableContents12").val();
 		basketArray.push(basketInfo);
 	});
+	
 	console.log("제이슨스트링!" + JSON.stringify(basketArray));
 	 $.ajax({
 		url : "shoppingbasketdelete",
@@ -157,10 +162,17 @@ $("#deleteButton").click(function() {
 					+ error);
 		}
 	});   
+	}
 	});
 	
  $("#orderButton").click(function() {
+	 if($('.tr_check:checked').length == 0){
+			alert("주문할 상품을 선택해주세요.");
+		}
+	 else{
 	$(".tr_check:checked").each(function(idx, row) {
+		
+		
 		var basketInfo = new Object();
 		basketInfo.basket_no = $(this).parents("#basketContent").find("#tableContents1").val();
 		basketInfo.product_no = $(this).parents("#basketContent").find("#tableContents2").val();
@@ -191,6 +203,7 @@ $("#deleteButton").click(function() {
 					+ error);
 		}
 	});  
+	 }
 	}); 
 	
 	

@@ -104,13 +104,13 @@
 							<input type="text" class="form-control" id="remainderAddress" placeholder="">
 						</div>
 						<div class="col-xs-4" id="addressLabel4">
-							<label>나머지주소</label>
+							<label>상세주소</label>
 						</div>
 					</div>
 				</td>
 			</tr>
 			<tr>
-				<td class="active">일반전화<label style="color: red">*</label></td>
+				<td class="active">일반전화</td>
 				<td><div class="col-xs-2" id="phoneInput1">
 						<input type="text" class="form-control" placeholder="">
 					</div>
@@ -190,12 +190,17 @@
 var orderArray = new Array();
 var total = 2500;
 $("#deleteButton").click(function() {
+	if($('.tr_check:checked').length == 0){
+		alert("삭제할 상품을 선택해주세요.");
+	}
+	else{
 	$(".tr_check:checked" ).parents("#basketContent").remove();
 	var total = 2500;
 	$(".baskettr").each(function(idx, row){
 		total += parseInt($(this).find("#tableContents12").val());
 		$("#total").text(total);
 	});
+	}
 	});
 	
 $(".baskettr").each(function(idx, row){
@@ -204,6 +209,20 @@ $(".baskettr").each(function(idx, row){
 });
 	
 $("#payButton").click(function() {
+	
+	 if($.trim($('#disabledInput').val()) == ''){
+		   alert("받으시는분 성명을 입력해주세요.");
+		   $('#disabledInput').focus();
+		  }
+	 else if($.trim($('#basicAddress').val()) == ''){
+		 alert("배송지 기본주소를 입력해주세요.");
+		  $('#basicAddress').focus();
+	 }
+	 else if($.trim($('#remainderAddress').val()) == ''){
+		 alert("배송지 상세주소를 입력해주세요.");
+		  $('#remainderAddress').focus();
+	 }
+	 else{
 	   if(!($(this).find("#tableContents1").val() == 0)){
 		 var basketNoArray = new Array();
 		 $(".baskettr").each(function(idx, row) {
@@ -260,10 +279,8 @@ $("#payButton").click(function() {
 					+ request.responseText + "\n" + "error:"
 					+ error);
 		}
-	});  
-	 
-	 
-	 
+	});
+	 }
 	}); 
 </script>
 </html>

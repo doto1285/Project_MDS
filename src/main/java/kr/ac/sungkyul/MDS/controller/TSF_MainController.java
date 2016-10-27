@@ -100,5 +100,11 @@ public class TSF_MainController {
 		
 		return "TSF/main/search_mall";
 	}
+	
+	@RequestMapping("main/orderdelivery")
+	public String orderDelivery(@ModelAttribute MallVo mallVo, Model model) {
+		
+		return "TSF/main/orderDelivery";
+	}
 
 }
