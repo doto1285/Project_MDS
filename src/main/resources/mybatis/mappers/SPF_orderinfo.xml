@@ -42,6 +42,40 @@
 			where (#{pageNo}-1)*4+1<=rnum and rnum<=#{pageNo}*4 order by orderinfo_no desc
 		]]>
 	</select>
+	
+	<select id="tsfselectorderdelivery" parameterType="kr.ac.sungkyul.MDS.vo.OrderinfoVo"
+		resultType="kr.ac.sungkyul.MDS.vo.OrderinfoVo">
+		<!-- 주문 리스트를 가져옴 -->
+	<![CDATA[
+		select t.*, product.product_name from 
+		(select i.*, productoption.PRODUCTOPTION_color, productoption.PRODUCTOPTION_SIZE from 
+		(select o.*, productimg.PRODUCTIMG_IMAGE from 
+		(select * from orderinfo where member_no = #{member_no }) o 
+		left join productimg on o.product_no = productimg.PRODUCT_NO where productimg_flag = 0) i  
+		left join productoption on i.productoption_no = productoption.productoption_no)t 
+		left join product on t.product_no = product.product_no where product.product_state = 1
+		]]>
+	</select>
+	
+	<select id="tsforderdeliverypaging" parameterType="kr.ac.sungkyul.MDS.vo.OrderinfoVo"
+		resultType="kr.ac.sungkyul.MDS.vo.OrderinfoVo">
+		<!-- 주문배송조회 리스트 페이징 -->
+		<![CDATA[	
+			select * from (select a.*, rownum as rnum from 
+			(select p.*, mall.mall_name from
+			(select t.*, product.product_name from 
+			(select i.*, productoption.PRODUCTOPTION_color, productoption.PRODUCTOPTION_SIZE from 
+			(select o.*, productimg.PRODUCTIMG_IMAGE from 
+			(select ORDERINFO_NO, ORDERINFO_COUNT, ORDERINFO_PRICE, ORDERINFO_ADDRESS,
+			to_char(ORDERINFO_DATE,'YYYY-MM-DD') as ORDERINFO_DATE, ORDERINFO_STATE,
+			PRODUCT_NO, MEMBER_NO, PRODUCTOPTION_NO, MALL_NO from orderinfo where member_no = #{member_no }) o 
+			left join productimg on o.product_no = productimg.PRODUCT_NO where productimg_flag = 0) i  
+			left join productoption on i.productoption_no = productoption.productoption_no) t 
+			left join product on t.product_no = product.product_no where product.product_state = 1) p
+			left join mall on p.mall_no = mall.mall_no) a)
+			where (#{pageNo}-1)*4+1<=rnum and rnum<=#{pageNo}*4 order by orderinfo_no desc
+		]]>
+	</select>
 
 <delete id="deletebasket" parameterType="kr.ac.sungkyul.MDS.vo.BasketListVo">
 		<!-- 장바구니에 있던 상품이 주문결제되면 장바구니의 상품을 삭제한다 -->

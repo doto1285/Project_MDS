@@ -16,6 +16,7 @@ public class OrderinfoVo {
 	private String product_name;
 	private String productimg_image;
 	private Integer pageNo;
+	private String mall_name;
 	
 	public int getOrderinfo_no() {
 		return orderinfo_no;
@@ -108,6 +109,13 @@ public class OrderinfoVo {
 	public void setPageNo(Integer pageNo) {
 		this.pageNo = pageNo;
 	}
+	
+	public String getMall_name() {
+		return mall_name;
+	}
+	public void setMall_name(String mall_name) {
+		this.mall_name = mall_name;
+	}
 	@Override
 	public String toString() {
 		return "OrderinfoVo [orderinfo_no=" + orderinfo_no + ", orderinfo_count=" + orderinfo_count
@@ -116,6 +124,7 @@ public class OrderinfoVo {
 				+ product_no + ", member_no=" + member_no + ", productoption_no=" + productoption_no + ", mall_no="
 				+ mall_no + ", productoption_color=" + productoption_color + ", productoption_size="
 				+ productoption_size + ", product_name=" + product_name + ", productimg_image=" + productimg_image
-				+ ", pageNo=" + pageNo + "]";
+				+ ", pageNo=" + pageNo + ", mall_name=" + mall_name + "]";
 	}
+	
 }

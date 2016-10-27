@@ -23,6 +23,7 @@ a {
 	text-align: center;
 }
 
+
 #orderButton {
 	position:relative;
 	left:965px;
@@ -31,6 +32,17 @@ a {
 #orderTable {
 	font-size: 14px;
 	text-align: center;
+}
+
+#TSForderTable {
+	font-size: 14px;
+	text-align: center;
+	width: 975px;
+}
+
+#TSFpager {
+	position: relative;
+	left: 80px;
 }
 
 #tableContents {

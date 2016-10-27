@@ -51,6 +51,14 @@ public class SPF_OrderDeliveryService {
 		return orderinfoDao.orderInfoPaging(orderinfoVo);
 	}
 	
+	public List<OrderinfoVo> TSForderInfoSelect(OrderinfoVo orderinfoVo){
+		return orderinfoDao.TSForderInfoSelect(orderinfoVo);
+	}
+	
+	public List<OrderinfoVo> TSForderInfoPaging(OrderinfoVo orderinfoVo){
+		return orderinfoDao.TSForderInfoPaging(orderinfoVo);
+	}
+	
 	public void orderDeliveryDelete(int orderinfo_no){
 		orderinfoDao.orderDeliveryDelete(orderinfo_no);
 	}

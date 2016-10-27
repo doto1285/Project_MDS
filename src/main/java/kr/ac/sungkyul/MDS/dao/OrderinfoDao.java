@@ -49,6 +49,14 @@ public class OrderinfoDao {
 		return sqlSession.selectList("SPF_orderinfo.orderdeliverypaging", orderinfoVo);
 	}
 	
+	public List<OrderinfoVo> TSForderInfoSelect(OrderinfoVo orderinfoVo){
+		return sqlSession.selectList("SPF_orderinfo.tsfselectorderdelivery", orderinfoVo);
+	}
+	
+	public List<OrderinfoVo> TSForderInfoPaging(OrderinfoVo orderinfoVo){
+		return sqlSession.selectList("SPF_orderinfo.tsforderdeliverypaging", orderinfoVo);
+	}
+	
 	public void orderDeliveryDelete(int orderinfo_no){
 		sqlSession.delete("SPF_orderinfo.orderdeliverydelete", orderinfo_no);
 	}

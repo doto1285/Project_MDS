@@ -22,14 +22,14 @@
 
 
 	<c:choose>
-		<c:when test='${authUser.member_distinction == 0}'>
+		<c:when test='${authUser.member_distinction == 1}'>
 			<!-- 개인 회원일경우 표시되는 메뉴  -->
-			<a href="#" class="list-group-item">구매 / 배송조회</a>
+			<a href="/Project_MDS/main/orderdelivery" class="list-group-item">구매 / 배송조회</a>
 			<a href="#" class="list-group-item">환불 / 취소</a>
 		</c:when>
 
 
-		<c:when test='${authUser.member_distinction == 1 }'>
+		<c:when test='${authUser.member_distinction == 2 }'>
 			<!-- 기업 회원일경우 표시되는 메뉴  -->
 			<a href="/Project_MDS/main/join_mallform" class="list-group-item">쇼핑몰
 				만들기</a>

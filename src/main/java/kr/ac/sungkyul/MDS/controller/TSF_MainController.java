@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.ac.sungkyul.MDS.service.BoardService;
+import kr.ac.sungkyul.MDS.service.SPF_OrderDeliveryService;
 import kr.ac.sungkyul.MDS.service.TSF_MainService;
 import kr.ac.sungkyul.MDS.vo.BoardListVo;
 import kr.ac.sungkyul.MDS.vo.BoardVo;
 import kr.ac.sungkyul.MDS.vo.MallVo;
+import kr.ac.sungkyul.MDS.vo.MemberVo;
+import kr.ac.sungkyul.MDS.vo.OrderinfoVo;
 
 @Controller
 public class TSF_MainController {
@@ -27,6 +30,9 @@ public class TSF_MainController {
 	
 	@Autowired
 	BoardService BoardService;
+	
+	@Autowired
+	SPF_OrderDeliveryService SPF_orderDeliveryService;
 
 	@RequestMapping("/{userid}")
 	public String index( @PathVariable String userid, HttpSession session, Model model) {
@@ -102,7 +108,36 @@ public class TSF_MainController {
 	}
 	
 	@RequestMapping("main/orderdelivery")
-	public String orderDelivery(@ModelAttribute MallVo mallVo, Model model) {
+	public String orderDelivery(HttpSession session, Model model, OrderinfoVo orderinfoVo) {
+		//페이징
+		MemberVo memberVo = (MemberVo) session.getAttribute("authUser");
+		orderinfoVo.setMember_no(memberVo.getMember_no()); 
+		List<OrderinfoVo> orderlist = SPF_orderDeliveryService.TSForderInfoSelect(orderinfoVo);
+		if (orderinfoVo.getPageNo() == null) {
+			orderinfoVo.setPageNo(1);
+		}
+		int currentPage = orderinfoVo.getPageNo();
+		int pageLength = 4;
+		int beginPage;
+
+		List<OrderinfoVo> listSplit = SPF_orderDeliveryService.TSForderInfoPaging(orderinfoVo);
+		System.out.println("주문배송조회 : " + listSplit);
+		model.addAttribute("orderInfoSplit", listSplit);
+
+		int currentBlock = (int) Math.ceil((double) orderinfoVo.getPageNo() / 5);
+
+		beginPage = (currentBlock - 1) * 5 + 1;
+
+		int total = (int) Math.ceil((double) orderlist.size() / pageLength);
+		int endPage = currentBlock * 5;
+		if (endPage > total) {
+			endPage = total;
+		}
+
+		model.addAttribute("beginPage", beginPage);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("total", total);
 		
 		return "TSF/main/orderDelivery";
 	}

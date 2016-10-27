@@ -48,25 +48,26 @@
 			</div>
 
 			<!-- 본문 시작-------------------------------------------- -->
+			<br><br>
 			<h3 id="boardTitle">주문배송조회</h3>
 		<c:choose>
 		<c:when test="${not empty orderInfoSplit}">
-		<table class="table" id="orderTable">
+		<table class="table" id="TSForderTable">
 			<colgroup>
-				<col width="13%" />
-				<col width="13%" />
+				<col width="12.5%" />
+				<col width="12.5%" />
+				<col width="12.5%" />
 				<col width="13%" />
 				<col width="12%" />
-				<col width="13%" />
-				<col width="13%" />
-				<col width="13%" />
+				<col width="12.5%" />
+				<col width="12.5%" />
+				<col width="12.5%" />
 			</colgroup>
 			<tr class="active">
-				<td>주문일자 <br>[주문번호]
-				</td>
+				<td><label id="tdFirst">쇼핑몰이름</label></td>
+				<td>주문일자 <br>[주문번호]</td>
 				<td><label id="tdFirst">이미지</label></td>
-				<td><string>상품명 <br>
-					[상품상세]</string></td>
+				<td><string>상품명 <br>[상품상세]</string></td>
 				<td><label id="tdFirst">수량</label></td>
 				<td><label id="tdFirst">상품구매금액</label></td>
 				<td><label id="tdFirst">주문처리상태</label>
@@ -74,6 +75,7 @@
 			</tr>
 			<c:forEach items="${orderInfoSplit }" var="orderInfoVO">
 			<tr class="contenttr">
+			<td id="tableContents">${orderInfoVO.mall_name }</td>
 				<td id="tableContents">${orderInfoVO.orderinfo_date } <br> [${orderInfoVO.orderinfo_no }]
 				</td>
 				<td><img
@@ -128,12 +130,12 @@
 		</c:otherwise>
 		</c:choose>
 		<br>
-		<div class="pager">
+		<div class="pager" id="TSFpager">
 				<!-- class="pagination" id="paging" -->
 				<ul>
 					<c:if test="${beginPage>1 }">
 						<li><a
-							href="/Project_MDS/${mall_domain }/orderdelivery?pageNo=${beginPage-1 }">◀</a>
+							href="/Project_MDS/main/orderdelivery?pageNo=${beginPage-1 }">◀</a>
 							<input type="hidden" name="pageNo" value="${beginPage-1 }">
 						</li>
 					</c:if>
@@ -144,7 +146,7 @@
 							</c:when>
 							<c:otherwise>
 								<li><a
-									href="/Project_MDS/${mall_domain }/orderdelivery?&pageNo=${i }">${i }</a>
+									href="/Project_MDS/main/orderdelivery?&pageNo=${i }">${i }</a>
 									<input type="hidden" name="pageNo" value="${i}"></li>
 							</c:otherwise>
 						</c:choose>
@@ -152,11 +154,12 @@
 
 					<c:if test='${endPage<total }'>
 						<li><a
-							href="/Project_MDS/${mall_domain }/orderdelivery?&pageNo=${endPage+1 }">▶</a>
+							href="/Project_MDS/main/orderdelivery?&pageNo=${endPage+1 }">▶</a>
 							<input type="hidden" name="pageNo" value="${endPage+1}"></li>
 					</c:if>
 				</ul>
 			</div>
+			
 
 			<!-- 본문 끝-------------------------------------------- -->
 		</div>
@@ -183,5 +186,27 @@
 	<script src="js/bootstrap.min.js"></script>
 
 </body>
+<script>
 
+$("#orderTable").on("click", "#orderDeliveryButton", function(){
+	$(this).parents(".contenttr").remove();
+	var orderinfo_no = $(this).val();
+	$.ajax({
+		url : "orderdeliverydelete",
+		type : "POST",
+		data : orderinfo_no,
+		contentType : "application/json",
+		success : function(url) {
+			alert("주문이 성공적으로 취소되었습니다.");
+			location.href = url;
+		},
+		error : function(request, status, error) {
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n" + "error:"
+					+ error);
+		}
+	});  
+});
+
+</script>
 </html>
