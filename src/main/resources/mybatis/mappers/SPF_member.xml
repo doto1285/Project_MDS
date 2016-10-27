@@ -20,6 +20,8 @@
 		<![CDATA[				
 		insert into joinmall values
 		(#{member_no}, #{mall_no}) 	
+		select member_distinction from member where member_distinction = 1
+		
 
 		]]>
 	</insert>
