@@ -21,8 +21,16 @@
 <SCRIPT>
 	//<![CDATA[
 	function check_input() {
+		var a = ${authUser.member_distinction == 1};
+		var b = ${authUser.member_distinction};
+		console.log("체크 : " + a);
 		if (document.joinForm.enable.checked) {
-			location.href = './joinComplete';
+			if(a){
+				location.href = './joinComplete';
+			}
+			else{
+				alert("기업회원은 개인쇼핑몰에 가입할 수 없습니다.");
+			}
 		} else {
 			alert("약관을 동의해주세요.");
 		}
