@@ -139,11 +139,10 @@
 					</div>
 				</div>
 			</div>
-
-
+			<input type="hidden" id = "productno" name="productno" value="${productVo.product_no}">
 		</form>
 		<div class="col-lg-12">
-			<input type="hidden" id = "productno" value="${productVo.product_no}">
+			
 			<button class="btn btn-info btnok" name="btnOk" id="btnOk">저장하기</button>
 			<a href="product" class="btn btn-warning" id="btnCancle"> 돌아가기 </a>
 		</div>

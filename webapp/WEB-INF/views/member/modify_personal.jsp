@@ -77,12 +77,12 @@
 						
 						
 						<td id="td-size">비밀번호</td>
-						<td><input id="textbox" name = "member_password" class ="change" data-target="#modal_changepw" data-toggle="modal"
+						<td><input id="member_password" name = "member_password" class ="change" data-target="#modal_changepw" data-toggle="modal"
 						type="password" value="${authUser.member_password }"></td>
 					</tr>
 					<tr>
 						<td id="td-size">이름</td>
-						<td><input id="textbox" name="member_name" type="text"
+						<td><input id="member_name" name="member_name" type="text"
 							value="${authUser.member_name }"></td>
 					</tr>
 					<tr>
@@ -202,13 +202,17 @@ $(".btn_pwSave").on("click", function() {
 	
 	if(change_pw == check){
 		console.log("비밀번호 같음 " + change_pw +" " + check); //로그에 찍히는 부분
+		$("#member_password").val(change_pw);
+		
 	}
 	else{
 		console.log("틀림");
+		alert("비밀번호가 일치하지 않습니다");
 	}
 	
-	
-	
+	$("#change_pw").val("");
+	$("#check").val("");
+	$("member_name").Position;
 
 });
 

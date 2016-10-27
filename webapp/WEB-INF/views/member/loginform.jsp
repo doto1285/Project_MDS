@@ -63,7 +63,9 @@
 							<!-- ------------------------------------------ -->
 
 							<input type="radio" name="member_distinction" checked=""
-								value="1">개인 회원<br> <input type="radio"
+								value="1">개인 회원<br>
+								
+								 <input type="radio"
 								name="member_distinction" value="2">기업 회원<br> <input
 								type="radio" name="member_distinction" value="9">admin<br>
 							<!-- ------------------------------------------ -->

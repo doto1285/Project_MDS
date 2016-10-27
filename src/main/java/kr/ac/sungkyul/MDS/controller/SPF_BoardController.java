@@ -50,6 +50,9 @@ public class SPF_BoardController {
 			@RequestParam(value = "p", required = true, defaultValue = "1") int page,
 
 			@RequestParam(value = "kwd", required = false, defaultValue = "") String keyword, Model model) {
+	
+		
+		
 		///////////////////////////////////////////////////////
 		// 해당 쇼핑몰에 필요한 모델 객체들을 한번에 불러온다
 
@@ -63,7 +66,10 @@ public class SPF_BoardController {
 		}
 		///////////////////////////////////////////////////////
 
-		//////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		
+		
+		
 		// 도메인으로 mall_no 가져옴
 		MallVo mallVo = SPF_mallService.domainCheck(domain);
 
@@ -468,7 +474,7 @@ public class SPF_BoardController {
 			// 통합회원이 SPF회원인지 확인
 			if (memberService.SPFWhatUser(joinmallVo) == false) {
 				// SPF회원이 아닐경우 회원 구분을 0으로 세팅
-//				memberVo.setMember_distinction(0);
+				memberVo.setMember_distinction(0);
 			}
 			
 			makeModel.put("memberVo", memberVo);
