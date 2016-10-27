@@ -60,16 +60,18 @@
 
 			</table>
 		</div>
-		<nav>
-		<ul class="pagination" id="paging">
-			<li><a href="#" aria-label="Previous"> <span
-					aria-hidden="true">&laquo;</span>
-			</a></li>
-			<li><a href="#">1</a></li>
-			<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-			</a></li>
-		</ul>
-		</nav>
+		<div class="col-lg-11">
+			<nav>
+			<ul class="pagination" id="paging">
+				<li><a href="#" aria-label="Previous"> <span
+						aria-hidden="true">&laquo;</span>
+				</a></li>
+				<li><a href="#">1</a></li>
+				<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+				</a></li>
+			</ul>
+			</nav>
+		</div>
 	</div>
 	<c:import url='/WEB-INF/views/SPA/include/footer.jsp' />
 </body>

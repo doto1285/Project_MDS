@@ -351,9 +351,9 @@ public class SPA_MainController {
 		if (!SPA_mainservice.isUserCheck(domain, session)) {
 			return "redirect:/main/loginfrom";
 		}
-
-		productOptionVo.setProduct_no(Integer.parseInt(productno));
-		SPA_productService.modifyProductOption(productOptionVo);
+		
+		System.out.println(productno);
+		
 		if (!file1.isEmpty()) {
 			SPA_productService.deleteProductImg(Integer.parseInt(productno), 0);
 			SPA_productService.insertProductImg(Integer.parseInt(productno), file1, 0);

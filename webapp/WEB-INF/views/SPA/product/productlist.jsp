@@ -52,11 +52,11 @@
 				<c:forEach var='vo' items='${list}' varStatus='status'>
 					<tr data-productno='${vo.product_no}'>
 						<td id="tableContents">${vo.product_name }</td>
-						<td id="tableContents"><img
-						src="${vo.productimg_image }"
-						alt="상품 이미지" class="img-thumbnail" id="productTableImage"></td>
+						<td id="tableContents"><img src="${vo.productimg_image }"
+							alt="상품 이미지" class="img-thumbnail" id="productTableImage"></td>
 						<td id="tableContents">${vo.product_price }원</td>
-						<td><a href="productmodifyform?product_no=${vo.product_no}" class="btn btn-warning btn-sm">수정</a></td>
+						<td><a href="productmodifyform?product_no=${vo.product_no}"
+							class="btn btn-warning btn-sm">수정</a></td>
 						<td><input type="button"
 							class="btn_Delete btn btn-danger btn-sm" value="삭제"></td>
 
@@ -64,18 +64,22 @@
 				</c:forEach>
 			</table>
 		</div>
-		<nav>
-		<ul class="pagination" id="paging">
-			<li><a href="#" aria-label="Previous"> <span
-					aria-hidden="true">&laquo;</span>
-			</a></li>
-			<li><a href="#">1</a></li>
-			<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-			</a></li>
-		</ul>
-		</nav>
-		<div class="form-group" id="inputButton">
-			<a href='productinsertform' class="btn btn-info">추가하기</a>
+		<div class="col-lg-11">
+			<nav>
+			<ul class="pagination" id="paging">
+				<li><a href="#" aria-label="Previous"> <span
+						aria-hidden="true">&laquo;</span>
+				</a></li>
+				<li><a href="#">1</a></li>
+				<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+				</a></li>
+			</ul>
+			</nav>
+		</div>
+		<div class="col-lg-11">
+			<div class="form-group" id="inputButton">
+				<a href='productinsertform' class="btn btn-info">추가하기</a>
+			</div>
 		</div>
 		<br> <br> <br> <br>
 	</div>
@@ -84,29 +88,29 @@
 </html>
 <script>
 	var productNo = "";
-$(".btn_Delete").on("click", function() {
-	productNo = $(this).parents("tr").data("productno");
+	$(".btn_Delete").on("click", function() {
+		productNo = $(this).parents("tr").data("productno");
 
-	console.log("삭제 버튼 클릭시: " + productNo); //로그에 찍히는 부분
+		console.log("삭제 버튼 클릭시: " + productNo); //로그에 찍히는 부분
 
-	$.ajax({
-		//값 넘기기 ( 삭제할 번호: productNo)
-		url : "productdelete",
-		type : "POST",
-		data : {
-			"productNo" : productNo,
-		},
-		dataType : "text",
+		$.ajax({
+			//값 넘기기 ( 삭제할 번호: productNo)
+			url : "productdelete",
+			type : "POST",
+			data : {
+				"productNo" : productNo,
+			},
+			dataType : "text",
 
-		success : function(url) {
-			//ajax가 성공했을때, 컨트롤러에서 리턴받는 url로 페이지를 최신화 시킨다.
-			location.href = url;
+			success : function(url) {
+				//ajax가 성공했을때, 컨트롤러에서 리턴받는 url로 페이지를 최신화 시킨다.
+				location.href = url;
 
-		},
-		error : function(jqXHR, status, error) {
-			console.error(status + " : " + error);
-		}
+			},
+			error : function(jqXHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+		alert("삭제 완료");
 	});
-	alert("삭제 완료");
-});
 </script>

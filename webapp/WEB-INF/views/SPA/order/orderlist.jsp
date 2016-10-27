@@ -52,8 +52,8 @@
 				</tr>
 
 				<c:forEach var='vo' items='${map.orderlist}' varStatus='status'>
-					<tr data-orderinfono ='${vo.orderinfo_no}'
-					data-orderinfostate ='${vo.orderinfo_state}'>
+					<tr data-orderinfono='${vo.orderinfo_no}'
+						data-orderinfostate='${vo.orderinfo_state}'>
 						<td id="tableContents">${vo.orderinfo_no }</td>
 						<td id="tableContents">${vo.orderinfo_address }</td>
 						<td id="tableContents">${vo.orderinfo_count }개</td>
@@ -74,12 +74,12 @@
 							</c:choose></td>
 						<td id="tableContents"><c:choose>
 								<c:when test="${vo.orderinfo_state == 2 }">
-									<input type="button"
-										class="btn_Modify btn btn-info btn-sm" value="배송시작">
+									<input type="button" class="btn_Modify btn btn-info btn-sm"
+										value="배송시작">
 								</c:when>
 								<c:when test="${vo.orderinfo_state == 3 }">
-									<input type="button"
-										class="btn_Modify btn btn-primary btn-sm" value="배송완료">
+									<input type="button" class="btn_Modify btn btn-primary btn-sm"
+										value="배송완료">
 								</c:when>
 							</c:choose></td>
 					</tr>
@@ -87,16 +87,18 @@
 
 			</table>
 		</div>
-		<nav>
-		<ul class="pagination" id="paging">
-			<li><a href="#" aria-label="Previous"> <span
-					aria-hidden="true">&laquo;</span>
-			</a></li>
-			<li><a href="#">1</a></li>
-			<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-			</a></li>
-		</ul>
-		</nav>
+		<div class="col-lg-11">
+			<nav>
+			<ul class="pagination" id="paging">
+				<li><a href="#" aria-label="Previous"> <span
+						aria-hidden="true">&laquo;</span>
+				</a></li>
+				<li><a href="#">1</a></li>
+				<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+				</a></li>
+			</ul>
+			</nav>
+		</div>
 	</div>
 	<c:import url='/WEB-INF/views/SPA/include/footer.jsp' />
 </body>
