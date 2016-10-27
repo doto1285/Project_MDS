@@ -56,5 +56,14 @@ public class TSA_MainController {
 
 		return "TSA/main/index";
 	}
+	@RequestMapping("/bbssl")
+	public String bbssl(HttpSession httpSession) {
+		// httpSession.getAttribute(arg0);
+		//
+		// if() {
+		// return "admin_loginform";
+		// }
 
+		return "TSA/main/bbs_SL";
+	}
 }

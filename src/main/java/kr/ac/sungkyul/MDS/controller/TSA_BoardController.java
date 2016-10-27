@@ -63,29 +63,30 @@ public class TSA_BoardController {
 
 
 	@RequestMapping("/main/board/usermanage")
-	public String GetUserManageList(Model model){
-		List<MemberVo> GetUserManageList = TSA_boardService.GetUserManageList(); // 서비스(객체).메소드/필드
-		model.addAttribute("GetUserManageList", GetUserManageList);
+	public String usermanage(Model model,
+			HttpSession session, @RequestParam(value = "p", required = true, defaultValue = "1") int page,
+			@RequestParam(value = "kwd", required = false, defaultValue = "") String keyword
+			) {
+		int pagesize = 5;
+		Map<String, Object> GetUserManage = TSA_boardService.GetUserManageList( page,  keyword); // 서비스(객체).메소드/필드
+		model.addAttribute("GetUserManage", GetUserManage);
+		System.out.println(GetUserManage);
 		
 		return "TSA/board/usermanage";
 	}
 	
-	
-	
-	
-	
 	@RequestMapping("/main/board/shopmanage")
-	public String GetShopManage(Model model){
-		List<MallVo> GetShopManage = TSA_boardService.GetShopManage(); // 서비스(객체).메소드/필드
+	public String shopmanage(Model model,
+			HttpSession session, @RequestParam(value = "p", required = true, defaultValue = "1") int page,
+			@RequestParam(value = "kwd", required = false, defaultValue = "") String keyword
+			) {
+		int pagesize = 5;
+		Map<String, Object> GetShopManage = TSA_boardService.GetShopManageList( page,  keyword); // 서비스(객체).메소드/필드
 		model.addAttribute("GetShopManage", GetShopManage);
 		System.out.println(GetShopManage);
+		
 		return "TSA/board/shopmanage";
 	}
-	
-	
-	
-	
-	
 	
 	@RequestMapping("/main/board/view")
 	public String view(HttpSession session, @RequestParam(value = "no") int board_no ) {
@@ -203,27 +204,3 @@ public class TSA_BoardController {
 		return "redirect:/TSA/main/board/" + boardVo.getBoardlist_no();
 	}
 }
-	
-	
-	
-	//////////////////////////////////////////////////////////////////////////////////////////////
-	
-	/*
-	@RequestMapping("/main/board/notice")
-	public String GetNotice(Model model){
-		List<BoardVo> GetNotice = TSA_boardService.GetNotice(); // 서비스(객체).메소드/필드
-		model.addAttribute("GetNotice", GetNotice);
-		
-		return "TSA/board/notice";
-	}
-		
-	@RequestMapping("/main/board/servicecenter")
-	 
-	public String sc(HttpSession Session) {
-		return "TSA/board/servicecenter";
-	}
-	@RequestMapping("/main/board/qna")
-	public String faq(HttpSession Session) {
-		return "TSA/board/qna";
-	}
-	*/

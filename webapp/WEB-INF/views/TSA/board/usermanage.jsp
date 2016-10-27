@@ -44,7 +44,7 @@
 			</tr>
 
 			<tbody>
-				<c:forEach items="${GetUserManageList }" var="GetUserManageList">
+				<c:forEach items="${GetUserManage.GetUserManageList }" var="GetUserManageList">
 				<tr>
 					<td>${GetUserManageList.member_no}</td>
 		<td><!--<a href="view?no=${GetUserManageList.member_no}">-->${GetUserManageList.member_id}<!--</a>--></td>
@@ -62,18 +62,18 @@
 			<div class="pager">
 				<ul>
 
-					<c:if test="${map.prevPage >= 0 }">
+					<c:if test="${GetUserManage.prevPage >= 0 }">
 						<li><a
-							href="/Project_MDS/TSA/main/board/usermanage?p=${map.prevPage }">◀</a></li>
+							href="/Project_MDS/TSA/main/board/usermanage?p=${GetUserManage.prevPage }">◀</a></li>
 					</c:if>
 
-					<c:forEach begin='${map.firstPage }' end='${map.lastPage }'
+					<c:forEach begin='${GetUserManage.firstPage }' end='${GetUserManage.lastPage }'
 						step='1' var='i'>
 						<c:choose>
-							<c:when test='${map.currentPage == i }'>
+							<c:when test='${GetUserManage.currentPage == i }'>
 								<li class="selected">${i }</li>
 							</c:when>
-							<c:when test='${i > map.pageCount }'>
+							<c:when test='${i > GetUserManage.pageCount }'>
 								<li>${i }</li>
 							</c:when>
 							<c:otherwise>
@@ -83,9 +83,9 @@
 						</c:choose>
 					</c:forEach>
 
-					<c:if test='${map.nextPage > 0 }'>
+					<c:if test='${GetUserManage.nextPage > 0 }'>
 						<li><a
-							href="/Project_MDS/TSA/main/board/usermanage?p=${map.nextPage }">▶</a></li>
+							href="/Project_MDS/TSA/main/board/usermanage?p=${GetUserManage.nextPage }">▶</a></li>
 					</c:if>
 				</ul>
 	</div>
