@@ -116,6 +116,11 @@ public class SPA_CategoryListService {
 		return vo;
 		
 	}
+	
+	public CategoryListVo getCategory1nd(int categorylist_no) {
+		CategoryListVo vo = categoryListDao.getCategory1nd(categorylist_no);
+		return vo;
+	}
 
 
 }
