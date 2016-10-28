@@ -54,13 +54,13 @@
 				<table>
 					<tr>
 						<td id="td-size">쇼핑몰 이름</td>
-						<td><input id="textbox" name="mall_name" type="text" value="">
+						<td><input class="textbox1" id="textbox" name="mall_name" type="text" value="">
 						</td>
 
 					</tr>
 					<tr>
 						<td id="td-size">도메인</td>
-						<td><input id="textbox" name="mall_domain" type="text" 
+						<td><input class="textbox2" id="textbox" name="mall_domain" type="text" 
 							value=""></td>					
 							
 						<td style="padding-left: 15px">
@@ -83,69 +83,69 @@
 					</tr>
 					<tr>
 						<td id="td-size">사업자 등록번호</td>
-						<td><input id="textbox" name="mall_licensee" type="text"
+						<td><input class="textbox3" id="textbox" name="mall_licensee" type="text"
 							value=""></td>
 					</tr>
 					<tr>
 						<td id="td-size">법인 이름</td>
-						<td><input id="textbox" name="mall_companyname" type="text"
+						<td><input class="textbox4" id="textbox" name="mall_companyname" type="text"
 							value=""></td>
 					</tr>
 					<tr>
 						<td id="td-size">법인 대표자 이름</td>
-						<td><input id="textbox" name="mall_ceoname" type="text"
+						<td><input class="textbox5" id="textbox" name="mall_ceoname" type="text"
 							value=""></td>
 					</tr>
 					<tr>
 						<td id="td-size">사업장 주소</td>
-						<td><input id="textbox" name="mall_address" type="text"
+						<td><input class="textbox6" id="textbox" name="mall_address" type="text"
 							placeholder="직접 입력해 주세요" value=""></td>
 					</tr>
 					<tr>
 						<td id="td-size">쇼핑몰 연락처</td>
-						<td><input id="textbox" name="mall_phone" type="text"
+						<td><input class="textbox7" id="textbox" name="mall_phone" type="text"
 							placeholder=" - 없이 입력해 주세요" value=""></td>
 					</tr>
 					<tr>
 						<td id="td-size">쇼핑몰 이메일</td>
-						<td><input id="textbox" name="mall_email" type="text"
+						<td><input class="textbox8" id="textbox" name="mall_email" type="text"
 							value=""></td>
 					</tr>
 					<tr>
 						<td id="td-size">쇼핑몰 계좌번호</td>
-						<td><input id="textbox" name="mall_account" type="text"
+						<td><input class="textbox9" id="textbox" name="mall_account" type="text"
 							value=""></td>
 					</tr>
 					<tr>
 						<td id="td-size">통신판매신고번호</td>
-						<td><input id="textbox" name="mall_onlinemaketNo" type="text"
+						<td><input class="textbox10" id="textbox" name="mall_onlinemaketNo" type="text"
 							value=""></td>
 					</tr>
 					<tr>
 						<td id="td-size">개인정보책임자</td>
-						<td><input id="textbox" name="mall_dataofficer" type="text"
+						<td><input class="textbox11" id="textbox" name="mall_dataofficer" type="text"
 							value=""></td>
 					</tr>
 					<tr>
 						<td id="td-size">고객센터 번호</td>
-						<td><input id="textbox" name="mall_customerNo" type="text"
+						<td><input class="textbox12" id="textbox" name="mall_customerNo" type="text"
 							value=""></td>
 					</tr>
 					<tr>
 						<td id="td-size">팩스 번호</td>
-						<td><input id="textbox" name="mall_faxNo" type="text"
+						<td><input class="textbox13" id="textbox" name="mall_faxNo" type="text"
 							value=""></td>
 					</tr>
 
 					<tr>
 						<td id="td-size">약관동의</td>
-						<td><input type="checkbox" name="agreeProv" value="y">
+						<td><input type="checkbox" name="agreeProv1" value="y" onclick="check_input(); return false;">
 							<label>서비스 약관에 동의합니다.&nbsp&nbsp&nbsp&nbsp</label> <a type=href="/Project_MDS/main/#">
 								내용확인</a></td>
 					</tr>
 					<tr>
 						<td id="td-size">개인정보활용동의</td>
-						<td><input type="checkbox" name="agreeProv" value="y">
+						<td><input type="checkbox" name="agreeProv2" value="y" onclick="check_input(); return false;">
 							<label>개인정보 활용에 동의합니다.&nbsp&nbsp&nbsp</label> <a type=href="/Project_MDS/main/#">
 								내용확인 </td>
 					</tr>
@@ -198,23 +198,98 @@ $(function() {
 	$("#login-form").submit(
 			function() {
 				//텍스트박스 체크
-				if ($("#textbox").val() == "") {
-					alert("모든 항목을 입력해주세요");
+				if ($(".textbox1").val() == "") {
+					alert("쇼핑몰 이름을 입력해주세요");
 					$("#board_password").focus();
 					return false;
 				}
+				//텍스트박스 체크
+				if ($(".textbox2").val() == "") {
+					alert("쇼핑몰 도메인을 입력해주세요");
+					$("#board_password").focus();
+					return false;
+				}
+				
 				//셀렉박스 체크
 				if($("#selectType option:selected").val() == -1){
 					alert("쇼핑몰 종류를 선택해주세요.");
 					return false;
 				}
-				//체크박스 체크
-				if (document.loginform.agreeProv.checked) {
-				} 
-				else {
-				alert("약관을 모두 동의해주세요.");
-				return false;
+				
+				//텍스트박스 체크
+				if ($(".textbox3").val() == "") {
+					alert("사업자등록번호를 입력해주세요");
+					$("#board_password").focus();
+					return false;
 				}
+				//텍스트박스 체크
+				if ($(".textbox4").val() == "") {
+					alert("법인 이름을 입력해주세요");
+					$("#board_password").focus();
+					return false;
+				}
+				//텍스트박스 체크
+				if ($(".textbox5").val() == "") {
+					alert("법인 대표자 이름을 입력해주세요");
+					$("#board_password").focus();
+					return false;
+				}
+				//텍스트박스 체크
+				if ($(".textbox6").val() == "") {
+					alert("사업장 주소를 입력해주세요");
+					$("#board_password").focus();
+					return false;
+				}
+				//텍스트박스 체크
+				if ($(".textbox7").val() == "") {
+					alert("쇼핑몰 연락처를 입력해주세요");
+					$("#board_password").focus();
+					return false;
+				}
+				//텍스트박스 체크
+				if ($(".textbox8").val() == "") {
+					alert("쇼핑몰 이메일을 입력해주세요");
+					$("#board_password").focus();
+					return false;
+				}
+				//텍스트박스 체크
+				if ($(".textbox9").val() == "") {
+					alert("쇼핑몰 계좌번호를 입력해주세요");
+					$("#board_password").focus();
+					return false;
+				}
+				//텍스트박스 체크
+				if ($(".textbox10").val() == "") {
+					alert("통신판매신고번호를 입력해주세요");
+					$("#board_password").focus();
+					return false;
+				}
+				//텍스트박스 체크
+				if ($(".textbox11").val() == "") {
+					alert("개인정보책임자를 입력해주세요");
+					$("#board_password").focus();
+					return false;
+				}
+				//텍스트박스 체크
+				if ($(".textbox12").val() == "") {
+					alert("쇼핑몰 고객센터 번호를 입력해주세요");
+					$("#board_password").focus();
+					return false;
+				}
+				//텍스트박스 체크
+				if ($(".textbox13").val() == "") {
+					alert("팩스번호를 입력해주세요");
+					$("#board_password").focus();
+					return false;
+				}
+				
+				//체크박스 체크
+				if ($("input:checkbox[name='agreeProv1']").is(":checked") == false ||
+						$("input:checkbox[name='agreeProv2']").is(":checked") == false ) {
+					alert("약관을 모두 동의해주세요.");
+					return false;
+				} 
+
 			});
 });
 	</script>
