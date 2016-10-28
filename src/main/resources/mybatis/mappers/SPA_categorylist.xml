@@ -32,6 +32,17 @@
 		
 		]]>
 	</select>
+	
+	<select id="getCategory1nd" parameterType="java.lang.Integer"
+		resultType="categorylistVo">
+		<!-- 1차 카테고리 정보를 가져온다 -->
+		<![CDATA[	
+ 			select * from categorylist
+  		    where categorylist_state = 1
+  		    and categorylist_depth = 1
+   		    and categorylist_group = (select categorylist_group from categorylist where categorylist_no = #{categorylist_no})
+		]]>
+	</select>
 
 	<select id="getAboveOrderNo" parameterType="categorylistVo"
 		resultType="categorylistVo">

@@ -86,7 +86,7 @@ public class SPA_CategoryController {
 		categoryListService.ModifyName(vo);
 
 		vo = categoryListService.getMyVo(msgchangecateNo);
-		String url = "/Project_MDS/SPA/12maket/category?group_no=" + vo.getCategorylist_group();
+		String url = "/Project_MDS/SPA/"+domain+"/category?group_no=" + vo.getCategorylist_group();
 		System.out.println("url test : " + url);
 		return url;
 	}
