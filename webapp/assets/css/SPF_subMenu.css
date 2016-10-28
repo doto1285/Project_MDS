@@ -26,7 +26,7 @@ a {
 
 #orderButton {
 	position:relative;
-	left:920px;
+	left:915px;
 }
 
 #orderTable {
@@ -43,6 +43,11 @@ a {
 #TSFpager {
 	position: relative;
 	left: 80px;
+}
+
+#tr_checkBox {
+	position: relative;
+	top: 52px; 
 }
 
 #tableContents {
