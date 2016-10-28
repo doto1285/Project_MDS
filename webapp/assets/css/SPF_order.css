@@ -30,7 +30,8 @@ a {
 
 #orderTable {
 	font-size: 14px;
-	text-align: center;
+	vertical-align:middle;
+	/* text-align: center; */
 }
 
 #tableContents {
@@ -39,7 +40,7 @@ a {
 }
 
 #orderProductImage {
-	height: 140px;
+	height: 138px;
 	width: 90px;
 }
 
