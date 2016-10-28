@@ -99,7 +99,13 @@
 					<c:forEach begin='${beginPage }' end='${endPage }' step='1' var='i'>
 						<c:choose>
 							<c:when test='${currentPage == i }'>
-								<li class="selected">${i }</li>
+								<c:choose>
+									<c:when test='${currentPage == 1 }'>
+									</c:when>
+									<c:otherwise>
+										<li class="selected">${i }</li>
+									</c:otherwise>
+								</c:choose>
 							</c:when>
 							<c:otherwise>
 								<li><a

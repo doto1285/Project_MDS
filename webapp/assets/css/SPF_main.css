@@ -3,14 +3,10 @@
 html, body {
 	margin:0; 
 	padding:0; 
-	height:100%;
-	width:100%;
 }
 
 body {
 	font: 76% arial, sans-serif
-	height:100%;
-	width:100%;
 }
 
 p {
@@ -25,8 +21,6 @@ a {
 /* header */
 #header {
 	font-size: 14px;
-	height:100%;
-	width:100%;
 }
 
 #logo {
