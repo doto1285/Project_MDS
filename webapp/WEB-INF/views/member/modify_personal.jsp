@@ -88,12 +88,12 @@
 					<tr>
 						<td id="td-size">주소</td>
 						<td><input id="textbox" name="member_address" type="text"
-							placeholder=" 직접 입력 하세요 ㅋㅋ" value="${authUser.member_address }"></td>
+							placeholder=" 직접 입력 하세요 " value="${authUser.member_address }"></td>
 					</tr>
 					<tr>
 						<td id="td-size">이메일</td>
 						<td><input id="textbox" name="member_email" type="text"
-							placeholder="끝까지 똑바로 입력해라" value="${authUser.member_email }""></td>
+							placeholder="형식에 맞게 입력해 주세요" value="${authUser.member_email }""></td>
 					</tr>
 					<tr>
 						<td id="td-size">핸드폰번호</td>
