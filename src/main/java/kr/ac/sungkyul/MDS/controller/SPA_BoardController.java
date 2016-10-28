@@ -121,7 +121,7 @@ public class SPA_BoardController {
 		System.out.println("수정된 게시판 " + vo);
 		boardService.boardListModify(vo);
 		
-		return "http://localhost:8088/Project_MDS/SPA/"+domain+"/makeboard";
+		return "/Project_MDS/SPA/"+domain+"/makeboard";
 	}
 	
 	
@@ -136,7 +136,7 @@ public class SPA_BoardController {
 		//게시판 순서 위로 가기
 		 boardService.boardListUp(boardlistno);
 		
-		return "http://localhost:8088/Project_MDS/SPA/"+domain+"/makeboard";
+		return "/Project_MDS/SPA/"+domain+"/makeboard";
 	}
 	
 	@ResponseBody
@@ -150,7 +150,7 @@ public class SPA_BoardController {
 		//게시판 순서 아래로 가기
 		boardService.boardListDown(boardlistno);
 		
-		return "http://localhost:8088/Project_MDS/SPA/"+domain+"/makeboard";
+		return "/Project_MDS/SPA/"+domain+"/makeboard";
 	}
 	
 	
@@ -165,7 +165,7 @@ public class SPA_BoardController {
 		//게시판 삭제
 		boardService.boardlistdelete(boardlistno);
 		
-		return "http://localhost:8088/Project_MDS/SPA/"+domain+"/makeboard";
+		return "/Project_MDS/SPA/"+domain+"/makeboard";
 	}
 	
 	
