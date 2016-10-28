@@ -191,7 +191,7 @@ public class SPA_MainController {
 			return "redirect:/main/loginfrom";
 		}
 		if (file.isEmpty()) {
-			return "redirect:/SPA/" + domain + "/malllogo";
+			return "redirect:/SPA/" + domain + "/mallmain";
 		}
 		SPA_mainservice.deleteMallImg(domain, 1);
 		SPA_mainservice.insertMallImg(domain, file, 1);

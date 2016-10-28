@@ -407,7 +407,7 @@ $(".btn_catePModalAdd").on("click", function() {
 			alert("2차 카테고리를 설정해주세요.");
 			return;
 		}
-		var product_no = $("#product_no").val();
+		var product_no = $("#productno").val();
 		var product_name = $("#product_name").val();
 		if (product_name == "") {
 			alert("상품명을 입력해주세요.");
