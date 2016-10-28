@@ -34,7 +34,7 @@
 			<div class="form-inline" id="inputFormGroup">
 				<label id="catelabel">카테고리 : </label><select class="form-control"
 					id="form-cata1nd">
-					<option value="-1">1차 카테고리</option>
+					<option value="-1">=1차 카테고리=</option>
 					<c:forEach items="${categorylist}" var="categoryList">
 						<c:if test='${categoryList.categorylist_depth == 1}'>
 							<option value="${categoryList.categorylist_group }">${categoryList.categorylist_name }</option>
