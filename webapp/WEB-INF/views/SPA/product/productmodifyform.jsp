@@ -424,8 +424,8 @@ $(".btn_catePModalAdd").on("click", function() {
 			return;
 		}
 		var product_makedate = $("#product_makedate").val();
-		if (product_makedate == "") {
-			alert("제조일자를 입력해주세요.");
+		if (product_makedate == "" || !(product_makedate.length == 8)) {
+			alert("제조일자를 확인해주세요.");
 			return;
 		}
 		var productoption_color = $("#productoption_color").val();
