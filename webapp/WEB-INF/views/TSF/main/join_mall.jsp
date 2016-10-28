@@ -6,21 +6,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
-
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<!-- 공통 -->
+<script type="text/javascript"
+	src="/Project_MDS/assets/js/jquery/jquery-3.1.1.js"></script>
 
 <link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
-<link href="/Project_MDS/assets/css/TSF_main.css" rel="stylesheet"
+	<link href="/Project_MDS/assets/css/TSF_main.css" rel="stylesheet"
 	type="text/css">
+<script src="/Project_MDS/assets/dist/js/bootstrap.min.js"></script>
 
-<title>Shop Item - Start Bootstrap Template</title>
 
-<!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Custom CSS -->
-<link href="css/shop-item.css" rel="stylesheet">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -71,7 +68,7 @@
 					<tr>
 						<td id="td-size">쇼핑몰 종류</td>
 						<td>
-												<SELECT name="mall_type">
+												<SELECT name="mall_type" id="selectType">
 							<OPTION value="-1" selected>=쇼핑몰 종류=</OPTION>
 							<OPTION value="남성의류">남성의류</OPTION>
 							<OPTION value="여성의류">여성의류</OPTION>
@@ -153,7 +150,7 @@
 
 					<tr>
 						<td><label style="padding-left: 50px"> <input
-								type="submit" class="btn btn-success" value="가입하기"></label></td>
+								type="submit" class="btn btn-success" id="btnSuccess" value="가입하기"></label></td>
 
 
 						<td><a class="btn btn-success"
@@ -190,14 +187,33 @@
 
 
 	</div>
-	<!-- /.container -->
 
-	<!-- jQuery -->
-	<script src="js/jquery.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="js/bootstrap.min.js"></script>
 
 </body>
+<script>
+$(function() {
 
+	$("#login-form").submit(
+			function() {
+				//텍스트박스 체크
+				if ($("#textbox").val() == "") {
+					alert("모든 항목을 입력해주세요");
+					$("#board_password").focus();
+					return false;
+				}
+				//셀렉박스 체크
+				if($("#selectType option:selected").val() == -1){
+					alert("쇼핑몰 종류를 선택해주세요.");
+					return false;
+				}
+				//체크박스 체크
+				if (document.loginform.agreeProv.checked) {
+				} 
+				else {
+				alert("약관을 모두 동의해주세요.");
+				return false;
+				}
+			});
+});
+	</script>
 </html>
