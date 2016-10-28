@@ -31,7 +31,7 @@ a {
 #orderTable {
 	font-size: 14px;
 	vertical-align:middle;
-	/* text-align: center; */
+	text-align: center;
 }
 
 #tr_checkBox {
@@ -95,13 +95,13 @@ a {
 #addressLabel3 {
 	position: relative;
 	top: 5px;
-	right: 35px;
+	right: 30px;
 }
 
 #addressLabel4 {
 	position: relative;
 	top: 13px;
-	right: 35px;
+	right: 30px;
 }
 
 #addressInput4 {
