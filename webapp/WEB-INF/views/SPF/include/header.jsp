@@ -25,14 +25,14 @@
 			<c:choose>
 				<c:when test='${empty mallimgVoLogo }'>
 					<div class="col-lg-3">
-						<a href="http://localhost:8088/Project_MDS/${mall_domain }/main"> <img
+						<a href="/Project_MDS/${mall_domain }/main"> <img
 							id="logo" src="/Project_MDS/assets/image/logo.png"
 							class="img-responsive" alt="Responsive image"></a>
 					</div>
 				</c:when>
 				<c:otherwise>
 					<div class="col-lg-3">
-						<a href="http://localhost:8088/Project_MDS/${mall_domain }/main"> <img
+						<a href="/Project_MDS/${mall_domain }/main"> <img
 							id="logo" src="${mallimgVoLogo.mallimg_image }"
 							class="img-responsive" alt="Responsive image"></a>
 					</div>
@@ -69,8 +69,8 @@
 						<ul class="nav nav-pills">
 							<!-- class="active" -->
 							<li role="presentation"><a href="logout">로그아웃</a></li>
-							<li role="presentation"><a href="http://localhost:8088/Project_MDS/${mall_domain }/shoppingbasket">장바구니</a></li>
-							<li role="presentation"><a href="http://localhost:8088/Project_MDS/${mall_domain }/orderdelivery">주문배송조회</a></li>
+							<li role="presentation"><a href="/Project_MDS/${mall_domain }/shoppingbasket">장바구니</a></li>
+							<li role="presentation"><a href="/Project_MDS/${mall_domain }/orderdelivery">주문배송조회</a></li>
 							<li role="presentation"><a href="../main/modifyform">회원정보수정</a></li>
 							
 						</ul>

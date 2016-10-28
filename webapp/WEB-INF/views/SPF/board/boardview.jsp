@@ -182,7 +182,7 @@
 
 											if (boo == 'true') {
 												
-												location.href = "http://localhost:8088/Project_MDS/"+mall_domain+"/board/modifyform?board_no="
+												location.href = "/Project_MDS/"+mall_domain+"/board/modifyform?board_no="
 													+ board_no;
 											} else {
 												alert("비밀번호가 틀렸습니다");
@@ -213,7 +213,7 @@
 											
 											
 											if (boo == 'true') {
-												location.href = "http://localhost:8088/Project_MDS/"+mall_domain+"/board/delete?board_no="
+												location.href = "/Project_MDS/"+mall_domain+"/board/delete?board_no="
 														+ board_no;
 											} else {
 												alert("비밀번호가 틀렸습니다");

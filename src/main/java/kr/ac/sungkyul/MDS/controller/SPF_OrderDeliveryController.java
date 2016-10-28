@@ -153,7 +153,7 @@ public class SPF_OrderDeliveryController {
 		resultMap = JSONArray.fromObject(paramData);
 		SPF_orderDeliveryService.orderInfoInsert(resultMap, mallVo.getMall_no());
 
-		return "http://localhost:8088/Project_MDS/" + mall_domain + "/orderdelivery";
+		return "/Project_MDS/" + mall_domain + "/orderdelivery";
 	}
 
 	@ResponseBody
@@ -173,7 +173,7 @@ public class SPF_OrderDeliveryController {
 		resultMap = JSONArray.fromObject(paramData);
 		SPF_orderDeliveryService.deleteBasket(resultMap);
 
-		return "http://localhost:8088/Project_MDS/" + mall_domain + "/orderdelivery";
+		return "/Project_MDS/" + mall_domain + "/orderdelivery";
 	}
 	
 	@ResponseBody
@@ -191,7 +191,7 @@ public class SPF_OrderDeliveryController {
 
 		SPF_orderDeliveryService.orderDeliveryDelete(orderinfo_no);
 
-		return "http://localhost:8088/Project_MDS/" + mall_domain + "/orderdelivery";
+		return "/Project_MDS/" + mall_domain + "/orderdelivery";
 	}
 
 	@ResponseBody
@@ -209,7 +209,7 @@ public class SPF_OrderDeliveryController {
 
 		SPF_orderDeliveryService.orderDeliveryDelete(orderinfo_no);
 
-		return "http://localhost:8088/Project_MDS/" + mall_domain + "/orderdelivery";
+		return "/Project_MDS/" + mall_domain + "/orderdelivery";
 	}
 	
 }
