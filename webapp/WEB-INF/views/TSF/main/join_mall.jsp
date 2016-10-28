@@ -56,14 +56,16 @@
 						<td id="td-size">쇼핑몰 이름</td>
 						<td><input id="textbox" name="mall_name" type="text" value="">
 						</td>
-						<td style="padding-left: 15px">
-							<button>중복확인</button>
-						</td>
+
 					</tr>
 					<tr>
 						<td id="td-size">도메인</td>
 						<td><input id="textbox" name="mall_domain" type="text" 
-							value=""></td>
+							value=""></td>					
+							
+						<td style="padding-left: 15px">
+							<button>중복확인</button>
+						</td>
 					</tr>
 					<tr>
 						<td id="td-size">쇼핑몰 종류</td>
