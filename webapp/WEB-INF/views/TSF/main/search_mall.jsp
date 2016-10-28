@@ -58,7 +58,7 @@
 							<c:forEach items="${Search_mall }" var="Search_mall">
 
 								<br>
-								<a href="http://localhost:8088/Project_MDS/${Search_mall.mall_domain }/main">${Search_mall.mall_name }</a>
+								<a href="/Project_MDS/${Search_mall.mall_domain }/main">${Search_mall.mall_name }</a>
 								<br>
 								
 							</c:forEach>
@@ -76,7 +76,7 @@
 
 						<p class="lead">추천 쇼핑몰</p>
 						<c:forEach items="${Random_MallList }" var="Random_MallList">
-							<a href="http://localhost:8088/Project_MDS/${Random_MallList.mall_domain }/main" class="list-group-item">${Random_MallList.mall_name }</a>
+							<a href="/Project_MDS/${Random_MallList.mall_domain }/main" class="list-group-item">${Random_MallList.mall_name }</a>
 						</c:forEach>
 						
 						

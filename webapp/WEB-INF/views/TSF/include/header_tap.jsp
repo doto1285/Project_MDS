@@ -24,7 +24,7 @@
 
     
       <ul class="nav navbar-nav">
-        <li class="active"><a href="http://localhost:8088/Project_MDS/main">홈 <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="/Project_MDS/main">홈 <span class="sr-only">(current)</span></a></li>
         
         <li><a href="/Project_MDS/main/choose_mall?mall_type=남성의류">남성의류</a></li>
         <li><a href="/Project_MDS/main/choose_mall?mall_type=여성의류">여성의류</a></li>

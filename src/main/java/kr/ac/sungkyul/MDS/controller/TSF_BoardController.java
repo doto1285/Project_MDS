@@ -126,7 +126,6 @@ public class TSF_BoardController {
 	@RequestMapping("main/board/modifyform")
 	public String modifyform(Model model,
 			@RequestParam(value = "board_no") int board_no,
-			@RequestParam(value = "boardlist_no") int boardlist_no,
 			String pw
 			) {
 		// 게시글 수정 화면
