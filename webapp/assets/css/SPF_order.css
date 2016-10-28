@@ -95,13 +95,13 @@ a {
 #addressLabel3 {
 	position: relative;
 	top: 5px;
-	right: 30px;
+	right: 120px;
 }
 
 #addressLabel4 {
 	position: relative;
 	top: 13px;
-	right: 30px;
+	right: 120px;
 }
 
 #addressInput4 {
@@ -116,7 +116,7 @@ a {
 
 #phoneHyphen1 {
 	position: relative;
-	right: 40px;
+	right: 53px;
 	top: 5px;
 }
 
@@ -127,7 +127,7 @@ a {
 
 #phoneHyphen2 {
 	position: relative;
-	right: 122px;
+	right: 137px;
 	top: 5px;
 }
 
