@@ -478,7 +478,7 @@ public class SPF_BoardController {
 			}
 			
 			makeModel.put("memberVo", memberVo);
-//			makeModel.put("SPFauthUser", joinmallVo);
+			makeModel.put("SPFauthUser", joinmallVo);
 
 		}
 		return makeModel;
