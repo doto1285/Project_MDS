@@ -36,7 +36,6 @@
 					<c:if test="${categoryGroupList.categorylist_depth == 2 }">
 						<li role="presentation" id="secondCategoryMenu2nd"><a
 							href="/Project_MDS/${mall_domain }/list?categorylist_no=${categoryGroupList.categorylist_no }&categorylist_group=${category_groupNo }&pageNo=1">${categoryGroupList.categorylist_name }</a></li>
-					
 					</c:if>
 				</c:forEach>
 			</ul>
