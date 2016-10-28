@@ -51,8 +51,8 @@ a {
 }
 
 #orderProductImage {
+	height: 140px;
 	width: 90px;
-	height: 138px;
 }
 
 #radioText {
