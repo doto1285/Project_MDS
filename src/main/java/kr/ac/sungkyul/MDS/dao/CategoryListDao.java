@@ -95,5 +95,11 @@ public class CategoryListDao {
 		List<CategoryListVo> categoryList = sqlSession.selectList("SPF_categorylist.get_category_List", mallVo);
 		return categoryList;
 	}
+	
+	public CategoryListVo getCategory1nd(int categorylist_no) {
+		CategoryListVo vo = sqlSession.selectOne("SPA_categorylist.getCategory1nd", categorylist_no);
+		return vo;
+	}
+	
 
 }
