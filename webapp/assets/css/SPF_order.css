@@ -34,9 +34,14 @@ a {
 	/* text-align: center; */
 }
 
+#tr_checkBox {
+	position: relative;
+	top: 52px; 
+}
+
 #tableContents {
 	position: relative;
-	top: 50px;
+	vertical-align:middle;
 }
 
 #orderProductImage {
