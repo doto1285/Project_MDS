@@ -7,7 +7,7 @@
 </head>
 <body>
 	<footer class="section section-primary">
-		<div class="container">
+		<div class="container" id="footerContainer">
 			<div class="row">
 				<div class="col-lg-12" id="footer">
 					<p>

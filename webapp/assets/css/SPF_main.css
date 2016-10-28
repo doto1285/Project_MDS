@@ -1,12 +1,16 @@
 @CHARSET "UTF-8";
 
 html, body {
-	margin: 20;
-	padding:
+	margin:0; 
+	padding:0; 
+	height:100%;
+	width:100%;
 }
 
 body {
 	font: 76% arial, sans-serif
+	height:100%;
+	width:100%;
 }
 
 p {
@@ -21,6 +25,8 @@ a {
 /* header */
 #header {
 	font-size: 14px;
+	height:100%;
+	width:100%;
 }
 
 #logo {
@@ -33,8 +39,11 @@ a {
 	font-size: 14px;
 }
 
+
 /* footer */
 #footer {
+	margin-top:-1em;
+	height:1em;
 	background-color: black; 
 	border-color: black;
 	color: white;

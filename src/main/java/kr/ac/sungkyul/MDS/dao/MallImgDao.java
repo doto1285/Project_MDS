@@ -22,7 +22,6 @@ public class MallImgDao {
 	}
 
 	public MallimgVo get_selectMallimg_logo(MallVo mallVo) {
-		System.out.println(mallVo.toString());
 		return sqlSession.selectOne("SPF_mallimg.selectMallimg_logo", mallVo);
 
 	}

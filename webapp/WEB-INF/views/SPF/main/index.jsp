@@ -28,7 +28,7 @@
 		<div class="container">
 			<div class="row">
 				<c:choose>
-					<c:when test='${empty mallimgVoLogo }'>
+					<c:when test='${empty mallimgVoGate }'>
 						<div class="col-lg-4">
 							<img src="/Project_MDS/assets/image/SPF_index1.png" alt="대문이미지"
 								id="indexImage">
