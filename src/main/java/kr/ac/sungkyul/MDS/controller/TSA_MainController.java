@@ -31,7 +31,7 @@ public class TSA_MainController {
 		return "member/admin_loginform";
 	}
 
-	@RequestMapping("main/slrkdurlfdkfdktjanjgkrpdy")
+	@RequestMapping("main/OnlyAdmin")
 	public String login(
 			// 개인, 기업회원 로그인
 			HttpSession session, @RequestParam(value = "id", required = false, defaultValue = "") String id,
