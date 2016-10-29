@@ -107,33 +107,32 @@
 				</div>
 			</div>
 			<div class="col-lg-12">
-				<label for="inputEmail3" class="col-lg-5 control-label"
-					id="inputhead">썸네일이미지(예시) </label> <label for="inputEmail3"
-					class="col-lg-6 control-label" id="inputhead">상품 메인이미지(예시) </label>
+				<br> <label for="inputEmail3" class="col-lg-12 control-label"
+					id="inputhead">상품 썸네일이미지 </label>
 				<div class="col-lg-4">
 					<div class="thumbnail">
-						<img src="/Project_MDS/assets/image/SPF_productDetailSample2.jpg"
-							alt="상품 썸네일이미지"> <input class="btn btn-info" id="file1"
-							name="file1" type="file" value="첨부하기">
-					</div>
-				</div>
-
-				<div class="col-lg-2">
-					<div class="thumbnail" id="productmainimg">
-						<img src="/Project_MDS/assets/image/SPF_productDetailSample2.jpg"
-							alt="상품 메인이미지"> <input class="btn btn-info" id="file2"
-							name="file2" type="file" value="첨부하기">
+					<input
+							class="btn btn-info" id="file1" name="file1" type="file"
+							value="첨부하기">
 					</div>
 				</div>
 			</div>
 			<div class="col-lg-12">
 				<br> <label for="inputEmail3" class="col-lg-12 control-label"
-					id="inputhead">상품 상세이미지(예시) </label>
-				<div class="col-lg-12">
+					id="inputhead">상품 메인이미지 </label>
+				<div class="col-lg-4">
 					<div class="thumbnail">
-						<img src="/Project_MDS/assets/image/SPF_productExplanSample8.png"
-							alt="상품 상세이미지" class="img-rounded"> <input
-							class="btn btn-info" id="file3" name="file3" type="file"
+						<input class="btn btn-info" id="file2" name="file2" type="file"
+							value="첨부하기">
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-12">
+				<br> <label for="inputEmail3" class="col-lg-12 control-label"
+					id="inputhead">상품 상세이미지 </label>
+				<div class="col-lg-4">
+					<div class="thumbnail">
+						<input class="btn btn-info" id="file3" name="file3" type="file"
 							value="첨부하기">
 					</div>
 				</div>
@@ -147,7 +146,7 @@
 	</div>
 
 	<c:import url='/WEB-INF/views/SPA/include/footer.jsp' />
-	
+
 </body>
 </html>
 <script>
