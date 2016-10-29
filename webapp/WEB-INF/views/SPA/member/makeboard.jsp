@@ -77,11 +77,12 @@
 								value=<%=count_order%>>
 
 
-
 							<div class="form-inline">
-
-								<c:choose>
-									<c:when test=' <%=count_order%> > 3'>
+					
+		<!-- -------------------------------------- -->
+					<%
+						if(count_order <= 3){
+					%>
 
 										<input id="newCategorie" name="newBoardList" type="text"
 											placeholder="새 게시판 생성 (10자)" width="800px" value="">
@@ -102,12 +103,10 @@
 										</SELECT>
 										<input type="submit" class="btn_catePMod btn btn-info btn-sm"
 											value="삽입">
-
-									</c:when>
-									<c:otherwise>
+					<%} else { %>
 										<center><p>게시판은 최대 3개까지만 등록 가능합니다.</p></center>
-									</c:otherwise>
-								</c:choose>
+					<%} %>			
+		<!-- -------------------------------------- -->
 
 
 							</div>

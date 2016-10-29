@@ -52,14 +52,13 @@
 				<div class="thumbnail">
 
 						
-							<p class="lead">검색된 쇼핑몰</p>
-							<br>
-							<p>============================</p>
+						<center>	<h3>검색된 쇼핑몰</h3></center>
+							<p>&nbsp;====================================================================</p>
 							<c:forEach items="${Search_mall }" var="Search_mall">
 
-								<br>
-								<a href="/Project_MDS/${Search_mall.mall_domain }/main">${Search_mall.mall_name }</a>
-								<br>
+							
+							<h4>&nbsp;&nbsp;	<a href="/Project_MDS/${Search_mall.mall_domain }/main">${Search_mall.mall_name }</a></h4>
+							<h6><br></h6>
 								
 							</c:forEach>
 							

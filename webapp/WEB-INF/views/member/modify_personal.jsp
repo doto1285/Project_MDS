@@ -59,27 +59,23 @@
 			<!-- 본문 시작-------------------------------------------- -->
 			<form id="login-form" name="loginform" method="post"
 				action="/Project_MDS/main/modify_member">
-			회원번호 <input type="text" value="${authUser.member_no }" name="member_no">
-			회원구분 <input type="text" value="${authUser.member_distinction }" name="member_distinction">
+			<input type="hidden" value="${authUser.member_no }" name="member_no">
+			<input type="hidden" value="${authUser.member_distinction }" name="member_distinction">
 			
 				<table>
 					<tr>
 						<td id="td-size">아이디</td>
 						<td>${authUser.member_id }
 						</td>
-						<td style="padding-left: 15px">
-							<button>중복확인</button>
-						</td>
 					</tr>
 					<tr>
-					
-						<button type="button" class="btn_catePModalSave btn btn-default" data-dismiss="modal">수정하기</button>
-						
-						
 						<td id="td-size">비밀번호</td>
-						<td><input id="member_password" name = "member_password" class ="change" data-target="#modal_changepw" data-toggle="modal"
-						type="password" value="${authUser.member_password }"></td>
+						<td><input id="member_password" name = "member_password" disabled
+						type="password" value="${authUser.member_password }">
+						<input type ="button" class ="change" data-target="#modal_changepw" data-toggle="modal"  value = "변경하기">
+						</td>
 					</tr>
+					
 					<tr>
 						<td id="td-size">이름</td>
 						<td><input id="member_name" name="member_name" type="text"
@@ -191,9 +187,11 @@
 <script>
 $(".change").on("click", function() {
 
+	event.preventDefault();
 	console.log("비밀번호 클릭 "); //로그에 찍히는 부분
 
 });
+
 
 $(".btn_pwSave").on("click", function() {
 
@@ -212,8 +210,11 @@ $(".btn_pwSave").on("click", function() {
 	
 	$("#change_pw").val("");
 	$("#check").val("");
-	$("member_name").Position;
 
 });
 
 </script>
+
+
+
+

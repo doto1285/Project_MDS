@@ -321,6 +321,14 @@ public class SPA_MainController {
 		ProductVo productVo = SPA_productService.getProduct(product_no);
 		model.addAttribute("productVo", productVo);
 		
+		CategoryListVo categoryListVo1nd = SPA_categoryListService.getCategory1nd(productVo.getCategorylist_no());
+		CategoryListVo categorySelect = SPA_categoryListService.getMyVo(productVo.getCategorylist_no());
+		List<CategoryListVo> categoryListVo2nd = SPA_categoryListService.getCategoryList2nd(domain, categoryListVo1nd.getCategorylist_group());
+		System.out.println(categoryListVo2nd);
+		model.addAttribute("categoryListVo1nd", categoryListVo1nd);
+		model.addAttribute("categoryListVo2nd", categoryListVo2nd);
+		model.addAttribute("categorySelect", categorySelect);
+		
 		List<ProductOptionVo> productOptionlist = SPA_productService.getProductOptionList(product_no);
 		model.addAttribute("productOptionlist", productOptionlist);
 		

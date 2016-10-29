@@ -34,15 +34,16 @@
 			<div class="form-inline" id="inputFormGroup">
 				<label id="catelabel">카테고리 : </label><select class="form-control"
 					id="form-cata1nd">
-					<option value="-1">1차 카테고리</option>
+					<option value="-1">=1차 카테고리=</option>
 					<c:forEach items="${categorylist}" var="categoryList">
 						<c:if test='${categoryList.categorylist_depth == 1}'>
 							<option value="${categoryList.categorylist_group }">${categoryList.categorylist_name }</option>
 						</c:if>
 					</c:forEach>
 				</select> <select class="form-control" id="form-cata2nd">
-					<option value="-1">2차 카테고리</option>
-					<option id="sizeSelect"></option>
+					<c:forEach items="${categoryListVo2nd}" var="categoryList">
+							<option value="${categoryList.categorylist_no }">${categoryList.categorylist_name }</option>
+					</c:forEach>
 				</select>
 			</div>
 			<div class="col-lg-12">
@@ -250,6 +251,13 @@ var cateno2 = "";
 var cateco = "";
 var catesi = "";
 var catest = "";
+var cate1 = "${categoryListVo1nd.categorylist_group }";
+var cate2 = "${categorySelect.categorylist_no }";
+
+$('#form-cata1nd').val(cate1).attr('selected', 'true');
+$('#form-cata2nd').val(cate2).attr('selected', 'true');
+
+
 $(".btn_catePMod").on("click", function() {
 	cateno = $(this).parents("tr").data("cateno");
 	cateco = $(this).parents("tr").data("cateco");
@@ -348,7 +356,6 @@ $(".btn_catePModalAdd").on("click", function() {
 	alert("추가 완료");
 });
 
-	$('#form-cata2nd').attr('disabled', 'true');
 	$("#form-cata1nd")
 			.on(
 					"change",

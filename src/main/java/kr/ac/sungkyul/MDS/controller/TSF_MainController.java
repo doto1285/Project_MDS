@@ -18,6 +18,7 @@ import kr.ac.sungkyul.MDS.service.SPF_OrderDeliveryService;
 import kr.ac.sungkyul.MDS.service.TSF_MainService;
 import kr.ac.sungkyul.MDS.vo.BoardListVo;
 import kr.ac.sungkyul.MDS.vo.BoardVo;
+import kr.ac.sungkyul.MDS.vo.JoinMallVo;
 import kr.ac.sungkyul.MDS.vo.MallVo;
 import kr.ac.sungkyul.MDS.vo.MemberVo;
 import kr.ac.sungkyul.MDS.vo.OrderinfoVo;
@@ -27,23 +28,32 @@ public class TSF_MainController {
 
 	@Autowired
 	TSF_MainService TSF_MainService;
-	
+
 	@Autowired
 	BoardService BoardService;
-	
+
 	@Autowired
 	SPF_OrderDeliveryService SPF_orderDeliveryService;
 
 	@RequestMapping("/{userid}")
-	public String index( @PathVariable String userid, HttpSession session, Model model) {
+	public String index(@PathVariable String userid, HttpSession session, Model model) {
 
 		System.out.println("userid : " + userid);
 
 		// 랜덤 쇼핑몰 목록 가져오기
 		List<MallVo> Random_MallList = TSF_MainService.GetRandomMallList();
-		
-		//게시판 목록 가져오기
+
+		// 게시판 목록 가져오기
 		List<BoardListVo> GetBoardList = BoardService.GetBoardList(userid);
+
+		// 로그인한 사용자가 가입한 쇼핑몰 가져오기
+		MemberVo authUser = (MemberVo) session.getAttribute("authUser");
+		if (authUser != null) {
+			//로그인한 사용자의 가입된 쇼핑몰 목록을 가져온다(판매자는 자신이 개설한 쇼핑몰 목록)
+			List<MallVo> auth_MallList = TSF_MainService.GetJoinMall(authUser.getMember_no(), authUser.getMember_id(),
+					authUser.getMember_state());
+			model.addAttribute("auth_MallList", auth_MallList);
+		}
 		
 		
 		model.addAttribute("Random_MallList", Random_MallList);
@@ -52,11 +62,11 @@ public class TSF_MainController {
 		String url = "TSF/" + userid + "/index";
 		return url;
 	}
-	
+
 	@RequestMapping("main/join_mallform")
 	public String join_mallform() {
 		// 쇼핑몰 만들기 화면으로 연결
-		
+
 		return "TSF/main/join_mall";
 	}
 
@@ -64,54 +74,50 @@ public class TSF_MainController {
 	public String insert_mall(@ModelAttribute MallVo mallVo) {
 		// 쇼핑몰 생성하기
 		TSF_MainService.insert_mall(mallVo);
-		
+
 		return "redirect:/main";
 	}
-	
+
 	@RequestMapping("main/search_mall")
-	public String search_mall(@ModelAttribute MallVo mallVo, Model model,
-			String keyword
-			) {
+	public String search_mall(@ModelAttribute MallVo mallVo, Model model, String keyword) {
 		// 검색어로쇼핑몰 검색하기
 
 		// 랜덤 쇼핑몰 목록 가져오기
 		List<MallVo> Random_MallList = TSF_MainService.GetRandomMallList();
 		model.addAttribute("Random_MallList", Random_MallList);
 
-		//검색어로 검색한 쇼핑몰 목록 가져오기
+		// 검색어로 검색한 쇼핑몰 목록 가져오기
 		System.out.println("검색어: " + keyword);
 		List<MallVo> Search_mall = TSF_MainService.search_mall(keyword.trim());
-		
+
 		model.addAttribute("Search_mall", Search_mall);
-		
+
 		return "TSF/main/search_mall";
 	}
-	
+
 	@RequestMapping("main/choose_mall")
 	public String choose_mall(@ModelAttribute MallVo mallVo, Model model,
-			@RequestParam(value = "mall_type", required = false, defaultValue = "0") String mall_type
-			) {
+			@RequestParam(value = "mall_type", required = false, defaultValue = "0") String mall_type) {
 		// 검색어로쇼핑몰 검색하기
-		System.out.println("선택된 탭: "+ mall_type);
-		
+		System.out.println("선택된 탭: " + mall_type);
+
 		// 랜덤 쇼핑몰 목록 가져오기
 		List<MallVo> Random_MallList = TSF_MainService.GetRandomMallList();
 		model.addAttribute("Random_MallList", Random_MallList);
-		
-		
-		//탭에서 선택한 쇼핑몰 목록 가져오기
+
+		// 탭에서 선택한 쇼핑몰 목록 가져오기
 		List<MallVo> Search_mall = TSF_MainService.choose_mall(mall_type);
-		
+
 		model.addAttribute("Search_mall", Search_mall);
-		
+
 		return "TSF/main/search_mall";
 	}
-	
+
 	@RequestMapping("main/orderdelivery")
 	public String orderDelivery(HttpSession session, Model model, OrderinfoVo orderinfoVo) {
-		//페이징
+		// 페이징
 		MemberVo memberVo = (MemberVo) session.getAttribute("authUser");
-		orderinfoVo.setMember_no(memberVo.getMember_no()); 
+		orderinfoVo.setMember_no(memberVo.getMember_no());
 		List<OrderinfoVo> orderlist = SPF_orderDeliveryService.TSForderInfoSelect(orderinfoVo);
 		if (orderinfoVo.getPageNo() == null) {
 			orderinfoVo.setPageNo(1);
@@ -138,7 +144,7 @@ public class TSF_MainController {
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("total", total);
-		
+
 		return "TSF/main/orderDelivery";
 	}
 

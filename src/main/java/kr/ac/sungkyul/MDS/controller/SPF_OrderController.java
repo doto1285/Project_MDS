@@ -130,7 +130,7 @@ public class SPF_OrderController {
 		orderList = SPF_orderService.insertOrder(resultMap, mallVo.getMall_no());
 		System.out.println("orderList 저장할 때 : " + orderList);
 
-		return "http://localhost:8088/Project_MDS/" + mall_domain + "/order";
+		return "/Project_MDS/" + mall_domain + "/order";
 	}
 	
 	@ResponseBody
@@ -151,7 +151,7 @@ public class SPF_OrderController {
 		orderList = SPF_orderService.insertOrderOfBasket(resultMap, mallVo.getMall_no());
 		System.out.println("orderList 저장할 때 : " + orderList);
 
-		return "http://localhost:8088/Project_MDS/" + mall_domain + "/order";
+		return "/Project_MDS/" + mall_domain + "/order";
 	}
 
 }

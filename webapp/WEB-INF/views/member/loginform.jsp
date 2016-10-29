@@ -75,7 +75,7 @@
 								</c:if>
 								
 								<input type="submit" id="button" value="로그인">
-								<p class="message">관리자 페이지로 일반 사용자는 로그인이 불가능합니다.</p>
+								<p class="message"></p>
 								<a href="" class="btn btn-success"> 회원가입</a>
 							</form>
 							

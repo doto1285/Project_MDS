@@ -111,12 +111,6 @@ public class MemberController {
 		System.out.println("로그인 성공");
 		session.setAttribute("authUser", authUser);
 
-		// 로그인한 사용자가 가입한 쇼핑몰 가져오기
-		List<MallVo> auth_MallList = TSF_MainService.GetJoinMall(authUser.getMember_no(), authUser.getMember_id(),
-				authUser.getMember_state());
-
-		session.setAttribute("auth_MallList", auth_MallList);
-
 		return "redirect:/main";
 	}
 

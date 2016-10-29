@@ -104,10 +104,11 @@
 				<c:if test="${empty map.GetBoardContentsList}">
 					<div id="search">
 						<div id="search_risk">
-							<img src="/gs25/assets/images/customcenter/risk.png">
+							<img src="/Project_MDS/assets/image/risk.png">
 						</div>
 						<p class="search_list-right">
-							검색된 결과를 찾을 수 없습니다. <br>
+						<p class="lead">검색된 결과를 찾을 수 없습니다.</p>
+						<br>
 						</p>
 					</div>
 				</c:if>

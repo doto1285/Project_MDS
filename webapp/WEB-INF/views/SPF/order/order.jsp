@@ -62,7 +62,7 @@
 				<input type="hidden" id="tableContents12" value="${orderVO.total }">
 					<td><div class="form-group">
 							<div class="checkbox">
-								<label> <input type="checkbox" class="tr_check" id="tableContents">
+								<label> <input type="checkbox" class="tr_check" id="tr_checkBox">
 								</label>
 							</div>
 						</div></td>

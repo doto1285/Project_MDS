@@ -30,15 +30,22 @@ a {
 
 #orderTable {
 	font-size: 14px;
+	vertical-align:middle;
 	text-align: center;
+}
+
+#tr_checkBox {
+	position: relative;
+	top: 52px; 
 }
 
 #tableContents {
 	position: relative;
-	top: 50px;
+	vertical-align:middle;
 }
 
 #orderProductImage {
+	height: 138px;
 	width: 90px;
 }
 
@@ -88,13 +95,13 @@ a {
 #addressLabel3 {
 	position: relative;
 	top: 5px;
-	right: 130px;
+	right: 120px;
 }
 
 #addressLabel4 {
 	position: relative;
 	top: 13px;
-	right: 123px;
+	right: 120px;
 }
 
 #addressInput4 {

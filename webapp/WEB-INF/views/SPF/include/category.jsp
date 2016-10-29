@@ -23,12 +23,12 @@
 						<li id="categoryMenu2"><c:if
 								test="${categoryList1st.categorylist_depth  == 1
 									and not empty categoryList1st.categorylist_name }">
-								<a href="#" id="category1st"> ${ categoryList1st.categorylist_name}
+								<a style="cursor: pointer" id="category1st"> ${ categoryList1st.categorylist_name}
 								</a>
 							</c:if>
 							<ul id="categoryMenu3">
 								<c:forEach items="${categoryList2nd }" var="categoryList2nd">
-									<li><a
+									<li><h4><a
 										href="list?categorylist_no=${categoryList2nd.categorylist_no }
 										&categorylist_group=${categoryList2nd.categorylist_group }">
 											<c:if
@@ -36,7 +36,7 @@
 									and categoryList2nd.categorylist_group == categoryList1st.categorylist_group}">
 									${ categoryList2nd.categorylist_name}
 											</c:if>
-									</a></li>
+									</a></h4></li>
 								</c:forEach>
 							</ul></li>
 					</c:forEach>

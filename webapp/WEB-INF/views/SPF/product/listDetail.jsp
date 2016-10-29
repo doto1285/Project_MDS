@@ -120,12 +120,6 @@
 	var price = 0;
 	var loginCheck = "${SPFauthUser.member_no }";
 	
-	$(function()
-			{
-			 $(document).on("keyup", "input:text[numberOnly]", function() {
-				 $(this).val( $(this).val().replace(/[^0-9]/gi,"") );
-				 });
-			});
 	$('#form-control2').attr('disabled', 'true');
 	
 	$("#form-control1").on( "change", function() {
@@ -325,7 +319,20 @@
 		
 	});
 	
-	  
+	$(function()
+			{
+			 $(document).on("keyup", "input:text[numberOnly]", function() {
+				 $(this).val( $(this).val().replace(/[^0-9]/gi,"") );
+				 if($(this).val() == 0){
+					 alert("0개를 구입하실수 없습니다.");
+					 $(this).val(1);
+					 totalCount = totalCount + 1;
+					 $("#productPriceText3").html("(" + totalCount + ")개");
+					 totalPrice = (totalCount * price);
+					 $("#productPriceText2").html(totalPrice+"원");
+				 }
+				 });
+			});
 
 </script>
 </html>

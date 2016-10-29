@@ -160,7 +160,7 @@ public class SPF_ShoppingBasketController {
 		resultMap = JSONArray.fromObject(paramData);
 		SPF_shoppingBasketService.insertBasket(resultMap, mallVo.getMall_no());
 
-		return "http://localhost:8088/Project_MDS/" + mall_domain + "/shoppingbasket";
+		return "/Project_MDS/" + mall_domain + "/shoppingbasket";
 	}
 
 	@ResponseBody
@@ -181,7 +181,7 @@ public class SPF_ShoppingBasketController {
 		System.out.println("컨트롤러 리절트맵: " + paramData);
 		SPF_shoppingBasketService.deleteBasket(resultMap);
 
-		return "http://localhost:8088/Project_MDS/" + mall_domain + "/shoppingbasket";
+		return "/Project_MDS/" + mall_domain + "/shoppingbasket";
 	}
 
 }
