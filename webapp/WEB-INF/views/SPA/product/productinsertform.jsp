@@ -62,21 +62,21 @@
 							<label for="inputEmail3" class="col-lg-4 control-label"
 								id="inputText">상품가격 : </label> <input name="product_price"
 								type="text" class="form-control" id="product_price" value=""
-								placeholder="상품가격을 입력해주세요.">
+								placeholder="상품가격을 입력해주세요." >
 						</div>
 
 						<div class="form-group" id="inputFormGroup">
 							<label for="inputEmail3" class="col-lg-4 control-label"
 								id="inputText">제조자 : </label> <input name="product_maker"
-								type="text" class="form-control" id="product_maker" value=""
-								placeholder="제조사를 입력해주세요.">
+								type="text" class="form-control" id="product_maker" value="개성공단"
+								placeholder="제조사를 입력해주세요." >
 						</div>
 
 						<div class="form-group" id="inputFormGroup">
 							<label for="inputEmail3" class="col-lg-4 control-label"
 								id="inputText">제조일자 : </label> <input name="product_makedate"
-								type="text" class="form-control" id="product_makedate" value=""
-								placeholder="입력형식 : 20160101">
+								type="text" class="form-control" id="product_makedate" value="20161010"
+								placeholder="입력형식 : 20160101" >
 						</div>
 					</div>
 				</div>
@@ -94,14 +94,14 @@
 							<label for="inputEmail3" class="col-lg-4 control-label"
 								id="inputText">사이즈 : </label> <input name="productoption_size"
 								type="text" class="form-control" id="productoption_size"
-								value="" placeholder="사이즈를 입력해주세요.">
+								value="100" placeholder="사이즈를 입력해주세요." >
 						</div>
 
 						<div class="form-group" id="inputFormGroup">
 							<label for="inputEmail3" class="col-lg-4 control-label"
 								id="inputText">재고 : </label> <input name="productoption_stock"
 								type="text" class="form-control" id="productoption_stock"
-								value="" placeholder="재고를 입력해주세요.">
+								value="30" placeholder="재고를 입력해주세요." >
 						</div>
 					</div>
 				</div>

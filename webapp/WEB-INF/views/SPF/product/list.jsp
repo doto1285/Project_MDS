@@ -88,6 +88,12 @@
 			</c:forEach>
 
 
+
+		</c:otherwise>
+		</c:choose>
+	</div>
+	
+	
 			<div class="pager">
 				<!-- class="pagination" id="paging" -->
 				<ul>
@@ -124,10 +130,6 @@
 				</ul>
 
 			</div>
-
-		</c:otherwise>
-		</c:choose>
-	</div>
 	<c:import url='/WEB-INF/views/SPF/include/footer.jsp' />
 </body>
 <script>
