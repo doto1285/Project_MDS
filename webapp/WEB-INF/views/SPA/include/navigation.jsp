@@ -3,6 +3,9 @@
 	<div class="section" id="navi">
 		<div class='accordion'>
 			<ul>
+				<li><a href='../../main'>메인으로</a></li>
+			</ul>
+			<ul>
 				<li><a href='mall'>쇼핑몰관리</a>
 					<ul>
 						<li><a href='mall'>--> 쇼핑몰정보관리</a></li>
