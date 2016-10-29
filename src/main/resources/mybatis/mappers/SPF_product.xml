@@ -85,7 +85,7 @@
 			 from product p FULL OUTER JOIN productimg i on p.product_no = i.product_no 
 			 where productimg_image is not null and CATEGORYLIST_NO= #{categorylist_no} 
 			 and product_state = 1 and productimg_flag = 0 order by product_price asc) a)
-			 where (#{pageNo}-1)*20+1<=rnum and rnum<=#{pageNo}*20 
+			 where (#{pageNo}-1)*12+1<=rnum and rnum<=#{pageNo}*12 order by orderinfo_no desc
 			 ]]>
 	</select>
 
@@ -98,7 +98,7 @@
 			 from product p FULL OUTER JOIN productimg i on p.product_no = i.product_no 
 			 where productimg_image is not null and CATEGORYLIST_NO= #{categorylist_no} 
 			 and product_state = 1 and productimg_flag = 0 order by product_price desc) a)
-			 where (#{pageNo}-1)*20+1<=rnum and rnum<=#{pageNo}*20 
+			 where (#{pageNo}-1)*12+1<=rnum and rnum<=#{pageNo}*12 order by orderinfo_no desc
 			 ]]>
 	</select>
 
@@ -112,7 +112,7 @@
 			 from product p FULL OUTER JOIN productimg i on p.product_no = i.product_no 
 			 where productimg_image is not null and CATEGORYLIST_NO= #{categorylist_no} 
 			 and product_state = 1 and productimg_flag = 0 order by productimg_no desc) a)
-			 where (#{pageNo}-1)*20+1<=rnum and rnum<=#{pageNo}*20 
+			 where (#{pageNo}-1)*12+1<=rnum and rnum<=#{pageNo}*12 order by orderinfo_no desc
 			 ]]>
 	</select>
 

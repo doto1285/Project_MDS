@@ -108,7 +108,7 @@ public class SPF_ListController {
 			categoryProductListVoPaging.setPageNo(1);
 		}
 		int currentPage = categoryProductListVoPaging.getPageNo();
-		int pageLength = 4;
+		int pageLength = 12;
 		int beginPage;
 
 		if (sorting.equals("lowprice")) {
