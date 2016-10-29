@@ -67,7 +67,6 @@
 						<td id="td-size">아이디</td>
 						<td>${authUser.member_id }
 						</td>
-						
 					</tr>
 					<tr>
 						<td id="td-size">비밀번호</td>
@@ -76,9 +75,6 @@
 						<input type ="button" class ="change" data-target="#modal_changepw" data-toggle="modal"  value = "변경하기">
 						</td>
 					</tr>
-					
-					
-					
 					
 					<tr>
 						<td id="td-size">이름</td>

@@ -81,7 +81,7 @@
 					
 		<!-- -------------------------------------- -->
 					<%
-						if(count_order <= 4){
+						if(count_order <= 3){
 					%>
 
 										<input id="newCategorie" name="newBoardList" type="text"

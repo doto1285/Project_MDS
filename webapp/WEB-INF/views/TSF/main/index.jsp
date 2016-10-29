@@ -70,14 +70,13 @@
 						<c:when test='${authUser.member_distinction == 1}'>
 							<!-- 개인 회원일경우 표시되는 화면  -->
 
-							<p class="lead">내가 가입한 쇼핑몰</p>
-							<br>
-							<p>============================</p>
+							<center><h3>내가 가입한 쇼핑몰</h3></center>
+							<p>&nbsp;====================================================================</p>
 							<c:forEach items="${auth_MallList }" var="auth_MallList">
 
-								<br>
-								<a href="/Project_MDS/${auth_MallList.mall_domain }/main">${auth_MallList.mall_name }</a>
-								<br>
+							
+							<h4><p> &nbsp;&nbsp;<a href="/Project_MDS/${auth_MallList.mall_domain }/main">${auth_MallList.mall_name }</a></p> </h4>
+							<h6><br></h6>
 							</c:forEach>
 
 						</c:when>
@@ -86,14 +85,12 @@
 						<c:when test='${authUser.member_distinction == 2 }'>
 							<!-- 기업 회원일경우 표시되는 화면  -->
 
-							<p class="lead">내가 개설한 쇼핑몰</p>
-							<br>
-							<p>============================</p>
+							<h3>내가 개설한 쇼핑몰</h3>
+							<p>&nbsp;====================================================================</p>
 							<c:forEach items="${auth_MallList }" var="auth_MallList">
 
-								<br>
-								<a href="/Project_MDS/SPA/${auth_MallList.mall_domain }/mall">${auth_MallList.mall_name }</a>
-								<br>
+								<h4>&nbsp;&nbsp;<a href="/Project_MDS/SPA/${auth_MallList.mall_domain }/mall">${auth_MallList.mall_name }</a></h4>
+								<h6><br></h6>
 							</c:forEach>
 
 						</c:when>
@@ -101,7 +98,7 @@
 
 						<c:when test='${authUser.member_distinction == 9 }'>
 							<!-- admin일경우 표시되는 화면  -->
-							<p class="lead">admin 로그인</p>
+							<h3>admin 로그인</h3>
 
 						</c:when>
 					</c:choose>

@@ -40,18 +40,18 @@
 						<input type="submit" value="찾기">
 					</center>
 				</form>
-
-				유저 유형 ${authUser.member_distinction } <br> 쓰기권한
-				${GetBoard.boardlist_write_accessright } <br> 읽기권한
-				${GetBoard.boardlist_read_accessright } <br>
-
+<!-- 
+				유저 유형 ${authUser.member_distinction } <br> 
+				쓰기권한 ${GetBoard.boardlist_write_accessright } <br> 
+				읽기권한 ${GetBoard.boardlist_read_accessright } <br>
+ -->
 				<table class="tbl-ex">
 					<table class="table table-striped table-hover ">
 						<tr>
-							<th>번호 ${authUser.member_distinction}</th>
-							<th>제목 ${GetBoard.boardlist_write_accessright }</th>
-							<th>글쓴이${GetBoard.boardlist_read_accessright }</th>
-							<th>조회수${authUser.member_no }</th>
+							<th>번호 </th>
+							<th>제목</th>
+							<th>글쓴이</th>
+							<th>조회수</th>
 							<th>작성일</th>
 						</tr>
 
@@ -112,10 +112,10 @@
 				<c:if test="${empty map.GetBoardContentsList}">
 					<div id="search">
 						<div id="search_risk">
-							<img src="/gs25/assets/images/customcenter/risk.png">
+							<img src="/Project_MDS/assets/image/risk.png">
 						</div>
 						<p class="search_list-right">
-							검색된 결과를 찾을 수 없습니다. <br>
+							<p class="lead">검색된 결과를 찾을 수 없습니다.</p> <br>
 						</p>
 					</div>
 				</c:if>
