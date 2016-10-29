@@ -64,6 +64,19 @@
 			 and productimg_flag = 0 and rownum <= 20 order by productimg_no desc
 			 ]]>
 	</select>
+	
+		<select id="get_product_allcontent" parameterType="kr.ac.sungkyul.MDS.vo.MallVo"
+		resultType="kr.ac.sungkyul.MDS.vo.ProductListVo">
+		<!-- mall_no을 이용해 올바른 상품이름, 가격, 상품 이미지URL 가져오기 -->
+				<![CDATA[	
+			 select product_name, product_price, productimg_image, productimg_no, p.product_no from 
+			 categorylist c FULL OUTER JOIN product p on c.categorylist_no = p.categorylist_no 
+			 FULL OUTER JOIN productimg i on p.product_no = i.product_no 
+			 where productimg_image is not null and mall_no= #{mall_no } and product_state = 1
+			 and productimg_flag = 0
+			 ]]>
+	</select>
+	
 
 	<select id="get_product_list" parameterType="java.lang.Integer"
 		resultType="kr.ac.sungkyul.MDS.vo.CategoryProductListVo">

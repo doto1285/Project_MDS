@@ -70,7 +70,7 @@ public class ProductDao {
 	 * @return
 	 */
 	public List<ProductListVo> get_Product_Content(MallVo mallVo){
-		return sqlSession.selectList("SPF_product.get_product_content", mallVo);
+		return sqlSession.selectList("SPF_product.get_product_allcontent", mallVo);
 	}
 	
 	/**

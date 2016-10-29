@@ -37,9 +37,6 @@ public class SPA_ProductService {
 	public List<ProductListVo> getProductInfo(String domain) {
 		MallVo mallVo = mallDao.domainCheck(domain);
 		List<ProductListVo> productlist = productDao.get_Product_Content(mallVo);
-		for(int i=0; i<productlist.size(); i++) {
-			productlist.get(i).setProduct_no(productDao.getProductNo(productlist.get(i).getProduct_name()));
-		}
 
 		return productlist;
 	}
