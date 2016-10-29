@@ -66,7 +66,8 @@
 					href="/Project_MDS/${mall_domain }/list?categorylist_no= ${categoryListVo.categorylist_no }&categorylist_group=${category_groupNo }&sorting=lowprice">
 						낮은가격 &nbsp; </a></li>
 				<li role="presentation"><a
-					href="/Project_MDS/${mall_domain }/list?categorylist_no= ${categoryListVo.categorylist_no }&categorylist_group=${category_groupNo }&sorting=highprice">높은가격</a></li>
+					href="/Project_MDS/${mall_domain }/list?categorylist_no= ${categoryListVo.categorylist_no }&categorylist_group=${category_groupNo }&sorting=highprice">높은가격 &nbsp;</a></li>
+				<li role="presentation"><a href="/Project_MDS/${mall_domain }/list?categorylist_no=${categoryListVo.categorylist_no }&categorylist_group=${category_groupNo }">등록일순</a></li>
 			</ul>
 			<c:forEach items="${categoryProductListVo }"
 				var="categoryProductListVo" varStatus="status">
