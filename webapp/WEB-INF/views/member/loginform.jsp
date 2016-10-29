@@ -76,7 +76,7 @@
 								
 								<input type="submit" id="button" value="로그인">
 								<p class="message"></p>
-								<a href="" class="btn btn-success"> 회원가입</a>
+								<a href="/Project_MDS/main/joinform_choose" class="btn btn-success"> 회원가입</a>
 							</form>
 							
 						</div>

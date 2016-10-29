@@ -48,19 +48,20 @@
 			</div>
 
 			<!-- 본문 시작-------------------------------------------- -->
-					
-					회원가입 선택 화면
-			<div>
-				<a class="btn btn-success" href="/Project_MDS/main/Joinform_personal">개인 회원 가입</a>
+			<div class="col-md-6" id="margin50px">
+					<div>
+						<a class="btn btn-success"
+							href="/Project_MDS/main/Joinform_personal">개인 회원 가입</a>
+					</div>
+<br><br>
+					<div>
+						<a class="btn btn-success"
+							href="/Project_MDS/main/Joinform_company">기업 회원 가입</a>
+					</div>
 			</div>
-			
-			<div >
-				<a class="btn btn-success" href="/Project_MDS/main/Joinform_company">기업 회원 가입</a>
-			</div>
-		
-		
-		
-		
+
+
+
 			<!-- 본문 끝-------------------------------------------- -->
 		</div>
 

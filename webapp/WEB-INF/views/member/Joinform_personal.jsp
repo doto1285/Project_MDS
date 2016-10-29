@@ -50,7 +50,8 @@
 			<!-- 본문 시작-------------------------------------------- -->
 			<form id="login-form" name="loginform" method="post"
 				action="/Project_MDS/main/Join">
-				개인회원 가입 <input type="text" value=1 name="member_distinction">
+				 <input type="hidden" value=1 name="member_distinction">
+				 <h3>개인회원 가입</h3>
 				<table>
 					<tr>
 						<td id="td-size">아이디</td>

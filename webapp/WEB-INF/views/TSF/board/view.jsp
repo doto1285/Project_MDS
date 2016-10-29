@@ -158,7 +158,7 @@
 				</div>
 			</div>
 
-			<input type="text" id='check_motion' value="">
+			<input type="hidden" id='check_motion' value="">
 
 		</div>
 	</div>

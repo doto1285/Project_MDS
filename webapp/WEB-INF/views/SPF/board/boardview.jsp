@@ -110,8 +110,8 @@
 				</div>
 			</div>
 
-			<input type="text" id='check_motion' value="">
-			<input type="text" id='mall_domain' value="">
+			<input type="hidden" id='check_motion' value="">
+			<input type="hidden" id='mall_domain' value="">
 
 		</div>
 	</div>

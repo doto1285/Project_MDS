@@ -28,7 +28,7 @@
 						class="navbar-brand" id="admin_logout">로그인</a>
 				</c:when>
 				<c:otherwise>
-					<a href="#" span class="navbar-brand" id="user_hi">${authUser.member_name }님
+					<a href="/Project_MDS/main"  span class="navbar-brand" id="user_hi">${authUser.member_name }님
 						안녕하세요 ^^;</span>
 					</a>
 					<a href="/Project_MDS/TSA/main/logout" class="navbar-brand"

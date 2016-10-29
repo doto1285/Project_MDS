@@ -171,6 +171,7 @@
 
 											if (boo == 'true') {
 												location.href = "/Project_MDS/TSA/main/board/modifyform?board_no="+ board_no;
+												
 											} else {
 												alert("비밀번호가 틀렸습니다");
 											}
