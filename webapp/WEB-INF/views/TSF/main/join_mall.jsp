@@ -67,7 +67,7 @@
 							type="text" value=""></td>
 
 						<td style="padding-left: 15px">
-							<button>중복확인</button>
+							<button id="overlapButton">중복확인</button>
 						</td>
 					</tr>
 					<tr>
@@ -197,20 +197,22 @@
 
 </body>
 <script>
-$(function() {
 
+$('#overlapButton').on('click', function(){
+	alert("가입 가능한 도메인 주소입니다.");
+});
+
+$(function() {
 	$("#login-form").submit(
 			function() {
 				//텍스트박스 체크
 				if ($(".textbox1").val() == "") {
 					alert("쇼핑몰 이름을 입력해주세요");
-					$("#board_password").focus();
 					return false;
 				}
 				//텍스트박스 체크
 				if ($(".textbox2").val() == "") {
 					alert("쇼핑몰 도메인을 입력해주세요");
-					$("#board_password").focus();
 					return false;
 				}
 				
@@ -223,67 +225,56 @@ $(function() {
 				//텍스트박스 체크
 				if ($(".textbox3").val() == "") {
 					alert("사업자등록번호를 입력해주세요");
-					$("#board_password").focus();
 					return false;
 				}
 				//텍스트박스 체크
 				if ($(".textbox4").val() == "") {
 					alert("법인 이름을 입력해주세요");
-					$("#board_password").focus();
 					return false;
 				}
 				//텍스트박스 체크
 				if ($(".textbox5").val() == "") {
 					alert("법인 대표자 이름을 입력해주세요");
-					$("#board_password").focus();
 					return false;
 				}
 				//텍스트박스 체크
 				if ($(".textbox6").val() == "") {
 					alert("사업장 주소를 입력해주세요");
-					$("#board_password").focus();
 					return false;
 				}
 				//텍스트박스 체크
 				if ($(".textbox7").val() == "") {
 					alert("쇼핑몰 연락처를 입력해주세요");
-					$("#board_password").focus();
 					return false;
 				}
 				//텍스트박스 체크
 				if ($(".textbox8").val() == "") {
 					alert("쇼핑몰 이메일을 입력해주세요");
-					$("#board_password").focus();
 					return false;
 				}
 				//텍스트박스 체크
 				if ($(".textbox9").val() == "") {
 					alert("쇼핑몰 계좌번호를 입력해주세요");
-					$("#board_password").focus();
 					return false;
 				}
 				//텍스트박스 체크
 				if ($(".textbox10").val() == "") {
 					alert("통신판매신고번호를 입력해주세요");
-					$("#board_password").focus();
 					return false;
 				}
 				//텍스트박스 체크
 				if ($(".textbox11").val() == "") {
 					alert("개인정보책임자를 입력해주세요");
-					$("#board_password").focus();
 					return false;
 				}
 				//텍스트박스 체크
 				if ($(".textbox12").val() == "") {
 					alert("쇼핑몰 고객센터 번호를 입력해주세요");
-					$("#board_password").focus();
 					return false;
 				}
 				//텍스트박스 체크
 				if ($(".textbox13").val() == "") {
 					alert("팩스번호를 입력해주세요");
-					$("#board_password").focus();
 					return false;
 				}
 				

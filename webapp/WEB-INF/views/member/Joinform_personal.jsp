@@ -6,28 +6,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
-
-
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<!-- 공통 -->
+<script type="text/javascript"
+	src="/Project_MDS/assets/js/jquery/jquery-3.1.1.js"></script>
 <link href="/Project_MDS/assets/dist/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
 <link href="/Project_MDS/assets/css/TSF_main.css" rel="stylesheet"
 	type="text/css">
-
-<title>Shop Item - Start Bootstrap Template</title>
-
-<!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Custom CSS -->
-<link href="css/shop-item.css" rel="stylesheet">
-
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+	<script src="/Project_MDS/assets/dist/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -55,51 +42,51 @@
 				<table>
 					<tr>
 						<td id="td-size">아이디</td>
-						<td><input id="textbox" name="member_id" type="text" value="">
+						<td><input class="textbox1" id="textbox" name="member_id" type="text" value="">
 						</td>
 						<td style="padding-left: 15px">
-							<button>중복확인</button>
+							<button id="overlapButton">중복확인</button>
 						</td>
 					</tr>
 					<tr>
 						<td id="td-size">비밀번호</td>
-						<td><input id="textbox" type="password" value=""></td>
+						<td><input class="textbox2" id="textbox" type="password" value=""></td>
 					</tr>
 					<tr>
 						<td id="td-size">비밀번호 확인</td>
-						<td><input id="textbox" name="member_password"
+						<td><input class="textbox3" id="textbox" name="member_password"
 							type="password" value=""></td>
 					</tr>
 					<tr>
 						<td id="td-size">이름</td>
-						<td><input id="textbox" name="member_name" type="text"
+						<td><input class="textbox4" id="textbox" name="member_name" type="text"
 							value=""></td>
 					</tr>
 					<tr>
 						<td id="td-size">주소</td>
-						<td><input id="textbox" name="member_address" type="text"
+						<td><input class="textbox5" id="textbox" name="member_address" type="text"
 							placeholder=" 직접 입력해 주세요" value=""></td>
 					</tr>
 					<tr>
 						<td id="td-size">이메일</td>
-						<td><input id="textbox" name="member_email" type="text"
+						<td><input class="textbox6" id="textbox" name="member_email" type="text"
 							placeholder="형식에 맞게 입력해 주세요" value=""></td>
 					</tr>
 					<tr>
 						<td id="td-size">핸드폰번호</td>
-						<td><input id="textbox" name="member_phone" type="text"
+						<td><input class="textbox7" id="textbox" name="member_phone" type="text"
 							placeholder=" - 없이 입력해 주세요" value=""></td>
 					</tr>
 
 					<tr>
 						<td id="td-size">약관동의</td>
-						<td><input type="checkbox" name="agreeProv" value="y">
+						<td><input type="checkbox" name="agreeProv1" value="y">
 							<label>서비스 약관에 동의합니다.&nbsp&nbsp&nbsp&nbsp</label> <a type=href="/Project_MDS/main/#">
 								내용확인</a></td>
 					</tr>
 					<tr>
 						<td id="td-size">개인정보활용동의</td>
-						<td><input type="checkbox" name="agreeProv" value="y">
+						<td><input type="checkbox" name="agreeProv2" value="y">
 							<label>개인정보 활용에 동의합니다.&nbsp&nbsp&nbsp</label> <a type=href="/Project_MDS/main/#">
 								내용확인 </td>
 					</tr>
@@ -188,15 +175,65 @@
 
 
 	</div>
-	<!-- /.container -->
 
-	<!-- jQuery -->
-	<script src="js/jquery.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="js/bootstrap.min.js"></script>
 
 </body>
+
+<script>
+	$('#overlapButton').on('click', function(){
+		alert("가입 가능한 아이디입니다.");
+	});
+	
+	$(function() {
+		$("#login-form").submit(
+				function() {
+					//텍스트박스 체크
+					if ($(".textbox1").val() == "") {
+						alert("아이디를 입력해주세요");
+						return false;
+					}
+					//텍스트박스 체크
+					if ($(".textbox2").val() == "") {
+						alert("비밀번호를 입력해주세요");
+						return false;
+					}
+					//텍스트박스 체크
+					if ($(".textbox3").val() == "") {
+						alert("비밀번호 확인을 입력해주세요");
+						return false;
+					}
+					//텍스트박스 체크
+					if ($(".textbox4").val() == "") {
+						alert("이름을 입력해주세요");
+						return false;
+					}
+					//텍스트박스 체크
+					if ($(".textbox5").val() == "") {
+						alert("주소를 입력해주세요");
+						return false;
+					}
+					//텍스트박스 체크
+					if ($(".textbox6").val() == "") {
+						alert("이메일을 입력해주세요");
+						return false;
+					}
+					//텍스트박스 체크
+					if ($(".textbox7").val() == "") {
+						alert("핸드폰번호를 입력해주세요");
+						return false;
+					}
+
+					//체크박스 체크
+					if ($("input:checkbox[name='agreeProv1']").is(":checked") == false ||
+							$("input:checkbox[name='agreeProv2']").is(":checked") == false ) {
+						alert("약관을 모두 동의해주세요.");
+						return false;
+					} 
+
+				});
+		});
+	
+</script>
 
 </html>
 
